@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const ListingSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: "profiles"
+    ref: "users"
   },
   handle: {
     type: String,
@@ -13,39 +13,32 @@ const ListingSchema = new Schema({
     max: 40
   },
   human: {
-    age: {
-      type: String
-    },
-    gender: {
-      type: String
-    }
+    age: String,
+    gender: String
   },
-  address: {
-    type: String
-  },
+  address: String,
+
   rent: {
-    price: {
-      type: String
-    },
-    moveIn: {
-      type: Date
-    },
-    length: {
-      type: String
-    }
+    price: String,
+    moveIn: Date,
+    length: String
   },
   prefs: {
     smoke: {
-      type: Boolean
+      type: Boolean,
+      default: false
     },
     clean: {
-      type: Boolean
+      type: Boolean,
+      default: false
     },
     guests: {
-      type: Boolean
+      type: Boolean,
+      default: false
     },
     pets: {
-      type: Boolean
+      type: Boolean,
+      default: false
     }
   },
   date: {

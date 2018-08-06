@@ -3,6 +3,15 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const ProfileSchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "users"
+  },
+  handle: {
+    type: String,
+    required: true,
+    max: 40
+  },
   name: {
     type: String,
     required: true
@@ -19,74 +28,86 @@ const ProfileSchema = new Schema({
     type: Date,
     required: true
   },
-  description: {
-    type: String
-  },
-  profilepic: {
-    type: String
-  },
+  description: String,
+
+  profilepic: String,
+
   prefs: {
     smoke: {
-      type: Boolean
+      type: Boolean,
+      default: false
     },
+
     clean: {
-      type: Boolean
+      type: Boolean,
+      default: false
     },
     guests: {
-      type: Boolean
+      type: Boolean,
+      default: false
     },
+
     pets: {
-      type: Boolean
+      type: Boolean,
+      default: false
     }
   },
-  career: {
-    type: String
-  },
-  company: {
-    type: String
-  },
-  seeking: {
-    type: String
-  },
+  career: String,
+  company: String,
+  seeking: String,
+
   traits: {
     clean: {
-      type: Boolean
+      type: Boolean,
+      default: false
     },
     healthy: {
-      type: Boolean
+      type: Boolean,
+      default: false
     },
     professional: {
-      type: Boolean
+      type: Boolean,
+      default: false
     },
     student: {
-      type: Boolean
+      type: Boolean,
+      default: false
     },
     earlyBird: {
-      type: Boolean
+      type: Boolean,
+      default: false
     },
     nightOwl: {
-      type: Boolean
+      type: Boolean,
+      default: false
     },
     fitnessEnthusiast: {
-      type: Boolean
+      type: Boolean,
+      default: false
     },
     creative: {
-      type: Boolean
+      type: Boolean,
+      default: false
     },
     bookworm: {
-      type: Boolean
+      type: Boolean,
+      default: false
     },
     foodie: {
-      type: Boolean
+      type: Boolean,
+      default: false
     },
     partyAnimal: {
-      type: Boolean
+      type: Boolean,
+      default: false
     },
     vegan: {
-      type: Boolean
+      type: Boolean,
+      default: false
     },
     introverted: {
-      type: Boolean
+      type: Boolean,
+      default: false
     }
   },
   date: {
