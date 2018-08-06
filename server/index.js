@@ -1,12 +1,10 @@
-const express = require("../../../AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/express");
-const {
-  json
-} = require("../../../AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/body-parser");
+const express = require("express");
+const { json } = require("body-parser");
 const app = express();
-require("../../../AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/dotenv").config();
-const massive = require("../../../AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/massive");
-const session = require("../../../AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/express-session");
-const passport = require("../../../AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/passport");
+require("dotenv").config();
+const massive = require("massive");
+const session = require("express-session");
+const passport = require("passport");
 app.use(json());
 const port = 3001;
 const { getUser, strat, logout } = require(`${__dirname}/controllers/authCtrl`);
