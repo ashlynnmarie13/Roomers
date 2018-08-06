@@ -8,9 +8,12 @@ import Landing from "./components/Landing/Landing";
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Landing />
-      </div>
+      <Provider store={store}>
+        <div className="App">
+          <Landing />
+          <Login />
+        </div>
+      </Provider>
     );
   }
 }
