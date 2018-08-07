@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const { json } = require("body-parser");
 const app = express();
+const ctrl = require("");
 
 const session = require("express-session");
 const passport = require("passport");
@@ -98,3 +99,6 @@ app.get(
     failureRedirect: "/login"
   })
 );
+
+// adds user info
+app.post("/api/info");

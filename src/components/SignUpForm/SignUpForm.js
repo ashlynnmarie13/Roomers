@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { Input, Checkbox, TextArea, Button, Icon } from "semantic-ui-react";
+import { addUserInfo } from "../../redux/ducks/userReducer";
+import { connect } from "react-redux";
 import "./SignUpForm.css";
 
-export default class SignUpForm extends Component {
+class SignUpForm extends Component {
   state = {
+    userID: "",
     name: "",
     gender: "",
     email: "",
@@ -41,11 +44,20 @@ export default class SignUpForm extends Component {
     this.setState({ [e.target.name]: !e.target.checked });
   };
 
+  submitHandler = e => {
+    e.preventDefault();
+
+    this.props.addUserInfo({ ...this.state, userID: this.props.uderID });
+  };
+
   render() {
     return (
       <div className="sign-up">
         <div className="picture" />
-        <form className="sign-up-form">
+        <form
+          onSubmit={event => this.submitHandler(event)}
+          className="sign-up-form"
+        >
           <div className="section">
             <h1 className="section-title">Basic Info</h1>
             <div className="input">
@@ -265,7 +277,7 @@ export default class SignUpForm extends Component {
               What are you looking for?
             </p>
             <TextArea
-              style={{ width: "100%", height: "200px" }}
+              style={{ width: "500px", height: "200px" }}
               onChange={event => this.inputHandler(event)}
               name="description"
               type="text"
@@ -283,19 +295,7 @@ export default class SignUpForm extends Component {
                 checked={!this.state.smoke}
               />
               <label htmlFor="smoke">
-                Smoker <i class="fas fa-smoking" />
-              </label>
-            </div>
-            <div className="pref-item">
-              <Checkbox
-                onChange={event => this.checkboxHandler(event)}
-                name="clean"
-                id="clean"
-                type="checkbox"
-                checked={!this.state.clean}
-              />
-              <label htmlFor="clean">
-                Clean <i class="fas fa-shower" />
+                Smoker <i className="fas fa-smoking" />
               </label>
             </div>
             <div className="pref-item">
@@ -307,7 +307,7 @@ export default class SignUpForm extends Component {
                 checked={!this.state.guests}
               />
               <label htmlFor="guests">
-                Guests <i class="fas fa-users" />
+                Guests <i className="fas fa-users" />
               </label>
             </div>
             <div className="pref-item">
@@ -319,18 +319,25 @@ export default class SignUpForm extends Component {
                 checked={!this.state.pets}
               />
               <label className="" htmlFor="pets">
-                Pets <i class="fas fa-paw" />
+                Pets <i className="fas fa-paw" />
               </label>
             </div>
           </div>
-          <Button animated>
-            <Button.Content visible>Submit</Button.Content>
-            <Button.Content hidden>
-              <Icon name="arrow right" />
-            </Button.Content>
-          </Button>
+          <div className="button">
+            <Button style={{ margin: "0 auto" }} animated>
+              <Button.Content visible>Submit</Button.Content>
+              <Button.Content hidden>
+                <Icon name="arrow right" />
+              </Button.Content>
+            </Button>
+          </div>
         </form>
       </div>
     );
   }
 }
+
+export default connect(
+  state => state,
+  { addUserInfo }
+)(SignUpForm);
