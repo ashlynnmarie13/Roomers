@@ -1,14 +1,20 @@
+require("dotenv").config();
 const express = require("express");
 const { json } = require("body-parser");
 const app = express();
-require("dotenv").config();
 
 const session = require("express-session");
 const passport = require("passport");
 const mongoose = require("mongoose");
+<<<<<<< HEAD
+=======
+const Auth0Strategy = require("passport-auth0");
+>>>>>>> master
 
 //Pulling in the user schema
 const User = require("./Models/User");
+
+const { CLIENT_ID, CLIENT_SECRET, DOMAIN } = process.env;
 
 //middleware
 app.use(json());
@@ -20,7 +26,7 @@ app.listen(port, () => {
 });
 
 // requiring auth0 from controller
-const { getUser, strat, logout } = require(`${__dirname}/controllers/authCtrl`);
+const { getUser, logout } = require(`${__dirname}/controllers/authCtrl`);
 
 //setting up session
 app.use(
@@ -44,11 +50,23 @@ mongoose
 //meh
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(strat);
+passport.use(
+  new Auth0Strategy(
+    {
+      clientID: CLIENT_ID,
+      clientSecret: CLIENT_SECRET,
+      domain: DOMAIN,
+      callbackURL: "/login",
+      scope: "openid profile"
+    },
+    (accessToken, refreshToken, extraParams, profile, done) => {
+      done(null, profile);
+    }
+  )
+);
 
 //pulling the user and sending the info back to the front-end
 passport.serializeUser((user, done) => {
-
   User.findOne({ name: user.displayName, user: user.id, picture: user.picture })
     .then(response => {
       if (!response) {
@@ -61,7 +79,6 @@ passport.serializeUser((user, done) => {
           .save()
           .then(res => done(null, user.id))
 
-  
           .catch(console.log);
       } else return done(null, user.id);
     })
