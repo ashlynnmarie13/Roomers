@@ -5,4 +5,10 @@
   background-color: silver;
   height: 10vh;
   color: black;
+  padding: 15px;
+}
+.listings{
+  display: flex;
+  justify-content: space-between;
+
 }
