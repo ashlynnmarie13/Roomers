@@ -49,6 +49,7 @@ passport.use(strat);
 
 //pulling the user and sending the info back to the front-end
 passport.serializeUser((user, done) => {
+
   User.findOne({ name: user.displayName, user: user.id, picture: user.picture })
     .then(response => {
       if (!response) {
@@ -60,6 +61,8 @@ passport.serializeUser((user, done) => {
         newUser
           .save()
           .then(res => done(null, user.id))
+
+  
           .catch(console.log);
       } else return done(null, user.id);
     })
