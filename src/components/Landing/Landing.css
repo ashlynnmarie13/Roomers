@@ -115,6 +115,7 @@
     center center no-repeat;
   background-size: cover;
   transition: var(--speed) all ease-in-out;
+  border: solid pink 5px;
 }
 
 .Landing-bottom.split:before {
@@ -123,4 +124,5 @@
   height: 100%;
   background: var(--bottom-bg-color);
   transition: var(--speed) all ease-in-out;
+  border: solid black 5px;
 }
