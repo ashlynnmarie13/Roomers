@@ -86,27 +86,25 @@ passport.use(
 );
 
 //pulling the user and sending the info back to the front-end
-// passport.serializeUser((user, done) => {
-//   User.findOne({ name: user.displayName, user: user.id, picture: user.picture })
-//     .then(response => {
-//       if (!response) {
-//         const newUser = new User({
-//           name: user.displayName,
-//           authID: user.id,
-//           picture: user.picture
-//         });
-//         newUser
-//           .save()
 
-//           .then(res => done(null, user.id))
+passport.serializeUser((user, done) => {
+  User.findOne({ name: user.displayName, user: user.id, picture: user.picture })
+    .then(response => {
+      if (!response) {
+        const newUser = new User({
+          name: user.displayName,
+          authID: user.id,
+          picture: user.picture
+        });
+        newUser
+          .save()
+          .then(res => done(null, user))
 
-//           .catch(console.log);
-//       } else return done(null, user.id);
-//     })
-//     .catch(console.log);
-// });
-
-//we need to pass in the new user
+          .catch(console.log);
+      } else return done(null, user);
+    })
+    .catch(console.log);
+});
 
 //I'm not sure what this does
 // passport.deserializeUser((user, done) => done(null, user));
@@ -122,7 +120,7 @@ app.get(
   })
 );
 
-function authenticated(req, res, next) {
+function authenticated(req, res) {
   if (req.user) {
     next();
   } else {
