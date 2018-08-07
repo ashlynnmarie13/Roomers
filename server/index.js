@@ -48,39 +48,38 @@ app.use(passport.session());
 passport.use(strat);
 
 //pulling the user and sending the info back to the front-end
-passport.serializeUser((user, callback) => {
-  const db = app.get("db");
-  db.getUserByAuthid([user.id])
+passport.serializeUser((user, done) => {
+  User.findOne({ name: user.displayName, user: user.id, picture: user.picture })
     .then(response => {
-      if (!response[0]) {
-        db.addUserByAuthid([user.displayName, user.id, user.picture])
-          .then(res => done(null, res[0]))
+      if (!response) {
+        const newUser = new User({
+          name: user.displayName,
+          authID: user.id,
+          picture: user.picture
+        });
+        newUser
+          .save()
+
+          .then(res => {
+            console.log(res);
+            done(null, user.id);
+          })
           .catch(console.log);
-      } else return done(null, response[0]);
+      } else return done(null, user.id);
     })
     .catch(console.log);
 });
 
-function create(user, callback) {
-  User.findOne({ email: user.email }, function(err, withSameMail) {
-    if (err) return callback(err);
-    if (withSameMail) return callback(new Error("the user already exists"));
+//Logs user out of session
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
 
-    bcrypt.hash(user.password, 10, function(err, hash) {
-      if (err) {
-        return callback(err);
-      }
-      user.password = hash;
-      users.insert(user, function(err, inserted) {
-        if (err) return callback(err);
-        callback(null);
-      });
-    });
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
   });
-}
-
-//I'm not sure what this does
-passport.deserializeUser((user, done) => done(null, user));
+});
 
 // getting user with "getUser" from authCtrl
 app.get("/me", getUser);
