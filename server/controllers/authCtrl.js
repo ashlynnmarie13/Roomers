@@ -1,19 +1,9 @@
-const Auth0Strategy = require("passport-auth0");
+// require("dotenv").config();
+// const Auth0Strategy = require("passport-auth0");
 
-const { CLIENT_ID, CLIENT_SECRET, DOMAIN } = process.env;
+// const { CLIENT_ID, CLIENT_SECRET, DOMAIN } = process.env;
 
-const strat = new Auth0Strategy(
-  {
-    clientID: CLIENT_ID,
-    clientSecret: CLIENT_SECRET,
-    domain: DOMAIN,
-    callbackURL: "/login",
-    scope: "openid profile"
-  },
-  (accessToken, refreshToken, extraParams, profile, done) => {
-    done(null, profile);
-  }
-);
+// const strat =
 
 const getUser = (req, res) => {
   console.log("yo");
@@ -29,7 +19,7 @@ const logout = (req, res) => {
 };
 
 module.exports = {
-  strat,
+  // strat,
   getUser,
   logout
 };
