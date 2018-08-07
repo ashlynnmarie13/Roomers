@@ -28,11 +28,14 @@ passport.use(strat);
 
 passport.serializeUser((user, done) => {
   const db = app.get("db");
+
   db.getUserByAuthid([user.id])
     .then(response => {
       if (!response[0]) {
         db.addUserByAuthid([user.displayName, user.id, user.picture])
-          .then(res => done(null, res[0]))
+          .then(res => {
+            done(null, res[0]);
+          })
           .catch(console.log);
       } else return done(null, response[0]);
     })
