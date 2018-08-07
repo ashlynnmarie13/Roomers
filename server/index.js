@@ -49,31 +49,28 @@ passport.use(strat);
 
 //pulling the user and sending the info back to the front-end
 passport.serializeUser((user, done) => {
-  const db = app.get("db");
 
-  db.getUserByAuthid([user.id])
+  User.findOne({ name: user.displayName, user: user.id, picture: user.picture })
     .then(response => {
-      if (!response[0]) {
-        db.addUserByAuthid([user.displayName, user.id, user.picture])
-          .then(res => {
-            done(null, res[0]);
-          })
+      if (!response) {
+        const newUser = new User({
+          name: user.displayName,
+          authID: user.id,
+          picture: user.picture
+        });
+        newUser
+          .save()
+          .then(res => done(null, user.id))
+
+  
           .catch(console.log);
       } else return done(null, user.id);
     })
     .catch(console.log);
 });
 
-//Logs user out of session
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    done(err, user);
-  });
-});
+//I'm not sure what this does
+passport.deserializeUser((user, done) => done(null, user));
 
 // getting user with "getUser" from authCtrl
 app.get("/me", getUser);
