@@ -59,12 +59,14 @@ passport.serializeUser((user, done) => {
         });
         newUser
           .save()
-          .then(res => done(null, user.id))
+          .then(res => done(null, newUser))
           .catch(console.log);
       } else return done(null, user.id);
     })
     .catch(console.log);
 });
+
+//we need to pass in the new user
 
 //I'm not sure what this does
 passport.deserializeUser((user, done) => done(null, user));
