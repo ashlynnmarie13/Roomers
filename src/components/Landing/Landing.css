@@ -1,0 +1,122 @@
+.myButton {
+  -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
+  box-shadow: inset 0px 1px 0px 0px #ffffff;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0.05, #ededed),
+    color-stop(1, #dfdfdf)
+  );
+  background: -moz-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+  background: -webkit-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+  background: -o-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+  background: -ms-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+  background: linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf',GradientType=0);
+  background-color: #ededed;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  border: 1px solid #dcdcdc;
+  display: inline-block;
+  cursor: pointer;
+  color: #777777;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 6px 24px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ffffff;
+}
+.myButton:hover {
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0.05, #dfdfdf),
+    color-stop(1, #ededed)
+  );
+  background: -moz-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+  background: -webkit-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+  background: -o-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+  background: -ms-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+  background: linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed',GradientType=0);
+  background-color: #dfdfdf;
+}
+.myButton:active {
+  position: relative;
+  top: 1px;
+}
+
+:root {
+  --landing-bg-color: #1d1d1d;
+  --top-bg-color: rgba(177, 182, 199, 0.7);
+
+  --bottom-bg-color: rgba(74, 115, 254, 0.3);
+
+  --speed: 700ms;
+}
+
+.Landing {
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  background: var(--landing-bg-color);
+}
+
+.split {
+  position: absolute;
+  width: 50vw;
+  height: 100%;
+  overflow: hidden;
+}
+
+.Landing-top {
+  top: 0;
+  background: url("https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=58e46263ad3bf111afb122d48a46b2c6&auto=format&fit=crop&w=1651&q=80")
+    center center no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 50px;
+
+  transition: var(--speed) all ease-in-out;
+}
+
+.Landing-top.split:before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--top-bg-color);
+  transition: var(--speed) all ease-in-out;
+}
+
+.Landing-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 50px;
+
+  bottom: 0;
+  background: url("https://images.unsplash.com/photo-1519974719765-e6559eac2575?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=4ff6057dcdea838163d82bc2a52d5679&auto=format&fit=crop&w=1650&q=80")
+    center center no-repeat;
+  background-size: cover;
+  transition: var(--speed) all ease-in-out;
+}
+
+.Landing-bottom.split:before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--bottom-bg-color);
+  transition: var(--speed) all ease-in-out;
+}
