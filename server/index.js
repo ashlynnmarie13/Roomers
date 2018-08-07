@@ -74,10 +74,10 @@ passport.serializeUser((user, done) => {
         });
         newUser
           .save()
-          .then(res => done(null, user.id))
+          .then(res => done(null, user))
 
           .catch(console.log);
-      } else return done(null, user.id);
+      } else return done(null, user);
     })
     .catch(console.log);
 });
