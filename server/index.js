@@ -6,10 +6,7 @@ const app = express();
 const session = require("express-session");
 const passport = require("passport");
 const mongoose = require("mongoose");
-<<<<<<< HEAD
-=======
 const Auth0Strategy = require("passport-auth0");
->>>>>>> master
 
 //Pulling in the user schema
 const User = require("./Models/User");
@@ -77,10 +74,10 @@ passport.serializeUser((user, done) => {
         });
         newUser
           .save()
-          .then(res => done(null, user.id))
+          .then(res => done(null, user))
 
           .catch(console.log);
-      } else return done(null, user.id);
+      } else return done(null, user);
     })
     .catch(console.log);
 });

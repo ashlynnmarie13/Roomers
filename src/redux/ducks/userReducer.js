@@ -5,7 +5,7 @@ const GET_USER = "GET_USER";
 export function getUser() {
   return {
     type: GET_USER,
-    payload: axios.get("/api/me")
+    payload: axios.get("/me")
   };
 }
 
