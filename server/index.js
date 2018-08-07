@@ -6,7 +6,6 @@ require("dotenv").config();
 const session = require("express-session");
 const passport = require("passport");
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
 
 //Pulling in the user schema
 const User = require("./Models/User");
