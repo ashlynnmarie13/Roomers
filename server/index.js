@@ -49,20 +49,14 @@ passport.use(strat);
 
 //pulling the user and sending the info back to the front-end
 passport.serializeUser((user, done) => {
-  User.findOne({ name: user.displayName, user: user.id, picture: user.picture })
-    .then(response => {
-      if (!response) {
-        const newUser = new User({
-          name: user.displayName,
-          authID: user.id,
-          picture: user.picture
-        });
-        newUser
-          .save()
+  const db = app.get("db");
 
+  db.getUserByAuthid([user.id])
+    .then(response => {
+      if (!response[0]) {
+        db.addUserByAuthid([user.displayName, user.id, user.picture])
           .then(res => {
-            console.log(res);
-            done(null, user.id);
+            done(null, res[0]);
           })
           .catch(console.log);
       } else return done(null, user.id);
