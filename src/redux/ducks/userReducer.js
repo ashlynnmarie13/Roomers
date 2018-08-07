@@ -17,6 +17,7 @@ const initialState = {
 export default function itemsReducer(state = initialState, action) {
   switch (action.type) {
     case `${GET_USER}_FULFILLED`:
+      console.log(action.payload.data);
       return {
         ...state,
         user: action.payload.data,
