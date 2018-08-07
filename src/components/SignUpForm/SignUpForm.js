@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Input, Checkbox, TextArea } from "semantic-ui-react";
+import { Input, Checkbox, TextArea, Button, Icon } from "semantic-ui-react";
 import "./SignUpForm.css";
 
 export default class SignUpForm extends Component {
@@ -274,47 +274,61 @@ export default class SignUpForm extends Component {
 
           <div className="section">
             <h1 className="section-title">Preferences:</h1>
-            <Checkbox
-              onChange={event => this.checkboxHandler(event)}
-              name="smoke"
-              id="smoke"
-              type="checkbox"
-              checked={!this.state.smoke}
-            />
-            <label htmlFor="smoke">
-              Smoker <i class="fas fa-smoking" />
-            </label>
-            <Checkbox
-              onChange={event => this.checkboxHandler(event)}
-              name="clean"
-              id="clean"
-              type="checkbox"
-              checked={!this.state.clean}
-            />
-            <label htmlFor="clean">
-              Clean <i class="fas fa-shower" />
-            </label>
-            <Checkbox
-              onChange={event => this.checkboxHandler(event)}
-              name="guests"
-              id="guests"
-              type="checkbox"
-              checked={!this.state.guests}
-            />
-            <label htmlFor="guests">
-              Guests <i class="fas fa-users" />
-            </label>
-            <Checkbox
-              onChange={event => this.checkboxHandler(event)}
-              name="pets"
-              id="pets"
-              type="checkbox"
-              checked={!this.state.pets}
-            />
-            <label htmlFor="pets">
-              Pets <i class="fas fa-paw" />
-            </label>
+            <div className="pref-item">
+              <Checkbox
+                onChange={event => this.checkboxHandler(event)}
+                name="smoke"
+                id="smoke"
+                type="checkbox"
+                checked={!this.state.smoke}
+              />
+              <label htmlFor="smoke">
+                Smoker <i class="fas fa-smoking" />
+              </label>
+            </div>
+            <div className="pref-item">
+              <Checkbox
+                onChange={event => this.checkboxHandler(event)}
+                name="clean"
+                id="clean"
+                type="checkbox"
+                checked={!this.state.clean}
+              />
+              <label htmlFor="clean">
+                Clean <i class="fas fa-shower" />
+              </label>
+            </div>
+            <div className="pref-item">
+              <Checkbox
+                onChange={event => this.checkboxHandler(event)}
+                name="guests"
+                id="guests"
+                type="checkbox"
+                checked={!this.state.guests}
+              />
+              <label htmlFor="guests">
+                Guests <i class="fas fa-users" />
+              </label>
+            </div>
+            <div className="pref-item">
+              <Checkbox
+                onChange={event => this.checkboxHandler(event)}
+                name="pets"
+                id="pets"
+                type="checkbox"
+                checked={!this.state.pets}
+              />
+              <label className="" htmlFor="pets">
+                Pets <i class="fas fa-paw" />
+              </label>
+            </div>
           </div>
+          <Button animated>
+            <Button.Content visible>Submit</Button.Content>
+            <Button.Content hidden>
+              <Icon name="arrow right" />
+            </Button.Content>
+          </Button>
         </form>
       </div>
     );
