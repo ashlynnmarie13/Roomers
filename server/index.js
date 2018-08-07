@@ -59,22 +59,15 @@ passport.serializeUser((user, done) => {
         });
         newUser
           .save()
-
-          .then(res => {
-            console.log(res);
-            done(null, user.id);
-          })
+          .then(res => done(null, user.id))
           .catch(console.log);
-      } else return done(null, user.id);
+      } else return done(null, response[0]);
     })
     .catch(console.log);
 });
 
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    done(err, user);
-  });
-});
+//I'm not sure what this does
+passport.deserializeUser((user, done) => done(null, user));
 
 // getting user with "getUser" from authCtrl
 app.get("/me", getUser);
