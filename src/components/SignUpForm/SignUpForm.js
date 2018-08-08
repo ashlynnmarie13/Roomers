@@ -47,7 +47,7 @@ class SignUpForm extends Component {
   submitHandler = e => {
     e.preventDefault();
 
-    this.props.addUserInfo({ ...this.state, userID: this.props.uderID });
+    this.props.addUserInfo({ ...this.state, userID: this.props.user.user_id });
   };
 
   render() {

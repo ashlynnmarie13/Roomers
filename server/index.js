@@ -100,5 +100,5 @@ app.get(
   })
 );
 
-// adds user info
+// // adds user info
 app.post("/api/user/info", ctrl.addUserInfo);
