@@ -1,9 +1,12 @@
 import React, { Component } from "react";
-import { Input, Checkbox, TextArea } from "semantic-ui-react";
+import { Input, Checkbox, TextArea, Button, Icon } from "semantic-ui-react";
+import { addUserInfo } from "../../redux/ducks/userReducer";
+import { connect } from "react-redux";
 import "./SignUpForm.css";
 
-export default class SignUpForm extends Component {
+class SignUpForm extends Component {
   state = {
+    userID: "",
     name: "",
     gender: "",
     email: "",
@@ -41,17 +44,25 @@ export default class SignUpForm extends Component {
     this.setState({ [e.target.name]: !e.target.checked });
   };
 
+  submitHandler = e => {
+    e.preventDefault();
+
+    this.props.addUserInfo({ ...this.state, userID: this.props.user.authID });
+    this.props.history.push("/home");
+  };
+
   render() {
     return (
       <div className="sign-up">
         <div className="picture" />
-        <form className="sign-up-form">
+        <form
+          onSubmit={event => this.submitHandler(event)}
+          className="sign-up-form"
+        >
           <div className="section">
             <h1 className="section-title">Basic Info</h1>
             <div className="input">
-              <p p className="section-item">
-                Name:
-              </p>
+              <p className="section-item">Name:</p>
               <Input
                 onChange={event => this.inputHandler(event)}
                 name="name"
@@ -59,9 +70,7 @@ export default class SignUpForm extends Component {
               />
             </div>
             <div className="input">
-              <p p className="section-item">
-                Gender:
-              </p>
+              <p className="section-item">Gender:</p>
               <Input
                 onChange={event => this.inputHandler(event)}
                 name="gender"
@@ -69,9 +78,7 @@ export default class SignUpForm extends Component {
               />
             </div>
             <div className="input">
-              <p p className="section-item">
-                Email:
-              </p>
+              <p className="section-item">Email:</p>
               <Input
                 onChange={event => this.inputHandler(event)}
                 name="email"
@@ -79,9 +86,7 @@ export default class SignUpForm extends Component {
               />
             </div>
             <div className="input">
-              <p p className="section-item">
-                Phone:
-              </p>
+              <p className="section-item">Phone:</p>
               <Input
                 onChange={event => this.inputHandler(event)}
                 name="phone"
@@ -89,9 +94,7 @@ export default class SignUpForm extends Component {
               />
             </div>
             <div className="input">
-              <p p className="section-item">
-                Date of Birth:
-              </p>
+              <p className="section-item">Date of Birth:</p>
               <Input
                 onChange={event => this.inputHandler(event)}
                 name="dob"
@@ -101,16 +104,14 @@ export default class SignUpForm extends Component {
             <div className="input">
               <p className="section-item">A little about you:</p>
               <TextArea
-                style={{ width: "100%", height: "200px" }}
+                style={{ width: "100%", height: "200px", margin: "20px 0" }}
                 onChange={event => this.inputHandler(event)}
                 name="about"
                 type="text"
               />
             </div>
             <div className="input">
-              <p p className="section-item">
-                Upload a photo:
-              </p>
+              <p className="section-item">Upload a photo:</p>
               <Input
                 onChange={event => this.inputHandler(event)}
                 name="profilePic"
@@ -241,17 +242,13 @@ export default class SignUpForm extends Component {
           </div>
           <div className="section">
             <h1 className="section-title">Career:</h1>
-            <p p className="section-item">
-              Job Title:
-            </p>
+            <p className="section-item">Job Title:</p>
             <Input
               onChange={event => this.inputHandler(event)}
               name="title"
               type="text"
             />
-            <p p className="section-item">
-              Company Name:
-            </p>
+            <p className="section-item">Company Name:</p>
             <Input
               onChange={event => this.inputHandler(event)}
               name="companyName"
@@ -261,11 +258,9 @@ export default class SignUpForm extends Component {
 
           <div className="section">
             <h1 className="section-title">Description:</h1>
-            <p p className="section-item">
-              What are you looking for?
-            </p>
+            <p className="section-item">What are you looking for?</p>
             <TextArea
-              style={{ width: "100%", height: "200px" }}
+              style={{ width: "500px", height: "200px", margin: "20px 0" }}
               onChange={event => this.inputHandler(event)}
               name="description"
               type="text"
@@ -274,49 +269,58 @@ export default class SignUpForm extends Component {
 
           <div className="section">
             <h1 className="section-title">Preferences:</h1>
-            <Checkbox
-              onChange={event => this.checkboxHandler(event)}
-              name="smoke"
-              id="smoke"
-              type="checkbox"
-              checked={!this.state.smoke}
-            />
-            <label htmlFor="smoke">
-              Smoker <i class="fas fa-smoking" />
-            </label>
-            <Checkbox
-              onChange={event => this.checkboxHandler(event)}
-              name="clean"
-              id="clean"
-              type="checkbox"
-              checked={!this.state.clean}
-            />
-            <label htmlFor="clean">
-              Clean <i class="fas fa-shower" />
-            </label>
-            <Checkbox
-              onChange={event => this.checkboxHandler(event)}
-              name="guests"
-              id="guests"
-              type="checkbox"
-              checked={!this.state.guests}
-            />
-            <label htmlFor="guests">
-              Guests <i class="fas fa-users" />
-            </label>
-            <Checkbox
-              onChange={event => this.checkboxHandler(event)}
-              name="pets"
-              id="pets"
-              type="checkbox"
-              checked={!this.state.pets}
-            />
-            <label htmlFor="pets">
-              Pets <i class="fas fa-paw" />
-            </label>
+            <div className="pref-item">
+              <Checkbox
+                onChange={event => this.checkboxHandler(event)}
+                name="smoke"
+                id="smoke"
+                type="checkbox"
+                checked={!this.state.smoke}
+              />
+              <label htmlFor="smoke">
+                Smoker <i className="fas fa-smoking" />
+              </label>
+            </div>
+            <div className="pref-item">
+              <Checkbox
+                onChange={event => this.checkboxHandler(event)}
+                name="guests"
+                id="guests"
+                type="checkbox"
+                checked={!this.state.guests}
+              />
+              <label htmlFor="guests">
+                Guests <i className="fas fa-users" />
+              </label>
+            </div>
+            <div className="pref-item">
+              <Checkbox
+                onChange={event => this.checkboxHandler(event)}
+                name="pets"
+                id="pets"
+                type="checkbox"
+                checked={!this.state.pets}
+              />
+              <label className="" htmlFor="pets">
+                Pets <i className="fas fa-paw" />
+              </label>
+            </div>
+          </div>
+          <div className="button">
+            <Button style={{ margin: "0 auto" }} animated>
+              <Button.Content visible>Submit</Button.Content>
+              <Button.Content hidden>
+                <Icon name="arrow right" />
+              </Button.Content>
+            </Button>
           </div>
         </form>
       </div>
     );
   }
 }
+
+export default connect(
+  state => state,
+  { addUserInfo }
+)(SignUpForm);

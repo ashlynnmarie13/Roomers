@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Home.css";
+import { connect } from "react-redux";
 
 class Home extends Component {
   render() {
@@ -7,4 +8,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default connect(state => state)(Home);

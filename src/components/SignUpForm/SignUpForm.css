@@ -27,6 +27,7 @@
   display: grid;
   grid-template-columns: 50% 50%;
   margin: 10px 0;
+  margin-left: 150px;
 }
 
 .section-title {
@@ -44,4 +45,16 @@
 .input {
   width: 500px;
   margin: 20px 0;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  height: 40px;
+  margin-top: 150px;
+}
+
+.pref-item {
+  font-size: 20px;
+  margin: 10px 0;
 }
