@@ -6,8 +6,6 @@ import "./App.css";
 import Nav from "./components/Nav/Nav";
 import Hom from "./components/Hom/Hom";
 
-import Landing from "./components/Landing/Landing";
-
 class App extends Component {
   render() {
     return (
