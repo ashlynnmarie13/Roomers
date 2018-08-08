@@ -13,11 +13,11 @@ class App extends Component {
   componentDidMount() {
     this.props.getUser();
   }
+
   render() {
     return (
       <div className="App">
         <p>{JSON.stringify(this.props.user)}</p>
-
         {routes}
       </div>
     );
