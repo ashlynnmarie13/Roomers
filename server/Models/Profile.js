@@ -3,34 +3,34 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const ProfileSchema = new Schema({
-  user: {
-    type: Schema.Types.ObjectId,
+  _id: {
+    type: String,
     ref: "users"
   },
-  handle: {
-    type: String,
-    required: true,
-    max: 40
-  },
+  // handle: {
+  //   type: String,
+  //   required: true,
+  //   max: 40
+  // },
   name: {
-    type: String,
-    required: true
+    type: String
+    // required: true
   },
   email: {
-    type: String,
-    required: true
+    type: String
+    // required: true
   },
   phone: {
-    type: String,
-    required: true
+    type: String
+    // required: true
   },
   birthday: {
-    type: Date,
-    required: true
+    type: String
+    // required: true
   },
-  description: String,
-
-  profilepic: String,
+  interestsDescription: String,
+  profilePic: String,
+  aboutMe: String,
 
   prefs: {
     smoke: {
@@ -52,9 +52,8 @@ const ProfileSchema = new Schema({
       default: false
     }
   },
-  career: String,
-  company: String,
-  seeking: String,
+  title: String,
+  companyName: String,
 
   traits: {
     clean: {

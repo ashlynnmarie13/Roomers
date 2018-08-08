@@ -115,7 +115,7 @@
 
   position: relative;
   height: 30%;
-  width: 40%;
+  width: 60%;
 }
 
 .fixed-corner {
@@ -124,4 +124,13 @@
   z-index: 10;
   margin-left: -44%;
   margin-top: 3%;
+}
+
+.header-text {
+  font-size: 5em;
+  font-style: bold;
+  font-family: "Rubik", sans-serif;
+  color: white;
+  margin-bottom: 3%;
+  text-shadow: 2px 2px 4px #031424;
 }

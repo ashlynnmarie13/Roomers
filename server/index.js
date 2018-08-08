@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const { json } = require("body-parser");
 const app = express();
+const ctrl = require("./controllers/controller");
 
 const session = require("express-session");
 const passport = require("passport");
@@ -18,12 +19,20 @@ app.use(json());
 
 //WE HAVE TO PUT THIS HERE FOR SOCKET.IO TO WORK
 const port = 3001;
-app.listen(port, () => {
+server = app.listen(port, () => {
   console.log(`app is running in server port ${port}`);
 });
+//socket.io related
+const socket = require("socket.io");
+const io = (module.exports.io = socket)(server);
+const SocketManager = require("./controllers/socketCtrl");
+
+//Socket.io stuff
+
+io.on("connection", SocketManager);
 
 // requiring auth0 from controller
-// const { getUser, logout } = require(`${__dirname}/controllers/authCtrl`);
+const { getUser, logout } = require(`${__dirname}/controllers/authCtrl`);
 
 //setting up session
 app.use(
@@ -47,46 +56,22 @@ mongoose
 //meh
 app.use(passport.initialize());
 app.use(passport.session());
-
 passport.use(
   new Auth0Strategy(
     {
-      clientID: process.env.CLIENT_ID,
-      clientSecret: process.env.CLIENT_SECRET,
-      domain: process.env.DOMAIN,
+      clientID: CLIENT_ID,
+      clientSecret: CLIENT_SECRET,
+      domain: DOMAIN,
       callbackURL: "/login",
       scope: "openid profile"
     },
-    (accessToken, refreshToken, extraParams, user, done) => {
-      User.findOne({
-        name: user.displayName,
-        user: user.id,
-        picture: user.picture
-      }).then(response => {
-        if (!response) {
-          const newUser = new User({
-            name: user.displayName,
-            authID: user.id,
-            picture: user.picture
-          });
-          newUser
-            .save()
-
-            .then(response => done(null, user.id))
-
-            .catch(err => console.log(err));
-        } else return done(null, user.id);
-      });
-
-      passport.serializeUser((user, done) => done(null, user));
-
-      passport.deserializeUser((user, done) => done(null, user));
+    (accessToken, refreshToken, extraParams, profile, done) => {
+      done(null, profile);
     }
   )
 );
 
 //pulling the user and sending the info back to the front-end
-
 passport.serializeUser((user, done) => {
   User.findOne({ name: user.displayName, user: user.id, picture: user.picture })
     .then(response => {
@@ -107,9 +92,12 @@ passport.serializeUser((user, done) => {
 });
 
 //I'm not sure what this does
-// passport.deserializeUser((user, done) => done(null, user));
+passport.deserializeUser((user, done) => done(null, user));
 
 // getting user with "getUser" from authCtrl
+app.get("/me", getUser);
+
+//redirects user to the home page after logging in
 app.get(
   "/login",
   passport.authenticate("auth0", {
@@ -120,29 +108,5 @@ app.get(
   })
 );
 
-function authenticated(req, res) {
-  if (req.user) {
-    next();
-  } else {
-    res.sendStatus(401);
-  }
-}
-
-app.get("/me", authenticated, (req, res, next) => {
-  res.status(200).send(req.user);
-});
-
-const getUser = (req, res) => {
-  console.log(req);
-  if (req.user) res.status(200).json(req.user);
-  else res.status(403).json({ message: "Not Logged In" });
-};
-
-const logout = (req, res) => {
-  req.session.destroy(() => {
-    res.redirect("http://localhost:3000/#/");
-    // res.redirect("/#/");
-  });
-};
-
-//redirects user to the home page after logging in
+// adds user info
+app.post("/api/info");

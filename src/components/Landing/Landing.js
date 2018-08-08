@@ -44,9 +44,7 @@ export default class Landing extends Component {
         >
           <div className="top-overlay">
             <div id="container">
-              <Header as="h1" size="huge">
-                Find a Room
-              </Header>
+              <h1 className="header-text">Find a Room</h1>
 
               <Link to="/signup">
                 <Button>Sign Up</Button>
@@ -62,12 +60,10 @@ export default class Landing extends Component {
         >
           <div className="bottom-overlay">
             <div id="container">
-              <Header as="h1" size="lhuge">
-                Rent a Room
-              </Header>
+              <h1 className="header-text">Rent a Room</h1>
 
               <Link to="/signup">
-                <Button>Sign Up</Button>
+                <Button style={{}}>Sign Up</Button>
               </Link>
             </div>
           </div>
