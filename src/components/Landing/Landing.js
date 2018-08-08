@@ -3,6 +3,7 @@ import Login from "../Login/Login";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "./Landing.css";
+import { Button, Header } from "semantic-ui-react";
 
 export default class Landing extends Component {
   constructor() {
@@ -15,11 +16,11 @@ export default class Landing extends Component {
 
   expand(above, below) {
     if (this.state[above] === above) {
-      return { height: "85vh", zIndex: 3 };
+      return { height: "75vh", zIndex: 3 };
     } else if (this.state[above] === below) {
-      return { height: "15vh", opacity: "0.3", zIndex: "2" };
+      return { height: "25vh", filter: "blur(5px)", zIndex: "2" };
     }
-    return { width: "50vh" };
+    return { height: "50vh" };
   }
 
   size(first, second) {
@@ -32,17 +33,26 @@ export default class Landing extends Component {
   render() {
     return (
       <div className="Landing">
+        <div className="fixed-corner">
+          <Login />
+        </div>
         <div
-          style={this.expand("top", "bottom")}
-          onMouseEnter={() => this.size("top", "bottom")}
+          style={this.expand("bottom", "top")}
+          onMouseEnter={() => this.size("bottom", "top")}
           onMouseLeave={() => this.leave()}
           className="Landing-top split"
         >
-          <h1 className="Landing__header">Owners</h1>
+          <div className="top-overlay">
+            <div id="container">
+              <Header as="h1" size="huge">
+                Find a Room
+              </Header>
 
-          <Link className="myButton" to="/signup">
-            Sign In
-          </Link>
+              <Link to="/signup">
+                <Button>Sign Up</Button>
+              </Link>
+            </div>
+          </div>
         </div>
         <div
           style={this.expand("top", "bottom")}
@@ -50,11 +60,17 @@ export default class Landing extends Component {
           onMouseLeave={() => this.leave()}
           className="Landing-bottom split"
         >
-          <h1 className="Landing__header">Residents</h1>
-          <Login className="myButton" />
-          <Link className="myButton" to="/signup">
-            Sign In
-          </Link>
+          <div className="bottom-overlay">
+            <div id="container">
+              <Header as="h1" size="lhuge">
+                Rent a Room
+              </Header>
+
+              <Link to="/signup">
+                <Button>Sign Up</Button>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     );
