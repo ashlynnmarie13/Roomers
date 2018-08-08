@@ -9,14 +9,15 @@ const {
   MESSAGE_RECIEVED,
   MESSAGE_SENT,
   TYPING
-} = require("../../src/components/Chat/socketEvents");
+} = require("../../src/components/Chat/SocketEvents");
 
 const {
   createUser,
   createMessage,
   createChat
-} = require("../../src/components/Chat/socketFactories");
+} = require("../../src/components/Chat/SocketFactories");
 
+//has to be let because we're changing it
 let connectedUsers = {};
 
 let communityChat = createChat();
@@ -30,6 +31,9 @@ module.exports = function(socket) {
   let sendTypingFromUser;
 
   //Verify Username
+  //This is being taken from HANDLE SUBMIT from SetUser.js
+  //either is already a user, so no new user is created
+  //otherwise, a new user is created
   socket.on(VERIFY_USER, (nickname, callback) => {
     if (isUser(connectedUsers, nickname)) {
       callback({ isUser: true, user: null });
@@ -39,13 +43,16 @@ module.exports = function(socket) {
   });
 
   //User Connects with username
+  //WE NEED TO USE THIS TO PASS OUR USER IN AND GIVE THEM A CHAT USERNAME
+  //setting "user" as a variable so we can use it
   socket.on(USER_CONNECTED, user => {
     connectedUsers = addUser(connectedUsers, user);
     socket.user = user;
 
     sendMessageToChatFromUser = sendMessageToChat(user.name);
     sendTypingFromUser = sendTypingToChat(user.name);
-
+    console.log(io);
+    //broadcast to all the users connected, updates the list
     io.emit(USER_CONNECTED, connectedUsers);
     console.log(connectedUsers);
   });
@@ -108,6 +115,7 @@ function sendMessageToChat(sender) {
 }
 
 /*
+WE NEED TO EDIT THIS PART
 * Adds user to list passed in.
 * @param userList {Object} Object with key value pairs of users
 * @param user {User} the user to added to the list.
