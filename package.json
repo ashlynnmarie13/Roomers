@@ -23,7 +23,11 @@
     "redux": "^4.0.0",
     "redux-promise-middleware": "^5.1.1",
     "semantic-ui-react": "^0.82.2",
+<<<<<<< HEAD
     "styled-components": "^3.4.2"
+=======
+    "socket.io": "^2.1.1"
+>>>>>>> master
   },
   "scripts": {
     "start": "react-scripts start",

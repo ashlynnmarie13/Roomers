@@ -19,9 +19,17 @@ app.use(json());
 
 //WE HAVE TO PUT THIS HERE FOR SOCKET.IO TO WORK
 const port = 3001;
-app.listen(port, () => {
+server = app.listen(port, () => {
   console.log(`app is running in server port ${port}`);
 });
+//socket.io related
+const socket = require("socket.io");
+const io = (module.exports.io = socket)(server);
+const SocketManager = require("./controllers/socketCtrl");
+
+//Socket.io stuff
+
+io.on("connection", SocketManager);
 
 // requiring auth0 from controller
 const { getUser, logout } = require(`${__dirname}/controllers/authCtrl`);
@@ -113,5 +121,5 @@ app.get(
   })
 );
 
-// // adds user info
-app.post("/api/user/info", ctrl.addUserInfo);
+// adds user info
+app.post("/api/info");
