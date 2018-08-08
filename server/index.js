@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const { json } = require("body-parser");
 const app = express();
-const ctrl = require("");
+const ctrl = require("./controllers/controller");
 
 const session = require("express-session");
 const passport = require("passport");
@@ -100,5 +100,5 @@ app.get(
   })
 );
 
-// adds user info
-app.post("/api/info");
+// // adds user info
+app.post("/api/user/info", ctrl.addUserInfo);

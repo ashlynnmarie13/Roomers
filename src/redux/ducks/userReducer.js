@@ -12,6 +12,7 @@ export function getUser() {
 
 const initialState = {
   user: {},
+  userInfo: {},
   isAuthed: false
 };
 
@@ -28,6 +29,9 @@ export default function itemsReducer(state = initialState, action) {
         ...state,
         isAuthed: false
       };
+    case `${ADD_USER_INFO}_FULFILLED`:
+      console.log(action.payload.data);
+      return { ...state, userInfo: action.payload.data };
     default:
       return state;
   }
@@ -35,7 +39,6 @@ export default function itemsReducer(state = initialState, action) {
 
 export function addUserInfo(info) {
   console.log(info);
-
   return {
     type: ADD_USER_INFO,
     payload: axios.post("/api/user/info", info)
