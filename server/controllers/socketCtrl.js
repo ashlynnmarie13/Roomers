@@ -8,7 +8,8 @@ const {
   COMMUNITY_CHAT,
   MESSAGE_RECIEVED,
   MESSAGE_SENT,
-  TYPING
+  TYPING,
+  PRIVATE_MESSAGE
 } = require("../../src/components/Chat/SocketEvents");
 
 const {
@@ -38,7 +39,11 @@ module.exports = function(socket) {
     if (isUser(connectedUsers, nickname)) {
       callback({ isUser: true, user: null });
     } else {
-      callback({ isUser: false, user: createUser({ name: nickname }) });
+      callback({
+        isUser: false,
+        //socketId is passed for in private messaging here
+        user: createUser({ name: nickname, socketId: socket.id })
+      });
     }
   });
 
@@ -46,6 +51,8 @@ module.exports = function(socket) {
   //WE NEED TO USE THIS TO PASS OUR USER IN AND GIVE THEM A CHAT USERNAME
   //setting "user" as a variable so we can use it
   socket.on(USER_CONNECTED, user => {
+    //if the user disconnects then we want to make sure that that id is updated
+    user.socketId = socket.id;
     connectedUsers = addUser(connectedUsers, user);
     socket.user = user;
 
@@ -85,6 +92,27 @@ module.exports = function(socket) {
 
   socket.on(TYPING, ({ chatId, isTyping }) => {
     sendTypingFromUser(chatId, isTyping);
+  });
+
+  //Private message event
+  //so we know who is sending and recieving the message
+  socket.on(PRIVATE_MESSAGE, ({ reciever, sender }) => {
+    console.log(reciever, sender);
+    //if the reciever is in our list of users(object that they get added onto)
+    if (reciever in connectedUsers) {
+      //then we make a new chat, including a name for the chat and the users
+      const newChat = createChat({
+        name: `${reciever}&${sender}`,
+        users: [reciever, sender]
+      });
+      //sending to the current socket that the person who's requesting to make a private chat is going to get
+      //off of our connected users list, we putt the socketId off of that reciever
+      const recieverSocket = connectedUsers[reciever].socketId;
+      //sending an event to the socket we just made, emiting the private message and sending the newChat
+      socket.to(recieverSocket).emit(PRIVATE_MESSAGE, newChat);
+      // also emitting to this socket and sending the newChat
+      socket.emit(PRIVATE_MESSAGE, newChat);
+    }
   });
 };
 /*

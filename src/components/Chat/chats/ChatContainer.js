@@ -4,7 +4,8 @@ import {
   COMMUNITY_CHAT,
   MESSAGE_SENT,
   MESSAGE_RECIEVED,
-  TYPING
+  TYPING,
+  PRIVATE_MESSAGE
 } from "../SocketEvents";
 import ChatHeading from "./ChatHeading";
 import Messages from "../messages/Messages";
@@ -23,9 +24,31 @@ export default class ChatContainer extends Component {
 
   componentDidMount() {
     const { socket } = this.props;
-    socket.emit(COMMUNITY_CHAT, this.resetChat);
+    //initiales everything that we need for our sockets
+    this.initSocket(socket);
   }
 
+  //passing socket into the function
+  initSocket(socket) {
+    //pulling user off props for sender of private message
+    const { user } = this.props;
+    socket.emit(COMMUNITY_CHAT, this.resetChat);
+    //setting socket.on to private message, and when that happens you add a chat
+    socket.on(PRIVATE_MESSAGE, this.addChat);
+    //this is going to reset the entire chat if someone disconnects
+    socket.on("connect", () => {
+      socket.emit(COMMUNITY_CHAT, this.resetCHat);
+    });
+    //sender is us, reciever is rando
+    socket.emit(PRIVATE_MESSAGE, { reciever: "mike", sender: user.name });
+  }
+
+  sendOpenPrivateMessage = reciever => {
+    const { socket, user } = this.props;
+    //getting socket from props
+    //sender is US
+    socket.emit(PRIVATE_MESSAGE, { reciever, sender: user.name });
+  };
   /*
 	*	Reset the chat back to only the chat passed in.
 	* 	@param chat {Chat}
@@ -42,8 +65,9 @@ export default class ChatContainer extends Component {
 	*	
 	*	@param chat {Chat} the chat to be added.
 	*	@param reset {boolean} if true will set the chat as the only chat.
-	*/
-  addChat = (chat, reset) => {
+    */
+  //if we just passed in a chat, then the reset value will be equal to false
+  addChat = (chat, reset = false) => {
     const { socket } = this.props;
     const { chats } = this.state;
 
@@ -125,6 +149,7 @@ export default class ChatContainer extends Component {
   setActiveChat = activeChat => {
     this.setState({ activeChat });
   };
+
   render() {
     //pulling in user and logout functions from Chat.js... that's what we're sending back
     const { user, logout } = this.props;
@@ -137,6 +162,7 @@ export default class ChatContainer extends Component {
           user={user}
           activeChat={activeChat}
           setActiveChat={this.setActiveChat}
+          onSendPrivateMessage={this.sendOpenPrivateMessage}
         />
         <div className="chat-room-container">
           {/*if the active chat isnt null, we're going to return a chat heading, all of our messages inside active chat

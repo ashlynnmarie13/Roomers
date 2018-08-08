@@ -9,9 +9,10 @@ const uuidv4 = require("uuid/v4");
 *		name {string}
 WE WILL NEED TO EDIT IT THIS TO MATCH AN ID TO A USER THAT HAS BEEN PASSED IN
 */
-const createUser = ({ name = "" } = {}) => ({
+const createUser = ({ name = "", socketId = null } = {}) => ({
   id: uuidv4(),
-  name
+  name,
+  socketId
 });
 
 /*
