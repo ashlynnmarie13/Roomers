@@ -28,14 +28,17 @@ export default function itemsReducer(state = initialState, action) {
         ...state,
         isAuthed: false
       };
+    case `${ADD_USER_INFO}_FULFILLED`:
+      return {
+        ...state,
+        userInfo: action.payload.data
+      };
     default:
       return state;
   }
 }
 
 export function addUserInfo(info) {
-  console.log(info);
-
   return {
     type: ADD_USER_INFO,
     payload: axios.post("/api/user/info", info)

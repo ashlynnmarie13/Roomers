@@ -73,22 +73,35 @@ passport.use(
 
 //pulling the user and sending the info back to the front-end
 passport.serializeUser((user, done) => {
-  User.findOne({ name: user.displayName, user: user.id, picture: user.picture })
+  User.findOne({
+    name: user.displayName,
+    authID: user.id,
+    picture: user.picture
+  })
     .then(response => {
       if (!response) {
         const newUser = new User({
           name: user.displayName,
           authID: user.id,
-          picture: user.picture
+          picture: user.picture,
+          newUser: true
         });
         newUser
           .save()
-          .then(res => done(null, user))
+          .then(res => {
+            done(null, res);
+          })
 
-          .catch(console.log);
-      } else return done(null, user);
+          .catch(err => console.log(err));
+      } else {
+        User.findOneAndUpdate({ authID: response.authID }, { new: true }).then(
+          user => {
+            done(null, user);
+          }
+        );
+      }
     })
-    .catch(console.log);
+    .catch(err => console.log(err));
 });
 
 //I'm not sure what this does
@@ -102,7 +115,7 @@ app.get(
   "/login",
   passport.authenticate("auth0", {
     // successRedirect: "/",
-    successRedirect: "http://localhost:3000/#/",
+    successRedirect: `http://localhost:3000/#/signup`,
     // successRedirect: "/#/",
     failureRedirect: "/login"
   })

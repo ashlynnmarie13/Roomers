@@ -64,7 +64,8 @@ module.exports = {
         vegan,
         introverted
       }
-    })
+    });
+    newProfile
       .save()
       .then(response => {
         let toReturn = {};
@@ -85,6 +86,7 @@ module.exports = {
         }
 
         res.status(200).send(toReturn);
-      });
+      })
+      .catch(err => console.log("User already has a profile"));
   }
 };

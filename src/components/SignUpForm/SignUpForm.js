@@ -47,7 +47,8 @@ class SignUpForm extends Component {
   submitHandler = e => {
     e.preventDefault();
 
-    this.props.addUserInfo({ ...this.state, userID: this.props.user.user_id });
+    this.props.addUserInfo({ ...this.state, userID: this.props.user.authID });
+    this.props.history.push("/home");
   };
 
   render() {
@@ -61,9 +62,7 @@ class SignUpForm extends Component {
           <div className="section">
             <h1 className="section-title">Basic Info</h1>
             <div className="input">
-              <p p className="section-item">
-                Name:
-              </p>
+              <p className="section-item">Name:</p>
               <Input
                 onChange={event => this.inputHandler(event)}
                 name="name"
@@ -71,9 +70,7 @@ class SignUpForm extends Component {
               />
             </div>
             <div className="input">
-              <p p className="section-item">
-                Gender:
-              </p>
+              <p className="section-item">Gender:</p>
               <Input
                 onChange={event => this.inputHandler(event)}
                 name="gender"
@@ -81,9 +78,7 @@ class SignUpForm extends Component {
               />
             </div>
             <div className="input">
-              <p p className="section-item">
-                Email:
-              </p>
+              <p className="section-item">Email:</p>
               <Input
                 onChange={event => this.inputHandler(event)}
                 name="email"
@@ -91,9 +86,7 @@ class SignUpForm extends Component {
               />
             </div>
             <div className="input">
-              <p p className="section-item">
-                Phone:
-              </p>
+              <p className="section-item">Phone:</p>
               <Input
                 onChange={event => this.inputHandler(event)}
                 name="phone"
@@ -101,9 +94,7 @@ class SignUpForm extends Component {
               />
             </div>
             <div className="input">
-              <p p className="section-item">
-                Date of Birth:
-              </p>
+              <p className="section-item">Date of Birth:</p>
               <Input
                 onChange={event => this.inputHandler(event)}
                 name="dob"
@@ -113,16 +104,14 @@ class SignUpForm extends Component {
             <div className="input">
               <p className="section-item">A little about you:</p>
               <TextArea
-                style={{ width: "100%", height: "200px" }}
+                style={{ width: "100%", height: "200px", margin: "20px 0" }}
                 onChange={event => this.inputHandler(event)}
                 name="about"
                 type="text"
               />
             </div>
             <div className="input">
-              <p p className="section-item">
-                Upload a photo:
-              </p>
+              <p className="section-item">Upload a photo:</p>
               <Input
                 onChange={event => this.inputHandler(event)}
                 name="profilePic"
@@ -253,17 +242,13 @@ class SignUpForm extends Component {
           </div>
           <div className="section">
             <h1 className="section-title">Career:</h1>
-            <p p className="section-item">
-              Job Title:
-            </p>
+            <p className="section-item">Job Title:</p>
             <Input
               onChange={event => this.inputHandler(event)}
               name="title"
               type="text"
             />
-            <p p className="section-item">
-              Company Name:
-            </p>
+            <p className="section-item">Company Name:</p>
             <Input
               onChange={event => this.inputHandler(event)}
               name="companyName"
@@ -273,11 +258,9 @@ class SignUpForm extends Component {
 
           <div className="section">
             <h1 className="section-title">Description:</h1>
-            <p p className="section-item">
-              What are you looking for?
-            </p>
+            <p className="section-item">What are you looking for?</p>
             <TextArea
-              style={{ width: "500px", height: "200px" }}
+              style={{ width: "500px", height: "200px", margin: "20px 0" }}
               onChange={event => this.inputHandler(event)}
               name="description"
               type="text"
