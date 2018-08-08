@@ -8,6 +8,6 @@ export default (
   <Switch>
     <Route exact path="/" component={Landing} />
     <Route path="/signup" component={SignUpForm} />
-    <Route path="/Location" component={Location} />
+    <Route path="/home" component={Home} />
   </Switch>
 );
