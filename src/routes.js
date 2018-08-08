@@ -8,7 +8,7 @@ import Wishlist from './components/Wishlist/Wishlist';
 import SearchRooms from './components/SearchRooms/SearchRooms';
 import MyListings from './components/MyListings/MyListings';
 import Home from './components/Home/Home'
-import Home from "./components/Home/Home";
+import Chat from "./components/Chat/Chat";
 
 export default (
   <Switch>
@@ -20,6 +20,6 @@ export default (
     <Route path="/searchrooms" component={SearchRooms}/>
     <Route path="/myListings" component={MyListings}/>
     <Route path="/home" component={Home}/>
-    <Route path="/home" component={Home} />
+    <Route path="/chat" component={Chat} />
   </Switch>
 );

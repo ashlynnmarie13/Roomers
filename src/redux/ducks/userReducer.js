@@ -12,7 +12,6 @@ export function getUser() {
 
 const initialState = {
   user: {},
-  userInfo: {},
   isAuthed: false
 };
 
