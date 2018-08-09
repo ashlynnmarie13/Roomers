@@ -46,9 +46,11 @@ const ListingSchema = new Schema({
       default: false
     }
   },
-  date: {
-    type: Date,
-    default: Date.now
+  availableDate: {
+    type: String
+  },
+  listingLength: {
+    type: String
   }
 });
 

@@ -38,7 +38,7 @@ module.exports = {
       guests,
       pets
     } = req.body;
-    const listing=
+
     const newProfile = new Profile({
       _id: userID,
       name,
@@ -94,7 +94,7 @@ module.exports = {
 
         res.status(200).send(toReturn);
       })
-      .catch(err => console.log("User already has a profile"));
+      .catch(err => console.log("User already has a profile " + err));
   },
   uploadPhoto: (req, res) => {
     console.log(req.file);
@@ -107,7 +107,7 @@ module.exports = {
         params = {
           Bucket: myBucket,
           Key: `${myKey}/${req.file.filename}`,
-          Body: req.file.filename,
+          Body: req.file.data,
           ContentType: req.file.mimetype,
           ACL: "public-read"
         };
