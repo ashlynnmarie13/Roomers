@@ -1,9 +1,10 @@
 body {
-  text-align: center;
+  /* text-align: center;
   background-color: white;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
+  margin: 0;
 }
 .imgC {
   background-image: url("https://roomiweb.imgix.net/home/image4.jpg");

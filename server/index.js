@@ -16,6 +16,7 @@ const socket = require("socket.io");
 
 //Pulling in the user schema
 const User = require("./Models/User");
+const Listing = require("./Models/Listing");
 
 const upload = multer({ dest: "uploads/" });
 

@@ -38,7 +38,7 @@ module.exports = {
       guests,
       pets
     } = req.body;
-
+    const listing=
     const newProfile = new Profile({
       _id: userID,
       name,

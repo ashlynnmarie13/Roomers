@@ -9,7 +9,7 @@ class Nav extends Component {
     return (
       <div className="Nav">
         <div>
-          <Link to="/profile" className='logo'>
+          <Link to="/profile" className="logo">
             <img src="" alt="logo" />
           </Link>
 
@@ -18,8 +18,10 @@ class Nav extends Component {
           </Link>
         </div>
         {/* <p>ROOMERS</p> */}
-        <Link to="/home" className='home'><img src={logo} alt="logo" /></Link>
-        <div className='listings'>
+        <Link to="/home" className="home">
+          <img src={logo} alt="logo" />
+        </Link>
+        <div className="listings">
           <Link to="/addlisting" className="addlistings">
             <i className="Addlistings" /> Add New Listings
           </Link>
@@ -35,4 +37,3 @@ class Nav extends Component {
   }
 }
 export default Nav;
-
