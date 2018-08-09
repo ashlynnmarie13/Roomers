@@ -1,0 +1,99 @@
+.add-listing {
+  display: flex;
+  justify-content: space-between;
+  background: rgb(238, 225, 225);
+}
+
+.listing-nav {
+  width: 30%;
+  height: 80vh;
+  padding: 16px;
+  position: sticky;
+  top: 20px;
+  border-radius: 5px;
+}
+
+.listing-sections {
+  width: 70%;
+}
+
+.listing-section {
+  margin: 0;
+  padding: 16px;
+  background: #fff;
+  border-radius: 5px;
+}
+
+.nav-header {
+  font-weight: bold;
+  font-size: 25px;
+  padding-bottom: 20px;
+}
+
+.details-header {
+  font-weight: bold;
+  font-size: 25px;
+  padding-bottom: 20px;
+}
+
+.selection {
+  display: flex;
+  background: #fff;
+}
+
+.listing-nav {
+  margin: 40px;
+  background: #fff;
+}
+
+.listing-section {
+  margin: 40px;
+}
+
+.section-inputs {
+  width: 25%;
+}
+
+.selection-title {
+  width: 25%;
+  font-size: 20px;
+  padding-bottom: 20px;
+}
+
+.selection {
+  width: 50%;
+}
+
+.section-details {
+  display: flex;
+  padding-top: 14px;
+  border-top: 1px solid #000;
+}
+
+.age-input {
+  width: 300px;
+  margin: 10px 0;
+}
+
+.label {
+  margin-left: 50px;
+  font-size: 18px;
+}
+
+.section-address-inputs {
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+
+.section-address-inputs-three {
+  display: grid;
+  grid-template-columns: 50% 20% 30%;
+}
+
+.address {
+  width: 100%;
+}
+
+.address-input {
+  width: 98%;
+}
