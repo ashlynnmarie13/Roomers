@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(0, 0, 0);
+  background-color: #30415D;
   height: 10vh;
   color: black;
   padding: 15px;
@@ -22,50 +22,50 @@
 
 .addlistings{
     float: right;
-    color: white;
+    color: #8EAEBD;
     text-align: center;
     margin: 1em;
-    border: 1px solid #FFFFFF;
+    border: 1px solid #8EAEBD;
     padding: 1em;
     cursor: pointer;
 }
 .searchlistings{
   float: right;
-  color: white;
+  color:#8EAEBD;
   text-align: center;
   margin: 1em;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #8EAEBD;
   padding: 1em;
   cursor: pointer;
 }
 .mylistings{
   float: right;
-  color: white;
+  color: #8EAEBD;
   text-align: center;
   margin: 1em;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #8EAEBD;
   padding: 1em;
   cursor: pointer;
 }
 .wishlist{
   float: right;
-  color: white;
+  color: #8EAEBD;
   text-align: center;
   margin: 1em;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #8EAEBD;
   padding: 1em;
   cursor: pointer;
 }
 .logo{
   float: left;
-  color: white;
+  color: #8EAEBD;
   text-align: center;
   margin: 1em;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #8EAEBD;
   padding: 1em;
   cursor: pointer;
 }
 .home img{
-height: 100px;
-width: 300px
+height: 190px;
+width: 190px
 }
