@@ -15,7 +15,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <p>{JSON.stringify(this.props.user)}</p>
         <Nav />
         {routes}
       </div>

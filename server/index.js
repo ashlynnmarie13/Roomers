@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const { json } = require("body-parser");
 const app = express();
+const multer = require("multer");
 const ctrl = require("./controllers/controller");
 
 const session = require("express-session");
@@ -11,6 +12,8 @@ const Auth0Strategy = require("passport-auth0");
 
 //Pulling in the user schema
 const User = require("./Models/User");
+
+const upload = multer({ dest: "uploads/" });
 
 const { CLIENT_ID, CLIENT_SECRET, DOMAIN } = process.env;
 
@@ -122,4 +125,5 @@ app.get(
 );
 
 // adds user info
-app.post("/api/info");
+app.post("/api/user/info", upload.single("profilePic"), ctrl.addUserInfo);
+app.post("/api/upload", upload.single("profilePic"), ctrl.uploadPhoto);
