@@ -148,8 +148,8 @@ body {
   margin: 8px;
 }
 .cali {
-  padding-right: 30px;
-  padding-top: 60px;
+  padding-right: 80px;
+  padding-top: 160px;
   color: white;
 }
 
@@ -160,7 +160,7 @@ body {
     rgba(255, 255, 255, 0.2)
   );
   position: relative;
-  padding-top: 10px;
+  padding-top: 80px;
   cursor: pointer;
   transition: 2s all;
 }

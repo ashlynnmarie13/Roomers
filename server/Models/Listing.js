@@ -16,11 +16,16 @@ const ListingSchema = new Schema({
     age: String,
     gender: String
   },
-  address: String,
+  address: {
+    street: String,
+    city: String,
+    state: String,
+    zip: Number
+  },
 
   rent: {
     price: String,
-    moveIn: Date,
+    moveIn: String,
     length: String
   },
   prefs: {

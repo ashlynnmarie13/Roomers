@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^1.4.3",
+    "aws-sdk": "^2.288.0",
     "axios": "^0.18.0",
     "cors": "^2.8.4",
     "dotenv": "^6.0.0",
@@ -11,6 +12,8 @@
     "express-session": "^1.15.6",
     "massive": "^5.1.3",
     "mongoose": "^5.2.7",
+    "multer": "^1.3.1",
+    "multer-s3": "^2.7.0",
     "passport": "^0.4.0",
     "passport-auth0": "^1.0.0",
     "prop-types": "^15.6.2",
