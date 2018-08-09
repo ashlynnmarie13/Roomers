@@ -1,15 +1,6 @@
-body {
-  text-align: center;
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .imgC {
   background-image: url("https://roomiweb.imgix.net/home/image4.jpg");
-  /* background-image: url("https://roomiweb.imgix.net/home/image2.jpg"); */
   background-repeat: no-repeat, repeat;
-  /* transition: background-image 0.2s ease-in-out; */
   background-size: 100%;
   height: 100vh;
 }
