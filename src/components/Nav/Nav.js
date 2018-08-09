@@ -9,6 +9,7 @@ class Nav extends Component {
     return (
       <div className="Nav">
         <div>
+          
           <Link to="/profile" className='logo'>
             <img src="" alt="logo" />
           </Link>
