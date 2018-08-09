@@ -20,6 +20,7 @@
 
 } */
 
+<<<<<<< HEAD
 .addlistings{
     float: right;
     color: #CF6766;
@@ -29,36 +30,59 @@
     border-width: thick;
     padding: 1em;
     cursor: pointer;
+=======
+.addlistings {
+  float: right;
+  color: white;
+  text-align: center;
+  margin: 1em;
+  border: 1px solid #ffffff;
+  padding: 1em;
+  cursor: pointer;
+>>>>>>> master
 }
-.searchlistings{
+.searchlistings {
   float: right;
   color:#8EAEBD;
   text-align: center;
   margin: 1em;
+<<<<<<< HEAD
+=======
+  border: 1px solid #ffffff;
+>>>>>>> master
   padding: 1em;
   cursor: pointer;
 }
-.mylistings{
+.mylistings {
   float: right;
   color: #8EAEBD;
   text-align: center;
   margin: 1em;
+<<<<<<< HEAD
+=======
+  border: 1px solid #ffffff;
+>>>>>>> master
   padding: 1em;
   cursor: pointer;
 }
-.wishlist{
+.wishlist {
   float: right;
   color: #8EAEBD;
   text-align: center;
   margin: 1em;
+<<<<<<< HEAD
+=======
+  border: 1px solid #ffffff;
+>>>>>>> master
   padding: 1em;
   cursor: pointer;
 }
-.logo{
+.logo {
   float: left;
   color: #8EAEBD;
   text-align: center;
   margin: 1em;
+<<<<<<< HEAD
   padding: 1em;
   cursor: pointer;
 }
@@ -66,3 +90,13 @@
 height: 190px;
 width: 190px
 }
+=======
+  border: 1px solid #ffffff;
+  padding: 1em;
+  cursor: pointer;
+}
+.home img {
+  height: 100px;
+  width: 300px;
+}
+>>>>>>> master
