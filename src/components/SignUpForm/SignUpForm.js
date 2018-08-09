@@ -123,7 +123,7 @@ class SignUpForm extends Component {
               <p className="section-item">A little about you:</p>
               <TextArea
                 style={{ width: "100%", height: "200px", margin: "20px 0" }}
-                onChange={event => this.imputHandler(event)}
+                onChange={event => this.inputHandler(event)}
                 name="about"
                 type="text"
               />
