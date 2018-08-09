@@ -1,10 +1,10 @@
-body {
+/* body {
   text-align: center;
   background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 .imgC {
   background-image: url("https://roomiweb.imgix.net/home/image4.jpg");
   /* background-image: url("https://roomiweb.imgix.net/home/image2.jpg"); */
@@ -24,15 +24,38 @@ body {
   align-items: center;
   align-content: stretch;
 }
-.post {
-  /* text-align: justify; */
+/* .post {
+  text-align: justify;
   display: flex;
   margin: auto;
   align-content: center;
   margin-top: 50px;
   margin-bottom: 50px;
   color: rgb(58, 58, 58);
+} */
+.head1{
+
+  font-size: 50px;
+  text-align: center;
+  font-weight: bold;
 }
+.para{
+  font-size: 25px;
+  text-align: center;
+  padding: 30px
+}
+.post{
+  margin: 0;
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+
+
+
 
 .container {
   background-color: rgb(238, 238, 238);
@@ -42,6 +65,7 @@ body {
 .button {
   display: inline-block;
   outline: none;
+  
   cursor: pointer;
   text-align: center;
   text-decoration: none;
