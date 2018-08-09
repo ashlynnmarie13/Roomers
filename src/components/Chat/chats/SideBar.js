@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import FAChevronDown from "react-icons";
-import FAMenu from "react-icons";
-import FASearch from "react-icons";
-import MdEject from "react-icons";
+// import FAChevronDown from "react-icons";
+// import FAMenu from "react-icons";
+// import FASearch from "react-icons";
+// import MdEject from "react-icons";
 import "../Chat.css";
 export default class SideBar extends Component {
   constructor(props) {
@@ -30,7 +30,10 @@ export default class SideBar extends Component {
           {/* <div className="menu">Menu{/*<FAChevronDown }</div> */}
         </div>
         <form onSubmit={this.handleSubmit} className="search">
-          <i className="search-icon">Search{/*<FAChevronDown */}</i>
+          <i className="search-icon">
+            Search
+            {/*<FAChevronDown */}
+          </i>
           <input
             placeholder="Search"
             type="text"

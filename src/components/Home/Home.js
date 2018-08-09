@@ -17,7 +17,7 @@ class Home extends Component {
         </div>
         <div class="container">
           <br />
-          <h1>Search Rooms and Roommates In These Cities...</h1>s
+          {/* <h1>Search Rooms and Roommates In These Cities...</h1>s */}
           <div class="innerC">
             <div class="top">
               <div class="ny">

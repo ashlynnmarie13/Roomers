@@ -1,7 +1,9 @@
 body {
-  margin: 0;
-  padding: 0;
+  text-align: center;
   background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .imgC {
   background-image: url("https://roomiweb.imgix.net/home/image4.jpg");
@@ -23,12 +25,15 @@ body {
   align-content: stretch;
 }
 .post {
-  /* margin:auto; */
+  /* text-align: justify; */
+  display: flex;
+  margin: auto;
   align-content: center;
   margin-top: 50px;
   margin-bottom: 50px;
   color: rgb(58, 58, 58);
 }
+
 .container {
   background-color: rgb(238, 238, 238);
   height: 100vh;
