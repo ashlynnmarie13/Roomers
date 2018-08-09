@@ -1,20 +1,14 @@
-<<<<<<< HEAD
-=======
-/* body {
-  text-align: center;
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
->>>>>>> master
-.imgC {
-  background-image: url("https://roomiweb.imgix.net/home/image4.jpg");
+/* .imgC {
+  background-image: url();
   background-repeat: no-repeat, repeat;
   background-size: 100%;
   height: 100vh;
+} */
+imagec{
+  background-size: 100px;
+  width: 300px;
+  height: 300px;
 }
-
 .heade {
   display: flex;
   color: blue;
@@ -62,8 +56,23 @@
   background-color: rgb(238, 238, 238);
   height: 100vh;
 }
+.button1{
+  background-color: #CF6766;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 40%;
+margin-left: 30%;
+margin-right: 30%
+}
 
-.button {
+/* .button {
   display: inline-block;
   outline: none;
   
@@ -86,7 +95,7 @@
 .button:active {
   position: relative;
   top: 1px;
-}
+} */
 
 .innerC {
   display: flex;
@@ -103,31 +112,31 @@
 }
 .ny {
   align-items: baseline;
-  background-image: url("https://roomicities.imgix.net/NewYork.jpg");
+  background-image: url("http://www.wallpaperbetter.com/wallpaper/21/90/360/hudson-river-new-york-city-1080P-wallpaper-middle-size.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
   height: 100%;
-  width: 60vh;
+  width: 50vh;
   margin: 8px;
 }
 .au {
   align-items: baseline;
-  background-image: url("https://roomicities.imgix.net/Austin.jpg");
+  background-image: url("http://paperlief.com/images/dallas-texas-at-night-wallpaper-4.jpg");
   background-repeat: no-repeat;
   background-size: 150%;
   height: 100%;
-  width: 25%;
+  width: 29%;
   margin: 8px;
-  margin-bottom: 0;
+
 }
 .sd {
   align-items: baseline;
-  background-image: url("https://roomicities.imgix.net/SanDiego.jpg");
+  background-image: url("http://wallscollection.net/wp-content/uploads/2017/01/Florida-Wallpapers-HD-1920x1080.jpg");
   background-repeat: no-repeat;
   background-size: 170%;
-  height: 100%;
-  width: 25%;
-  margin: 8px;
+  height: 99%;
+  width: 27%;
+  margin: 10px;
 }
 .middle {
   display: flex;
@@ -136,11 +145,11 @@
 }
 .bo {
   align-items: baseline;
-  background-image: url("https://roomicities.imgix.net/Boston.jpg");
+  background-image: url("https://bloggerlocal.com/wp-content/uploads/2013/08/kansas_city_skyline_2.jpg");
   background-repeat: no-repeat;
   background-size: 150%;
   height: 100%;
-  width: 25%;
+  width: 36%;
   margin: 8px;
 }
 .ch {
@@ -149,18 +158,18 @@
   background-repeat: no-repeat;
   background-size: 110%;
   height: 100%;
-  width: 25%;
+  width: 37%;
   margin: 8px;
   margin-bottom: 0;
 }
 
 .sf {
   align-items: baseline;
-  background-image: url("https://roomicities.imgix.net/SanFrancisco.jpg");
+  background-image: url("http://jonvilma.com/images/detroit-at-sunrise-michigan-1.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
   height: 100%;
-  width: 60vh;
+  width: 50%;
   margin: 8px;
 }
 .bottom {
@@ -170,17 +179,18 @@
 }
 .la {
   align-items: baseline;
-  background-image: url("https://roomicities.imgix.net/LosAngeles.jpg");
+  background-image: url("http://www.wallpaperbetter.com/wallpaper/1008/644/858/paradise-pier-sunset-california-1080P-wallpaper.jpg");
   background-repeat: no-repeat;
   background-size: 105%;
-  height: 100%;
-  width: 60vh;
+  height: 96%;
+  width: 59vh;
   margin: 8px;
 }
 .cali {
+  font-size: 35px;
   padding-right: 80px;
   padding-top: 160px;
-  color: white;
+  color: #8EAEBD;
 }
 
 .cali:hover {
@@ -196,20 +206,20 @@
 }
 .lo {
   align-items: baseline;
-  background-image: url("https://roomicities.imgix.net/unitedKingdom/London.jpg");
+  background-image: url("https://i.pinimg.com/originals/0b/ef/fe/0beffef7a6a531631f369a6b147c8793.jpg");
   background-repeat: no-repeat;
   background-size: 130%;
   height: 100%;
-  width: 25%;
+  width: 35%;
   margin: 8px;
   margin-bottom: 0;
 }
 .wa {
   align-items: baseline;
-  background-image: url("https://roomicities.imgix.net/Washington.jpg");
+  background-image: url("https://i.pinimg.com/originals/4d/9d/d6/4d9dd63aedcf8c0064ec1e41cc4783ab.jpg");
   background-repeat: no-repeat;
   background-size: 150%;
   height: 100%;
-  width: 25%;
+  width: 30%;
   margin: 8px;
 }

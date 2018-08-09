@@ -5,17 +5,22 @@ class Home extends Component {
     return (
       <div>
         <div class="imgC" />
+<div className='imagec'><img src='https://roomiweb.imgix.net/home/image4.jpg' alt=""/>
 
+</div>
         <div class="post">
-          <h1 className="head1">Post Your Listing in Less Than 3 Minutes</h1>
-          <h1 className="para">
+          
+         
+        </div>
+
+        <div>
+        <h1 className="head1">Post Your Listing in Less Than 3 Minutes</h1>
+        <h1 className="para">
             You decide on house rules and move-in dates. We'll get your listing
             in front of thousands of <br />
             verified roommates.
           </h1>
-        </div>
-        <div>
-          <button className="button1">LIST YOUR PLACE FOR FREE</button>
+          <button className="button1" >LIST YOUR PLACE FOR FREE</button>
         </div>
         {/* <div className="button">LIST YOUR PLACE FOR FREE</div> */}
         <div class="container">
@@ -49,10 +54,10 @@ class Home extends Component {
                 <h2 class="cali">California</h2>
               </div>
               <div class="lo">
-                <h2 class="cali">New Mexico</h2>
+                <h2 class="cali">New Jersey</h2>
               </div>
               <div class="wa">
-                <h2 class="cali">Utah</h2>
+                <h2 class="cali">Nebraska</h2>
               </div>
             </div>
           </div>

@@ -9,7 +9,6 @@ import SearchRooms from './components/SearchRooms/SearchRooms';
 import MyListings from './components/MyListings/MyListings';
 import Home from './components/Home/Home'
 import Chat from "./components/Chat/Chat";
-import Cities from './components/Cities/Cities'
 export default (
   <Switch>
     <Route exact path="/" component={Landing} />
@@ -21,6 +20,5 @@ export default (
     <Route path="/myListings" component={MyListings}/>
     <Route path="/home" component={Home}/>
     <Route path="/chat" component={Chat} />
-    <Route path="/cities" component={Cities} />
   </Switch>
 );
