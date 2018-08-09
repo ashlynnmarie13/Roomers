@@ -11,10 +11,11 @@ class App extends Component {
   componentDidMount() {
     this.props.getUser();
   }
+
   render() {
     return (
       <div className="App">
-        <Nav />
+        {this.props.location.pathname !== "/" && <Nav />}
         {routes}
       </div>
     );

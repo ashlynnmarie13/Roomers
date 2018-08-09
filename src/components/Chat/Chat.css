@@ -1,14 +1,12 @@
-html,
-body,
-#root {
+body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: "Rubik", sans-serif;
   height: 100%;
 }
 input,
 textarea {
-  font-family: Arial;
+  font-family: "Rubik", sans-serif;
 }
 .login {
   width: 100%;
@@ -50,11 +48,13 @@ textarea {
   align-items: flex-start;
   height: 100%;
   width: 100%;
+  color: #fffafa;
+  font-family: "Rubik", sans-serif;
 }
 #side-bar {
   box-sizing: border-box;
   width: 33.75%;
-  height: 100%;
+  height: 940px;
   display: flex;
   justify-content: space-around;
   flex-direction: column;
@@ -68,7 +68,7 @@ textarea {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background: #2e2e4f;
+  background: #031424;
 }
 #side-bar .search {
   background: #3e3e5e;
@@ -84,6 +84,7 @@ textarea {
   padding-right: 20px;
   height: 10vh;
   max-height: 65px;
+  background: #30415d;
 }
 #side-bar .search .search-icon {
   margin-right: 15px;
@@ -130,12 +131,12 @@ textarea {
 }
 #side-bar .users {
   overflow-y: scroll;
-  background: #3e3e5e;
+  background: #30415d;
   flex-grow: 1;
 }
 #side-bar .users::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #cac8ee;
+  background-color: #031424;
 }
 #side-bar .users::-webkit-scrollbar {
   width: 5px;
@@ -153,7 +154,7 @@ textarea {
 }
 #side-bar .users .user.active,
 #side-bar .users .user:hover {
-  background: #2e2e4f;
+  background-color: #031424;
 }
 #side-bar .users .user:hover:not(.active) {
   cursor: pointer;
@@ -165,16 +166,18 @@ textarea {
 #side-bar .users .user .user-info .last-message {
   font-size: 12px;
   opacity: 0.56;
+  background-color: #031424;
 }
 #side-bar .users .user .new-message {
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #031424;
 }
 #side-bar .current-user {
   align-items: center;
-  background: #484d79;
+  background-color: #031424;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -192,7 +195,7 @@ textarea {
   font-size: 2em;
 }
 .chat-header {
-  background: #5d5d8a;
+  background-color: #031424;
   box-shadow: 0px 6px 5px -2px rgba(225, 225, 225, 0.7);
   box-sizing: border-box;
   display: flex;
@@ -201,6 +204,7 @@ textarea {
   height: 12vh;
   max-height: 65px;
   padding: 18px 16px;
+  border: solid #031424 2px;
 }
 .chat-header .user-info {
   align-items: center;
@@ -256,7 +260,7 @@ textarea {
 }
 .thread-container::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #cac8ee;
+  background-color: #ffffff;
 }
 .thread-container::-webkit-scrollbar {
   width: 5px;
@@ -273,7 +277,7 @@ textarea {
   flex-direction: column;
   justify-content: flex-end;
   color: #b3b2ca;
-  background: #dcddf5;
+  background-color: #ffffff;
 }
 .message-container {
   display: flex;
@@ -365,6 +369,10 @@ textarea {
   box-sizing: border-box;
   height: 10vh;
   max-height: 65px;
+  border: solid #031424 0.5px;
+  -webkit-box-shadow: -1px -1px 5px 2px rgba(3, 20, 36, 0.39);
+  -moz-box-shadow: -1px -1px 5px 2px rgba(3, 20, 36, 0.39);
+  box-shadow: -1px -1px 5px 2px rgba(3, 20, 36, 0.39);
 }
 .message-input .message-form {
   height: 100%;
@@ -404,7 +412,7 @@ textarea {
   border: none;
   height: 100%;
   color: #fff;
-  background: #3e3e5e;
+  background: #8eaebd;
   transition: all 0.35s ease-out;
 }
 .message-input .message-form .send:disabled {

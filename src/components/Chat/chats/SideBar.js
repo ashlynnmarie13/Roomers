@@ -26,8 +26,8 @@ export default class SideBar extends Component {
     return (
       <div id="side-bar">
         <div className="heading">
-          <div className="app-name">Our Cool Chat {/*<FAChevronDown */}</div>
-          <div className="menu">Menu{/*<FAChevronDown */}</div>
+          <div className="app-name">Messages {/*<FAChevronDown */}</div>
+          {/* <div className="menu">Menu{/*<FAChevronDown }</div> */}
         </div>
         <form onSubmit={this.handleSubmit} className="search">
           <i className="search-icon">Search{/*<FAChevronDown */}</i>
