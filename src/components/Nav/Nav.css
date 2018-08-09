@@ -20,52 +20,52 @@
 
 } */
 
-.addlistings{
-    float: right;
-    color: white;
-    text-align: center;
-    margin: 1em;
-    border: 1px solid #FFFFFF;
-    padding: 1em;
-    cursor: pointer;
-}
-.searchlistings{
+.addlistings {
   float: right;
   color: white;
   text-align: center;
   margin: 1em;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #ffffff;
   padding: 1em;
   cursor: pointer;
 }
-.mylistings{
+.searchlistings {
   float: right;
   color: white;
   text-align: center;
   margin: 1em;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #ffffff;
   padding: 1em;
   cursor: pointer;
 }
-.wishlist{
+.mylistings {
   float: right;
   color: white;
   text-align: center;
   margin: 1em;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #ffffff;
   padding: 1em;
   cursor: pointer;
 }
-.logo{
+.wishlist {
+  float: right;
+  color: white;
+  text-align: center;
+  margin: 1em;
+  border: 1px solid #ffffff;
+  padding: 1em;
+  cursor: pointer;
+}
+.logo {
   float: left;
   color: white;
   text-align: center;
   margin: 1em;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #ffffff;
   padding: 1em;
   cursor: pointer;
 }
-.home img{
-height: 100px;
-width: 300px
+.home img {
+  height: 100px;
+  width: 300px;
 }
