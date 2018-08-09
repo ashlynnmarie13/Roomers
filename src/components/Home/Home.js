@@ -6,16 +6,19 @@ class Home extends Component {
     return (
       <div>
         <div class="imgC" />
-        <div class="post">
-          <h1>Post Your Listing in Less Than 3 Minutes</h1>
 
-          <h4>
+        <div class="post">
+          <h1 className="head1">Post Your Listing in Less Than 3 Minutes</h1>
+          <h1 className="para">
             You decide on house rules and move-in dates. We'll get your listing
             in front of thousands of <br />
             verified roommates.
-          </h4>
-          <div class="button">LIST YOUR PLACE FOR FREE</div>
+          </h1>
         </div>
+        <div>
+          <button className="button1">LIST YOUR PLACE FOR FREE</button>
+        </div>
+        {/* <div className="button">LIST YOUR PLACE FOR FREE</div> */}
         <div class="container">
           <br />
           {/* <h1>Search Rooms and Roommates In These Cities...</h1>s */}
