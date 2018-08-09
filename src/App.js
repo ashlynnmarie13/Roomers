@@ -11,6 +11,7 @@ class App extends Component {
   componentDidMount() {
     this.props.getUser();
   }
+
   render() {
     return (
       <div className="App">

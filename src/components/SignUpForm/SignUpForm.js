@@ -3,6 +3,7 @@ import { Input, Checkbox, TextArea, Button, Icon } from "semantic-ui-react";
 import { addUserInfo } from "../../redux/ducks/userReducer";
 import { connect } from "react-redux";
 import "./SignUpForm.css";
+import axios from "axios";
 
 class SignUpForm extends Component {
   state = {
@@ -13,7 +14,7 @@ class SignUpForm extends Component {
     phone: "",
     dob: "",
     about: "",
-    profilePic: "",
+    profilePic: {},
     title: "",
     companyName: "",
     description: "",
@@ -36,6 +37,11 @@ class SignUpForm extends Component {
     pets: true
   };
 
+  fileSelectHandler = e => {
+    console.log(e.target.files[0]);
+    this.setState({ profilePic: e.target.files[0] });
+  };
+
   inputHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -47,8 +53,19 @@ class SignUpForm extends Component {
   submitHandler = e => {
     e.preventDefault();
 
-    this.props.addUserInfo({ ...this.state, userID: this.props.user.authID });
-    this.props.history.push("/home");
+    const formData = new FormData();
+
+    formData.append("profilePic", this.state.profilePic);
+
+    axios.post("/api/upload", formData).then(response => {
+      console.log(response);
+      this.props.addUserInfo({
+        ...this.state,
+        userID: this.props.user.authID,
+        profilePic: response.data
+      });
+      this.props.history.push("/home");
+    });
   };
 
   render() {
@@ -56,6 +73,7 @@ class SignUpForm extends Component {
       <div className="sign-up">
         <div className="picture" />
         <form
+          encType="multipart/form-data"
           onSubmit={event => this.submitHandler(event)}
           className="sign-up-form"
         >
@@ -105,15 +123,15 @@ class SignUpForm extends Component {
               <p className="section-item">A little about you:</p>
               <TextArea
                 style={{ width: "100%", height: "200px", margin: "20px 0" }}
-                onChange={event => this.inputHandler(event)}
+                onChange={event => this.imHandler(event)}
                 name="about"
                 type="text"
               />
             </div>
             <div className="input">
               <p className="section-item">Upload a photo:</p>
-              <Input
-                onChange={event => this.inputHandler(event)}
+              <input
+                onChange={event => this.fileSelectHandler(event)}
                 name="profilePic"
                 type="file"
               />
