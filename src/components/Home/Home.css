@@ -1,0 +1,185 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: white;
+}
+.imgC {
+  background-image: url("https://roomiweb.imgix.net/home/image4.jpg");
+  /* background-image: url("https://roomiweb.imgix.net/home/image2.jpg"); */
+  background-repeat: no-repeat, repeat;
+  /* transition: background-image 0.2s ease-in-out; */
+  background-size: 100%;
+  height: 100vh;
+}
+
+.heade {
+  display: flex;
+  color: blue;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: stretch;
+}
+.post {
+  /* margin:auto; */
+  align-content: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  color: rgb(58, 58, 58);
+}
+.container {
+  background-color: rgb(238, 238, 238);
+  height: 100vh;
+}
+
+.button {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font: 14px/100% Arial, Helvetica, sans-serif;
+  padding: 0.5em 2em 0.55em;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  border-radius: 0.5em;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+.button:hover {
+  text-decoration: none;
+}
+.button:active {
+  position: relative;
+  top: 1px;
+}
+
+.innerC {
+  display: flex;
+  margin: auto;
+  height: 70vh;
+  width: 70%;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+.top {
+  display: flex;
+  height: 33%;
+  width: 100%;
+}
+.ny {
+  align-items: baseline;
+  background-image: url("https://roomicities.imgix.net/NewYork.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 100%;
+  width: 60vh;
+  margin: 8px;
+}
+.au {
+  align-items: baseline;
+  background-image: url("https://roomicities.imgix.net/Austin.jpg");
+  background-repeat: no-repeat;
+  background-size: 150%;
+  height: 100%;
+  width: 25%;
+  margin: 8px;
+  margin-bottom: 0;
+}
+.sd {
+  align-items: baseline;
+  background-image: url("https://roomicities.imgix.net/SanDiego.jpg");
+  background-repeat: no-repeat;
+  background-size: 170%;
+  height: 100%;
+  width: 25%;
+  margin: 8px;
+}
+.middle {
+  display: flex;
+  height: 33%;
+  width: 100%;
+}
+.bo {
+  align-items: baseline;
+  background-image: url("https://roomicities.imgix.net/Boston.jpg");
+  background-repeat: no-repeat;
+  background-size: 150%;
+  height: 100%;
+  width: 25%;
+  margin: 8px;
+}
+.ch {
+  align-items: baseline;
+  background-image: url("https://roomicities.imgix.net/Chicago.jpg");
+  background-repeat: no-repeat;
+  background-size: 110%;
+  height: 100%;
+  width: 25%;
+  margin: 8px;
+  margin-bottom: 0;
+}
+
+.sf {
+  align-items: baseline;
+  background-image: url("https://roomicities.imgix.net/SanFrancisco.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 100%;
+  width: 60vh;
+  margin: 8px;
+}
+.bottom {
+  display: flex;
+  height: 33%;
+  width: 100%;
+}
+.la {
+  align-items: baseline;
+  background-image: url("https://roomicities.imgix.net/LosAngeles.jpg");
+  background-repeat: no-repeat;
+  background-size: 105%;
+  height: 100%;
+  width: 60vh;
+  margin: 8px;
+}
+.cali {
+  padding-right: 30px;
+  padding-top: 60px;
+  color: white;
+}
+
+.cali:hover {
+  background: linear-gradient(
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.2)
+  );
+  position: relative;
+  padding-top: 10px;
+  cursor: pointer;
+  transition: 2s all;
+}
+.lo {
+  align-items: baseline;
+  background-image: url("https://roomicities.imgix.net/unitedKingdom/London.jpg");
+  background-repeat: no-repeat;
+  background-size: 130%;
+  height: 100%;
+  width: 25%;
+  margin: 8px;
+  margin-bottom: 0;
+}
+.wa {
+  align-items: baseline;
+  background-image: url("https://roomicities.imgix.net/Washington.jpg");
+  background-repeat: no-repeat;
+  background-size: 150%;
+  height: 100%;
+  width: 25%;
+  margin: 8px;
+}
