@@ -22,10 +22,10 @@ class Nav extends Component {
         <Link to="/home" className='home'><img src={logo} alt="logo" /></Link>
         <div className='listings'>
           <Link to="/addlisting" className="addlistings">
-            <i className="Addlistings" /> Add New Listings
+            <i className="Addlistings" /> Add New Listing
           </Link>
           <Link to="/searchrooms" className="searchlistings">
-            <i className="Searchlistings" /> Serch Listings
+            <i className="Searchlistings" /> Search Listings
           </Link>
           <Link to="/mylistings" className="mylistings">
             <i className="Mylistings" /> My Listings

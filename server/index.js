@@ -4,11 +4,15 @@ const { json } = require("body-parser");
 const app = express();
 const multer = require("multer");
 const ctrl = require("./controllers/controller");
-
+const path = require("path");
 const session = require("express-session");
 const passport = require("passport");
 const mongoose = require("mongoose");
 const Auth0Strategy = require("passport-auth0");
+
+//requiring socket.io things
+const http = require("http");
+const socket = require("socket.io");
 
 //Pulling in the user schema
 const User = require("./Models/User");
@@ -20,14 +24,14 @@ const { CLIENT_ID, CLIENT_SECRET, DOMAIN } = process.env;
 //middleware
 app.use(json());
 
-//WE HAVE TO PUT THIS HERE FOR SOCKET.IO TO WORK
-const port = 3001;
-server = app.listen(port, () => {
-  console.log(`app is running in server port ${port}`);
-});
+const server = http.createServer(app);
+const io = (module.exports.io = socket(server));
+app.use(express.static(path.join(__dirname, "../build")));
 //socket.io related
-const socket = require("socket.io");
-const io = (module.exports.io = socket)(server);
+
+//WE HAVE TO PUT THIS HERE FOR SOCKET.IO TO WORK
+const port = process.env.PORT || 3001;
+
 const SocketManager = require("./controllers/socketCtrl");
 
 //Socket.io stuff
@@ -127,3 +131,7 @@ app.get(
 // adds user info
 app.post("/api/user/info", upload.single("profilePic"), ctrl.addUserInfo);
 app.post("/api/upload", upload.single("profilePic"), ctrl.uploadPhoto);
+
+server.listen(port, () => {
+  console.log(`app is running in server port ${port}`);
+});

@@ -22,10 +22,11 @@
 
 .addlistings{
     float: right;
-    color: #8EAEBD;
+    color: #CF6766;
     text-align: center;
     margin: 1em;
-    border: 1px solid #8EAEBD;
+    border: 1px solid #CF6766;
+    border-width: thick;
     padding: 1em;
     cursor: pointer;
 }
@@ -34,7 +35,6 @@
   color:#8EAEBD;
   text-align: center;
   margin: 1em;
-  border: 1px solid #8EAEBD;
   padding: 1em;
   cursor: pointer;
 }
@@ -43,7 +43,6 @@
   color: #8EAEBD;
   text-align: center;
   margin: 1em;
-  border: 1px solid #8EAEBD;
   padding: 1em;
   cursor: pointer;
 }
@@ -52,7 +51,6 @@
   color: #8EAEBD;
   text-align: center;
   margin: 1em;
-  border: 1px solid #8EAEBD;
   padding: 1em;
   cursor: pointer;
 }
@@ -61,7 +59,6 @@
   color: #8EAEBD;
   text-align: center;
   margin: 1em;
-  border: 1px solid #8EAEBD;
   padding: 1em;
   cursor: pointer;
 }
