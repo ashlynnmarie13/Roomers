@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Checkbox, Input } from "semantic-ui-react";
+import { Checkbox, Input, Label } from "semantic-ui-react";
 import "./AddListing.css";
 
 class AddListing extends Component {
@@ -140,10 +140,15 @@ class AddListing extends Component {
                 <div className="selection-title">Age:</div>
                 <div className="section-inputs">
                   <div className="age-input">
-                    <Checkbox id="early20s" />
-                    <label className="label" htmlFor="early20s">
-                      Early 20s
-                    </label>
+                    <Input
+                      labelPosition="right"
+                      type="text"
+                      placeholder="Amount"
+                    >
+                      <Label basic>$</Label>
+                      <input />
+                      <Label>.00</Label>
+                    </Input>
                   </div>
                   <div className="age-input">
                     <Checkbox id="late20s" />
