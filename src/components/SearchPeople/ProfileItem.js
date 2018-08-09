@@ -10,6 +10,11 @@ export default class ProfileItem extends Component {
       ...this.props.profile
     };
   }
+  componentDidMount() {
+    this.getProfileById();
+    //I don't even know
+  }
+
   render() {
     return (
       <div className="container-card">
@@ -17,7 +22,7 @@ export default class ProfileItem extends Component {
         <Card style={{ backgroundColor: "#fffafa" }}>
           <Image src="https://media.licdn.com/dms/image/C4E03AQF2-OGxFrlI5Q/profile-displayphoto-shrink_800_800/0?e=1539216000&v=beta&t=cAiBDUqlR09PUKKdtU7fwz8cm9jbyPbEfCB7LlPK5dU" />
           <Card.Content>
-            <Card.Header>Grandpa, 88</Card.Header>
+            <Card.Header>ugh</Card.Header>
 
             <Card.Meta style={{ color: "#8eaebd" }}>Web Developer</Card.Meta>
 

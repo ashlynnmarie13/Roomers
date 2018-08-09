@@ -23,8 +23,7 @@ const initialState = {
 // };
 
 // Get profile by id
-// Get user by id
-//for the chat page
+
 export const getProfileById = _id => dispatch => {
   axios.get(`/api/user/info/${_id}`).then(res =>
     dispatch({
