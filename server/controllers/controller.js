@@ -147,14 +147,10 @@ module.exports = {
   },
 
   getProfileById: (req, res) => {
-    Profile.findOne({ user: req.params._id })
-      .populate("_id", ["name, profilePic"])
-      .then(profile => {
-        if (!profile) {
-          errors.noprofile = "No profile for user";
-          res.status(404).json(errors);
-        }
-        res.json(profile);
-      });
+    const { id } = req.params;
+
+    Profile.findOne({ _id: id }).then(profile => {
+      res.status(200).send(profile);
+    });
   }
 };
