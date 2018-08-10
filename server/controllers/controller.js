@@ -131,13 +131,18 @@ module.exports = {
   },
 
   getAllProfiles: (req, res) => {
-    console.log(req.query.smoke);
-    const { smoke } = req.query;
+    const { smoke, guests, pets, clean, state } = req.query;
+
     let smokeBool = smoke === "true";
-    console.log(smokeBool);
+    let guestsBool = guests === "true";
+    let petsBool = pets === "true";
+    let cleanBool = clean === "true";
 
     Profile.find({
-      "prefs.smoke": smokeBool
+      "prefs.smoke": smokeBool,
+      "prefs.guests": guestsBool,
+      "prefs.pets": petsBool,
+      "prefs.clean": cleanBool
     }).then(response => res.status(200).send(response));
   },
 
