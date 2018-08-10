@@ -50,6 +50,8 @@ float:right;
  padding: 1em;
  cursor: pointer;
 }
+
+
 .searchlistings {
   float: left;
   color:#031424;
@@ -64,6 +66,7 @@ float:right;
 .searchlistings:hover {
   background-color: rgb(230, 233, 230); /* Green */
   color: #031424;
+  
 }
 
 
