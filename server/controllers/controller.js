@@ -131,16 +131,14 @@ module.exports = {
   },
 
   getAllProfiles: (req, res) => {
-    Profile.find()
-      .populate("_id", ["name, profilePic"])
-      .then(profiles => {
-        if (!profiles) {
-          errors.noprofile = "There are no profiles";
-          res.status(404).json(errors);
-        }
+    console.log(req.query.smoke);
+    const { smoke } = req.query;
+    let smokeBool = smoke === "true";
+    console.log(smokeBool);
 
-        res.json(profiles);
-      });
+    Profile.find({
+      "prefs.smoke": smokeBool
+    }).then(response => res.status(200).send(response));
   },
 
   getProfileById: (req, res) => {

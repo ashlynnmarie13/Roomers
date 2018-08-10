@@ -1,14 +1,39 @@
-.container-card {
-  font-family: "Rubik", sans-serif;
-}
-.header {
-  color: #031424;
-}
-
-.meta {
-  color: pink;
+.search-people {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  margin: 0 40px;
+  display: sticky;
+  top: 0;
 }
 
-.button {
-  color: #031424;
+.filter-options {
+  display: flex;
+  flex-direction: column;
+  background: rgb(238, 225, 225);
+  padding: 40px;
+}
+
+.search-people-location {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-list {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  padding: 40px;
+}
+
+.search-people-section {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+.search-section-title {
+  margin: 15px 0;
+}
+
+.search-people-item {
+  margin: 5px 0;
 }

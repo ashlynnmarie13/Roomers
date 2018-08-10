@@ -7,20 +7,15 @@ const initialState = {
   profile: null,
   profiles: null
 };
-// // Get current profile
-// export const getCurrentProfile = () => dispatch => {
-//   dispatch(setProfileLoading());
-//   axios
-//     .get("/api/profile")
-//     .then(res =>
-//       dispatch({
-//         type: GET_PROFILE,
-//         payload: res.data
-//       })
-//     )
-//
-//     );
-// };
+
+export default function profileReducer(state = initialState, action) {
+  switch (action) {
+    case `${GET_PROFILES}_FULFILLED`:
+      return { ...state, profiles: action.payload.data };
+    default:
+      return { state };
+  }
+}
 
 // Get profile by id
 
@@ -33,29 +28,10 @@ export const getProfileById = _id => dispatch => {
   );
 };
 
-export default function(state = initialState, action) {
-  switch (action.type) {
-    case GET_PROFILE:
-      return {
-        ...state,
-        profile: action.payload
-      };
-    case GET_PROFILES:
-      return {
-        ...state,
-        profiles: action.payload
-      };
-    default:
-      return state;
-  }
-}
-
 // Get all profiles
-export const getProfiles = () => dispatch => {
-  axios.get("/api/user/info/all").then(res =>
-    dispatch({
-      type: GET_PROFILES,
-      payload: res.data
-    })
-  );
-};
+export function getProfiles(location) {
+  return {
+    type: "GET_PROFILES",
+    payload: axios.get("/api/users/info")
+  };
+}

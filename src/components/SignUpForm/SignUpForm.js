@@ -57,15 +57,18 @@ class SignUpForm extends Component {
 
     formData.append("profilePic", this.state.profilePic);
 
-    axios.post("/api/upload", formData).then(response => {
-      console.log(response);
-      this.props.addUserInfo({
-        ...this.state,
-        userID: this.props.user.authID,
-        profilePic: response.data
-      });
-      this.props.history.push("/home");
-    });
+    axios
+      .post("/api/upload", formData)
+      .then(response => {
+        console.log(response);
+        this.props.addUserInfo({
+          ...this.state,
+          userID: this.props.user.authID,
+          profilePic: response.data
+        });
+        this.props.history.push("/home");
+      })
+      .catch(err => console.log("Please add an image"));
   };
 
   render() {
