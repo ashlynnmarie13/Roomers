@@ -54,6 +54,14 @@ export function addUserInfo(info) {
     payload: axios.post("/api/user/info", info)
   };
 }
-// export function getState(updatedVal) {
-//   return { type: "GET_STATE", newVal: updatedVal };
-// }
+
+// Get user by id
+//for the chat page
+export const getUserById = _id => dispatch => {
+  axios.get(`/api/user/info/${_id}`).then(res =>
+    dispatch({
+      type: GET_USER,
+      payload: res.data
+    })
+  );
+};

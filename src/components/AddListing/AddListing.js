@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Checkbox, Input, Label } from "semantic-ui-react";
+import Slider, { Range } from "rc-slider";
+import "rc-slider/assets/index.css";
 import "./AddListing.css";
 
 class AddListing extends Component {
@@ -133,64 +135,45 @@ class AddListing extends Component {
           </div>
           <div className="listing-section">
             <div>
-              <p className="details-header">Who's your ideal roomate?</p>
+              <p className="details-header">
+                What's the monthly rent? When can your roomate move in?
+              </p>
             </div>
             <div className="section-details">
-              <div className="selection">
-                <div className="selection-title">Age:</div>
-                <div className="section-inputs">
-                  <div className="age-input">
+              <div className="address">
+                <div className="selection-title">Address:</div>
+                <div className="section-address-inputs">
+                  <div className="address-input">
                     <Input
+                      style={{ width: "100%", margin: "5px 10px" }}
                       labelPosition="right"
                       type="text"
-                      placeholder="Amount"
+                      placeholder="Enter Amount"
                     >
                       <Label basic>$</Label>
                       <input />
                       <Label>.00</Label>
                     </Input>
                   </div>
-                  <div className="age-input">
-                    <Checkbox id="late20s" />
-                    <label className="label" htmlFor="late20s">
-                      Late 20s
-                    </label>
-                  </div>
-                  <div className="age-input">
-                    <Checkbox id="30s" />
-                    <label className="label" htmlFor="30s">
-                      30s
-                    </label>
-                  </div>
-                  <div className="age-input">
-                    <Checkbox id="40sAndOlder" />
-                    <label className="label" htmlFor="40sAndOlder">
-                      Early 20s
-                    </label>
+                  <div className="address-input">
+                    <Input
+                      style={{ width: "100%", margin: "5px 10px" }}
+                      labelPosition="right"
+                      type="text"
+                      placeholder="Enter Amount"
+                    >
+                      <Label basic>$</Label>
+                      <input />
+                      <Label>.00</Label>
+                    </Input>
                   </div>
                 </div>
-              </div>
-              <div className="selection">
-                <div className="selection-title">Gender:</div>
-                <div className="section-inputs">
-                  <div className="age-input">
-                    <Checkbox
-                      onClick={this.radioHandler}
-                      style={{ fontSize: "18px", margin: "3px 0" }}
-                      radio
-                      checked={this.state.male}
-                      name="male"
-                      label="Male"
-                    />
-                  </div>
-                  <div className="age-input">
-                    <Checkbox
-                      onClick={event => this.radioHandler(event)}
-                      style={{ fontSize: "18px", margin: "3px 0" }}
-                      radio
-                      checked={this.state.female}
-                      name="female"
-                      label="Female"
+                <Slider />
+                <div className="section-address-inputs-three">
+                  <div className="address-input">
+                    <Input
+                      style={{ width: "100%", margin: "5px 10px" }}
+                      placeholder="Month Day, Year (Ex. Aug 24, 2018)"
                     />
                   </div>
                 </div>
@@ -198,6 +181,7 @@ class AddListing extends Component {
             </div>
             <div />
           </div>
+
           <div className="listing-section">
             <div>
               <p className="details-header">Who's your ideal roomate?</p>
