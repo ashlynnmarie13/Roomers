@@ -56,7 +56,7 @@ const ProfileSchema = new Schema({
   companyName: String,
 
   traits: {
-    clean: {
+    organized: {
       type: Boolean,
       default: false
     },

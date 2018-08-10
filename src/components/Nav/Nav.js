@@ -29,7 +29,10 @@ class Nav extends Component {
           </NavLink>
         </div>
         {/* <p>ROOMERS</p> */}
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
         <Link to="/home" className="home">
           <img src={logo} alt="logo" />
         </Link>

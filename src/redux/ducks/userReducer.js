@@ -16,7 +16,8 @@ const getState = {
 };
 const initialState = {
   user: {},
-  isAuthed: false
+  isAuthed: false,
+  userInfo: {}
 };
 
 export default function itemsReducer(state = initialState, action) {
