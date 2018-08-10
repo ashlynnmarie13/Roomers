@@ -18,23 +18,24 @@ class SignUpForm extends Component {
     title: "",
     companyName: "",
     description: "",
-    clean: true,
-    healthy: true,
-    professional: true,
-    student: true,
-    earlyBird: true,
-    nightOwl: true,
-    fitnessEnthusiast: true,
-    creative: true,
-    bookworm: true,
-    foodie: true,
-    partyAnimal: true,
-    vegan: true,
-    introverted: true,
-    smoke: true,
-    clean: true,
-    guests: true,
-    pets: true
+    organized: false,
+    clean: false,
+    healthy: false,
+    professional: false,
+    student: false,
+    earlyBird: false,
+    nightOwl: false,
+    fitnessEnthusiast: false,
+    creative: false,
+    bookworm: false,
+    foodie: false,
+    partyAnimal: false,
+    vegan: false,
+    introverted: false,
+    smoke: false,
+    clean: false,
+    guests: false,
+    pets: false
   };
 
   fileSelectHandler = e => {
@@ -46,8 +47,9 @@ class SignUpForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  checkboxHandler = e => {
-    this.setState({ [e.target.name]: !e.target.checked });
+  checkboxHandler = (e, data) => {
+    const { name, checked } = data;
+    this.setState({ [e.target.name]: checked });
   };
 
   submitHandler = e => {
@@ -143,122 +145,109 @@ class SignUpForm extends Component {
           <div className="section section-traits">
             <h1 className="section-title">Traits:</h1>
             <div />
-            <label htmlFor="clean">Clean</label>
+            <label htmlFor="clean">Organized</label>
             <Checkbox
               toggle
-              onChange={event => this.checkboxHandler(event)}
-              name="clean"
-              id="clean"
+              onChange={(event, data) => this.checkboxHandler(event, data)}
+              name="organized"
+              id="organized"
               type="checkbox"
-              checked={!this.state.clean}
             />
             <label htmlFor="healthy">Healthy</label>
             <Checkbox
               toggle
-              onChange={event => this.checkboxHandler(event)}
+              onChange={(event, data) => this.checkboxHandler(event, data)}
               name="healthy"
               id="healthy"
               type="checkbox"
-              checked={!this.state.healthy}
             />
             <label htmlFor="professional">Professional</label>
             <Checkbox
               toggle
-              onChange={event => this.checkboxHandler(event)}
+              onChange={(event, data) => this.checkboxHandler(event, data)}
               name="professional"
               id="professional"
               type="checkbox"
-              checked={!this.state.professional}
             />
             <label htmlFor="student">Student</label>
             <Checkbox
               toggle
-              onChange={event => this.checkboxHandler(event)}
+              onChange={(event, data) => this.checkboxHandler(event, data)}
               name="student"
               id="student"
               type="checkbox"
-              checked={!this.state.student}
             />
             <label htmlFor="earlyBird">Early Bird</label>
             <Checkbox
               toggle
-              onChange={event => this.checkboxHandler(event)}
+              onChange={(event, data) => this.checkboxHandler(event, data)}
               name="earlyBird"
               id="earlyBird"
               type="checkbox"
-              checked={!this.state.earlyBird}
             />
             <label htmlFor="nightOwl">Night Owl</label>
             <Checkbox
               toggle
-              onChange={event => this.checkboxHandler(event)}
+              onChange={(event, data) => this.checkboxHandler(event, data)}
               name="nightOwl"
               id="nightOwl"
               type="checkbox"
-              checked={!this.state.nightOwl}
             />
             <label htmlFor="fitnessEnthusiast">Fitness Enthusiast</label>
             <Checkbox
               toggle
-              onChange={event => this.checkboxHandler(event)}
+              onChange={(event, data) => this.checkboxHandler(event, data)}
               name="fitnessEnthusiast"
               id="fitnessEnthusiast"
               type="checkbox"
-              checked={!this.state.fitnessEnthusiast}
             />
             <label htmlFor="creative">Creative</label>
             <Checkbox
               toggle
-              onChange={event => this.checkboxHandler(event)}
+              onChange={(event, data) => this.checkboxHandler(event, data)}
               name="creative"
               id="creative"
               type="checkbox"
-              checked={!this.state.creative}
             />
             <label htmlFor="bookworm">Bookworm</label>
             <Checkbox
               toggle
-              onChange={event => this.checkboxHandler(event)}
+              onChange={(event, data) => this.checkboxHandler(event, data)}
               name="bookworm"
               id="bookworm"
               type="checkbox"
-              checked={!this.state.bookworm}
             />
             <label htmlFor="foodie">Foodie</label>
             <Checkbox
               toggle
-              onChange={event => this.checkboxHandler(event)}
+              onChange={(event, data) => this.checkboxHandler(event, data)}
               name="foodie"
               id="foodie"
               type="checkbox"
-              checked={!this.state.foodie}
             />
             <label htmlFor="partyAnimal">Party Animal</label>
             <Checkbox
               toggle
-              onChange={event => this.checkboxHandler(event)}
+              onChange={(event, data) => this.checkboxHandler(event, data)}
               name="partyAnimal"
               id="partyAnimal"
               type="checkbox"
-              checked={!this.state.partyAnimal}
             />
             <label htmlFor="vegan">Vegan</label>
             <Checkbox
               toggle
-              onChange={event => this.checkboxHandler(event)}
+              onChange={(event, data) => this.checkboxHandler(event, data)}
               name="vegan"
               id="vegan"
               type="checkbox"
-              checked={!this.state.vegan}
             />
             <label htmlFor="introverted">Introverted</label>
             <Checkbox
               toggle
-              onChange={event => this.checkboxHandler(event)}
+              onChange={(event, data) => this.checkboxHandler(event, data)}
               name="introverted"
               id="introverted"
               type="checkbox"
-              checked={!this.state.introverted}
             />
           </div>
           <div className="section">
@@ -292,11 +281,10 @@ class SignUpForm extends Component {
             <h1 className="section-title">Preferences:</h1>
             <div className="pref-item">
               <Checkbox
-                onChange={event => this.checkboxHandler(event)}
+                onChange={(event, data) => this.checkboxHandler(event, data)}
                 name="smoke"
                 id="smoke"
                 type="checkbox"
-                checked={!this.state.smoke}
               />
               <label htmlFor="smoke">
                 Smoker <i className="fas fa-smoking" />
@@ -304,11 +292,10 @@ class SignUpForm extends Component {
             </div>
             <div className="pref-item">
               <Checkbox
-                onChange={event => this.checkboxHandler(event)}
+                onChange={(event, data) => this.checkboxHandler(event, data)}
                 name="guests"
                 id="guests"
                 type="checkbox"
-                checked={!this.state.guests}
               />
               <label htmlFor="guests">
                 Guests <i className="fas fa-users" />
@@ -316,14 +303,24 @@ class SignUpForm extends Component {
             </div>
             <div className="pref-item">
               <Checkbox
-                onChange={event => this.checkboxHandler(event)}
+                onChange={(event, data) => this.checkboxHandler(event, data)}
                 name="pets"
                 id="pets"
                 type="checkbox"
-                checked={!this.state.pets}
               />
               <label className="" htmlFor="pets">
                 Pets <i className="fas fa-paw" />
+              </label>
+            </div>
+            <div className="pref-item">
+              <Checkbox
+                onChange={(event, data) => this.checkboxHandler(event, data)}
+                name="organized"
+                id="organized"
+                type="checkbox"
+              />
+              <label className="" htmlFor="pets">
+                Clean <i class="fas fa-shower" />
               </label>
             </div>
           </div>
