@@ -11,7 +11,6 @@ import Home from "./components/Home/Home";
 import Chat from "./components/Chat/Chat";
 import SearchPeople from "./components/SearchPeople/SearchPeople";
 
-import Cities from "./components/Cities/Cities";
 
 export default (
   <Switch>
