@@ -12,8 +12,9 @@ const ListingSchema = new Schema({
     required: true,
     max: 40
   },
+
   human: {
-    age: String,
+    age: Number,
     gender: String
   },
   address: {
@@ -46,12 +47,14 @@ const ListingSchema = new Schema({
       default: false
     }
   },
-  availableDate: {
-    type: String
-  },
+  availableDate: String,
   listingLength: {
     type: String
+  },
+  roommages: {
+    type: Array
   }
+
 });
 
 module.exports = Listing = mongoose.model("listing", ListingSchema);

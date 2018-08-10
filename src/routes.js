@@ -10,7 +10,7 @@ import MyListings from "./components/MyListings/MyListings";
 import Home from "./components/Home/Home";
 import Chat from "./components/Chat/Chat";
 import SearchPeople from "./components/SearchPeople/SearchPeople";
-
+import Listings from './components/Listings/Listings'
 export default (
   <Switch>
     <Route exact path="/" component={Landing} />
@@ -23,5 +23,6 @@ export default (
     <Route path="/myListings" component={MyListings} />
     <Route path="/home" component={Home} />
     <Route path="/chat" component={Chat} />
+    <Route path="/listings/:id" component={Listings}/>
   </Switch>
 );

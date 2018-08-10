@@ -146,11 +146,12 @@ module.exports = {
     }).then(response => res.status(200).send(response));
   },
 
+  
   getProfileById: (req, res) => {
     const { id } = req.params;
 
     Profile.findOne({ _id: id }).then(profile => {
       res.status(200).send(profile);
     });
-  }
+  },
 };
