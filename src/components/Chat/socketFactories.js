@@ -7,7 +7,7 @@ const uuidv4 = require("uuid/v4");
 *	@prop name {string}
 *	@param {object} 
 *		name {string}
-WE WILL NEED TO EDIT IT THIS TO MATCH AN ID TO A USER THAT HAS BEEN PASSED IN
+ahhhhhhhh
 */
 const createUser = ({ name = "", socketId = null } = {}) => ({
   id: uuidv4(),
@@ -35,15 +35,15 @@ const createMessage = ({ message = "", sender = "" } = {}) => ({
 
 /*
 *	createChat
-*	Creates a Chat object
-* 	@prop id {string}
-* 	@prop name {string}
-* 	@prop messages {Array.Message}
-* 	@prop users {Array.string}
+	Creates a Chat object
+	@prop id {string}
+	@prop name {string}
+@prop messages {Array.Message}
+	@prop users {Array.string}
 *	@param {object} 
-*		messages {Array.Message}
-*		name {string}
-*		users {Array.string}
+	messages {Array.Message}
+		name {string}
+	users {Array.string}
 * 
 */
 const createChat = ({
@@ -59,8 +59,8 @@ const createChat = ({
 });
 
 /*
-*	@param date {Date}
-*	@return a string represented in 24hr time i.e. '11:30', '19:30'
+@param date {Date}
+	@return a string represented in 24hr time i.e. '11:30', '19:30'
 WE NEED TO CHANGE IT TO WHERE ITS NOT ON 24 HOUR TIME
 */
 const getTime = date => {

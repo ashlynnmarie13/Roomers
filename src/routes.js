@@ -22,6 +22,6 @@ export default (
     <Route path="/searchpeople" component={SearchPeople} />
     <Route path="/myListings" component={MyListings} />
     <Route path="/home" component={Home} />
-    <Route path="/chat" component={Chat} />
+    <Route path="/chat/:id" component={Chat} />
   </Switch>
 );

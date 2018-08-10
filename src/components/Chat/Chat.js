@@ -4,7 +4,7 @@ import { USER_CONNECTED, LOGOUT } from "./SocketEvents";
 import SetUser from "./SetUser";
 import ChatContainer from "./chats/ChatContainer";
 import "./Chat.css";
-
+import { getUserById } from "../../redux/ducks/userReducer";
 //needs to be set to our server
 const socketUrl = "http://localhost:3001";
 export default class Chat extends Component {
@@ -18,23 +18,21 @@ export default class Chat extends Component {
   }
 
   /* to get to your own chat page-
-  <Link to={`/chat/${profile.handle}`} className="link">
+  <Link to={`/chat/${_id}`} className="link">
   {user.name}
 </Link>
 */
 
-  //loading the function below as soon as the page renders
-  //get current profile here????
   componentDidMount() {
     this.initSocket();
-    // if (this.props.match.params._id) {
-    //     this.props.getUserById(this.props.match.params._id);
-    //   }
+    if (this.props.match.params.id) {
+      getUserById(this.props.match.params.id);
+    }
+    console.log(this.props);
   }
 
-  /*
-	*	Connect to and initializes the socket.
-	*/
+  // Connect to and initializes the socket.
+
   initSocket = () => {
     const socket = io(socketUrl);
 
@@ -46,8 +44,8 @@ export default class Chat extends Component {
   };
 
   /*
-	* 	Sets the user property in state 
-    *	@param user {id:number, name:string}
+		Sets the user property in state 
+    @param user {id:number, name:string}
     WE NEED TO SET THE STATE OF THE USER TO THE CURRENT USER LOGGED IN
 	*/
 
@@ -57,17 +55,9 @@ export default class Chat extends Component {
     this.setState({ user });
   };
 
-  /*
-    *	Sets the user property in state to null.
-    WE NEED THIS TO HAPPEN WHEN OUR USER LOGS OUT
-	*/
-  logout = () => {
-    const { socket } = this.state;
-    socket.emit(LOGOUT);
-    this.setState({ user: null });
-  };
-
   render() {
+    const { profile } = this.props;
+    console.log(this.props);
     const { title } = this.props;
     const { socket, user } = this.state;
     return (
