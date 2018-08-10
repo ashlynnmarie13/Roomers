@@ -96,6 +96,7 @@ module.exports = {
       })
       .catch(err => console.log("User already has a profile " + err));
   },
+
   uploadPhoto: (req, res) => {
     console.log(req.file);
     let imageLink = "";
@@ -127,5 +128,30 @@ module.exports = {
         });
       }
     });
+  },
+
+  getAllProfiles: (req, res) => {
+    Profile.find()
+      .populate("_id", ["name, profilePic"])
+      .then(profiles => {
+        if (!profiles) {
+          errors.noprofile = "There are no profiles";
+          res.status(404).json(errors);
+        }
+
+        res.json(profiles);
+      });
+  },
+
+  getProfileById: (req, res) => {
+    Profile.findOne({ user: req.params._id })
+      .populate("_id", ["name, profilePic"])
+      .then(profile => {
+        if (!profile) {
+          errors.noprofile = "No profile for user";
+          res.status(404).json(errors);
+        }
+        res.json(profile);
+      });
   }
 };

@@ -17,10 +17,19 @@ export default class Chat extends Component {
     };
   }
 
+  /* to get to your own chat page-
+  <Link to={`/chat/${profile.handle}`} className="link">
+  {user.name}
+</Link>
+*/
+
   //loading the function below as soon as the page renders
   //get current profile here????
   componentDidMount() {
     this.initSocket();
+    // if (this.props.match.params._id) {
+    //     this.props.getUserById(this.props.match.params._id);
+    //   }
   }
 
   /*

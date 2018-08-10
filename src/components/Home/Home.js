@@ -4,23 +4,19 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <div class="imgC" />
-<div className='imagec'><img src='https://roomiweb.imgix.net/home/image4.jpg' alt=""/>
+        
+          <img className="background1" src="https://pixfeeds.com/images/27/560691/1200-58149222-playing-video-games.jpg"/>
+        
+        <div class="post" />
 
-</div>
-        <div class="post">
-          
-         
-        </div>
-
-        <div>
-        <h1 className="head1">Post Your Listing in Less Than 3 Minutes</h1>
-        <h1 className="para">
+        <div className="HeaD">
+          <h1 className="head1">Post Your Listing in Less Than 3 Minutes</h1>
+          <h1 className="para">
             You decide on house rules and move-in dates. We'll get your listing
             in front of thousands of <br />
             verified roommates.
           </h1>
-          <button className="button1" >LIST YOUR PLACE FOR FREE</button>
+          <button className="button1">LIST YOUR PLACE FOR FREE</button>
         </div>
         {/* <div className="button">LIST YOUR PLACE FOR FREE</div> */}
         <div class="container">
