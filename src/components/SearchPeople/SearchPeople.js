@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import stateModel from "../Models/stateModel";
 import { Select, Checkbox, Loader, Segment, Input } from "semantic-ui-react";
 import { connect } from "react-redux";
 import ProfileCard from "../ProfileCard/ProfileCard";
@@ -16,216 +17,7 @@ class Profiles extends Component {
     guests: true,
     pets: true,
     selectedState: "",
-    states: [
-      {
-        text: "Alabama",
-        value: "Alabama"
-      },
-      {
-        text: "Alaska",
-        value: "Alaska"
-      },
-      {
-        text: "Arizona",
-        value: "Arizona"
-      },
-      {
-        text: "Arkansas",
-        value: "Arkansas"
-      },
-      {
-        text: "California",
-        value: "California"
-      },
-      {
-        text: "Colorado",
-        value: "Colorado"
-      },
-      {
-        text: "Connecticut",
-        value: "Connecticut"
-      },
-      {
-        text: "Delaware",
-        value: "Delaware"
-      },
-      {
-        text: "Florida",
-        value: "Florida"
-      },
-      {
-        text: "Georgia",
-        value: "Georgia"
-      },
-      {
-        text: "Guam",
-        value: "Guam"
-      },
-      {
-        text: "Hawaii",
-        value: "Hawaii"
-      },
-      {
-        text: "Idaho",
-        value: "Idaho"
-      },
-      {
-        text: "Illinois",
-        value: "Illinois"
-      },
-      {
-        text: "Indiana",
-        value: "Indiana"
-      },
-      {
-        text: "Iowa",
-        value: "Iowa"
-      },
-      {
-        text: "Kansas",
-        value: "Kansas"
-      },
-      {
-        text: "Kentucky",
-        value: "Kentucky"
-      },
-      {
-        text: "Louisiana",
-        value: "Louisiana"
-      },
-      {
-        text: "Maine",
-        value: "Maine"
-      },
-      {
-        text: "Maryland",
-        value: "Maryland"
-      },
-      {
-        text: "Massachusetts",
-        value: "Massachusetts"
-      },
-      {
-        text: "Michigan",
-        value: "Michigan"
-      },
-      {
-        text: "Minnesota",
-        value: "Minnesota"
-      },
-      {
-        text: "Mississippi",
-        value: "Mississippi"
-      },
-      {
-        text: "Missouri",
-        value: "Missouri"
-      },
-      {
-        text: "Montana",
-        value: "Montana"
-      },
-      {
-        text: "Nebraska",
-        value: "Nebraska"
-      },
-      {
-        text: "Nevada",
-        value: "Nevada"
-      },
-      {
-        text: "New Hampshire",
-        value: "New Hampshire"
-      },
-      {
-        text: "New Jersey",
-        value: "New Jersey"
-      },
-      {
-        text: "New Mexico",
-        value: "New Mexico"
-      },
-      {
-        text: "New York",
-        value: "New York"
-      },
-      {
-        text: "North Carolina",
-        value: "North Carolina"
-      },
-      {
-        text: "North Dakota",
-        value: "North Dakota"
-      },
-      {
-        text: "Ohio",
-        value: "Ohio"
-      },
-      {
-        text: "Oklahoma",
-        value: "Oklahoma"
-      },
-      {
-        text: "Oregon",
-        value: "Oregon"
-      },
-      {
-        text: "Pennsylvania",
-        value: "Pennsylvania"
-      },
-      {
-        text: "Rhode Island",
-        value: "Rhode Island"
-      },
-      {
-        text: "South Carolina",
-        value: "South Carolina"
-      },
-      {
-        text: "South Dakota",
-        value: "South Dakota"
-      },
-      {
-        text: "Tennessee",
-        value: "Tennessee"
-      },
-      {
-        text: "Texas",
-        value: "Texas"
-      },
-      {
-        text: "Utah",
-        value: "Utah"
-      },
-      {
-        text: "Vermont",
-        value: "Vermont"
-      },
-      {
-        text: "Virgin Islands",
-        value: "Virgin Islands"
-      },
-      {
-        text: "Virginia",
-        value: "Virginia"
-      },
-      {
-        text: "Washington",
-        value: "Washington"
-      },
-      {
-        text: "West Virginia",
-        value: "West Virginia"
-      },
-      {
-        text: "Wisconsin",
-        value: "Wisconsin"
-      },
-      {
-        text: "Wyoming",
-        value: "Wyoming"
-      }
-    ]
+    states: stateModel.states
   };
 
   componentDidMount() {
@@ -261,12 +53,13 @@ class Profiles extends Component {
   };
 
   render() {
-    console.log(this.props);
-    const profiles = this.state.profiles.map(profile => {
+    console.log(stateModel.states);
+    const profiles = this.state.profiles.map((profile, i) => {
       const { profilePic, birthday, aboutMe, name, title, _id } = profile;
 
       return (
         <ProfileCard
+          key={i}
           profilePic={profilePic}
           birthday={birthday}
           aboutMe={aboutMe}
