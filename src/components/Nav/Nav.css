@@ -1,67 +1,74 @@
 .Nav {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: center;
   background-color: white;
   height: 10vh;
   color: black;
-  padding: 15px;
 }
-/* .listings{
-  
-    float: right;
-    color: white;
-    text-align: center;
-    margin: 1em;
-    border: 1px solid #FFFFFF;
-    padding: 1em;
-    cursor: pointer;
-  
+.listings {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-self: center;
 
-} */
+  width: 30%;
+}
 
-.addlistings{
-    float: left;
-    color: #CF6766;
-    text-align: center;
-    margin: 1em;
-    border: 1px solid #CF6766;
-    border-width: thick;
-    padding: 1em;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-weight: 500;
+.box1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-self: center;
+
+  width: 30%;
+}
+.box2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-self: center;
+  border: solid teal 5px;
+  width: 30%;
+}
+
+.addlistings {
+  color: #cf6766;
+  text-align: center;
+
+  border: 1px solid #cf6766;
+  border-width: thick;
+
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 .addlistings:hover {
-  background-color: #CF6766;
+  background-color: #cf6766;
   color: white;
 }
 
+.fa-comment {
+  color: white;
+  background-color: #cf6766;
+  text-align: center;
+  font-size: 17px;
 
+  border-radius: 50px;
 
-.fa-comment{
-float:right;
- color: white;
- background-color: #CF6766;
- text-align: center;
- font-size: 17px;
- margin: 1em;
- border-radius: 50px; 
- padding: 1em;
- cursor: pointer;
+  cursor: pointer;
 }
 
 
 .searchlistings {
-  float: left;
-  color:#031424;
+  color: #031424;
   text-align: center;
-  margin: 1em;
-  padding: 1em;
+
   cursor: pointer;
   text-transform: uppercase;
   font-weight: 500;
-  font-size:20px;
+  font-size: 20px;
 }
 .searchlistings:hover {
   background-color: rgb(230, 233, 230); /* Green */
@@ -69,48 +76,49 @@ float:right;
   
 }
 
-
 .mylistings {
-  float: right;
   color: #031424;
   text-align: center;
-  margin: 1em;
-  padding: 1em;
+
   cursor: pointer;
   text-transform: uppercase;
   font-weight: 500;
-  font-size:20px;
+  font-size: 20px;
 }
 .mylistings:hover {
   background-color: rgb(230, 233, 230); /* Green */
   color: #031424;
 }
 .wishlist {
-  float: right;
   color: #031424;
   text-align: center;
-  margin: 1em;
-  padding: 1em;
+
   cursor: pointer;
   text-transform: uppercase;
   font-weight: 500;
-  font-size:20px;
+  font-size: 20px;
 }
 .wishlist:hover {
   background-color: rgb(230, 233, 230); /* Green */
   color: #031424;
 }
 
-
 .logo {
-  float: left;
   color: #031424;
   text-align: center;
-  margin: 1em;
-  padding: 1em;
+
   cursor: pointer;
 }
-.home img{
-height: 190px;
-width: 190px
+
+.home {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: center;
+  align-self: center;
+}
+.home img {
+  align-self: center;
+  height: 10%;
+  width: 15%;
 }

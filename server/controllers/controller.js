@@ -147,9 +147,9 @@ module.exports = {
   },
 
   getProfileById: (req, res) => {
-    const { id } = req.params;
+    const { name } = req.params;
 
-    Profile.findOne({ _id: id }).then(profile => {
+    Profile.findOne({ name: name }).then(profile => {
       res.status(200).send(profile);
     });
   }
