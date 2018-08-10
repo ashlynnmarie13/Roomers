@@ -59,6 +59,8 @@
 
   cursor: pointer;
 }
+
+
 .searchlistings {
   color: #031424;
   text-align: center;
@@ -71,6 +73,7 @@
 .searchlistings:hover {
   background-color: rgb(230, 233, 230); /* Green */
   color: #031424;
+  
 }
 
 .mylistings {

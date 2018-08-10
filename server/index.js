@@ -133,7 +133,7 @@ app.post("/api/user/info", upload.single("profilePic"), ctrl.addUserInfo);
 app.post("/api/upload", upload.single("profilePic"), ctrl.uploadPhoto);
 
 // retrieves user/profile info for all profiles
-app.get("/api/user/info/all", ctrl.getAllProfiles);
+app.get("/api/users/info", ctrl.getAllProfiles);
 // get profile by id
 app.get("/api/user/info/:_id", ctrl.getProfileById);
 
