@@ -27,9 +27,7 @@ export default class Chat extends Component {
   //get current profile here????
   componentDidMount() {
     this.initSocket();
-    // if (this.props.match.params._id) {
-    //     this.props.getUserById(this.props.match.params._id);
-    //   }
+    console.log(this.props);
   }
 
   /*
