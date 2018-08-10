@@ -12,7 +12,7 @@ class Profile extends Component {
     axios
       .get(`/api/user/info/${id}`)
       .then(
-        response => this.setState({ userInfo: response.data }),
+        response => this.setState({ userInfo: { ...response.data, id } }),
         () => console.log(this.state.userInfo)
       );
   }
