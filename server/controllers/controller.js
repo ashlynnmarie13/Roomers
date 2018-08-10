@@ -131,27 +131,26 @@ module.exports = {
   },
 
   getAllProfiles: (req, res) => {
-    Profile.find()
-      .populate("_id", ["name, profilePic"])
-      .then(profiles => {
-        if (!profiles) {
-          errors.noprofile = "There are no profiles";
-          res.status(404).json(errors);
-        }
+    const { smoke, guests, pets, clean, state } = req.query;
 
-        res.json(profiles);
-      });
+    let smokeBool = smoke === "true";
+    let guestsBool = guests === "true";
+    let petsBool = pets === "true";
+    let cleanBool = clean === "true";
+
+    Profile.find({
+      "prefs.smoke": smokeBool,
+      "prefs.guests": guestsBool,
+      "prefs.pets": petsBool,
+      "prefs.clean": cleanBool
+    }).then(response => res.status(200).send(response));
   },
 
   getProfileById: (req, res) => {
-    Profile.findOne({ user: req.params._id })
-      .populate("_id", ["name, profilePic"])
-      .then(profile => {
-        if (!profile) {
-          errors.noprofile = "No profile for user";
-          res.status(404).json(errors);
-        }
-        res.json(profile);
-      });
+    const { id } = req.params;
+
+    Profile.findOne({ _id: id }).then(profile => {
+      res.status(200).send(profile);
+    });
   }
 };
