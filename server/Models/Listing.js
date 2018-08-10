@@ -3,30 +3,35 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const ListingSchema = new Schema({
-  user: {
-    type: Schema.Types.ObjectId,
+  userID: {
+    type: String,
     ref: "users"
   },
-  handle: {
-    type: String,
-    required: true,
-    max: 40
-  },
   human: {
-    age: String,
-    gender: String
+    age: {
+      earlyTwenties: Boolean,
+      lateTwenties: Boolean,
+      thirties: Boolean,
+      fortiesAndOlder: Boolean
+    },
+    gender: {
+      male: Boolean,
+      female: Boolean
+    }
   },
   address: {
     street: String,
     city: String,
     state: String,
-    zip: Number
+    zip: String,
+    apt: String
   },
 
   rent: {
-    price: String,
-    moveIn: String,
-    length: String
+    monthlyCost: String,
+    depositCost: String,
+    moveInDate: String,
+    rentLength: String
   },
   prefs: {
     smoke: {
@@ -46,11 +51,20 @@ const ListingSchema = new Schema({
       default: false
     }
   },
-  availableDate: {
-    type: String
-  },
-  listingLength: {
-    type: String
+  amenities: {
+    washer: Boolean,
+    wifi: Boolean,
+    utilities: Boolean,
+    furnished: Boolean,
+    elevator: Boolean,
+    doorman: Boolean,
+    airConditioning: Boolean,
+    heating: Boolean,
+    gym: Boolean,
+    tv: Boolean,
+    privateBathroom: Boolean,
+    outdoorSpace: Boolean,
+    hasPet: Boolean
   }
 });
 
