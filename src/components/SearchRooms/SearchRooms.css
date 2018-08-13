@@ -1,0 +1,40 @@
+.search-rooms {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.search-menu {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+  position: sticky;
+  top: 0;
+}
+
+.search-results {
+  width: 70%;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  margin: 30px;
+}
+
+.search-section {
+  margin: 25px 0;
+}
+
+.search-section-title {
+  font-size: 18px;
+ 
+}
+
+.selection {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 33.3% 33.3% 33.3%;
+}
+
+.slider-selection {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
