@@ -139,6 +139,8 @@ app.get("/api/user/info/:id", ctrl.getProfileById);
 
 // adds listing
 app.post("/api/listing/add", ctrl.addListing);
+// adds listing
+app.get("/api/listing/:id", ctrl.getListingById);
 
 server.listen(port, () => {
   console.log(`app is running in server port ${port}`);

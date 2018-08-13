@@ -10,8 +10,6 @@ import "./Chat.css";
 import { getUserById } from "../../redux/ducks/userReducer";
 import { connect } from "react-redux";
 
-const uuidv4 = require("uuid/v4");
-
 //needs to be set to our server
 const socketUrl = "http://localhost:3001";
 
