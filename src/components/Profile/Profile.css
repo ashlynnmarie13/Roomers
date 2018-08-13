@@ -1,0 +1,15 @@
+.profileM {
+  display: flex;
+}
+.cardContainer {
+  height: auto;
+}
+.rightBox {
+  /* display: flex; */
+  width: 700px;
+  height: 468px;
+  border: 1px solid black;
+}
+.innerB {
+  display: flex;
+}
