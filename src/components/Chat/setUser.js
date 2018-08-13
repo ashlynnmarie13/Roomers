@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { VERIFY_USER } from "./SocketEvents";
+
 import "./Chat.css";
 import { connect } from "react-redux";
+
 class SetUser extends Component {
   constructor(props) {
     super(props);
@@ -28,7 +30,7 @@ class SetUser extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { socket } = this.props;
-    console.log(this.props);
+
     socket.emit(VERIFY_USER, this.props.user.name, this.setUser);
   };
 

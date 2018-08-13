@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import io from "socket.io-client";
+
 import { USER_CONNECTED, LOGOUT, VERIFY_USER } from "./SocketEvents";
+
 import SetUser from "./SetUser";
 import ChatContainer from "./chats/ChatContainer";
 import "./Chat.css";
@@ -38,19 +40,6 @@ class Chat extends Component {
       getUserById(this.props.match.params.id);
     }
     this.initSocket();
-
-    const { socket } = this.state;
-    console.log(socket);
-    this.setState(
-      {
-        user: {
-          id: this.props.user.authID,
-          name: this.props.user.name
-        }
-      },
-      () => this.setUser(this.state.user)
-    );
-    console.log(this.props);
   }
 
   // Connect to and initializes the socket.
@@ -61,9 +50,8 @@ class Chat extends Component {
     socket.on("connect", () => {
       console.log("Connected");
     });
-    console.log(socket);
-    this.setState({ socket });
-    console.log(socket);
+
+    this.setState({ socket }, () => this.setUser());
   };
 
   //THIS IS SETTING THE ACTUAL USER
@@ -73,15 +61,18 @@ class Chat extends Component {
     WE NEED TO SET THE STATE OF THE USER TO THE CURRENT USER LOGGED IN
   */
 
-  setUser = user => {
+  setUser = () => {
     const { socket } = this.state;
-    console.log(socket);
+
+    let user = {
+      id: this.props.user.authID,
+      name: this.props.user.name
+    };
     console.log(user);
-    socket.emit(VERIFY_USER, this.props.user.name, this.createUser);
+
     socket.emit(USER_CONNECTED, user);
-    this.setState({ user });
-    console.log(socket);
-    console.log(user);
+
+    this.setState({ user }, () => console.log(user));
   };
 
   createUser = ({ name = "", socketId = null } = {}) => ({

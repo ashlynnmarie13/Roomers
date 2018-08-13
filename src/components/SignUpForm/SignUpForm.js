@@ -424,7 +424,7 @@ class SignUpForm extends Component {
               </div>
             </div>
           </div>
-          <div className="button">
+          <div type="submit" className="button">
             <Button type="submit" style={{ margin: "0 auto" }} animated>
               <Button.Content visible>Submit</Button.Content>
               <Button.Content hidden>
