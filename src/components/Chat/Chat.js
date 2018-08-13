@@ -1,18 +1,14 @@
 import React, { Component } from "react";
 import io from "socket.io-client";
-
-import { USER_CONNECTED, LOGOUT, VERIFY_USER } from "./SocketEvents";
-
+import { connect } from "react-redux";
+import { USER_CONNECTED, LOGOUT } from "./SocketEvents";
 import SetUser from "./SetUser";
 import ChatContainer from "./chats/ChatContainer";
 import uuidv4 from "uuid/v4";
 import "./Chat.css";
-import { getUserById } from "../../redux/ducks/userReducer";
-import { connect } from "react-redux";
 
 //needs to be set to our server
 const socketUrl = "http://localhost:3001";
-
 class Chat extends Component {
   constructor(props) {
     super(props);
@@ -24,28 +20,23 @@ class Chat extends Component {
   }
 
   /* to get to your own chat page-
-  <Link to={`/chat/${_id}`} className="link">
-  {user.name}
+ <Link to={`/chat/${profile.handle}`} className="link">
+ {user.name}
 </Link>
 */
 
-  //THIS IS ALL SETTING THE SOCKET TO OUR URL
-  //calling the function below, which declares the socket variable as equal to the socket URL
-  //which is http://localhost:3001
-  //then, we're getting the user by their id so that we have
+  //loading the function below as soon as the page renders
+  //get current profile here????
   componentDidMount() {
-    console.log(this.state.socket);
-    if (this.props.match.params.id) {
-      getUserById(this.props.match.params.id);
-    }
     this.initSocket();
   }
 
-  // Connect to and initializes the socket.
-  //setting the state of the socket to the  URL (3001)
+  /*
+    *    Connect to and initializes the socket.
+    */
   initSocket = () => {
     const socket = io(socketUrl);
-    console.log(socket);
+
     socket.on("connect", () => {
       console.log("Connected");
     });
@@ -53,12 +44,11 @@ class Chat extends Component {
     this.setState({ socket }, () => this.setUser());
   };
 
-  //THIS IS SETTING THE ACTUAL USER
   /*
-		Sets the user property in state 
-    @param user {id:number, name:string}
-    WE NEED TO SET THE STATE OF THE USER TO THE CURRENT USER LOGGED IN
-  */
+    *     Sets the user property in state
+   *    @param user {id:number, name:string}
+   WE NEED TO SET THE STATE OF THE USER TO THE CURRENT USER LOGGED IN
+    */
 
   setUser = () => {
     const { socket } = this.state;
@@ -74,24 +64,25 @@ class Chat extends Component {
     this.setState({ user }, () => console.log(user));
   };
 
-  createUser = ({ name = "", socketId = null } = {}) => ({
-    id: "google-oauth2|109803081908967859150",
-    name,
-    socketId
-  });
+  /*
+   *    Sets the user property in state to null.
+   WE NEED THIS TO HAPPEN WHEN OUR USER LOGS OUT
+    */
+  logout = () => {
+    const { socket } = this.state;
+    socket.emit(LOGOUT);
+    this.setState({ user: null });
+  };
 
   render() {
-    const { profile } = this.props;
-    console.log(this.props);
     const { title } = this.props;
     const { socket, user } = this.state;
     return (
       <div className="container">
         {!user ? (
-          // <SetUser socket={socket} setUser={this.setUser} />
-          <div />
+          <SetUser socket={socket} setUser={this.setUser} />
         ) : (
-          //if there is a user, then we're going to put a chat container on the
+          //if there is a user, then we're going to put a chat container on the dom
           //it gets a socket, a user, and a logout function
           <ChatContainer socket={socket} user={user} logout={this.logout} />
         )}

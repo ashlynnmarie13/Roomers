@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
 import "./Profile.css";
 import { ENGINE_METHOD_DIGESTS } from "constants";
 import moment from "moment";
@@ -13,12 +14,11 @@ class Profile extends Component {
   };
 
   componentDidMount() {
-    const { id } = this.props.match.params;
+    const { authID } = this.props.user;
     axios
-      .get(`/api/user/info/${id}`)
-      .then(
-        response => this.setState({ userInfo: { ...response.data, id } }),
-        () => console.log(this.state.userInfo)
+      .get(`/api/user/info/${authID}`)
+      .then(response =>
+        this.setState({ userInfo: { ...response.data, authID } })
       );
   }
 
@@ -144,4 +144,4 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+export default connect(state => state)(Profile);
