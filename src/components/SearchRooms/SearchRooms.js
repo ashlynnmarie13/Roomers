@@ -1,53 +1,57 @@
 import React, { Component } from "react";
 import axios from "axios";
-import stateModel from "../Models/stateModel";
+import cityModel from "../Models/cityModel";
 import { connect } from "react-redux";
 import ListingCard from "../ListingCard/ListingCard";
 import { Select, Loader, Segment, Input } from "semantic-ui-react";
 import "./SearchRooms.css";
 
-
 class SearchRooms extends Component {
-state = {
+  state = {
+    cities: cityModel.cities,
+    listings: [],
+    selectedCity:""
+  };
 
-  selectedState: "",
-    states: stateModel.states
-}
+  componentDidMount() {
+    this.searchListings();
+  }
 
+  searchListings = () => {
+    axios.get(`/api/listing/?city=omaha`);
+    // .then(response =>
+    //   this.setState({ listings: response.data, isLoading: false }, () =>
+    //     console.log(response.data)
+    //   )
+    // );
+  };
+  inputHandler = e => {
+    this.setState({ search: e.target.value }, () => this.searchListings());
+  };
+  dropdownHandler = (e, data) => {
+    const { value } = data;
+    this.setState({ selectedCity: value }, () => this.searchListings());
+  };
 
-
-componentDidMount() {
-  this.searchListings();
-}
-
-searchListings = () => {
-
-  axios
-    .get(
-      `/api/listing`
-    )
-    .then(response =>
-      this.setState({ listings: response.data, isLoading: false }, () =>
-        console.log(response.data)
-      )
-    );
-};
-
-
-
-render() {
-    console.log(stateModel.states);
+  render() {
+    console.log(cityModel.states);
     const listings = this.state.listings.map((listing, i) => {
-      const { adress, rent, roomages, roomimages, profilePic, availableDate, _id } = listing;
+      const {
+        address,
+        rent,
+        roomages,
+        roomimages,
+        availableDate,
+        _id
+      } = listing;
 
       return (
         <ListingCard
           key={i}
-          adress={adress}
+          address={address}
           rent={rent}
           roomages={roomages}
           roomimages={roomimages}
-          profilePic={profilePic}
           availableDate={availableDate}
           id={_id}
           pathPush={this.props.history.push}
@@ -65,15 +69,13 @@ render() {
       <div>
         <div className="search-listings">
           <div className="filter-options">
-            
-
             <div className="search-listing-section">
               <p className="search-section-title">Location</p>
               <Select
                 onChange={(e, data) => this.dropdownHandler(e, data)}
                 className="search-listing-item"
                 placeholder="Select City"
-                options={this.state.states}
+                options={this.state.cities}
               />
             </div>
           </div>
@@ -92,7 +94,4 @@ const mapStateToProps = state => ({
   listing: state.listing
 });
 
-export default connect(
-  mapStateToProps,
-)(SearchRooms);
-
+export default connect(mapStateToProps)(SearchRooms);
