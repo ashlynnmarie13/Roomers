@@ -5,6 +5,7 @@ import { USER_CONNECTED, LOGOUT, VERIFY_USER } from "./SocketEvents";
 
 import SetUser from "./SetUser";
 import ChatContainer from "./chats/ChatContainer";
+import uuidv4 from "uuid/v4";
 import "./Chat.css";
 import { getUserById } from "../../redux/ducks/userReducer";
 import { connect } from "react-redux";

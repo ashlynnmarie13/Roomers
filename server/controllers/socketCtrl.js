@@ -61,6 +61,7 @@ module.exports = function(socket) {
     // console.log(io);
     //broadcast to all the users connected, updates the list
     io.emit(USER_CONNECTED, connectedUsers);
+
     console.log(connectedUsers);
   });
 
@@ -103,7 +104,8 @@ module.exports = function(socket) {
       //then we make a new chat, including a name for the chat and the users
       const newChat = createChat({
         name: `${reciever}&${sender}`,
-        users: [reciever, sender]
+        users: [reciever, sender],
+        messages: [{ message: "yooooo" }, { message: "supppppp" }]
       });
       //sending to the current socket that the person who's requesting to make a private chat is going to get
       //off of our connected users list, we putt the socketId off of that reciever
