@@ -28,19 +28,17 @@ const ProfileCard = props => {
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
-          <a>
-            <Link to="/chat">
-              <Button
-                style={{
-                  backgroundColor: "#8eaebd",
-                  color: "white",
-                  textShadow: ".5px .5px #000000"
-                }}
-              >
-                Message
-              </Button>
-            </Link>
-          </a>
+          <Link to="/chat">
+            <Button
+              style={{
+                backgroundColor: "#8eaebd",
+                color: "white",
+                textShadow: ".5px .5px #000000"
+              }}
+            >
+              Message
+            </Button>
+          </Link>
         </Card.Content>
       </Card>
     </div>
