@@ -4,8 +4,26 @@ import "../../App";
 import logo from "./logo_transparent.png";
 import { NavLink, Link } from "react-router-dom";
 import { Button } from "semantic-ui-react";
+import { getUserById } from "../../redux/ducks/userReducer";
 
 class Nav extends Component {
+  // constructor(props) {
+  //   super(props);
+
+  //   this.state = {
+  //     userInfo: {}
+  //   };
+  // }
+
+  // componentDidMount() {
+  //   if (this.props.match.params.id) {
+  //     getUserById(this.props.match.params.id);
+  //   }
+  //   console.log(this.props);
+  //   // const navUser =
+  //   // this.setState({userInfo: {...response.data, id}})
+  // }
+
   render() {
     return (
       <div className="Nav">
@@ -14,13 +32,7 @@ class Nav extends Component {
             <img src="" alt="logo" />
           </NavLink>
           <Button>
-            <Link
-              to="/mylistings"
-              className="mylistings"
-              activeStyle={{ color: "#CF6766" }}
-            >
-              <i className="Mylistings" /> My Listings
-            </Link>
+            <Link to="/mylistings">My Listings</Link>
           </Button>
 
           <NavLink

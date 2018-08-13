@@ -20,8 +20,8 @@ class Chat extends Component {
   }
 
   /* to get to your own chat page-
-  <Link to={`/chat/${profile.handle}`} className="link">
-  {user.name}
+ <Link to={`/chat/${profile.handle}`} className="link">
+ {user.name}
 </Link>
 */
 
@@ -32,8 +32,8 @@ class Chat extends Component {
   }
 
   /*
-	*	Connect to and initializes the socket.
-	*/
+    *    Connect to and initializes the socket.
+    */
   initSocket = () => {
     const socket = io(socketUrl);
 
@@ -45,10 +45,10 @@ class Chat extends Component {
   };
 
   /*
-	* 	Sets the user property in state 
-    *	@param user {id:number, name:string}
-    WE NEED TO SET THE STATE OF THE USER TO THE CURRENT USER LOGGED IN
-	*/
+    *     Sets the user property in state
+   *    @param user {id:number, name:string}
+   WE NEED TO SET THE STATE OF THE USER TO THE CURRENT USER LOGGED IN
+    */
 
   setUser = () => {
     const { socket } = this.state;
@@ -65,9 +65,9 @@ class Chat extends Component {
   };
 
   /*
-    *	Sets the user property in state to null.
-    WE NEED THIS TO HAPPEN WHEN OUR USER LOGS OUT
-	*/
+   *    Sets the user property in state to null.
+   WE NEED THIS TO HAPPEN WHEN OUR USER LOGS OUT
+    */
   logout = () => {
     const { socket } = this.state;
     socket.emit(LOGOUT);
