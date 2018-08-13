@@ -55,9 +55,10 @@
 }
 
 .selection-title {
-  width: 25%;
   font-size: 20px;
   padding-bottom: 20px;
+  width: 140px;
+  margin-top: 18px;
 }
 
 .selection {
@@ -90,10 +91,41 @@
   grid-template-columns: 50% 20% 30%;
 }
 
+.section-address-inputs-four {
+  display: grid;
+  grid-template-columns: 60% 30% 10%;
+}
+
 .address {
   width: 100%;
 }
 
 .address-input {
-  width: 98%;
+  width: 95%;
+}
+
+.months {
+  color: #CF6766;
+  font-size: 18px;
+  margin-top: 75px;
+  margin-left: 12px;
+}
+
+.amend-selection {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+}
+
+.amend-item {
+  margin: 10px 0;
+}
+
+.listing-section-button {
+  margin-right: 30px;
+  margin-bottom: 80px;
+  padding: 16px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: flex-end;
 }

@@ -74,25 +74,25 @@ module.exports = function(socket) {
     }
   });
 
-  //User logsout
-  socket.on(LOGOUT, () => {
-    connectedUsers = removeUser(connectedUsers, socket.user.name);
-    io.emit(USER_DISCONNECTED, connectedUsers);
-    console.log("Disconnect", connectedUsers);
-  });
+  // //User logsout
+  // socket.on(LOGOUT, () => {
+  //   connectedUsers = removeUser(connectedUsers, socket.user.name);
+  //   io.emit(USER_DISCONNECTED, connectedUsers);
+  //   console.log("Disconnect", connectedUsers);
+  // });
 
   //Get Community Chat
-  socket.on(COMMUNITY_CHAT, callback => {
-    callback(communityChat);
-  });
+  // socket.on(COMMUNITY_CHAT, callback => {
+  //   callback(communityChat);
+  // });
 
-  socket.on(MESSAGE_SENT, ({ chatId, message }) => {
-    sendMessageToChatFromUser(chatId, message);
-  });
+  // socket.on(MESSAGE_SENT, ({ chatId, message }) => {
+  //   sendMessageToChatFromUser(chatId, message);
+  // });
 
-  socket.on(TYPING, ({ chatId, isTyping }) => {
-    sendTypingFromUser(chatId, isTyping);
-  });
+  // socket.on(TYPING, ({ chatId, isTyping }) => {
+  //   sendTypingFromUser(chatId, isTyping);
+  // });
 
   //Private message event
   //so we know who is sending and recieving the message

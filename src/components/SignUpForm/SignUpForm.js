@@ -22,6 +22,11 @@ class SignUpForm extends Component {
     phone: "",
     dob: "",
     about: "",
+    street: "",
+    city: "",
+    state: "",
+    zip: "",
+    apt: "",
     profilePic: {},
     title: "",
     companyName: "",
@@ -87,7 +92,7 @@ class SignUpForm extends Component {
         <div className="picture" />
         <form
           encType="multipart/form-data"
-          onSubmit={event => this.submitHandler(event)}
+          onSubmit={e => this.submitHandler(e)}
           className="sign-up-form"
         >
           <div className="section section-basic">
@@ -124,33 +129,72 @@ class SignUpForm extends Component {
                   name="phone"
                   type="text"
                 />
+                <div className="input">
+                  <p className="section-item">Date of Birth:</p>
+                  <Input
+                    onChange={event => this.inputHandler(event)}
+                    name="dob"
+                    type="text"
+                  />
+                </div>
               </div>
             </div>
             <div className="second-section">
               <div className="input">
-                <p className="section-item">Date of Birth:</p>
-                <Input
-                  onChange={event => this.inputHandler(event)}
-                  name="dob"
-                  type="text"
-                />
-              </div>
-              <div className="input">
                 <p className="section-item">A little about you:</p>
                 <TextArea
-                  style={{ width: "100%", height: "200px", margin: "20px 0" }}
+                  style={{ width: "100%", height: "130px", margin: "20px 0" }}
                   onChange={event => this.inputHandler(event)}
                   name="about"
                   type="text"
                 />
               </div>
-              <div className="input">
-                <p className="section-item">Location:</p>
-                <Input
-                  onChange={event => this.inputHandler(event)}
-                  name="about"
-                  type="text"
-                />
+              <div className="address">
+                <div className="input">
+                  <p className="section-item-address">Address:</p>
+                  <p className="section-address">Street:</p>
+                  <Input
+                    onChange={event => this.inputHandler(event)}
+                    name="street"
+                    type="text"
+                  />
+                  <div className="address-side-one">
+                    <div className="address-box">
+                      <p className="section-address">City</p>
+                      <Input
+                        onChange={event => this.inputHandler(event)}
+                        name="city"
+                        type="text"
+                      />
+                    </div>
+                    <div className="address-box">
+                      <p className="section-adress">State</p>
+                      <Input
+                        onChange={event => this.inputHandler(event)}
+                        name="state"
+                        type="text"
+                      />
+                    </div>
+                  </div>
+                  <div className="address-side-two">
+                    <div className="address-box">
+                      <p className="section-address">Zip</p>
+                      <Input
+                        onChange={event => this.inputHandler(event)}
+                        name="zip"
+                        type="text"
+                      />
+                    </div>
+                    <div className="address-box">
+                      <p className="section-address">Suite</p>
+                      <Input
+                        onChange={event => this.inputHandler(event)}
+                        name="apt"
+                        type="text"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="input">
                 <p className="section-item">Upload a photo:</p>
@@ -296,22 +340,6 @@ class SignUpForm extends Component {
           </div>
           <div className="third-section">
             <div className="section">
-              <h1 className="section-title">Career:</h1>
-              <p className="section-item">Job Title:</p>
-              <Input
-                onChange={event => this.inputHandler(event)}
-                name="title"
-                type="text"
-              />
-              <p className="section-item">Company Name:</p>
-              <Input
-                onChange={event => this.inputHandler(event)}
-                name="companyName"
-                type="text"
-              />
-            </div>
-
-            <div className="section">
               <h1 className="section-title">Description:</h1>
               <p className="section-item">What are you looking for?</p>
               <TextArea
@@ -322,56 +350,82 @@ class SignUpForm extends Component {
               />
             </div>
 
-            <div className="section">
-              <h1 className="section-title">Preferences:</h1>
-              <div className="pref-item">
-                <Checkbox
-                  onChange={(event, data) => this.checkboxHandler(event, data)}
-                  name="smoke"
-                  id="smoke"
-                  type="checkbox"
+            <div className="section-five">
+              <div className="section">
+                <h1 className="section-title">Career:</h1>
+                <p className="section-item">Job Title:</p>
+                <Input
+                  onChange={event => this.inputHandler(event)}
+                  name="title"
+                  type="text"
                 />
-                <label htmlFor="smoke">
-                  Smoker <i className="fas fa-smoking" />
-                </label>
+                <p className="section-item">Company Name:</p>
+                <Input
+                  onChange={event => this.inputHandler(event)}
+                  name="companyName"
+                  type="text"
+                />
               </div>
-              <div className="pref-item">
-                <Checkbox
-                  onChange={(event, data) => this.checkboxHandler(event, data)}
-                  name="guests"
-                  id="guests"
-                  type="checkbox"
-                />
-                <label htmlFor="guests">
-                  Guests <i className="fas fa-users" />
-                </label>
-              </div>
-              <div className="pref-item">
-                <Checkbox
-                  onChange={(event, data) => this.checkboxHandler(event, data)}
-                  name="pets"
-                  id="pets"
-                  type="checkbox"
-                />
-                <label className="" htmlFor="pets">
-                  Pets <i className="fas fa-paw" />
-                </label>
-              </div>
-              <div className="pref-item">
-                <Checkbox
-                  onChange={(event, data) => this.checkboxHandler(event, data)}
-                  name="organized"
-                  id="organized"
-                  type="checkbox"
-                />
-                <label className="" htmlFor="pets">
-                  Clean <i class="fas fa-shower" />
-                </label>
+
+              <div className="section">
+                <h1 className="section-title">Preferences:</h1>
+                <div className="pref-item">
+                  <Checkbox
+                    onChange={(event, data) =>
+                      this.checkboxHandler(event, data)
+                    }
+                    name="smoke"
+                    id="smoke"
+                    type="checkbox"
+                  />
+                  <label htmlFor="smoke">
+                    Smoker <i className="fas fa-smoking" />
+                  </label>
+                </div>
+                <div className="pref-item">
+                  <Checkbox
+                    onChange={(event, data) =>
+                      this.checkboxHandler(event, data)
+                    }
+                    name="guests"
+                    id="guests"
+                    type="checkbox"
+                  />
+                  <label htmlFor="guests">
+                    Guests <i className="fas fa-users" />
+                  </label>
+                </div>
+                <div className="pref-item">
+                  <Checkbox
+                    onChange={(event, data) =>
+                      this.checkboxHandler(event, data)
+                    }
+                    name="pets"
+                    id="pets"
+                    type="checkbox"
+                  />
+                  <label className="" htmlFor="pets">
+                    Pets <i className="fas fa-paw" />
+                  </label>
+                </div>
+                <div className="pref-item">
+                  <Checkbox
+                    onChange={(event, data) =>
+                      this.checkboxHandler(event, data)
+                    }
+                    name="organized"
+                    id="organized"
+                    type="checkbox"
+                  />
+                  <label className="" htmlFor="pets">
+                    Clean <i class="fas fa-shower" />
+                  </label>
+                </div>
               </div>
             </div>
           </div>
           <div className="button">
-            <Button style={{ margin: "0 auto" }} animated>
+            <Button type="submit" style={{ margin: "0 auto" }} animated>
               <Button.Content visible>Submit</Button.Content>
               <Button.Content hidden>
                 <Icon name="arrow right" />

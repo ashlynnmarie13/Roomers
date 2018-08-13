@@ -135,7 +135,10 @@ app.post("/api/upload", upload.single("profilePic"), ctrl.uploadPhoto);
 // retrieves user/profile info for all profiles
 app.get("/api/users/info", ctrl.getAllProfiles);
 // get profile by id
-app.get("/api/user/info/:_id", ctrl.getProfileById);
+app.get("/api/user/info/:id", ctrl.getProfileById);
+
+// adds listing
+app.post("/api/listing/add", ctrl.addListing);
 
 server.listen(port, () => {
   console.log(`app is running in server port ${port}`);

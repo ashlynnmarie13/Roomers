@@ -1,11 +1,9 @@
 const Profile = require("../Models/Profile");
+const Listing = require("../Models/Listing");
 const AWS = require("aws-sdk");
-const multer = require("multer");
-const multerS3 = require("multer-s3");
 const s3 = new AWS.S3();
 const myBucket = "barc-housing";
 const myKey = process.env.MY_KEY;
-const FormData = require("form-data");
 
 module.exports = {
   addUserInfo: (req, res) => {
@@ -17,6 +15,11 @@ module.exports = {
       phone,
       dob,
       about,
+      street,
+      city,
+      state,
+      zip,
+      apt,
       profilePic,
       title,
       company,
@@ -48,6 +51,11 @@ module.exports = {
       birthday: dob,
       interestsDescription: description,
       aboutMe: about,
+      street,
+      city,
+      state,
+      zip,
+      apt,
       title,
       companyName: company,
       profilePic,
@@ -152,5 +160,86 @@ module.exports = {
     Profile.findOne({ _id: id }).then(profile => {
       res.status(200).send(profile);
     });
+  },
+
+  addListing: (req, res) => {
+    const {
+      earlyTwenties,
+      lateTwenties,
+      thirties,
+      fortiesAndOlder,
+      male,
+      female,
+      street,
+      apt,
+      city,
+      state,
+      zip,
+      monthlyCost,
+      depositCost,
+      moveInDate,
+      rentLength,
+      washer,
+      wifi,
+      utilities,
+      furnished,
+      elevator,
+      doorman,
+      airConditioning,
+      heating,
+      gym,
+      tv,
+      privateBathroom,
+      outdoorSpace,
+      hasPet,
+      roomImage,
+      userID
+    } = req.body;
+
+    const newListing = new Listing({
+      userID,
+      human: {
+        age: {
+          earlyTwenties,
+          lateTwenties,
+          thirties,
+          fortiesAndOlder
+        },
+        gender: {
+          male,
+          female
+        }
+      },
+      address: {
+        street,
+        apt,
+        city,
+        state,
+        zip
+      },
+      rent: {
+        monthlyCost,
+        depositCost,
+        moveInDate,
+        rentLength
+      },
+      amenities: {
+        washer,
+        wifi,
+        utilities,
+        furnished,
+        elevator,
+        doorman,
+        airConditioning,
+        heating,
+        gym,
+        tv,
+        privateBathroom,
+        outdoorSpace,
+        hasPet
+      }
+    });
+
+    newListing.save().then(response => res.status(200).send(response));
   }
 };
