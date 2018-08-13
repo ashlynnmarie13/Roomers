@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { VERIFY_USER } from "./SocketEvents";
-import "./Chat.css";
 
-export default class SetUser extends Component {
+import "./Chat.css";
+import { connect } from "react-redux";
+
+class SetUser extends Component {
   constructor(props) {
     super(props);
 
@@ -28,8 +30,8 @@ export default class SetUser extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { socket } = this.props;
-    const { nickname } = this.state;
-    socket.emit(VERIFY_USER, nickname, this.setUser);
+
+    socket.emit(VERIFY_USER, this.props.user.name, this.setUser);
   };
 
   //typing
@@ -65,3 +67,5 @@ export default class SetUser extends Component {
     );
   }
 }
+
+export default connect(state => state)(SetUser);
