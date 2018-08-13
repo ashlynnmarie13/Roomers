@@ -144,38 +144,11 @@ module.exports = {
     }).then(response => res.status(200).send(response));
   },
 
-  getAllListings: (req, res) => {
-    const { city } = req.query;
-
-    Listing.find({
-      "address.city": city
-    })
-    .then(response => {
-      let toReturn = {};
-
-      for (let i in response) {
-        if (!response.hasOwnProperty(i)) continue;
-
-        if (typeof response[i] == "object") {
-          let flatObject = flattenObject(response[i]);
-          for (let x in flatObject) {
-            if (!flatObject.hasOwnProperty(x)) continue;
-
-            toReturn[i + "." + x] = flatObject[x];
-          }
-        } else {
-          toReturn[i] = response[i];
-        }
-      }
-
-      console.log(toReturn);
-
-      // res.status(200).send(toReturn);
-    });
-  },
+ 
 
   getProfileById: (req, res) => {
     const { id } = req.params;
+    console.log(id);
 
     Profile.findOne({ _id: id }).then(profile => {
       res.status(200).send(profile);
@@ -261,5 +234,103 @@ module.exports = {
     });
 
     newListing.save().then(response => res.status(200).send(response));
+  },
+
+  getListings: (req, res) => {
+    const {
+      smoke,
+      clean,
+      guests,
+      pets,
+      washer,
+      wifi,
+      utilities,
+      furnished,
+      elevator,
+      doorman,
+      airConditioning,
+      heating,
+      gym,
+      tv,
+      privateBathroom,
+      outdoorSpace,
+      hasPet,
+      selectedState,
+      rentLength,
+      male,
+      female
+    } = req.query;
+
+    console.log(
+      smoke,
+      clean,
+      guests,
+      pets,
+      washer,
+      wifi,
+      utilities,
+      furnished,
+      elevator,
+      doorman,
+      airConditioning,
+      heating,
+      gym,
+      tv,
+      privateBathroom,
+      outdoorSpace,
+      hasPet,
+      selectedState,
+      rentLength,
+      male,
+      female
+    );
+
+    let smokeBool = smoke === "true";
+    let cleanBool = clean === "true";
+    let guestsBool = guests === "true";
+    let petsBool = pets === "true";
+    let washerBool = washer === "true";
+    let wifiBool = wifi === "true";
+    let utilitiesBool = utilities === "true";
+    let furnishedBool = furnished === "true";
+    let elevatorBool = elevator === "true";
+    let doormanBool = doorman === "true";
+    let airConditioningBool = airConditioning === "true";
+    let heatingBool = heating === "true";
+    let gymBool = gym === "true";
+    let tvBool = tv === "true";
+    let privateBathroomBool = privateBathroom === "true";
+    let outdoorSpaceBool = outdoorSpace === "true";
+    let hasPetBool = hasPet === "true";
+
+    Listing.find({
+      "prefs.smoke": smokeBool,
+      "prefs.clean": cleanBool,
+      "prefs.guests": guestsBool,
+      "prefs.pets": petsBool,
+      "amenities.washer": washerBool,
+      "amenities.wifi": wifiBool,
+      "amenities.utilities": utilitiesBool,
+      "amenities.furnished": furnishedBool,
+      "amenities.elevator": elevatorBool,
+      "amenities.doorman": doormanBool,
+      "amenities.airConditioning": airConditioningBool,
+      "amenities.heating": heatingBool,
+      "amenities.gym": gymBool,
+      "amenities.tv": tvBool,
+      "amenities.privateBathroom": privateBathroomBool,
+      "amenities.outdoorSpace": outdoorSpaceBool,
+      "amenities.hasPet": hasPetBool
+      // "address.state": selectedState
+      // "rent.rentLength": rentLength
+      // "human.gender.male": male,
+      // "human.gender.female": female
+    }).then(rooms => res.status(200).send(rooms));
+  },
+
+  getListingByID: (req, res) => {
+    const { id } = req.params;
+
+    Listing.find({ _id: id }).then(listing => res.status(200).send(listing));
   }
 };

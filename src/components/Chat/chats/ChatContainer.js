@@ -25,6 +25,7 @@ export default class ChatContainer extends Component {
   componentDidMount() {
     const { socket } = this.props;
     //initiales everything that we need for our sockets
+
     this.initSocket(socket);
   }
 
@@ -99,6 +100,7 @@ export default class ChatContainer extends Component {
       });
 
       this.setState({ chats: newChats });
+      console.log(chats);
     };
   };
 
@@ -134,6 +136,7 @@ export default class ChatContainer extends Component {
   sendMessage = (chatId, message) => {
     const { socket } = this.props;
     socket.emit(MESSAGE_SENT, { chatId, message });
+    console.log(chatId, message);
   };
 
   /*
