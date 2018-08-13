@@ -140,6 +140,8 @@ app.get("/api/user/info/:id", ctrl.getProfileById);
 
 // adds listing
 app.post("/api/listing/add", ctrl.addListing);
+app.get("/api/rooms", ctrl.getListings);
+app.get("/api/listing/:id", ctrl.getListingByID);
 
 server.listen(port, () => {
   console.log(`app is running in server port ${port}`);

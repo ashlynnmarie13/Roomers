@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
 import "./Profile.css";
 
 import ProfileCard from "../ProfileCard/ProfileCard";
@@ -12,17 +13,15 @@ class Profile extends Component {
   };
 
   componentDidMount() {
-    const { id } = this.props.match.params;
-    axios
-      .get(`/api/user/info/${id}`)
-      .then(
-        response =>
-          this.setState({
-            userInfo: [{ ...response.data, id }],
-            userP: [{ ...response.data.prefs, id }]
-          }),
-        () => console.log(this.state.userInfo)
-      );
+    const { authID } = this.props.user;
+    axios.get(`/api/user/info/${id}`).then(
+      response =>
+        this.setState({
+          userInfo: [{ ...response.data, id }],
+          userP: [{ ...response.data.prefs, id }]
+        }),
+      () => console.log(this.state.userInfo)
+    );
   }
 
   render() {
@@ -74,4 +73,4 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+export default connect(state => state)(Profile);
