@@ -3,13 +3,22 @@ import axios from "axios";
 import stateModel from "../Models/stateModel";
 export default class Location extends Component {
   state = {
-    Cities: []
+    state: stateModel.states,
+    city: stateModel.states["8"].cities
   };
-  componentDidMount() {
-    axios.get(``).then(response => this.setState({}));
-  }
 
   render() {
-    return <div>osdjoiasjdo</div>;
+    console.log(this.state.state);
+    console.log(this.state.city);
+    // const cities = this.state.states.map((cities, i) => {
+    //   return <div>{cities}</div>;
+    // });
+
+    return (
+      <div>
+        {" "}
+        <p>{this.state.city}</p>
+      </div>
+    );
   }
 }
