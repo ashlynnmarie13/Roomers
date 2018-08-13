@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import RoomCard from "../RoomCard/RoomCard";
 import axios from "axios";
+import { connect } from "react-redux";
 import { Input, Checkbox, Dropdown, Label } from "semantic-ui-react";
 import states from "../Models/stateModel";
 import length from "../Models/lengthModel";
