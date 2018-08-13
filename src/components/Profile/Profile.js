@@ -30,12 +30,10 @@ class Profile extends Component {
     let age = moment().diff(birthday, "years");
 
     const traits = userInfo.traits;
-    let showTraits = { traits };
-    console.log(showTraits);
 
     var traitsArray = [];
 
-    function RemoveFalseAndTransformToArray() {
+    function RemoveFalse() {
       for (var key in traits) {
         if (traits[key] === false) {
           delete traits[key];
@@ -44,7 +42,7 @@ class Profile extends Component {
         }
       }
     }
-    RemoveFalseAndTransformToArray();
+    RemoveFalse();
     console.log("myObj: ", traits);
     console.log("myArray: ", traitsArray);
 
@@ -84,12 +82,32 @@ class Profile extends Component {
                 <div className="description"> Summary</div>{" "}
                 <div className="description"> {userInfo.aboutMe}</div>
                 <div className="description"> I'd describe myself as... </div>
-                {traitsArray[0]}
-                {traitsArray[1]}
-                {traitsArray[2]}
-                {traitsArray[3]}
-                {traitsArray[3]}
-                {traitsArray[3]}
+                <div>
+                  <div>
+                    {traitsArray[0]}
+                    {"  "}
+                  </div>
+                  <div>
+                    {traitsArray[1]}
+                    {"  "}
+                  </div>
+                  <div>
+                    {traitsArray[2]}
+                    {"  "}
+                  </div>
+                  <div>
+                    {traitsArray[3]}
+                    {"  "}
+                  </div>
+                  <div>
+                    {traitsArray[4]}
+                    {"  "}
+                  </div>
+                  <div>
+                    {traitsArray[5]}
+                    {"  "}
+                  </div>
+                </div>
               </div>
             </Card.Content>
           </Card>

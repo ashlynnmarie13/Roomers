@@ -32,13 +32,7 @@ class Nav extends Component {
             <img src="" alt="logo" />
           </NavLink>
           <Button>
-            <Link
-              to="/mylistings"
-              className="mylistings"
-              activeStyle={{ color: "#CF6766" }}
-            >
-              <i className="Mylistings" /> My Listings
-            </Link>
+            <Link to="/mylistings">My Listings</Link>
           </Button>
 
           <NavLink
