@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { USER_CONNECTED, LOGOUT } from "./SocketEvents";
 import SetUser from "./SetUser";
 import ChatContainer from "./chats/ChatContainer";
+import uuidv4 from "uuid/v4";
 import "./Chat.css";
 
 //needs to be set to our server
