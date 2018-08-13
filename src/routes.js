@@ -11,11 +11,13 @@ import Home from "./components/Home/Home";
 import Chat from "./components/Chat/Chat";
 import SearchPeople from "./components/SearchPeople/SearchPeople";
 import Listing from "./components/Listing/Listing";
+import Location from "./components/Location/Location";
 
 export default (
   <Switch>
     <Route exact path="/" component={Landing} />
     <Route path="/listing/:id" component={Listing} />
+    <Route path="/Location/:id" component={Location} />
     <Route path="/signup" component={SignUpForm} />
     <Route path="/profile" component={Profile} />
     <Route path="/wishlist" component={Wishlist} />
