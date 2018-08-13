@@ -58,7 +58,7 @@ module.exports = function(socket) {
 
     sendMessageToChatFromUser = sendMessageToChat(user.name);
     sendTypingFromUser = sendTypingToChat(user.name);
-    console.log(io);
+    // console.log(io);
     //broadcast to all the users connected, updates the list
     io.emit(USER_CONNECTED, connectedUsers);
     console.log(connectedUsers);
@@ -83,7 +83,7 @@ module.exports = function(socket) {
 
   //Get Community Chat
   socket.on(COMMUNITY_CHAT, callback => {
-    callback(communityChat);
+    // callback(communityChat);
   });
 
   socket.on(MESSAGE_SENT, ({ chatId, message }) => {
