@@ -10,9 +10,10 @@ class MyListings extends Component {
   };
 
   componentDidMount = () => {
-    const { authID } = this.props.user;
+    const { id } = this.props.user;
+
     axios
-      .get(`/api/user/listings/${authID}`)
+      .get(`/api/user/listings/${id}`)
       .then(listings => console.log(listings.data));
   };
 

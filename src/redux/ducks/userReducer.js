@@ -58,11 +58,10 @@ export function addUserInfo(info) {
 
 // Get user by id
 //for the chat page
-export const getUserById = _id => dispatch => {
-  axios.get(`/api/user/info/${_id}`).then(res =>
-    dispatch({
-      type: GET_USER,
-      payload: res.data
-    })
-  );
-};
+export function getUserById(_id) {
+  console.log(_id);
+  return {
+    type: GET_USER,
+    payload: axios.get(`/api/user/info/${_id}`)
+  };
+}

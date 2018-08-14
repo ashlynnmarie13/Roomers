@@ -1,44 +1,25 @@
 import React, { Component } from "react";
-import Cards from "../Cards/Cards";
+
 import axios from "axios";
-import { Card, Icon, Image } from "semantic-ui-react";
-class Location extends Component {
+import stateModel from "../Models/stateModel";
+export default class Location extends Component {
   state = {
-    listing: []
-  };
-  componentDidMount = () => {
-    // axios.get("/api/Listing").then({ listing: listing.data });
+    state: stateModel.states,
+    city: stateModel.states["8"].cities
   };
 
   render() {
-    const { listing } = this.state;
-    let listingList;
-    listing &&
-      (listingList = listing.map(val => {
-        const {} = val;
-        // return()
-      }));
+    console.log(this.state.state);
+    console.log(this.state.city);
+    // const cities = this.state.states.map((cities, i) => {
+    //   return <div>{cities}</div>;
+    // });
+
     return (
       <div>
-        <Card>
-          <Image src="" />
-          <Card.Content>
-            <Card.Header>Listing Name</Card.Header>
-            <Card.Meta>
-              <span className="date">rent</span>
-            </Card.Meta>
-            <Card.Description>Prefs</Card.Description>
-          </Card.Content>
-          <Card.Content extra>
-            <a>
-              <Icon name="user" />
-              go to user profile
-            </a>
-          </Card.Content>
-        </Card>
+        {" "}
+        <p>{this.state.city}</p>
       </div>
     );
   }
 }
-
-export default Location;

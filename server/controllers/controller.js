@@ -5,6 +5,26 @@ const s3 = new AWS.S3();
 const myBucket = "barc-housing";
 const myKey = process.env.MY_KEY;
 
+let flattenObject = function(ob) {
+  let toReturn = {};
+
+  for (let i in ob) {
+    if (!ob.hasOwnProperty(i)) continue;
+
+    if (typeof ob[i] == "object") {
+      let flatObject = flattenObject(ob[i]);
+      for (let x in flatObject) {
+        if (!flatObject.hasOwnProperty(x)) continue;
+
+        toReturn[i + "." + x] = flatObject[x];
+      }
+    } else {
+      toReturn[i] = ob[i];
+    }
+  }
+  return toReturn;
+};
+
 module.exports = {
   addUserInfo: (req, res) => {
     const {
@@ -15,6 +35,11 @@ module.exports = {
       phone,
       dob,
       about,
+      street,
+      city,
+      state,
+      zip,
+      apt,
       profilePic,
       title,
       company,
@@ -46,6 +71,11 @@ module.exports = {
       birthday: dob,
       interestsDescription: description,
       aboutMe: about,
+      street,
+      city,
+      state,
+      zip,
+      apt,
       title,
       companyName: company,
       profilePic,
@@ -73,24 +103,9 @@ module.exports = {
     newProfile
       .save()
       .then(response => {
-        let toReturn = {};
+        let newObj = flattenObject(response);
 
-        for (let i in response) {
-          if (!response.hasOwnProperty(i)) continue;
-
-          if (typeof response[i] == "object") {
-            let flatObject = flattenObject(response[i]);
-            for (let x in flatObject) {
-              if (!flatObject.hasOwnProperty(x)) continue;
-
-              toReturn[i + "." + x] = flatObject[x];
-            }
-          } else {
-            toReturn[i] = response[i];
-          }
-        }
-
-        res.status(200).send(toReturn);
+        res.status(200).send(newObj);
       })
       .catch(err => console.log("User already has a profile " + err));
   },
@@ -146,7 +161,6 @@ module.exports = {
 
   getProfileById: (req, res) => {
     const { id } = req.params;
-    console.log(id);
 
     Profile.findOne({ _id: id }).then(profile => {
       res.status(200).send(profile);
@@ -233,7 +247,6 @@ module.exports = {
 
     newListing.save().then(response => res.status(200).send(response));
   },
-
   getListings: (req, res) => {
     const {
       smoke,
@@ -258,30 +271,6 @@ module.exports = {
       male,
       female
     } = req.query;
-
-    console.log(
-      smoke,
-      clean,
-      guests,
-      pets,
-      washer,
-      wifi,
-      utilities,
-      furnished,
-      elevator,
-      doorman,
-      airConditioning,
-      heating,
-      gym,
-      tv,
-      privateBathroom,
-      outdoorSpace,
-      hasPet,
-      selectedState,
-      rentLength,
-      male,
-      female
-    );
 
     let smokeBool = smoke === "true";
     let cleanBool = clean === "true";
@@ -329,6 +318,8 @@ module.exports = {
   getListingByID: (req, res) => {
     const { id } = req.params;
 
-    Listing.find({ _id: id }).then(listing => res.status(200).send(listing));
+    Listing.find({ _id: id }).then(listing => {
+      res.status(200).send(listing);
+    });
   }
 };

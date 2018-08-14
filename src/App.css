@@ -1,5 +1,5 @@
 .App {
-  font-family: 'Crete Round', serif;
+  font-family: "Roboto", sans-serif;
   color: 031424;
 }
 
@@ -24,10 +24,14 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-::-webkit-scrollbar { 
-  display: none; 
+::-webkit-scrollbar {
+  display: none;
 }
