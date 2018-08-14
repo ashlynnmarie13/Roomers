@@ -53,6 +53,7 @@ class Profiles extends Component {
   };
 
   render() {
+    console.log(this.state.states);
     const profiles = this.state.profiles.map((profile, i) => {
       const { profilePic, birthday, aboutMe, name, title, _id } = profile;
 

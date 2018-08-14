@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Home.css";
+import { Link } from "react-router-dom";
 class Home extends Component {
   render() {
     return (
@@ -25,7 +26,9 @@ class Home extends Component {
           <div class="innerC">
             <div class="top">
               <div class="ny">
-                <h2 class="cali">New York</h2>
+                <Link to="/Location">
+                  <h2 class="cali">New York</h2>
+                </Link>
               </div>
               <div class="au">
                 <h2 class="cali">Texas</h2>
