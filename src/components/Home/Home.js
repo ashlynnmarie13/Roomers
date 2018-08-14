@@ -5,9 +5,11 @@ class Home extends Component {
   render() {
     return (
       <div>
-        
-          <img className="background1" src="https://pixfeeds.com/images/27/560691/1200-58149222-playing-video-games.jpg"/>
-        
+        <img
+          className="background1"
+          src="https://pixfeeds.com/images/27/560691/1200-58149222-playing-video-games.jpg"
+        />
+
         <div class="post" />
 
         <div className="HeaD">
