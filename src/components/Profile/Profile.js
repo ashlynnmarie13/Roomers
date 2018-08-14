@@ -7,6 +7,8 @@ import moment from "moment";
 import MyListings from "../MyListings/MyListings";
 import { Button, Card, Image, Icon, Segment } from "semantic-ui-react";
 
+import ProfileCard from "../ProfileCard/ProfileCard";
+
 class Profile extends Component {
   state = {
     userInfo: {},
@@ -15,11 +17,14 @@ class Profile extends Component {
 
   componentDidMount() {
     const { authID } = this.props.user;
-    axios
-      .get(`/api/user/info/${authID}`)
-      .then(response =>
-        this.setState({ userInfo: { ...response.data, authID } })
-      );
+    axios.get(`/api/user/info/${id}`).then(
+      response =>
+        this.setState({
+          userInfo: [{ ...response.data, id }],
+          userP: [{ ...response.data.prefs, id }]
+        }),
+      () => console.log(this.state.userInfo)
+    );
   }
 
   render() {
