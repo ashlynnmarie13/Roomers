@@ -16,12 +16,11 @@ import MyProfile from "./components/Profile/MyProfile";
 
 import Location from "./components/Location/Location";
 
-
 export default (
   <Switch>
     <Route exact path="/" component={Landing} />
     <Route path="/listing/:id" component={Listing} />
-    <Route path="/location" component={location} />
+    <Route path="/location" component={Location} />
     <Route path="/signup" component={SignUpForm} />
     <Route path="/profile/:id" component={Profile} />
     <Route path="/wishlist" component={Wishlist} />

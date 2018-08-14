@@ -178,6 +178,14 @@ module.exports = {
     });
   },
 
+  getListingById: (req, res) => {
+    const { id } = req.params;
+
+    Listing.findOne({ _id: id }).then(listing => {
+      res.status(200).send(listing);
+    });
+  },
+
   addListing: (req, res) => {
     const {
       earlyTwenties,
@@ -331,6 +339,5 @@ module.exports = {
     console.log(req.params);
 
     Listing.find({ userID: id }).then(listing => res.status(200).send(listing));
-
   }
 };

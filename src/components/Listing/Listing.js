@@ -44,7 +44,8 @@ class Listing extends Component {
       <div>
         <div
           style={{
-            backgroundImage: `url(${this.state.listingInfo.images})`
+            backgroundImage: `url(${this.state.listingInfo &&
+              this.state.listingInfo.images})`
           }}
           className="listing-image"
         />
@@ -83,6 +84,19 @@ class Listing extends Component {
                   <i class="fas fa-home" /> {this.state.userInfo.name}
                   's place{" "}
                 </h1>
+                <h2>The Space</h2>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Veniam, ducimus incidunt necessitatibus repudiandae rerum nisi
+                  rem excepturi sed iure aperiam accusantium laboriosam? Nisi
+                  commodi ullam consequatur voluptatem magnam tempore ipsum.
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Illum voluptatem odit accusamus dolorum voluptate dolores
+                  fugit nihil, mollitia, assumenda soluta ipsa dolore tempora
+                  deserunt laboriosam necessitatibus asperiores deleniti
+                  doloribus reprehenderit?
+                </p>
+                <h2>Amenities</h2>
               </div>
             </div>
           </div>
