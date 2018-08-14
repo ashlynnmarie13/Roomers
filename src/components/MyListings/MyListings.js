@@ -42,7 +42,7 @@ class MyListings extends Component {
       );
     });
 
-    return <div className="listings">{rooms}</div>;
+    return <div>{rooms}</div>;
   }
 }
 
