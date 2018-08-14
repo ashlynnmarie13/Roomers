@@ -159,8 +159,6 @@ module.exports = {
     }).then(response => res.status(200).send(response));
   },
 
- 
-
   getProfileById: (req, res) => {
     const { id } = req.params;
 
@@ -260,6 +258,14 @@ module.exports = {
 
     newListing.save().then(response => res.status(200).send(response));
   },
+
+  getListingById: (req, res) => {
+    const { id } = req.params;
+
+    Listing.findOne({ _id: id }).then(listing => {
+      res.status(200).send(listing);
+    });
+  },
   getListings: (req, res) => {
     const {
       smoke,
@@ -333,6 +339,5 @@ module.exports = {
     console.log(req.params);
 
     Listing.find({ userID: id }).then(listing => res.status(200).send(listing));
-
   }
 };
