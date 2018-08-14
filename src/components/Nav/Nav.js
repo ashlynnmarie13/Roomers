@@ -28,7 +28,7 @@ class Nav extends Component {
     return (
       <div className="Nav">
         <div className="box1">
-          <NavLink to="/profile" className="logo">
+          <NavLink to="/myprofile/:id" className="logo">
             <img src="" alt="logo" />
           </NavLink>
           <Button>
