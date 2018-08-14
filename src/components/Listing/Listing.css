@@ -46,18 +46,22 @@
   font-size: 25px;
 }
 
-.listing-section {
-  border: 1px solid rgb(219, 219, 219);
-
+.listing-header {
+  margin: 60px;
 }
 
-.listing-section > h1 {
+.listing-header > h1 {
   font-weight: bold;
   font-size: 40px;
-  margin-bottom: px;
+  margin-bottom: 20px;
 }
 
 .listing-info > span {
   font-weight: bold;
-  margin-left: 35px;
+  margin-left: 25px;
+}
+
+.listing-section {
+  text-transform: uppercase;
+  font-weight: bold;
 }

@@ -50,7 +50,7 @@ class Listing extends Component {
         />
         <div className="listing">
           <div className="listing-details">
-            <div className="listing-section">
+            <div className="listing-header">
               <h1>
                 $
                 {this.state.listingInfo.rent &&
@@ -77,6 +77,12 @@ class Listing extends Component {
                   Number(
                     this.state.listingInfo.rent.depositCost
                   ).toLocaleString()}
+              </div>
+              <div className="listing-section">
+                <h1>
+                  <i class="fas fa-home" /> {this.state.userInfo.name}
+                  's place{" "}
+                </h1>
               </div>
             </div>
           </div>
