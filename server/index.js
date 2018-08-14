@@ -145,7 +145,7 @@ app.get("/api/rooms", ctrl.getListings);
 
 //get listing by id
 app.get("/api/listing/:id", ctrl.getListingByAuthId);
-app.get("/api/listing/:id", ctrl.getListingById);
+app.get("/api/listing/id/:id", ctrl.getListingById);
 server.listen(port, () => {
   console.log(`app is running in server port ${port}`);
 });

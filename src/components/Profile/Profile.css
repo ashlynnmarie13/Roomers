@@ -99,3 +99,8 @@
 .scoot-pets {
   margin-right: 13%;
 }
+
+.listings {
+  display: flex;
+  justify-content: space-between;
+}
