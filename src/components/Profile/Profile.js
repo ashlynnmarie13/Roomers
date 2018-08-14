@@ -24,7 +24,6 @@ class Profile extends Component {
 
   render() {
     const { userInfo } = this.state;
-    console.log(userInfo);
 
     const birthday = userInfo.birthday;
     let age = moment().diff(birthday, "years");
@@ -43,8 +42,6 @@ class Profile extends Component {
       }
     }
     RemoveFalse();
-    console.log("myObj: ", traits);
-    console.log("myArray: ", traitsArray);
 
     // for (let i in showTraits) {
     //   console.log(showTraits.traits);
@@ -125,7 +122,8 @@ class Profile extends Component {
                 </div>
                 <div className="description">
                   {" "}
-                  {/* {userInfo.prefs} */}PREFS
+                  {/* {userInfo.prefs} */}
+                  PREFS
                 </div>
               </div>
             </Card.Content>
