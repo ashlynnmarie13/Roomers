@@ -7,6 +7,8 @@ import moment from "moment";
 import TheirListings from "../TheirListings/TheirListings";
 import { Button, Card, Image, Icon, Segment } from "semantic-ui-react";
 
+import ProfileCard from "../ProfileCard/ProfileCard";
+
 class Profile extends Component {
   state = {
     userInfo: {},
@@ -14,15 +16,16 @@ class Profile extends Component {
   };
 
   componentDidMount() {
+
     const { id } = this.props.match.params;
     axios
       .get(`/api/user/info/${id}`)
       .then(response => this.setState({ userInfo: { ...response.data, id } }));
+
   }
 
   render() {
     const { userInfo } = this.state;
-    console.log(userInfo);
 
     const birthday = userInfo.birthday;
     let age = moment().diff(birthday, "years");
@@ -53,11 +56,13 @@ class Profile extends Component {
       }
     }
     RemoveFalse();
+
     RemoveFalsePrefs();
     console.log("myObj: ", traits);
     console.log("myArray: ", traitsArray);
     console.log("myPObj: ", prefs);
     console.log("myPArray: ", prefsArray);
+
 
     const finalPrefsArray = [];
 
@@ -171,6 +176,7 @@ class Profile extends Component {
                   {userInfo.interestsDescription}
                 </div>
                 <div className="description">
+
                   Preferences:
                   <div>
                     Do I smoke?<div>{prefsArray[0]}</div>
@@ -185,6 +191,7 @@ class Profile extends Component {
                   <div>
                     Pets...<div>{prefsArray[3]}</div>
                   </div>
+
                 </div>
               </div>
             </Card.Content>

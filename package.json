@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^1.4.3",
-    "aws-sdk": "^2.288.0",
+    "aws-sdk": "^2.289.0",
     "axios": "^0.18.0",
     "cors": "^2.8.4",
     "dotenv": "^6.0.0",
@@ -21,6 +21,7 @@
     "prop-types": "^15.6.2",
     "rc-slider": "^8.6.1",
     "react": "^16.4.2",
+    "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.2",
     "react-google-maps": "^9.4.5",
     "react-icons": "^3.0.5",
