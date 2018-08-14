@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import "./Profile.css";
 import { ENGINE_METHOD_DIGESTS } from "constants";
 import moment from "moment";
-import MyListings from "../MyListings/MyListings";
+import TheirListings from "../TheirListings/TheirListings";
 import { Button, Card, Image, Icon, Segment } from "semantic-ui-react";
 
 import ProfileCard from "../ProfileCard/ProfileCard";
@@ -16,15 +16,12 @@ class Profile extends Component {
   };
 
   componentDidMount() {
-    const { authID } = this.props.user;
-    axios.get(`/api/user/info/${id}`).then(
-      response =>
-        this.setState({
-          userInfo: [{ ...response.data, id }],
-          userP: [{ ...response.data.prefs, id }]
-        }),
-      () => console.log(this.state.userInfo)
-    );
+
+    const { id } = this.props.match.params;
+    axios
+      .get(`/api/user/info/${id}`)
+      .then(response => this.setState({ userInfo: { ...response.data, id } }));
+
   }
 
   render() {
@@ -34,8 +31,11 @@ class Profile extends Component {
     let age = moment().diff(birthday, "years");
 
     const traits = userInfo.traits;
+    const prefs = userInfo.prefs;
 
     var traitsArray = [];
+    var prefsArray = [];
+    0;
 
     function RemoveFalse() {
       for (var key in traits) {
@@ -46,18 +46,68 @@ class Profile extends Component {
         }
       }
     }
+    function RemoveFalsePrefs() {
+      for (var key in prefs) {
+        if (prefs[key] === false) {
+          delete prefs[key];
+        } else {
+          prefsArray.push(key);
+        }
+      }
+    }
     RemoveFalse();
 
-    // for (let i in showTraits) {
-    //   console.log(showTraits.traits);
-    //   if (showTraits.bookworm === false) {
-    //     console.log("bookworm");
-    //   } else {
-    //     console.log("well this is something");
-    //   }
-    // }
+    RemoveFalsePrefs();
+    console.log("myObj: ", traits);
+    console.log("myArray: ", traitsArray);
+    console.log("myPObj: ", prefs);
+    console.log("myPArray: ", prefsArray);
 
-    // delete Employee.firstname;
+
+    const finalPrefsArray = [];
+
+    function PrefsReplaceSmoke() {
+      for (let i in prefsArray) {
+        if (prefsArray.includes("smoke")) {
+          return prefsArray.splice(0, 1, "yes");
+        } else {
+          return prefsArray.splice(0, 1, "no");
+        }
+      }
+    }
+    function PrefsReplaceClean() {
+      for (let i in prefsArray) {
+        if (prefsArray.includes("clean")) {
+          return prefsArray.splice(1, 1, "I clean frequently");
+        } else {
+          return prefsArray.splice(1, 1, "I honestly don't clean often");
+        }
+      }
+    }
+    function PrefsReplaceGuests() {
+      for (let i in prefsArray) {
+        if (prefsArray.includes("guests")) {
+          return prefsArray.splice(2, 1, "Guests are fine with me");
+        } else {
+          return prefsArray.splice(2, 1, "I prefer to not have guests over");
+        }
+      }
+    }
+
+    function PrefsReplacePets() {
+      for (let i in prefsArray) {
+        if (prefsArray.includes("pets")) {
+          return prefsArray.splice(3, 1, "Pets are welcome!");
+        } else {
+          return prefsArray.splice(3, 1, "No pets allowed");
+        }
+      }
+    }
+    PrefsReplaceSmoke();
+    PrefsReplaceClean();
+    PrefsReplaceGuests();
+    PrefsReplacePets();
+    console.log(prefsArray);
 
     return (
       <div className="profile">
@@ -126,9 +176,22 @@ class Profile extends Component {
                   {userInfo.interestsDescription}
                 </div>
                 <div className="description">
-                  {" "}
-                  {/* {userInfo.prefs} */}
-                  PREFS
+
+                  Preferences:
+                  <div>
+                    Do I smoke?<div>{prefsArray[0]}</div>
+                  </div>
+                  <div>
+                    How often I clean...<div>{prefsArray[1]}</div>
+                  </div>
+                  <div>
+                    Guests...<div />
+                    {prefsArray[2]}
+                  </div>
+                  <div>
+                    Pets...<div>{prefsArray[3]}</div>
+                  </div>
+
                 </div>
               </div>
             </Card.Content>
@@ -137,7 +200,7 @@ class Profile extends Component {
           <Card style={{ width: "100%", height: "60vh" }}>
             <Card.Content>
               <div className="listings">
-                <MyListings />
+                <TheirListings userInfo={userInfo} />
               </div>
             </Card.Content>
           </Card>

@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import "./MyListings.css";
+import "./TheirListings.css";
 import RoomCard from "../RoomCard/RoomCard";
 import { WSAEINVALIDPROCTABLE } from "constants";
 
-class MyListings extends Component {
+class TheirListings extends Component {
   state = {
     isLoading: false,
     listings: []
   };
 
   componentDidMount() {
-    const { authID } = this.props.user;
-    console.log(this.props.user);
+    const authID = "google-oauth2|109803081908967859150";
+    console.log(this.props);
     axios
       .get(`/api/listing/${authID}`)
       .then(response => this.setState({ listings: { ...response.data } }));
@@ -42,8 +42,8 @@ class MyListings extends Component {
       );
     });
 
-    return <div className="listings">{rooms}</div>;
+    return <div>{rooms}</div>;
   }
 }
 
-export default connect(state => state)(MyListings);
+export default connect(state => state)(TheirListings);
