@@ -1,12 +1,31 @@
+<<<<<<< HEAD
+.profileM {
+  display: flex;
+}
+.cardContainer {
+  height: auto;
+}
+.rightBox {
+  /* display: flex; */
+  width: 700px;
+  height: 468px;
+  border: 1px solid black;
+}
+.innerB {
+  display: flex;
+=======
 .profile {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-
+  height: 250vh;
   background-color: white;
-  border: solid gold 5px;
 }
 
+.image {
+  width: auto;
+  height: 80%;
+}
 .person {
   height: 100vh;
   width: 30%;
@@ -28,8 +47,8 @@
 
   background-color: white;
   width: 65%;
-  height: 180vh;
-  font-size: 1.2em;
+  height: 200vh;
+  font-size: 1.1em;
   margin-top: 3%;
 }
 
@@ -38,15 +57,61 @@
   flex-direction: column;
   justify-content: space-around;
 
-  height: 20vh;
-  margin-top: 10%;
+  height: 100%;
 }
 
 .header {
-  font-size: 1.3em;
+  font-size: 1.2em;
 }
 
 .description {
   margin-top: 3%;
   margin-bottom: 3%;
+>>>>>>> master
+}
+
+.middle-header {
+  margin-bottom: 2%;
+  font-size: 1.2em;
+}
+
+.traits {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: space-around;
+}
+
+.pref-column {
+  display: flex;
+  flex-direction: column;
+  margin-top: 7%;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  height: 30vh;
+}
+
+.preferences {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  flex-wrap: wrap;
+  width: 60%;
+
+  height: 20%;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.scoot {
+  margin-right: 22%;
+}
+
+.scoot-pets {
+  margin-right: 13%;
 }

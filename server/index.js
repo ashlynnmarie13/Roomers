@@ -16,6 +16,7 @@ const socket = require("socket.io");
 
 //Pulling in the user schema
 const User = require("./Models/User");
+const Listing = require("./Models/Listing");
 
 const upload = multer({ dest: "uploads/" });
 
@@ -136,14 +137,17 @@ app.post("/api/upload", upload.single("profilePic"), ctrl.uploadPhoto);
 app.get("/api/users/info", ctrl.getAllProfiles);
 // get profile by id
 app.get("/api/user/info/:id", ctrl.getProfileById);
+app.get("/api/user/info/:id", ctrl.getProfileByAuthId);
 
 
 
 // adds listing
 app.post("/api/listing/add", ctrl.addListing);
 app.get("/api/rooms", ctrl.getListings);
-app.get("/api/listing/:id", ctrl.getListingByID);
 
+//get listing by id
+app.get("/api/listing/:id", ctrl.getListingByAuthId);
+app.get("/api/listing/:id", ctrl.getListingById);
 server.listen(port, () => {
   console.log(`app is running in server port ${port}`);
 });

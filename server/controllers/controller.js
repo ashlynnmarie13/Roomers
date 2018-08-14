@@ -165,6 +165,17 @@ module.exports = {
     const { id } = req.params;
 
     Profile.findOne({ _id: id }).then(profile => {
+      console.log(profile);
+      res.status(200).send(profile);
+    });
+  },
+
+  getProfileByAuthId: (req, res) => {
+    const { authID } = req.params;
+    console.log(authID);
+
+    Profile.findOne({ _id: authID }).then(profile => {
+      console.log(profile);
       res.status(200).send(profile);
     });
   },
@@ -317,11 +328,11 @@ module.exports = {
     }).then(rooms => res.status(200).send(rooms));
   },
 
-  getListingByID: (req, res) => {
+  getListingByAuthId: (req, res) => {
     const { id } = req.params;
+    console.log(req.params);
 
-    Listing.find({ _id: id }).then(listing => {
-      res.status(200).send(listing);
-    });
+    Listing.find({ userID: id }).then(listing => res.status(200).send(listing));
+
   }
 };

@@ -30,6 +30,7 @@ export const getProfileById = _id => dispatch => {
 
 // Get all profiles
 export function getProfiles(location) {
+  console.log(location);
   return {
     type: "GET_PROFILES",
     payload: axios.get("/api/users/info")

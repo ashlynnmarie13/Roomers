@@ -2,6 +2,7 @@ import axios from "axios";
 
 const GET_USER = "GET_USER";
 const ADD_USER_INFO = "ADD_USER_INFO";
+const GET_STATE = "GET_STATE";
 
 export function getUser() {
   return {
@@ -9,7 +10,10 @@ export function getUser() {
     payload: axios.get("/me")
   };
 }
-
+const getState = {
+  cities: {},
+  pictures: []
+};
 const initialState = {
   user: {},
   isAuthed: false,
@@ -33,6 +37,11 @@ export default function itemsReducer(state = initialState, action) {
       return {
         ...state,
         userInfo: action.payload.data
+      };
+    case `${GET_STATE}_FULFILLED`:
+      return {
+        ...state,
+        [action.newVal.key]: action.newVal.value
       };
     default:
       return state;
