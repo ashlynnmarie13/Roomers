@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-
-  background: #fffafa;
+  color: #031424;
+  background: white;
 }
 
 .sign-up-form {
@@ -34,52 +34,66 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  width: 95%;
-  margin-top: 3%;
-  margin-bottom: 3%;
+  border: 1px solid rgb(142, 174, 189, 0.4);
+  padding: 30px;
+
+  width: 90%;
+  height: 40%;
   background-color: white;
-  border-radius: 30px 70px;
-  box-shadow: 1px 1px 10px #1a1a1d;
 }
 
 .section-traits {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;
+  font-size: 20px;
+  border: 1px solid rgb(142, 174, 189, 0.4);
+  padding: 30px;
 
-  width: 95%;
+  width: 90%;
   height: 25vh;
   background-color: white;
-  border-radius: 30px 70px;
-  box-shadow: 1px 1px 10px #1a1a1d;
-  margin-bottom: 3%;
 }
 
 .section-title {
+  text-transform: uppercase;
   font-weight: bold;
-  font-size: 40px;
+  font-size: 30px;
+  margin-bottom: 3%;
+  color: #cf6766;
 }
 
 .section-item {
   font-size: 20px;
+  margin-bottom: 2%;
 }
 
 .section-item-address {
   font-size: 20px;
-  margin-bottom: 5%;
 }
 
 .input {
   width: 100%;
-  margin: 20px 0;
+  height: 60%;
+}
+.input-item {
+  width: 100%;
+  height: 15%;
+  margin-bottom: 3%;
 }
 
-.button {
+.input-item-photo {
+  width: 100%;
+  height: 15%;
+  margin-top: 3%;
+}
+
+.input-item-about {
+  width: 100%;
+  height: 30%;
   display: flex;
-  justify-content: center;
-  height: 40px;
-  margin-top: 150px;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .pref-item {
@@ -89,46 +103,113 @@
 
 .first-section {
   width: 45%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  font-size: 1.1em;
+  height: 95%;
 }
 
 .second-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   width: 45%;
+  height: 95%;
+  font-size: 20px;
 }
 .third-section {
-  width: 95%;
+  width: 90%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  border: 1px solid rgb(142, 174, 189, 0.4);
+  padding: 30px;
+
   background-color: white;
-  border-radius: 30px 70px;
-  box-shadow: 1px 1px 10px #1a1a1d;
+
+  height: 20%;
+  font-size: 20px;
 }
 
+.traits-one {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+  width: 85%;
+
+  margin-top: -6%;
+}
 .traits-two {
-  margin-bottom: 3%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: -2.5%;
+  width: 90%;
 }
 
 .trait {
   width: 15%;
 }
 
-.address {
+.address-box {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 55%;
+  width: 100%;
 }
 
 .address-side-one {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 .address-side-two {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+}
+
+.address-boxes {
+  width: 45%;
+}
+
+.section-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 90%;
+}
+.section-prefs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 90%;
+  width: 25%;
+}
+.section-career {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 90%;
+  width: 25%;
+}
+
+.submit-button {
+  color: #031424;
+  text-align: center;
+
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 20px;
 }
