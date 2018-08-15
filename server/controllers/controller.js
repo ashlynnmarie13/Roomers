@@ -351,7 +351,7 @@ module.exports = {
   getListingByState: (req, res) => {
     const { adress } = req.params;
 
-    Listing.find({ adress: adress }).then(listing => {
+    Listing.find({ "adress.state": adress }).then(listing => {
       res.status(200).send(listing);
     });
   },
