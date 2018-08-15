@@ -35,6 +35,15 @@ class Home extends Component {
     this.props.history.push(`/location/${this.state.selectedState}`);
   };
 
+  selectState = state => {
+    this.setState(
+      {
+        selectedState: state
+      },
+      () => this.exploreCities()
+    );
+  };
+
   render() {
     return (
       <div>
@@ -89,36 +98,35 @@ class Home extends Component {
           {/* <h1>Search Rooms and Roommates In These Cities...</h1>s */}
           <div class="innerC">
             <div class="top">
-              <div class="ny">
-                <h2 class="cali" >New York</h2>
-                
+              <div class="ny" onClick={() => this.selectState("New York")}>
+                <h2 class="cali">New York</h2>
               </div>
-              <div class="au">
+              <div class="au" onClick={() => this.selectState("Texas")}>
                 <h2 class="cali">Texas</h2>
               </div>
-              <div class="sd">
+              <div class="sd" onClick={() => this.selectState("Florida")}>
                 <h2 class="cali">Florida</h2>
               </div>
             </div>
-            <div class="middle">
-              <div class="bo">
+            <div class="middle" >
+              <div class="bo" onClick={() => this.selectState("Kansas")}>
                 <h2 class="cali">Kansas</h2>
               </div>
-              <div class="ch">
+              <div class="ch" onClick={() => this.selectState("Nevada")}>
                 <h2 class="cali">Nevada</h2>
               </div>
-              <div class="sf">
+              <div class="sf" onClick={() => this.selectState("Michigan")}>
                 <h2 class="cali">Michigan</h2>
               </div>
             </div>
             <div class="bottom">
-              <div class="la">
+              <div class="la" onClick={() => this.selectState("California")}>
                 <h2 class="cali">California</h2>
               </div>
-              <div class="lo">
+              <div class="lo" onClick={() => this.selectState("New Jersey")}>
                 <h2 class="cali">New Jersey</h2>
               </div>
-              <div class="wa">
+              <div class="wa" onClick={() => this.selectState("Nebraska")}>
                 <h2 class="cali">Nebraska</h2>
               </div>
             </div>
