@@ -5,66 +5,96 @@ import logo from "./logo_transparent.png";
 import { NavLink, Link } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 import { getUserById } from "../../redux/ducks/userReducer";
-
+import axios from "axios";
+import { connect } from "react-redux";
 class Nav extends Component {
-  // constructor(props) {
-  //   super(props);
+  state = {
+    userInfo: {}
+  };
 
-  //   this.state = {
-  //     userInfo: {}
-  //   };
-  // }
-
-  // componentDidMount() {
-  //   if (this.props.match.params.id) {
-  //     getUserById(this.props.match.params.id);
-  //   }
-  //   console.log(this.props);
-  //   // const navUser =
-  //   // this.setState({userInfo: {...response.data, id}})
-  // }
+  getProfile() {
+    const { authID } = this.props.user;
+    console.log(authID);
+    axios.get(`/api/user/info/${authID}`).then(response => {
+      return response.data.profilePic;
+    });
+  }
 
   render() {
+    let profilePic = this.getProfile();
+
     return (
       <div className="Nav">
         <div className="box1">
-          <NavLink to="/myprofile/:id" className="logo">
-            <img src="" alt="logo" />
+          <NavLink to="/myprofile/:id" className="nav-pic">
+            <img src={profilePic} alt="pic" className="profile-pic-nav" />
           </NavLink>
-          <Button>
-            <Link to="/mylistings">My Listings</Link>
-          </Button>
-
-          <NavLink
-            to="/wishlist"
-            className="wishlist"
-            activeStyle={{ color: "#CF6766" }}
+          <Button
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around",
+              alignItems: "center",
+              backgroundColor: "white",
+              border: "solid #031424 2px",
+              color: "#031424",
+              width: "30%",
+              height: "70%",
+              fontSize: "1.2em"
+            }}
           >
-            <i activeClassName="WishList" /> Wish List
-          </NavLink>
+            <Link to="/chat" style={{ color: "#031424" }}>
+              Messages
+            </Link>
+          </Button>
         </div>
 
         <Link to="/home" className="home">
-          <img src={logo} alt="logo" />
+          ROOMERS
         </Link>
 
         <div className="listings">
-          <NavLink
-            to="/searchrooms"
-            className="searchlistings"
-            activeStyle={{ color: "#CF6766" }}
+          <Button
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around",
+              alignItems: "center",
+              backgroundColor: "white",
+              border: "solid #031424 2px",
+              color: "#031424",
+              width: "35%",
+              height: "100%",
+              fontSize: "1.2em"
+            }}
           >
-            <i activeClassName="Searchlistings" /> Search Listings
-          </NavLink>
-          <Link to="/addlisting" className="addlistings">
-            <i className="Addlistings" /> Add New Listing
-          </Link>
-          <Link to="/chat">
-            <i class="fa fa-comment" aria-hidden="true" />
-          </Link>
+            <Link to="/searchlistings" style={{ color: "#031424" }}>
+              {" "}
+              Search
+            </Link>
+          </Button>
+          <Button
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around",
+              alignItems: "center",
+              backgroundColor: "#031424",
+              border: "solid #031424 2px",
+              color: "white",
+              width: "35%",
+              height: "100%",
+              fontSize: "1.2em"
+            }}
+          >
+            <Link to="/addlisting" style={{ color: "white" }}>
+              {" "}
+              Add Listing
+            </Link>
+          </Button>
         </div>
       </div>
     );
   }
 }
-export default Nav;
+export default connect(state => state)(Nav);

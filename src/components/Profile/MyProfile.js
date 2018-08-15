@@ -350,10 +350,20 @@ class MyProfile extends Component {
           </Card>
 
           <Card style={{ width: "85%", height: "60vh" }}>
-            <Card.Content>
-              <div className="listings">
-                <MyListings userInfo={userInfo} />
+            <Card.Content
+              style={{
+                width: "100%",
+
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center"
+              }}
+            >
+              <div className="header" style={{ marginBottom: "5%" }}>
+                {" "}
+                My Listings{" "}
               </div>
+              <MyListings userInfo={userInfo} />
             </Card.Content>
           </Card>
         </div>

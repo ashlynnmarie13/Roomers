@@ -47,7 +47,22 @@ export default class Landing extends Component {
               <h1 className="header-text">Find a Room</h1>
 
               <Link to="/signup">
-                <Button>Sign Up</Button>
+                <Button
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                    backgroundColor: "#031424",
+                    border: "solid #031424 2px",
+                    color: "white",
+                    width: "100%",
+                    height: "100%",
+                    fontSize: "1.2em"
+                  }}
+                >
+                  Sign Up
+                </Button>
               </Link>
             </div>
           </div>
@@ -63,7 +78,22 @@ export default class Landing extends Component {
               <h1 className="header-text">Rent a Room</h1>
 
               <Link to="/signup">
-                <Button style={{}}>Sign Up</Button>
+                <Button
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                    backgroundColor: "white",
+                    border: "solid #031424 2px",
+                    color: "#031424",
+                    width: "100%",
+                    height: "100%",
+                    fontSize: "1.2em"
+                  }}
+                >
+                  Sign Up
+                </Button>
               </Link>
             </div>
           </div>

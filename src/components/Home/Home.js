@@ -1,12 +1,17 @@
 import React, { Component } from "react";
+import { Button } from "semantic-ui-react";
 import "./Home.css";
 class Home extends Component {
   render() {
     return (
       <div>
-        
-          <img className="background1" src="https://pixfeeds.com/images/27/560691/1200-58149222-playing-video-games.jpg"/>
-        
+        <div className="home-image">
+          <img
+            className="background1"
+            src="https://images.unsplash.com/photo-1508490451314-a56ac7c2d250?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ad037c6d4d39b63dedfe7c6a59182fe3&auto=format&fit=crop&w=1404&q=80"
+          />
+        </div>
+
         <div class="post" />
 
         <div className="HeaD">
@@ -16,7 +21,23 @@ class Home extends Component {
             in front of thousands of <br />
             verified roommates.
           </h1>
-          <button className="button1">LIST YOUR PLACE FOR FREE</button>
+          <Button
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around",
+              alignItems: "center",
+              backgroundColor: "#cf6766",
+              border: "solid #cf6766 2px",
+              color: "white",
+              width: "20%",
+              height: "100%",
+              fontSize: "1.2em",
+              marginLeft: "40%"
+            }}
+          >
+            LIST YOUR PLACE FOR FREE
+          </Button>
         </div>
         {/* <div className="button">LIST YOUR PLACE FOR FREE</div> */}
         <div class="container">
