@@ -150,6 +150,8 @@ app.get("/api/users/info", ctrl.getAllProfiles);
 app.get("/api/user/info/:id", ctrl.getProfileById);
 app.get("/api/user/info/:id", ctrl.getProfileByAuthId);
 
+
+
 // adds listing
 app.post("/api/listing/add", ctrl.addListing);
 app.get("/api/rooms", ctrl.getListings);

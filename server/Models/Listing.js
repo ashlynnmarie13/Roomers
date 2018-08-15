@@ -7,6 +7,7 @@ const ListingSchema = new Schema({
     type: String,
     ref: "users"
   },
+
   human: {
     age: {
       earlyTwenties: Boolean,
@@ -66,6 +67,7 @@ const ListingSchema = new Schema({
     outdoorSpace: Boolean,
     hasPet: Boolean
   }
+
 });
 
 module.exports = Listing = mongoose.model("listing", ListingSchema);
