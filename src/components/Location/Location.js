@@ -21,34 +21,6 @@ export default class Location extends Component {
     );
   }
   render() {
-    function RemoveFalse() {
-      for (var key in traits) {
-        if (traits[key] === false) {
-          delete traits[key];
-        } else {
-          traitsArray.push(key);
-        }
-      }
-    }
-    function RemoveFalsePrefs() {
-      for (var key in prefs) {
-        if (prefs[key] === false) {
-          delete prefs[key];
-        } else {
-          prefsArray.push(key);
-        }
-      }
-    }
-    RemoveFalse();
-
-    RemoveFalsePrefs();
-    console.log("cities: ", traits);
-    console.log("ities: ", traitsArray);
-    console.log("myPObj: ", prefs);
-    console.log("myPArray: ", prefsArray);
-
-    const finalPrefsArray = [];
-
     let cities = this.state;
     console.log(cities.cities[0]);
 
