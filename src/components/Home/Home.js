@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button } from "semantic-ui-react";
 import "./Home.css";
 import stateModel from "../Models/stateModel";
 import axios from "axios";
@@ -38,10 +39,13 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <img
-          className="background1"
-          src="https://www.brickunderground.com/sites/default/files/styles/blog_primary_image/public/blog/images/roommates_4_0.jpg"
-        />
+        <div className="home-image">
+          <img
+            className="background1"
+            src="https://images.unsplash.com/photo-1508490451314-a56ac7c2d250?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ad037c6d4d39b63dedfe7c6a59182fe3&auto=format&fit=crop&w=1404&q=80"
+          />
+        </div>
+
         {/* <div className="search-state">
         
           <Select
@@ -78,10 +82,24 @@ class Home extends Component {
             in front of thousands of <br />
             verified roommates.
           </h1>
-          {/* <button className="button1">LIST YOUR PLACE FOR FREE</button> */}
-          <Link to="/addlisting" className="button1">
-            <i /> LIST YOUR PLACE FOR FREE
-          </Link>
+
+          <Button
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around",
+              alignItems: "center",
+              backgroundColor: "#cf6766",
+              border: "solid #cf6766 2px",
+              color: "white",
+              width: "20%",
+              height: "100%",
+              fontSize: "1.2em",
+              marginLeft: "40%"
+            }}
+          >
+            LIST YOUR PLACE FOR FREE
+          </Button>
         </div>
         {/* <div className="button">LIST YOUR PLACE FOR FREE</div> */}
         <div class="container">
@@ -90,8 +108,7 @@ class Home extends Component {
           <div class="innerC">
             <div class="top">
               <div class="ny">
-                <h2 class="cali" >New York</h2>
-                
+                <h2 class="cali">New York</h2>
               </div>
               <div class="au">
                 <h2 class="cali">Texas</h2>

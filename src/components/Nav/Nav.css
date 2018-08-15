@@ -1,42 +1,47 @@
 .Nav {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-content: center;
   background-color: white;
   height: 10vh;
   color: black;
+
+  box-shadow: inset 0px 10px 13px -6px rgba(0, 0, 0, 0.75);
 }
 .listings {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-self: center;
 
-  width: 30%;
+  width: 25%;
+  height: 60%;
 }
 
 .box1 {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-self: center;
+  align-items: center;
 
-  width: 30%;
+  width: 25%;
+  height: 90%;
 }
 .box2 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-self: center;
-  border: solid teal 5px;
+
   width: 30%;
 }
 
 .addlistings {
   color: #cf6766;
   text-align: center;
-
+  border: solid salmon 5px;
   border: 1px solid #cf6766;
   border-width: thick;
 
@@ -60,7 +65,6 @@
   cursor: pointer;
 }
 
-
 .searchlistings {
   color: #031424;
   text-align: center;
@@ -73,7 +77,6 @@
 .searchlistings:hover {
   background-color: rgb(230, 233, 230); /* Green */
   color: #031424;
-  
 }
 
 .mylistings {
@@ -112,13 +115,38 @@
 
 .home {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
   align-content: center;
   align-self: center;
+  height: 100%;
+
+  color: #cf6766;
+  font-family: "Titan One";
+  font-size: 8vh;
+  opacity: none;
+
+  text-shadow: 2px 2px 1px #031424;
 }
-.home img {
-  align-self: center;
-  height: 10%;
-  width: 15%;
+
+.home:hover {
+  transform: scale(1.05) perspective(5px);
+  color: #cf6766;
+  text-shadow: 2px 2px 1px #031424;
+}
+
+.nav-pic {
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  height: 100%;
+}
+
+.profile-pic-nav {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
 }
