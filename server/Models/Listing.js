@@ -25,7 +25,7 @@ const ListingSchema = new Schema({
     city: String,
     state: String,
     zip: String,
-    apt: String
+    fullAddress: String
   },
 
   rent: {
