@@ -38,12 +38,16 @@ class Nav extends Component {
               backgroundColor: "white",
               border: "solid #031424 2px",
               color: "#031424",
-              width: "30%",
+              width: "35%",
               height: "70%",
               fontSize: "1.2em"
             }}
           >
-            <Link to="/chat" style={{ color: "#031424" }}>
+            <Link
+              to="/chat"
+              style={{ color: "#031424" }}
+              className="expand-link"
+            >
               Messages
             </Link>
           </Button>
@@ -68,10 +72,14 @@ class Nav extends Component {
               fontSize: "1.2em"
             }}
           >
-            <Link to="/searchrooms" style={{ color: "#031424" }}>
+            <NavLink
+              to="/searchrooms"
+              style={{ color: "#031424" }}
+              className="expand-link"
+            >
               {" "}
               Search
-            </Link>
+            </NavLink>
           </Button>
           <Button
             style={{
@@ -87,7 +95,11 @@ class Nav extends Component {
               fontSize: "1.2em"
             }}
           >
-            <Link to="/addlisting" style={{ color: "white" }}>
+            <Link
+              to="/addlisting"
+              style={{ color: "white" }}
+              className="expand-link"
+            >
               {" "}
               Add Listing
             </Link>
