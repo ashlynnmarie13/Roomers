@@ -13,10 +13,12 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props.user);
     return (
       <div className="App">
-        {this.props.location.pathname !== "/" && <Nav yo={this.props.user} />}
+        {this.props.location.pathname !== "/" && <Nav user={this.props.user} />}
         {routes}
+        {/* {console.log(this.props)} */}
       </div>
     );
   }
