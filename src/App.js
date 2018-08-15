@@ -15,7 +15,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.props.location.pathname !== "/" && <Nav />}
+        {this.props.location.pathname !== "/" && <Nav yo={this.props.user} />}
         {routes}
       </div>
     );
