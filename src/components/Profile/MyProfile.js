@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import "./Profile.css";
-import { ENGINE_METHOD_DIGESTS } from "constants";
 import moment from "moment";
 import MyListings from "../MyListings/MyListings";
 import { Button, Card, Image, Icon, Segment, Step } from "semantic-ui-react";

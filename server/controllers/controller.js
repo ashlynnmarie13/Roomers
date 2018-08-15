@@ -170,11 +170,20 @@ module.exports = {
 
   getProfileByAuthId: (req, res) => {
     const { authID } = req.params;
-    console.log(authID);
+    // console.log(authID);
 
     Profile.findOne({ _id: authID }).then(profile => {
       console.log(profile);
       res.status(200).send(profile);
+    });
+  },
+
+  getListingById: (req, res) => {
+    const { id } = req.params;
+
+    Listing.findOne({ _id: id }).then(listing => {
+      console.log(listing);
+      res.status(200).send(listing);
     });
   },
 
@@ -187,10 +196,10 @@ module.exports = {
       male,
       female,
       street,
-      apt,
       city,
       state,
       zip,
+      address,
       monthlyCost,
       depositCost,
       moveInDate,
@@ -228,10 +237,10 @@ module.exports = {
       },
       address: {
         street,
-        apt,
         city,
         state,
-        zip
+        zip,
+        fullAddress: address
       },
       rent: {
         monthlyCost,

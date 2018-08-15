@@ -78,6 +78,17 @@ passport.use(
     }
   )
 );
+app.use(
+  "/s3",
+  require("react-s3-uploader/s3router")({
+    bucket: "barc-housing",
+    region: "us-east-2", //optional
+    signatureVersion: "v4", //optional (use for some amazon regions: frankfurt and others)
+    headers: { "Access-Control-Allow-Origin": "*" }, // optional
+    ACL: "private", // this is default
+    uniquePrefix: true // (4.0.2 and above) default is true, setting the attribute to false preserves the original filename in S3
+  })
+);
 
 //pulling the user and sending the info back to the front-end
 passport.serializeUser((user, done) => {
@@ -146,7 +157,7 @@ app.get("/api/rooms", ctrl.getListings);
 //get listing by id
 app.get("/api/listing/:state", ctrl.getListingByState);
 app.get("/api/listing/:id", ctrl.getListingByAuthId);
-app.get("/api/listing/:id", ctrl.getListingById);
+app.get("/api/listing/id/:id", ctrl.getListingById);
 server.listen(port, () => {
   console.log(`app is running in server port ${port}`);
 });

@@ -9,6 +9,7 @@
 .listing {
   display: flex;
   justify-content: flex-start;
+  margin: 20px 0;
 }
 
 .listing-details {
@@ -31,7 +32,7 @@
   position: sticky;
   top: 0;
   border: 1px solid rgb(219, 219, 219);
-  height: 90%;
+  height: 450px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,22 +43,62 @@
 
 .listing-profile-card > h3 {
   margin-top: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   font-size: 25px;
+  color: #CF6766;
 }
 
-.listing-section {
-  border: 1px solid rgb(219, 219, 219);
-
+.listing-header {
+  margin: 60px;
 }
 
-.listing-section > h1 {
+.listing-header > h1 {
   font-weight: bold;
   font-size: 40px;
-  margin-bottom: px;
+  margin-bottom: 20px;
 }
 
 .listing-info > span {
   font-weight: bold;
-  margin-left: 35px;
+  margin-left: 25px;
+}
+
+.listing-section {
+  border: 1px solid rgb(219, 219, 219);
+  padding: 30px;
+  margin: 50px 0;
+}
+
+.listing-section > h1 {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 30px;
+  margin-bottom: 30px;
+  color: #CF6766;
+}
+
+.listing-section > h2 {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.listing-section-description {
+  margin-bottom: 20px;
+  line-height: 19px;
+}
+
+.amenities-list {
+  width: 80%;
+  display: grid;
+  grid-template-columns: 33.3% 33.3% 33.3%;
+  margin: 10px 0;
+}
+
+.list-item {
+  margin: 3px 0;
+}
+
+.google-maps {
+  width: 90%;
+  margin: 0 auto 60px auto;
 }
