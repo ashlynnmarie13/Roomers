@@ -104,7 +104,15 @@ class AddListing extends Component {
     });
   };
 
+  onPictureUpload = s3 => {
+    this.setState({
+      profile_image: s3.filename
+    });
+  };
+
   render() {
+    console.log(this.state);
+
     return (
       <div className="add-listing">
         <div className="listing-nav">
