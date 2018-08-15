@@ -162,15 +162,7 @@ class Listing extends Component {
                 </h1>
                 <h2>The Space</h2>
                 <p className="listing-section-description">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam, ducimus incidunt necessitatibus repudiandae rerum nisi
-                  rem excepturi sed iure aperiam accusantium laboriosam? Nisi
-                  commodi ullam consequatur voluptatem magnam tempore ipsum.
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Illum voluptatem odit accusamus dolorum voluptate dolores
-                  fugit nihil, mollitia, assumenda soluta ipsa dolore tempora
-                  deserunt laboriosam necessitatibus asperiores deleniti
-                  doloribus reprehenderit?
+                  {this.state.listingInfo.description}
                 </p>
                 <h2>Amenities</h2>
                 <div className="amenities-list">{amenities}</div>
@@ -210,7 +202,16 @@ class Listing extends Component {
         </div>
 
         <div className="google-maps">
-          <MyMapComponent />
+          <MyMapComponent
+            lat={
+              this.state.listingInfo.address &&
+              this.state.listingInfo.address.lat
+            }
+            lng={
+              this.state.listingInfo.address &&
+              this.state.listingInfo.address.lng
+            }
+          />
         </div>
       </div>
     );

@@ -147,3 +147,17 @@
   width: 60%;
   position: absolute;
 }
+
+.images {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+}
+
+.image-container {
+  margin: 5px;
+}
+
+.image-item {
+  height: 100%;
+  width: 100%;
+}

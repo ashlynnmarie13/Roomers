@@ -3,7 +3,14 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
 } from "react-places-autocomplete";
-import { Checkbox, Input, Label, Dropdown, Button } from "semantic-ui-react";
+import {
+  Checkbox,
+  Input,
+  Label,
+  Dropdown,
+  Button,
+  TextArea
+} from "semantic-ui-react";
 import { connect } from "react-redux";
 import lengthModel from "../Models/lengthModel";
 import ReactS3Uploader from "react-s3-uploader";
@@ -18,7 +25,6 @@ class AddListing extends Component {
     fortiesAndOlder: false,
     male: true,
     female: false,
-    gender: "",
     street: "",
     address: "",
     city: "",
@@ -41,9 +47,10 @@ class AddListing extends Component {
     privateBathroom: false,
     outdoorSpace: false,
     hasPet: false,
-    roomImage: "",
     lat: 0,
-    lng: 0
+    lng: 0,
+    images: [],
+    description: ""
   };
 
   inputHandler = e => {
@@ -84,7 +91,6 @@ class AddListing extends Component {
 
   handleSelect = address => {
     geocodeByAddress(address).then(results => {
-      console.log(results[0].address_components);
       this.setState(
         {
           address,
@@ -104,14 +110,23 @@ class AddListing extends Component {
     });
   };
 
-  onPictureUpload = s3 => {
+  onUpload = s3 => {
     this.setState({
-      profile_image: s3.filename
+      images: [
+        ...this.state.images,
+        process.env.REACT_APP_AWS_URL + s3.filename
+      ]
     });
   };
 
   render() {
-    console.log(this.state);
+    let images = this.state.images.map((val, i) => {
+      return (
+        <div key={i} className="image-container">
+          <img className="image-item" src={val} alt="" />
+        </div>
+      );
+    });
 
     return (
       <div className="add-listing">
@@ -269,7 +284,7 @@ class AddListing extends Component {
                 <div className="section-address-inputs">
                   <div className="address-input">
                     <Input
-                      name="monthlyAmount"
+                      name="monthlyCost"
                       onChange={e => this.inputHandler(e)}
                       style={{ width: "100%", margin: "5px 10px" }}
                       labelPosition="right"
@@ -283,7 +298,7 @@ class AddListing extends Component {
                   </div>
                   <div className="address-input">
                     <Input
-                      name="depositAmount"
+                      name="depositCost"
                       onChange={e => this.inputHandler(e)}
                       style={{ width: "60%", margin: "5px 10px" }}
                       labelPosition="right"
@@ -301,7 +316,7 @@ class AddListing extends Component {
                   <div className="address-input">
                     <div className="selection-title">Move in date: </div>
                     <Input
-                      name="date"
+                      name="moveInDate"
                       onChange={e => this.inputHandler(e)}
                       style={{ width: "100%", margin: "5px 10px" }}
                       placeholder="Month Day, Year (Ex. Aug 24, 2018)"
@@ -430,6 +445,21 @@ class AddListing extends Component {
           </div>
           <div className="listing-section">
             <div>
+              <p className="details-header">Description</p>
+            </div>
+            <div className="section-details">
+              <TextArea
+                name="description"
+                onChange={e => this.inputHandler(e)}
+                autoHeight
+                rows={8}
+                style={{ width: "100%" }}
+              />
+            </div>
+            <div />
+          </div>
+          <div className="listing-section">
+            <div>
               <p className="details-header">Upload Photos</p>
             </div>
             <div className="section-details">
@@ -439,16 +469,17 @@ class AddListing extends Component {
                 accept="image/*"
                 s3path=""
                 onProgress={this.progress}
-                onFinish={this.onPictureUpload}
+                onFinish={this.onUpload}
                 contentDisposition="auto"
                 scrubFilename={filename =>
                   filename.replace(/[^\w\d_\-.]+/gi, "")
                 }
                 inputRef={cmp => (this.uploadInput = cmp)}
-                server="http://localhost:3001"
+                server={process.env.REACT_APP_SERVER}
                 autoUpload
               />
             </div>
+            <div className="images">{images}</div>
             <div />
           </div>
           <div className="listing-section-button">
