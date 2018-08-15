@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng
+} from "react-places-autocomplete";
 import { Checkbox, Input, Label, Dropdown, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import lengthModel from "../Models/lengthModel";
@@ -16,7 +20,7 @@ class AddListing extends Component {
     female: false,
     gender: "",
     street: "",
-    apt: "",
+    address: "",
     city: "",
     state: "",
     zip: "",
@@ -37,7 +41,9 @@ class AddListing extends Component {
     privateBathroom: false,
     outdoorSpace: false,
     hasPet: false,
-    roomImage: ""
+    roomImage: "",
+    lat: 0,
+    lng: 0
   };
 
   inputHandler = e => {
@@ -70,6 +76,32 @@ class AddListing extends Component {
       .then(response => {
         this.props.history.push("/myListings");
       });
+  };
+
+  handleChange = address => {
+    this.setState({ address });
+  };
+
+  handleSelect = address => {
+    geocodeByAddress(address).then(results => {
+      console.log(results[0].address_components);
+      this.setState(
+        {
+          address,
+          street: `${results[0].address_components[0].long_name} ${
+            results[0].address_components[1].long_name
+          }`,
+          city: results[0].address_components[3].long_name,
+          state: results[0].address_components[5].long_name,
+          zip: results[0].address_components[7].long_name
+        },
+        () => {
+          getLatLng(results[0])
+            .then(latLng => this.setState({ lat: latLng.lat, lng: latLng.lng }))
+            .catch(error => console.error("Error", error));
+        }
+      );
+    });
   };
 
   render() {
@@ -160,49 +192,57 @@ class AddListing extends Component {
             </div>
             <div className="section-details">
               <div className="address">
-                <div className="selection-title">Address:</div>
                 <div className="section-address-inputs">
                   <div className="address-input">
-                    <Input
-                      name="street"
-                      onChange={e => this.inputHandler(e)}
-                      style={{ width: "100%", margin: "5px 10px" }}
-                      placeholder="Street Address"
-                    />
-                  </div>
-                  <div className="address-input">
-                    <Input
-                      name="apt"
-                      onChange={e => this.inputHandler(e)}
-                      style={{ width: "100%", margin: "5px 10px" }}
-                      placeholder="Apt#"
-                    />
-                  </div>
-                </div>
-                <div className="section-address-inputs-three">
-                  <div className="address-input">
-                    <Input
-                      name="city"
-                      onChange={e => this.inputHandler(e)}
-                      style={{ width: "100%", margin: "5px 10px" }}
-                      placeholder="City"
-                    />
-                  </div>
-                  <div className="address-input">
-                    <Input
-                      name="state"
-                      onChange={e => this.inputHandler(e)}
-                      style={{ width: "100%", margin: "5px 10px" }}
-                      placeholder="State"
-                    />
-                  </div>
-                  <div className="address-input">
-                    <Input
-                      name="zip"
-                      onChange={e => this.inputHandler(e)}
-                      style={{ width: "100%", margin: "5px 10px" }}
-                      placeholder="Zip"
-                    />
+                    <PlacesAutocomplete
+                      value={this.state.address}
+                      onChange={this.handleChange}
+                      onSelect={this.handleSelect}
+                    >
+                      {({
+                        getInputProps,
+                        suggestions,
+                        getSuggestionItemProps,
+                        loading
+                      }) => (
+                        <div>
+                          <Input
+                            {...getInputProps({
+                              placeholder: "Search Places ...",
+                              className: "location-search-input"
+                            })}
+                          />
+                          <div className="autocomplete-dropdown-container">
+                            {loading && <div>Loading...</div>}
+                            {suggestions.map(suggestion => {
+                              const className = suggestion.active
+                                ? "suggestion-item--active"
+                                : "suggestion-item";
+                              // inline style for demonstration purpose
+                              const style = suggestion.active
+                                ? {
+                                    backgroundColor: "#fafafa",
+                                    cursor: "pointer"
+                                  }
+                                : {
+                                    backgroundColor: "#ffffff",
+                                    cursor: "pointer"
+                                  };
+                              return (
+                                <div
+                                  {...getSuggestionItemProps(suggestion, {
+                                    className,
+                                    style
+                                  })}
+                                >
+                                  <span>{suggestion.description}</span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+                    </PlacesAutocomplete>
                   </div>
                 </div>
               </div>
@@ -389,23 +429,16 @@ class AddListing extends Component {
                 signingUrl="/s3/sign"
                 signingUrlMethod="GET"
                 accept="image/*"
-                s3path="/uploads/"
-                preprocess={this.onUploadStart}
-                onSignedUrl={this.onSignedUrl}
-                onProgress={this.onUploadProgress}
-                onError={this.onUploadError}
-                onFinish={this.onUploadFinish}
-                // signingUrlHeaders={{ additional: headers }}
-                // signingUrlQueryParams={{ additional: query - params }}
-                signingUrlWithCredentials={true} // in case when need to pass authentication credentials via CORS
-                uploadRequestHeaders={{ "x-amz-acl": "public-read" }} // this is the default
+                s3path=""
+                onProgress={this.progress}
+                onFinish={this.onPictureUpload}
                 contentDisposition="auto"
                 scrubFilename={filename =>
                   filename.replace(/[^\w\d_\-.]+/gi, "")
                 }
-                server="http://cross-origin-server.com"
                 inputRef={cmp => (this.uploadInput = cmp)}
-                autoUpload={true}
+                server="http://localhost:3001"
+                autoUpload
               />
             </div>
             <div />

@@ -196,10 +196,10 @@ module.exports = {
       male,
       female,
       street,
-      apt,
       city,
       state,
       zip,
+      address,
       monthlyCost,
       depositCost,
       moveInDate,
@@ -237,10 +237,10 @@ module.exports = {
       },
       address: {
         street,
-        apt,
         city,
         state,
-        zip
+        zip,
+        fullAddress: address
       },
       rent: {
         monthlyCost,
