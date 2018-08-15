@@ -2,15 +2,17 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import "./Profile.css";
-import { ENGINE_METHOD_DIGESTS } from "constants";
 import moment from "moment";
 import TheirListings from "../TheirListings/TheirListings";
 import { Button, Card, Image, Icon, Segment } from "semantic-ui-react";
 
+import ProfileCard from "../ProfileCard/ProfileCard";
+
 class Profile extends Component {
   state = {
     userInfo: {},
-    listings: []
+    listings: [],
+    address: ""
   };
 
   componentDidMount() {
@@ -22,7 +24,6 @@ class Profile extends Component {
 
   render() {
     const { userInfo } = this.state;
-    console.log(userInfo);
 
     const birthday = userInfo.birthday;
     let age = moment().diff(birthday, "years");
@@ -52,6 +53,7 @@ class Profile extends Component {
       }
     }
     RemoveFalse();
+
     RemoveFalsePrefs();
     console.log("myObj: ", traits);
     console.log("myArray: ", traitsArray);

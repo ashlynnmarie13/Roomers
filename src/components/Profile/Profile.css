@@ -6,6 +6,7 @@
   background-color: white;
 }
 
+
 .image {
   width: auto;
   height: 80%;
@@ -98,4 +99,9 @@
 
 .scoot-pets {
   margin-right: 13%;
+}
+
+.listings {
+  display: flex;
+  justify-content: space-between;
 }

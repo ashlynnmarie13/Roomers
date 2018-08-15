@@ -5,6 +5,26 @@ const s3 = new AWS.S3();
 const myBucket = "barc-housing";
 const myKey = process.env.MY_KEY;
 
+let flattenObject = function(ob) {
+  let toReturn = {};
+
+  for (let i in ob) {
+    if (!ob.hasOwnProperty(i)) continue;
+
+    if (typeof ob[i] == "object") {
+      let flatObject = flattenObject(ob[i]);
+      for (let x in flatObject) {
+        if (!flatObject.hasOwnProperty(x)) continue;
+
+        toReturn[i + "." + x] = flatObject[x];
+      }
+    } else {
+      toReturn[i] = ob[i];
+    }
+  }
+  return toReturn;
+};
+
 module.exports = {
   addUserInfo: (req, res) => {
     const {
@@ -83,24 +103,9 @@ module.exports = {
     newProfile
       .save()
       .then(response => {
-        let toReturn = {};
+        let newObj = flattenObject(response);
 
-        for (let i in response) {
-          if (!response.hasOwnProperty(i)) continue;
-
-          if (typeof response[i] == "object") {
-            let flatObject = flattenObject(response[i]);
-            for (let x in flatObject) {
-              if (!flatObject.hasOwnProperty(x)) continue;
-
-              toReturn[i + "." + x] = flatObject[x];
-            }
-          } else {
-            toReturn[i] = response[i];
-          }
-        }
-
-        res.status(200).send(toReturn);
+        res.status(200).send(newObj);
       })
       .catch(err => console.log("User already has a profile " + err));
   },
@@ -156,7 +161,6 @@ module.exports = {
 
   getProfileById: (req, res) => {
     const { id } = req.params;
-    console.log(id);
 
     Profile.findOne({ _id: id }).then(profile => {
       console.log(profile);
@@ -166,11 +170,20 @@ module.exports = {
 
   getProfileByAuthId: (req, res) => {
     const { authID } = req.params;
-    console.log(authID);
+    // console.log(authID);
 
     Profile.findOne({ _id: authID }).then(profile => {
       console.log(profile);
       res.status(200).send(profile);
+    });
+  },
+
+  getListingById: (req, res) => {
+    const { id } = req.params;
+
+    Listing.findOne({ _id: id }).then(listing => {
+      console.log(listing);
+      res.status(200).send(listing);
     });
   },
 
@@ -183,10 +196,10 @@ module.exports = {
       male,
       female,
       street,
-      apt,
       city,
       state,
       zip,
+      address,
       monthlyCost,
       depositCost,
       moveInDate,
@@ -224,10 +237,10 @@ module.exports = {
       },
       address: {
         street,
-        apt,
         city,
         state,
-        zip
+        zip,
+        fullAddress: address
       },
       rent: {
         monthlyCost,
@@ -286,30 +299,6 @@ module.exports = {
       male,
       female
     } = req.query;
-
-    console.log(
-      smoke,
-      clean,
-      guests,
-      pets,
-      washer,
-      wifi,
-      utilities,
-      furnished,
-      elevator,
-      doorman,
-      airConditioning,
-      heating,
-      gym,
-      tv,
-      privateBathroom,
-      outdoorSpace,
-      hasPet,
-      selectedState,
-      rentLength,
-      male,
-      female
-    );
 
     let smokeBool = smoke === "true";
     let cleanBool = clean === "true";

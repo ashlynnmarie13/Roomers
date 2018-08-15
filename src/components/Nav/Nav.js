@@ -68,7 +68,7 @@ class Nav extends Component {
               fontSize: "1.2em"
             }}
           >
-            <Link to="/searchlistings" style={{ color: "#031424" }}>
+            <Link to="/searchrooms" style={{ color: "#031424" }}>
               {" "}
               Search
             </Link>
