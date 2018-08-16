@@ -1,57 +1,77 @@
 import React, { Component } from "react";
 import axios from "axios";
-import RoomCard from "../RoomCard/RoomCard";
+import { Card, Image } from "semantic-ui-react";
+import { Link } from "react-router-dom";
+import moment from "moment";
+import { connect } from "react-redux";
 import "./Wishlist.css";
 
 class Wishlist extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      favorite: []
+      wishList: []
     };
   }
 
   componentDidMount() {
-    axios.get("/api/favorite").then(response => {
+    axios.get(`/api/wishlist/${this.props.user.authID}`).then(response => {
       this.setState({
-        favotite: response.data
+        wishList: response.data.wishList
       });
     });
   }
 
-  deleteFromFavList(listing) {
-    axios.delete(`/api/listing/favorite/${listing.id}`).then(() =>
-      axios.get("api/favorite").then(response => {
+  deleteFromWishList(listing) {
+    axios.delete(`/api/listing/wishlist/${listing.id}`).then(() =>
+      axios.get("api/wishlist").then(response => {
         this.setState({
-          cart: response.data
+          listing: response.data
         });
       })
     );
   }
   render() {
-    console.log(this.state.selectedState);
-    const favorite = this.state.favorite.map((val, i) => {
-      const { address, amenities, human, prefs, rent, userID, _id } = val;
+    const wishList = this.state.wishList.map((val, i) => {
+      const {
+        city,
+        id,
+        image,
+        loggedInUser,
+        monthlyCost,
+        moveInDate,
+        rentLength,
+        state,
+        userID,
+        address,
+        rent
+      } = val;
+
+      console.log(val);
 
       return (
-        <RoomCard
-          address={address}
-          amenities={amenities}
-          human={human}
-          prefs={prefs}
-          rent={rent}
-          userID={userID}
-          id={_id}
-          key={i}
-          text="Delete From Favorite"
-          onSubmit={() => this.deleteFromFavList(1, _id, 1)}
-        />
+        <Card style={{ height: "400px", marginTop: 0 }}>
+          <Link to={`/listing/${id}`}>
+            <Image style={{ width: "100%", height: "200px" }} src={image} />
+          </Link>
+          <Card.Content>
+            <Card.Header>
+              ${monthlyCost} in {city}, {state}
+            </Card.Header>
+            <Card.Meta>
+              <span className="date">
+                {moment(moveInDate).format("MMM Do YYYY")} - {rentLength} Months
+              </span>
+            </Card.Meta>
+            <Card.Description />
+          </Card.Content>
+          <Card.Content extra>
+           <a > Delete From Wishlist</a>
+          </Card.Content>
+        </Card>
       );
     });
-    return(
-      <div className="search-results">{favorite}</div>
-    )
+    return <div className="search-results">{wishList}</div>;
   }
-
 }
-export default Wishlist;
+export default connect(state => state)(Wishlist);

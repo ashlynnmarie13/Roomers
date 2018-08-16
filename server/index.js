@@ -148,7 +148,8 @@ app.get("/api/user/info/:id", ctrl.getProfileByAuthId);
 // adds listing
 app.post("/api/listing/add", ctrl.addListing);
 app.get("/api/rooms", ctrl.getListings);
-app.get("/api/addtowishlist", ctrl.addToWishList);
+app.get("/api/wishlist/:id", ctrl.getWishList);
+app.post("/api/addtowishlist", ctrl.addToWishList);
 //get listing by id
 app.get("/api/listing/:state", ctrl.getListingByState);
 app.get("/api/listing/:id", ctrl.getListingByAuthId);

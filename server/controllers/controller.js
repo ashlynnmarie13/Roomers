@@ -65,7 +65,7 @@ module.exports = {
       image
     } = req.body;
 
-    console.log(req.body);
+    // console.log(req.body);
 
     const newProfile = new Profile({
       _id: userID,
@@ -110,7 +110,8 @@ module.exports = {
         partyAnimal,
         vegan,
         introverted
-      }
+      },
+      wishList: []
     });
     newProfile
       .save()
@@ -123,12 +124,12 @@ module.exports = {
   },
 
   uploadPhoto: (req, res) => {
-    console.log(req.file);
+    // console.log(req.file);
     let imageLink = "";
 
     s3.createBucket({ Bucket: myBucket }, function(err, data) {
       if (err) {
-        console.log(err);
+        // console.log(err);
       } else {
         params = {
           Bucket: myBucket,
@@ -138,7 +139,7 @@ module.exports = {
           ACL: "public-read"
         };
 
-        console.log(req.file);
+        // console.log(req.file);
 
         s3.putObject(params, function(err, data) {
           if (err) {
@@ -175,7 +176,7 @@ module.exports = {
     const { id } = req.params;
 
     Profile.findOne({ _id: id }).then(profile => {
-      console.log(profile);
+      // console.log(profile);
       res.status(200).send(profile);
     });
   },
@@ -185,7 +186,7 @@ module.exports = {
     // console.log(authID);
 
     Profile.findOne({ _id: authID }).then(profile => {
-      console.log(profile);
+      // console.log(profile);
       res.status(200).send(profile);
     });
   },
@@ -194,7 +195,7 @@ module.exports = {
     const { id } = req.params;
 
     Listing.findOne({ _id: id }).then(listing => {
-      console.log(listing);
+      // console.log(listing);
       res.status(200).send(listing);
     });
   },
@@ -284,7 +285,7 @@ module.exports = {
       description
     });
 
-    console.log(req.body);
+    // console.log(req.body);
 
     newListing.save().then(response => res.status(200).send(response));
   },
@@ -363,6 +364,7 @@ module.exports = {
       // "human.gender.female": female
     }).then(rooms => res.status(200).send(rooms));
   },
+
   getListingById: (req, res) => {
     const { id } = req.params;
     Listing.findOne({ _id: id }).then(listing => {
@@ -384,9 +386,42 @@ module.exports = {
   },
 
   addToWishList: (req, res) => {
-    Profile.findOneAndUpdate(
-      { _id: req.body.user_id },
-      { $push: { wishlist: objWishlist } }
+    const {
+      id,
+      userID,
+      loggedInUser,
+      monthlyCost,
+      city,
+      state,
+      moveInDate,
+      rentLength,
+      image
+    } = req.body;
+
+    console.log(
+      id,
+      userID,
+      loggedInUser,
+      monthlyCost,
+      city,
+      state,
+      moveInDate,
+      rentLength,
+      image
     );
+
+    console.log(req.body);
+
+    Profile.update(
+      { _id: loggedInUser },
+      { $push: { wishList: req.body } }
+    ).then(response => console.log(response));
+  },
+
+  getWishList: (req, res) => {
+    const { id } = req.params;
+    console.log(id);
+
+    Profile.findOne({ _id: id }).then(profile => res.status(200).send(profile));
   }
 };

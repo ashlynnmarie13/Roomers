@@ -28,7 +28,8 @@ class SearchRooms extends Component {
     outdoorSpace: false,
     hasPet: false,
     selectedState: "",
-    rentLength: ""
+    rentLength: "",
+    loggedInUser: ""
   };
 
   componentDidMount() {
@@ -79,11 +80,28 @@ class SearchRooms extends Component {
 
   genderHandler = (e, data) => {};
 
-  addToFavList = (listing_id, user_id) => {
+  addToWishList = (
+    id,
+    userID,
+    loggedInUser,
+    monthlyCost,
+    city,
+    state,
+    moveInDate,
+    rentLength,
+    image
+  ) => {
     axios
       .post("/api/addtowishlist", {
-        listing_id,
-        user_id
+        id,
+        userID,
+        loggedInUser,
+        monthlyCost,
+        city,
+        state,
+        moveInDate,
+        rentLength,
+        image
       })
 
       .then(res => {
@@ -93,7 +111,8 @@ class SearchRooms extends Component {
   };
 
   render() {
-    const roomList = this.state.rooms.map(val => {
+    console.log(this.props);
+    const roomList = this.state.rooms.map((val, i) => {
       const {
         address,
         amenities,
@@ -104,7 +123,6 @@ class SearchRooms extends Component {
         _id,
         images
       } = val;
-      console.log(val);
 
       return (
         <RoomCard
@@ -115,9 +133,10 @@ class SearchRooms extends Component {
           rent={rent}
           userID={userID}
           id={_id}
+          loggedInUser={this.props.user && this.props.user.authID}
           key={i}
           text="Add To Favorite"
-          onSubmit={() => this.addToFavList(1, _id, 1)}
+          onSubmit={this.addToWishList}
           images={images}
         />
       );
@@ -301,8 +320,4 @@ class SearchRooms extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  listing: state.listing
-});
-
-export default connect(mapStateToProps)(SearchRooms);
+export default connect(state => state)(SearchRooms);
