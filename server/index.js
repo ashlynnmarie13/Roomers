@@ -154,6 +154,10 @@ app.post("/api/addtowishlist", ctrl.addToWishList);
 app.get("/api/listing/:state", ctrl.getListingByState);
 app.get("/api/listing/:id", ctrl.getListingByAuthId);
 app.get("/api/listing/id/:id", ctrl.getListingById);
+
+//add chat for user
+app.post("/api/user/chat", ctrl.addChat);
+
 server.listen(port, () => {
   console.log(`app is running in server port ${port}`);
 });

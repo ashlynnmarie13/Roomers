@@ -6,7 +6,7 @@
   background-color: white;
   height: 10vh;
   color: black;
-
+  border-bottom: solid lightgrey 2px;
   box-shadow: inset 0px 10px 13px -6px rgba(0, 0, 0, 0.75);
 }
 .listings {
@@ -36,22 +36,6 @@
   align-self: center;
 
   width: 30%;
-}
-
-.addlistings {
-  color: #cf6766;
-  text-align: center;
-  border: solid salmon 5px;
-  border: 1px solid #cf6766;
-  border-width: thick;
-
-  cursor: pointer;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-.addlistings:hover {
-  background-color: #cf6766;
-  color: white;
 }
 
 .fa-comment {
@@ -92,19 +76,6 @@
   background-color: rgb(230, 233, 230); /* Green */
   color: #031424;
 }
-.wishlist {
-  color: #031424;
-  text-align: center;
-
-  cursor: pointer;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 20px;
-}
-.wishlist:hover {
-  background-color: rgb(230, 233, 230); /* Green */
-  color: #031424;
-}
 
 .logo {
   color: #031424;
@@ -130,7 +101,7 @@
 }
 
 .home:hover {
-  animation: resize .5s both;
+  animation: resize 0.5s both;
   color: #cf6766;
   text-shadow: 2px 2px 1px #031424;
 }
@@ -151,9 +122,20 @@
   height: 100%;
 }
 
+.expand-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #031424;
+  margin-top: -10%;
+  margin-bottom: -10%;
+  height: 12vh;
+  width: 9vw;
+}
 @keyframes resize {
   from {
-    transform: scale(1)
+    transform: scale(1);
   }
   to {
     transform: scale(1.05) perspective(5px);
