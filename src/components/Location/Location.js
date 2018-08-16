@@ -54,7 +54,7 @@ export default class Location extends Component {
               <Card.Content style={{ height: "110px" }}>
                 <Card.Header>
                   {city.address && city.rent.moveInDate}
-                  {city.address && city.rent.rentLength} Months
+                  {city.address && city.rent.rentLength} + Months
                 </Card.Header>
                 <Card.Meta>
                   <span className="date">
