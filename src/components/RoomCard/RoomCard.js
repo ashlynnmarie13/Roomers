@@ -1,10 +1,10 @@
 import React from "react";
 import { Card, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 export default props => {
   const { address, amenities, human, prefs, rent, userID, id, images } = props;
-  console.log(props);
 
   return (
     <Card style={{ height: "400px", marginTop: 0 }}>
@@ -24,7 +24,8 @@ export default props => {
         </Card.Header>
         <Card.Meta>
           <span className="date">
-            {rent.moveInDate} - {rent.rentLength} Months
+            {moment(rent.moveInDate).format("MMM Do YYYY")} - {rent.rentLength}{" "}
+            Months
           </span>
         </Card.Meta>
         <Card.Description />

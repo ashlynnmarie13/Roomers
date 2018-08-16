@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import MyMapComponent from "../MyMapComponent/MyMapComponent";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { list } from "../../../node_modules/postcss";
+import moment from "moment";
 import { Button } from "semantic-ui-react";
 import "./Listing.css";
 
@@ -144,7 +144,9 @@ class Listing extends Component {
               <div className="listing-info">
                 <span>Move in: </span>
                 {this.state.listingInfo.rent &&
-                  this.state.listingInfo.rent.moveInDate}
+                  moment(this.state.listingInfo.rent.moveInDate).format(
+                    "MMM Do YYYY"
+                  )}
                 <span>Duration: </span>
                 {this.state.listingInfo.rent &&
                   this.state.listingInfo.rent.rentLength}{" "}
@@ -180,7 +182,7 @@ class Listing extends Component {
           <div className="listing-profile">
             <div className="listing-profile-card">
               <Link to={`/profile/${_id}`}>
-                <img src={profilePic} alt="" />
+                <img style={{ objectFit: "cover" }} src={profilePic} alt="" />
               </Link>
 
               <Link to={`/chat/${_id}`}>

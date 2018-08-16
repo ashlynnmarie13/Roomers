@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
@@ -98,7 +99,7 @@ class AddListing extends Component {
     axios
       .post("/api/listing/add", { ...this.state, userID: authID })
       .then(response => {
-        this.props.history.push("/myListings");
+        this.props.history.push("/myprofile");
       });
   };
 
@@ -136,6 +137,34 @@ class AddListing extends Component {
     });
   };
 
+  scrollTo = chosenRef => {
+    let node;
+
+    switch (chosenRef) {
+      case "roomate":
+        node = ReactDOM.findDOMNode(this.refs.roomate);
+        break;
+      case "location":
+        node = ReactDOM.findDOMNode(this.refs.location);
+        break;
+      case "cost":
+        node = ReactDOM.findDOMNode(this.refs.cost);
+        break;
+      case "amenities":
+        node = ReactDOM.findDOMNode(this.refs.amenities);
+        break;
+      case "description":
+        node = ReactDOM.findDOMNode(this.refs.description);
+        break;
+    }
+
+    window.scrollTo(0, node.offsetTop);
+    window.scrollTo({
+      top: node.offsetTop,
+      behavior: "smooth"
+    });
+  };
+
   render() {
     let images = this.state.images.map((val, i) => {
       return (
@@ -150,27 +179,18 @@ class AddListing extends Component {
         <div className="listing-nav">
           <h1 className="nav-header">List Your Place</h1>
 
-          <p>Roomate</p>
-          <p>Location</p>
-          <p>Cost</p>
-          <p>Amenities</p>
-          <p
-          // onClick={() => {
-          //   const descriptionNode = ReactDOM.findDOMNode(
-          //     this.refs.description
-          //   );
-          //   window.scrollTo(0, descriptionNode.offsetTop);
-          // }}
-          >
-            Description
-          </p>
+          <p onClick={() => this.scrollTo("roomate")}>Roomate</p>
+          <p onClick={() => this.scrollTo("location")}>Location</p>
+          <p onClick={() => this.scrollTo("cost")}>Cost</p>
+          <p onClick={() => this.scrollTo("amenities")}>Amenities</p>
+          <p onClick={() => this.scrollTo("description")}>Description</p>
         </div>
         <div className="listing-sections">
-          <div className="listing-section">
+          <div ref="roomate" className="listing-section">
             <div>
               <p className="details-header">Who's your ideal roomate?</p>
             </div>
-            <div ref={this.roomate} className="section-details">
+            <div className="section-details">
               <div className="selection">
                 <div className="selection-title">Age:</div>
                 <div className="section-inputs">
@@ -232,11 +252,11 @@ class AddListing extends Component {
             </div>
             <div />
           </div>
-          <div className="listing-section">
+          <div ref="location" className="listing-section">
             <div>
               <p className="details-header">Where's your place located?</p>
             </div>
-            <div ref={this.location} className="section-details">
+            <div className="section-details">
               <div className="address">
                 <div className="section-google-input">
                   <div className="">
@@ -296,7 +316,7 @@ class AddListing extends Component {
             </div>
             <div />
           </div>
-          <div ref={this.cost} className="listing-section">
+          <div ref="cost" className="listing-section">
             <div>
               <p className="details-header">
                 What's the monthly rent? When can your roomate move in?
@@ -368,7 +388,7 @@ class AddListing extends Component {
             <div />
           </div>
 
-          <div ref={this.amenities} className="listing-section">
+          <div ref="amenities" className="listing-section">
             <div>
               <p className="details-header">Amenities</p>
             </div>
@@ -469,7 +489,7 @@ class AddListing extends Component {
             </div>
             <div />
           </div>
-          <div ref={this.description} className="listing-section">
+          <div ref="description" className="listing-section">
             <div>
               <p className="details-header">Description</p>
             </div>

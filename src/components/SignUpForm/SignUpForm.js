@@ -17,13 +17,17 @@ import "react-dates/initialize";
 import {
   DateRangePicker,
   SingleDatePicker,
-  DayPickerRangeController
+  DayPickerRangeController,
+  DayPicker
 } from "react-dates";
+import moment from "moment";
 import "react-dates/lib/css/_datepicker.css";
 import { addUserInfo } from "../../redux/ducks/userReducer";
 import { connect } from "react-redux";
 import "./SignUpForm.css";
 import axios from "axios";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 
 class SignUpForm extends Component {
   state = {
@@ -31,6 +35,8 @@ class SignUpForm extends Component {
     name: "",
     male: true,
     female: false,
+    year: "",
+    date: "",
     email: "",
     phone: "",
     dob: "",
@@ -63,11 +69,22 @@ class SignUpForm extends Component {
     clean: false,
     guests: false,
     pets: false,
-    image: ""
+    image: "",
+    focused: true
+  };
+
+  addDashes = f => {
+    let f_val = f.replace(/\D[^\.]/g, "");
+    return f_val.slice(0, 3) + "-" + f_val.slice(3, 6) + "-" + f_val.slice(6);
   };
 
   inputHandler = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    if (e.target.name === "phone") {
+      let phone = this.addDashes(e.target.value);
+      this.setState({ phone });
+    } else {
+      this.setState({ [e.target.name]: e.target.value });
+    }
   };
 
   checkboxHandler = (e, data) => {
@@ -128,7 +145,8 @@ class SignUpForm extends Component {
   };
 
   render() {
-    console.log(this.state);
+    console.log(this.state.phone);
+
     return (
       <div className="sign-up">
         <div className="picture" />
@@ -175,29 +193,38 @@ class SignUpForm extends Component {
               </div>
               <div className="input">
                 <p className="section-item">Phone:</p>
-                <Input
-                  onChange={event => this.inputHandler(event)}
-                  name="phone"
-                  type="number"
-                  placeholder="123-456-7890"
-                  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                  required
-                />
+                {/* <br /> */}
+                <div style={{ marginTop: 20 }}>
+                  <PhoneInput
+                    placeholder="Enter phone number"
+                    country="US"
+                    value={this.state.phone}
+                    onChange={phone => this.setState({ phone })}
+                  />
+                </div>
                 <div className="input">
                   <p className="section-item">Date of Birth:</p>
-                  <DateRangePicker
-                    startDate={this.state.startDate} // momentPropTypes.momentObj or null,
-                    startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
-                    endDate={this.state.endDate} // momentPropTypes.momentObj or null,
-                    endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-                    onDatesChange={({ startDate, endDate }) =>
-                      this.setState({ startDate, endDate })
-                    } // PropTypes.func.isRequired,
-                    focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-                    onFocusChange={focusedInput =>
-                      this.setState({ focusedInput })
-                    } // PropTypes.func.isRequired,
-                  />
+
+                  {!this.state.year ? (
+                    <Dropdown
+                      onChange={(e, data) => this.dropdownHandler(e, data)}
+                      name="year"
+                      placeholder="Year"
+                      options={[
+                        { text: "2010", value: "2010" },
+                        { text: "2018", value: "2018" }
+                      ]}
+                    />
+                  ) : (
+                    <DayPicker
+                      date={moment(`01/01/${this.state.year}`)} // momentPropTypes.momentObj or null
+                      onDateChange={date => this.setState({ date })} // PropTypes.func.isRequired
+                      focused={this.state.focused} // PropTypes.bool
+                      onFocusChange={({ focused }) =>
+                        this.setState({ focused })
+                      }
+                    />
+                  )}
                 </div>
               </div>
             </div>
@@ -270,24 +297,32 @@ class SignUpForm extends Component {
               </div>
               <div className="input">
                 <p className="section-item">Upload a photo:</p>
-                <ReactS3Uploader
-                  signingUrl="/s3/sign"
-                  signingUrlMethod="GET"
-                  accept="image/*"
-                  s3path=""
-                  onProgress={this.progress}
-                  onFinish={this.onUpload}
-                  contentDisposition="auto"
-                  scrubFilename={filename =>
-                    filename.replace(/[^\w\d_\-.]+/gi, "")
-                  }
-                  inputRef={cmp => (this.uploadInput = cmp)}
-                  server={process.env.REACT_APP_SERVER}
-                  autoUpload
-                  required
-                />
+                {this.state.image ? (
+                  <img
+                    onClick={() => this.setState({ image: "" })}
+                    className="profile-image"
+                    src={this.state.image}
+                    alt=""
+                  />
+                ) : (
+                  <ReactS3Uploader
+                    signingUrl="/s3/sign"
+                    signingUrlMethod="GET"
+                    accept="image/*"
+                    s3path=""
+                    onProgress={this.progress}
+                    onFinish={this.onUpload}
+                    contentDisposition="auto"
+                    scrubFilename={filename =>
+                      filename.replace(/[^\w\d_\-.]+/gi, "")
+                    }
+                    inputRef={cmp => (this.uploadInput = cmp)}
+                    server={process.env.REACT_APP_SERVER}
+                    autoUpload
+                    required
+                  />
+                )}
               </div>
-              <img className="profile-image" src={this.state.image} alt="" />
             </div>
           </div>
 
