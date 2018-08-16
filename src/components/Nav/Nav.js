@@ -4,7 +4,7 @@ import "../../App";
 import logo from "./logo_transparent.png";
 import { NavLink, Link } from "react-router-dom";
 import { Button } from "semantic-ui-react";
-import { getUserById } from "../../redux/ducks/userReducer";
+import { getUserById, getUser } from "../../redux/ducks/userReducer";
 import axios from "axios";
 import { connect } from "react-redux";
 class Nav extends Component {
@@ -12,17 +12,18 @@ class Nav extends Component {
     userInfo: {}
   };
 
-  getProfile() {
+  async componentDidMount() {
+    await this.props.getUser();
     const { authID } = this.props.user;
-    console.log(authID);
-    axios.get(`/api/user/info/${authID}`).then(response => {
-      return response.data.profilePic;
-    });
+    axios
+      .get(`/api/user/info/${authID}`)
+      .then(response =>
+        this.setState({ userInfo: { ...response.data, authID } })
+      );
   }
 
   render() {
-    let profilePic = this.getProfile();
-
+    const { profilePic } = this.state.userInfo;
     return (
       <div className="Nav">
         <div className="box1">
@@ -109,4 +110,12 @@ class Nav extends Component {
     );
   }
 }
-export default connect(state => state)(Nav);
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+export default connect(
+  mapStateToProps,
+  { getUser }
+)(Nav);

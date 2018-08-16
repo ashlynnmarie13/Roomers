@@ -63,7 +63,7 @@ export default class MessageInput extends Component {
       <div className="message-input">
         <form onSubmit={this.handleSubmit} className="message-form">
           <input
-            id="message"
+            messageId="message"
             ref={"messageinput"}
             type="text"
             className="form-control"
