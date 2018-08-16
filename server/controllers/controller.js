@@ -361,5 +361,12 @@ module.exports = {
     console.log(req.params);
 
     Listing.find({ userID: id }).then(listing => res.status(200).send(listing));
+  },
+
+  addToWishList: (req, res) => {
+    Profile.findOneAndUpdate(
+      { _id: req.body.user_id },
+      { $push: { wishlist: objWishlist } }
+    );
   }
 };

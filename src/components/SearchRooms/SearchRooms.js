@@ -79,9 +79,22 @@ class SearchRooms extends Component {
 
   genderHandler = (e, data) => {};
 
+  addToFavList = (listing_id, user_id) => {
+    axios
+      .post("/api/addtowishlist", {
+        listing_id,
+        user_id
+      })
+
+      .then(res => {
+        // this.props.history.push("/wishlist");
+      })
+      .catch(console.log);
+  };
+
   render() {
     console.log(this.state.selectedState);
-    const roomList = this.state.rooms.map(val => {
+    const roomList = this.state.rooms.map((val, i) => {
       const { address, amenities, human, prefs, rent, userID, _id } = val;
 
       return (
@@ -93,6 +106,9 @@ class SearchRooms extends Component {
           rent={rent}
           userID={userID}
           id={_id}
+          key={i}
+          text="Add To Favorite"
+          onSubmit={() => this.addToFavList(1, _id, 1)}
         />
       );
     });

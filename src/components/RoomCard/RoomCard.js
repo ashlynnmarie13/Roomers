@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import {BottomNavigation} from '@material-ui/core'
 
 export default props => {
   const { address, amenities, human, prefs, rent, userID, id } = props;
@@ -22,7 +23,7 @@ export default props => {
         <Card.Description />
       </Card.Content>
       <Card.Content extra>
-        <a>Add to Wishlist</a>
+       <button onClick={props.onSubmit}> {props.text} </button>
       </Card.Content>
     </Card>
   );
