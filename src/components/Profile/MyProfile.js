@@ -13,7 +13,7 @@ class MyProfile extends Component {
   };
 
   componentDidMount() {
-    const authID = "google-oauth2|114206976559611966047";
+    const { authID } = this.props.user;
     console.log(authID);
     axios
       .get(`/api/user/info/${authID}`)
@@ -191,7 +191,7 @@ class MyProfile extends Component {
                   {" "}
                   {userInfo.interestsDescription}
                 </div>
-                <div className="description pref-column middle-header">
+                <div className="description pref-column">
                   <div className="middle-header"> Preferences</div>
                   <div className="my-preferences">{preferences}</div>
                 </div>
