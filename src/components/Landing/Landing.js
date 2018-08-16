@@ -77,7 +77,7 @@ export default class Landing extends Component {
             <div id="container">
               <h1 className="header-text">Rent a Room</h1>
 
-              <Link to="/signup">
+              <Link to="/Login">
                 <Button
                   style={{
                     display: "flex",

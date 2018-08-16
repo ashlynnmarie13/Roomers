@@ -5,8 +5,10 @@ const getUser = (req, res) => {
 };
 
 const logout = (req, res) => {
+  console.log("im out");
   req.session.destroy(() => {
     res.redirect("http://localhost:3000/#/");
+
     // res.redirect("/#/");
   });
 };
