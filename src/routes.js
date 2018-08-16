@@ -20,6 +20,7 @@ export default (
   <Switch>
     <Route exact path="/" component={Landing} />
     <Route path="/listing/:id" component={Listing} />
+
     <Route path="/location/:state" component={Location} />
     <Route path="/signup" component={SignUpForm} />
     <Route path="/profile/:id" component={Profile} />

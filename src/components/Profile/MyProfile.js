@@ -13,7 +13,7 @@ class MyProfile extends Component {
   };
 
   componentDidMount() {
-    const { authID } = this.props.user;
+    const authID = "google-oauth2|114206976559611966047";
     console.log(authID);
     axios
       .get(`/api/user/info/${authID}`)
