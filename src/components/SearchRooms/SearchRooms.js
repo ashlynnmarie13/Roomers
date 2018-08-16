@@ -14,14 +14,14 @@ class SearchRooms extends Component {
     clean: false,
     guests: false,
     pets: false,
-    washer: false,
-    wifi: false,
-    utilities: false,
-    furnished: false,
+    washer: true,
+    wifi: true,
+    utilities: true,
+    furnished: true,
     elevator: false,
     doorman: false,
-    airConditioning: false,
-    heating: false,
+    airConditioning: true,
+    heating: true,
     gym: false,
     tv: false,
     privateBathroom: false,
@@ -30,7 +30,7 @@ class SearchRooms extends Component {
     male: true,
     female: false,
     selectedState: "",
-    rentLength: "",
+    rentLength: 0,
     monthlyCost: 999
   };
 
@@ -72,7 +72,11 @@ class SearchRooms extends Component {
   };
 
   inputHandler = e => {
-    this.setState({ monthlyCost: e.target.value }, () => this.searchRooms());
+    if (e.target.value.length === 0) {
+      this.setState({ monthlyCost: 999 }, () => this.searchRooms());
+    } else {
+      this.setState({ monthlyCost: e.target.value }, () => this.searchRooms());
+    }
   };
 
   checkboxHandler = (e, data) => {
@@ -217,24 +221,28 @@ class SearchRooms extends Component {
             <p className="search-section-title">Amenities</p>
             <div className="selection">
               <Checkbox
+                defaultChecked
                 onChange={(event, data) => this.checkboxHandler(event, data)}
                 name="washer"
                 style={{ margin: "10px 0" }}
                 label="Washer"
               />
               <Checkbox
+                defaultChecked
                 onChange={(event, data) => this.checkboxHandler(event, data)}
                 name="wifi"
                 style={{ margin: "10px 0" }}
                 label="Wifi"
               />
               <Checkbox
+                defaultChecked
                 onChange={(event, data) => this.checkboxHandler(event, data)}
                 name="utilities"
                 style={{ margin: "10px 0" }}
                 label="Utilities"
               />
               <Checkbox
+                defaultChecked
                 onChange={(event, data) => this.checkboxHandler(event, data)}
                 name="furnished"
                 style={{ margin: "10px 0" }}
@@ -253,12 +261,14 @@ class SearchRooms extends Component {
                 label="Doorman"
               />
               <Checkbox
+                defaultChecked
                 onChange={(event, data) => this.checkboxHandler(event, data)}
                 name="airConditioning"
                 style={{ margin: "10px 0" }}
                 label="Air Conditioning"
               />
               <Checkbox
+                defaultChecked
                 onChange={(event, data) => this.checkboxHandler(event, data)}
                 name="heating"
                 style={{ margin: "10px 0" }}

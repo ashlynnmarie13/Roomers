@@ -234,6 +234,26 @@ module.exports = {
       description
     } = req.body;
 
+    // let smokeBool = smoke === "true";
+    // let cleanBool = clean === "true";
+    // let guestsBool = guests === "true";
+    // let petsBool = pets === "true";
+    let washerBool = washer === "true";
+    let wifiBool = wifi === "true";
+    let utilitiesBool = utilities === "true";
+    let furnishedBool = furnished === "true";
+    let elevatorBool = elevator === "true";
+    let doormanBool = doorman === "true";
+    let airConditioningBool = airConditioning === "true";
+    let heatingBool = heating === "true";
+    let gymBool = gym === "true";
+    let tvBool = tv === "true";
+    let privateBathroomBool = privateBathroom === "true";
+    let outdoorSpaceBool = outdoorSpace === "true";
+    let hasPetBool = hasPet === "true";
+    let maleBool = male === "true";
+    let femaleBool = female === "true";
+
     const newListing = new Listing({
       userID,
       human: {
@@ -244,39 +264,39 @@ module.exports = {
           fortiesAndOlder
         },
         gender: {
-          male,
-          female
+          male: maleBool,
+          female: femaleBool
         }
       },
       address: {
         street,
         city,
         state,
-        zip,
+        zip: Number(zip),
         fullAddress: address,
-        lat,
-        lng
+        lat: Number(lat),
+        lng: Number(lng)
       },
       rent: {
-        monthlyCost,
-        depositCost,
+        monthlyCost: Number(monthlyCost),
+        depositCost: Number(depositCost),
         moveInDate,
-        rentLength
+        rentLength: Number(rentLength)
       },
       amenities: {
-        washer,
-        wifi,
-        utilities,
-        furnished,
-        elevator,
-        doorman,
-        airConditioning,
-        heating,
-        gym,
-        tv,
-        privateBathroom,
-        outdoorSpace,
-        hasPet
+        washer: washerBool,
+        wifi: wifiBool,
+        utilities: utilitiesBool,
+        furnished: furnishedBool,
+        elevator: elevatorBool,
+        doorman: doormanBool,
+        airConditioning: airConditioningBool,
+        heating: heatingBool,
+        gym: gymBool,
+        tv: tvBool,
+        privateBathroom: privateBathroomBool,
+        outdoorSpace: outdoorSpaceBool,
+        hasPet: hasPetBool
       },
       images,
       description
@@ -340,8 +360,6 @@ module.exports = {
     let maleBool = male === "true";
     let femaleBool = female === "true";
 
-    console.log(Number(monthlyCost));
-
     Listing.find({
       "prefs.smoke": smokeBool,
       "prefs.clean": cleanBool,
@@ -363,8 +381,8 @@ module.exports = {
       "human.gender.male": maleBool,
       "human.gender.female": femaleBool,
       "address.state": { $regex: selectedState, $options: "i" },
-      "rent.rentLength": { $gt: rentLength },
-      "rent.monthlyCost": { $lt: Number(monthlyCost) }
+      "rent.rentLength": { $gte: Number(rentLength) },
+      "rent.monthlyCost": { $lte: Number(monthlyCost) }
     }).then(rooms => res.status(200).send(rooms));
   },
   getListingById: (req, res) => {
