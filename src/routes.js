@@ -30,6 +30,6 @@ export default (
     <Route path="/mylistings" component={MyListings} />
     <Route path="/home" component={Home} />
     <Route path="/chat/:id" component={Chat} />
-    <Route path="/myprofile/:id" component={MyProfile} />
+    <Route path="/myprofile" component={MyProfile} />
   </Switch>
 );

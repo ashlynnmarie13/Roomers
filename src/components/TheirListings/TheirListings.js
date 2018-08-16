@@ -21,14 +21,12 @@ class TheirListings extends Component {
 
   render() {
     const listings = this.state.listings;
-    console.log(listings);
 
     let roomsList = Object.values(listings);
-    console.log(listings[0]);
-    console.log(roomsList);
+
     const rooms = roomsList.map(val => {
       const { address, amenities, human, prefs, rent, userID, _id } = val;
-      console.log(address);
+
       return (
         <RoomCard
           address={address}

@@ -93,9 +93,18 @@ class SearchRooms extends Component {
   };
 
   render() {
-    console.log(this.state.selectedState);
-    const roomList = this.state.rooms.map((val, i) => {
-      const { address, amenities, human, prefs, rent, userID, _id } = val;
+    const roomList = this.state.rooms.map(val => {
+      const {
+        address,
+        amenities,
+        human,
+        prefs,
+        rent,
+        userID,
+        _id,
+        images
+      } = val;
+      console.log(val);
 
       return (
         <RoomCard
@@ -109,6 +118,7 @@ class SearchRooms extends Component {
           key={i}
           text="Add To Favorite"
           onSubmit={() => this.addToFavList(1, _id, 1)}
+          images={images}
         />
       );
     });

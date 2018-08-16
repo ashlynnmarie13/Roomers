@@ -13,6 +13,7 @@ const ProfileCard = props => {
       {" "}
       <Card style={{ backgroundColor: "#fffafa" }}>
         <Image
+          style={{ objectFit: "cover", height: "300px" }}
           className="profile-image"
           onClick={() => pathPush(`/profile/${id}`)}
           src={profilePic}
