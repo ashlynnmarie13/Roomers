@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 export default props => {
   const { address, amenities, human, prefs, rent, userID, id, images } = props;
+  console.log(props);
 
   return (
     <Card style={{ height: "400px", marginTop: 0 }}>

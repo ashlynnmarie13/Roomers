@@ -4,7 +4,8 @@ const {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  TrafficLayer
+  TrafficLayer,
+  Marker
 } = require("react-google-maps");
 
 const MapWithATrafficLayer = compose(
@@ -19,11 +20,9 @@ const MapWithATrafficLayer = compose(
   withScriptjs,
   withGoogleMap
 )(props => (
-  <GoogleMap
-    defaultZoom={15}
-    defaultCenter={{ lat: props.lat, lng: props.lng }}
-  >
+  <GoogleMap defaultZoom={15} center={{ lat: props.lat, lng: props.lng }}>
     <TrafficLayer autoUpdate />
+    <Marker position={{ lat: props.lat, lng: props.lng }} />
   </GoogleMap>
 ));
 
