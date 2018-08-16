@@ -2,7 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const { json } = require("body-parser");
 const app = express();
-const multer = require("multer");
 const ctrl = require("./controllers/controller");
 const path = require("path");
 const session = require("express-session");
@@ -16,9 +15,6 @@ const socket = require("socket.io");
 
 //Pulling in the user schema
 const User = require("./Models/User");
-const Listing = require("./Models/Listing");
-
-const upload = multer({ dest: "uploads/" });
 
 const { CLIENT_ID, CLIENT_SECRET, DOMAIN } = process.env;
 
@@ -82,7 +78,7 @@ app.use(
   "/s3",
   require("react-s3-uploader/s3router")({
     bucket: "barc-housing",
-    region: "us-east-2", //optional
+    region: "us-east-1", //optional
     signatureVersion: "v4", //optional (use for some amazon regions: frankfurt and others)
     headers: { "Access-Control-Allow-Origin": "*" }, // optional
     ACL: "private", // this is default
@@ -141,8 +137,7 @@ app.get(
 );
 
 // adds user info
-app.post("/api/user/info", upload.single("profilePic"), ctrl.addUserInfo);
-app.post("/api/upload", upload.single("profilePic"), ctrl.uploadPhoto);
+app.post("/api/user/info", ctrl.addUserInfo);
 
 // retrieves user/profile info for all profiles
 app.get("/api/users/info", ctrl.getAllProfiles);
@@ -155,6 +150,7 @@ app.post("/api/listing/add", ctrl.addListing);
 app.get("/api/rooms", ctrl.getListings);
 
 //get listing by id
+app.get("/api/listing/:state", ctrl.getListingByState);
 app.get("/api/listing/:id", ctrl.getListingByAuthId);
 app.get("/api/listing/id/:id", ctrl.getListingById);
 

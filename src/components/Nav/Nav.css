@@ -101,7 +101,7 @@
 }
 
 .home:hover {
-  transform: scale(1.05) perspective(5px);
+  animation: resize 0.5s both;
   color: #cf6766;
   text-shadow: 2px 2px 1px #031424;
 }
@@ -132,4 +132,12 @@
   margin-bottom: -10%;
   height: 12vh;
   width: 9vw;
+}
+@keyframes resize {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05) perspective(5px);
+  }
 }

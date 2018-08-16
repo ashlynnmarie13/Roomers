@@ -31,7 +31,8 @@ module.exports = {
     const {
       userID,
       name,
-      gender,
+      male,
+      female,
       email,
       phone,
       dob,
@@ -40,8 +41,9 @@ module.exports = {
       city,
       state,
       zip,
-      apt,
-      profilePic,
+      lng,
+      lat,
+      address,
       title,
       company,
       description,
@@ -60,26 +62,36 @@ module.exports = {
       introverted,
       smoke,
       guests,
-      pets
+      pets,
+      image
     } = req.body;
+
+    console.log(req.body);
 
     const newProfile = new Profile({
       _id: userID,
       name,
-      gender,
       email,
       phone,
       birthday: dob,
       interestsDescription: description,
       aboutMe: about,
-      street,
-      city,
-      state,
-      zip,
-      apt,
+      address: {
+        street,
+        city,
+        state,
+        zip,
+        fullAddress: address,
+        lat,
+        lng
+      },
+      gender: {
+        male,
+        female
+      },
       title,
       companyName: company,
-      profilePic,
+      profilePic: image,
       pref: {
         smoke,
         guests,
@@ -200,6 +212,8 @@ module.exports = {
       city,
       state,
       zip,
+      lat,
+      lng,
       address,
       monthlyCost,
       depositCost,
@@ -218,8 +232,9 @@ module.exports = {
       privateBathroom,
       outdoorSpace,
       hasPet,
-      roomImage,
-      userID
+      images,
+      userID,
+      description
     } = req.body;
 
     const newListing = new Listing({
@@ -241,7 +256,9 @@ module.exports = {
         city,
         state,
         zip,
-        fullAddress: address
+        fullAddress: address,
+        lat,
+        lng
       },
       rent: {
         monthlyCost,
@@ -263,8 +280,12 @@ module.exports = {
         privateBathroom,
         outdoorSpace,
         hasPet
-      }
+      },
+      images,
+      description
     });
+
+    console.log(req.body);
 
     newListing.save().then(response => res.status(200).send(response));
   },
@@ -343,10 +364,22 @@ module.exports = {
       // "human.gender.female": female
     }).then(rooms => res.status(200).send(rooms));
   },
+  getListingById: (req, res) => {
+    const { id } = req.params;
+    Listing.findOne({ _id: id }).then(listing => {
+      res.status(200).send(listing);
+    });
+  },
+  getListingByState: (req, res) => {
+    const { adress } = req.params;
+
+    Listing.find({ "adress.state": adress }).then(listing => {
+      res.status(200).send(listing);
+    });
+  },
 
   getListingByAuthId: (req, res) => {
     const { id } = req.params;
-    console.log(req.params);
 
     Listing.find({ userID: id }).then(listing => res.status(200).send(listing));
   },
