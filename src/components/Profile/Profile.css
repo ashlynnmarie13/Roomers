@@ -154,7 +154,6 @@
 .my-preferences {
   width: 80%;
   display: grid;
-  grid-template-columns: 50%, 50%;
+  grid-template-columns: 50% 50%;
   color: #30415d;
-  border: solid red 5px;
 }
