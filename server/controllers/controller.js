@@ -363,6 +363,19 @@ module.exports = {
       // "human.gender.female": female
     }).then(rooms => res.status(200).send(rooms));
   },
+  getListingById: (req, res) => {
+    const { id } = req.params;
+    Listing.findOne({ _id: id }).then(listing => {
+      res.status(200).send(listing);
+    });
+  },
+  getListingByState: (req, res) => {
+    const { adress } = req.params;
+
+    Listing.find({ "adress.state": adress }).then(listing => {
+      res.status(200).send(listing);
+    });
+  },
 
   getListingByAuthId: (req, res) => {
     const { id } = req.params;
