@@ -27,8 +27,18 @@ class MyListings extends Component {
     console.log(listings[0]);
     console.log(roomsList);
     const rooms = roomsList.map(val => {
-      const { address, amenities, human, prefs, rent, userID, _id } = val;
+      const {
+        address,
+        amenities,
+        human,
+        prefs,
+        rent,
+        userID,
+        _id,
+        images
+      } = val;
       console.log(address);
+
       return (
         <RoomCard
           address={address}
@@ -38,6 +48,7 @@ class MyListings extends Component {
           rent={rent}
           userID={userID}
           id={_id}
+          images={images}
         />
       );
     });
