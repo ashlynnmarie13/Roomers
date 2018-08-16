@@ -14,21 +14,24 @@ class SearchRooms extends Component {
     clean: false,
     guests: false,
     pets: false,
-    washer: false,
-    wifi: false,
-    utilities: false,
-    furnished: false,
+    washer: true,
+    wifi: true,
+    utilities: true,
+    furnished: true,
     elevator: false,
     doorman: false,
-    airConditioning: false,
-    heating: false,
+    airConditioning: true,
+    heating: true,
     gym: false,
     tv: false,
     privateBathroom: false,
     outdoorSpace: false,
     hasPet: false,
+    male: true,
+    female: false,
     selectedState: "",
-    rentLength: ""
+    rentLength: 0,
+    monthlyCost: 999
   };
 
   componentDidMount() {
@@ -56,15 +59,24 @@ class SearchRooms extends Component {
       hasPet,
       selectedState,
       rentLength,
+      monthlyCost,
       male,
       female
     } = this.state;
 
     axios
       .get(
-        `/api/rooms/?smoke=${smoke}&clean=${clean}&guests=${guests}&pets=${pets}&washer=${washer}&wifi=${wifi}&utilities=${utilities}&furnished=${furnished}&elevator=${elevator}&doorman=${doorman}&airConditioning=${airConditioning}&heating=${heating}&gym=${gym}&tv=${tv}&privateBathroom=${privateBathroom}&outdoorSpace=${outdoorSpace}&hasPet=${hasPet}&selectedState=${selectedState}&rentLength=${rentLength}`
+        `/api/rooms/?smoke=${smoke}&clean=${clean}&guests=${guests}&pets=${pets}&washer=${washer}&wifi=${wifi}&utilities=${utilities}&furnished=${furnished}&elevator=${elevator}&doorman=${doorman}&airConditioning=${airConditioning}&heating=${heating}&gym=${gym}&tv=${tv}&privateBathroom=${privateBathroom}&outdoorSpace=${outdoorSpace}&hasPet=${hasPet}&selectedState=${selectedState}&rentLength=${rentLength}&male=${male}&female=${female}&monthlyCost=${monthlyCost}`
       )
       .then(rooms => this.setState({ rooms: rooms.data }));
+  };
+
+  inputHandler = e => {
+    if (e.target.value.length === 0) {
+      this.setState({ monthlyCost: 999 }, () => this.searchRooms());
+    } else {
+      this.setState({ monthlyCost: e.target.value }, () => this.searchRooms());
+    }
   };
 
   checkboxHandler = (e, data) => {
@@ -77,7 +89,16 @@ class SearchRooms extends Component {
     this.setState({ [name]: value }, () => this.searchRooms());
   };
 
-  genderHandler = (e, data) => {};
+  genderHandler = (e, data) => {
+    const { name, value } = data;
+    if (value === "male") {
+      this.setState({ male: true, female: false }, () => this.searchRooms());
+    } else if (value === "female") {
+      this.setState({ male: false, female: true }, () => this.searchRooms());
+    } else {
+      this.setState({ male: true, female: true }, () => this.searchRooms());
+    }
+  };
 
   render() {
     const roomList = this.state.rooms.map(val => {
@@ -91,7 +112,6 @@ class SearchRooms extends Component {
         _id,
         images
       } = val;
-      console.log(val);
 
       return (
         <RoomCard
@@ -125,10 +145,11 @@ class SearchRooms extends Component {
           <div className="search-section">
             <p className="search-section-title">Rent</p>
             <Input
+              onChange={event => this.inputHandler(event)}
               style={{ marginTop: 0 }}
               labelPosition="right"
-              type="text"
-              placeholder="Amount"
+              type="number"
+              placeholder="Max Amount"
             >
               <Label basic>$</Label>
               <input />
@@ -149,7 +170,7 @@ class SearchRooms extends Component {
           <div className="search-section">
             <p className="search-section-title">Gender</p>
             <Dropdown
-              onChange={(e, data) => this.dropdownHandler(e, data)}
+              onChange={(e, data) => this.genderHandler(e, data)}
               style={{ width: "20px" }}
               placeholder="Gender"
               name="gender"
@@ -157,7 +178,8 @@ class SearchRooms extends Component {
               selection
               options={[
                 { text: "Male", value: "male" },
-                { text: "Female", value: "female" }
+                { text: "Female", value: "female" },
+                { text: "Both", value: "both" }
               ]}
             />
           </div>
@@ -199,24 +221,28 @@ class SearchRooms extends Component {
             <p className="search-section-title">Amenities</p>
             <div className="selection">
               <Checkbox
+                defaultChecked
                 onChange={(event, data) => this.checkboxHandler(event, data)}
                 name="washer"
                 style={{ margin: "10px 0" }}
                 label="Washer"
               />
               <Checkbox
+                defaultChecked
                 onChange={(event, data) => this.checkboxHandler(event, data)}
                 name="wifi"
                 style={{ margin: "10px 0" }}
                 label="Wifi"
               />
               <Checkbox
+                defaultChecked
                 onChange={(event, data) => this.checkboxHandler(event, data)}
                 name="utilities"
                 style={{ margin: "10px 0" }}
                 label="Utilities"
               />
               <Checkbox
+                defaultChecked
                 onChange={(event, data) => this.checkboxHandler(event, data)}
                 name="furnished"
                 style={{ margin: "10px 0" }}
@@ -235,12 +261,14 @@ class SearchRooms extends Component {
                 label="Doorman"
               />
               <Checkbox
+                defaultChecked
                 onChange={(event, data) => this.checkboxHandler(event, data)}
                 name="airConditioning"
                 style={{ margin: "10px 0" }}
                 label="Air Conditioning"
               />
               <Checkbox
+                defaultChecked
                 onChange={(event, data) => this.checkboxHandler(event, data)}
                 name="heating"
                 style={{ margin: "10px 0" }}

@@ -24,17 +24,17 @@ const ListingSchema = new Schema({
     street: String,
     city: String,
     state: String,
-    zip: String,
+    zip: Number,
     fullAddress: String,
     lat: Number,
     lng: Number
   },
 
   rent: {
-    monthlyCost: String,
-    depositCost: String,
+    monthlyCost: Number,
+    depositCost: Number,
     moveInDate: String,
-    rentLength: String
+    rentLength: Number
   },
   prefs: {
     smoke: {
