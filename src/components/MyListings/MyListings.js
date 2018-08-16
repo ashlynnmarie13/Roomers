@@ -12,7 +12,7 @@ class MyListings extends Component {
   };
 
   componentDidMount() {
-    const authID = "google-oauth2|114206976559611966047";
+    const authID = this.props.user.authID;
     console.log(this.props.user);
     axios
       .get(`/api/listing/${authID}`)

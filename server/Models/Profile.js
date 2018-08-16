@@ -31,12 +31,18 @@ const ProfileSchema = new Schema({
   interestsDescription: String,
   profilePic: String,
   aboutMe: String,
+  gender: {
+    male: Boolean,
+    female: Boolean
+  },
   address: {
     street: String,
     city: String,
     state: String,
     zip: String,
-    apt: String
+    fullAddress: String,
+    lat: Number,
+    lng: Number
   },
   prefs: {
     smoke: {

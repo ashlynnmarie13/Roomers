@@ -26,7 +26,7 @@ class Nav extends Component {
     return (
       <div className="Nav">
         <div className="box1">
-          <NavLink to="/myprofile/:id" className="nav-pic">
+          <NavLink to="/myprofile" className="nav-pic">
             <img src={profilePic} alt="pic" className="profile-pic-nav" />
           </NavLink>
           <Button

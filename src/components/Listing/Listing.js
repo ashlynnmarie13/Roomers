@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import MyMapComponent from "../MyMapComponent/MyMapComponent";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { list } from "../../../node_modules/postcss";
+import moment from "moment";
 import { Button } from "semantic-ui-react";
 import "./Listing.css";
 
@@ -144,7 +144,9 @@ class Listing extends Component {
               <div className="listing-info">
                 <span>Move in: </span>
                 {this.state.listingInfo.rent &&
-                  this.state.listingInfo.rent.moveInDate}
+                  moment(this.state.listingInfo.rent.moveInDate).format(
+                    "MMM Do YYYY"
+                  )}
                 <span>Duration: </span>
                 {this.state.listingInfo.rent &&
                   this.state.listingInfo.rent.rentLength}{" "}
@@ -162,15 +164,7 @@ class Listing extends Component {
                 </h1>
                 <h2>The Space</h2>
                 <p className="listing-section-description">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam, ducimus incidunt necessitatibus repudiandae rerum nisi
-                  rem excepturi sed iure aperiam accusantium laboriosam? Nisi
-                  commodi ullam consequatur voluptatem magnam tempore ipsum.
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Illum voluptatem odit accusamus dolorum voluptate dolores
-                  fugit nihil, mollitia, assumenda soluta ipsa dolore tempora
-                  deserunt laboriosam necessitatibus asperiores deleniti
-                  doloribus reprehenderit?
+                  {this.state.listingInfo.description}
                 </p>
                 <h2>Amenities</h2>
                 <div className="amenities-list">{amenities}</div>
@@ -188,7 +182,7 @@ class Listing extends Component {
           <div className="listing-profile">
             <div className="listing-profile-card">
               <Link to={`/profile/${_id}`}>
-                <img src={profilePic} alt="" />
+                <img style={{ objectFit: "cover" }} src={profilePic} alt="" />
               </Link>
 
               <Link to={`/chat/${_id}`}>
@@ -210,7 +204,16 @@ class Listing extends Component {
         </div>
 
         <div className="google-maps">
-          <MyMapComponent />
+          <MyMapComponent
+            lat={
+              this.state.listingInfo.address &&
+              this.state.listingInfo.address.lat
+            }
+            lng={
+              this.state.listingInfo.address &&
+              this.state.listingInfo.address.lng
+            }
+          />
         </div>
       </div>
     );

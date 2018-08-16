@@ -132,3 +132,9 @@
   justify-content: space-around;
   align-items: center;
 }
+
+.profile-image {
+  width: 50%;
+  height: 50%;
+  object-fit: "cover";
+}

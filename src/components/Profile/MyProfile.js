@@ -129,7 +129,12 @@ class MyProfile extends Component {
       <div className="profile">
         <div className="person">
           <Card style={{ width: "90%", height: "60%" }}>
-            <Image src={userInfo.profilePic} alt="" className="image" />
+            <Image
+              style={{ objectFit: "cover" }}
+              src={userInfo.profilePic}
+              alt=""
+              className="image"
+            />
             <Card.Content>
               <Card.Header>
                 <div className="header">{userInfo.name}</div>
