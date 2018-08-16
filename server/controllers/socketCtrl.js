@@ -178,39 +178,3 @@ function removeUser(userList, username) {
 function isUser(userList, username) {
   return username in userList;
 }
-
-// module.exports = {
-//   addUserInfo: (req, res) => {
-//     const {
-//       chatId,
-//       messages,
-//       id,
-//       time,
-//       messageId,
-//       sender,
-//       name,
-//       typingUsers,
-//       users
-//     } = req.body;
-
-//     const newChat = new Chat({
-//       _id: userID,
-//       name,
-
-//       pref: {
-//         smoke,
-//         guests,
-//         pets
-//       },
-//       traits: {
-//         clean
-//       }
-//     });
-//     newChat
-//       .save()
-//       .then(response => {
-//         res.status(200).send(newChat);
-//       })
-//       .catch(err => console.log("Can't add chat " + err));
-//   }
-// };

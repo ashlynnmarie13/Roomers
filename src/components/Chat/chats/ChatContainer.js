@@ -11,6 +11,7 @@ import ChatHeading from "./ChatHeading";
 import Messages from "../messages/Messages";
 import MessageInput from "../messages/MessageInput";
 import "../Chat.css";
+import axios from "axios";
 
 export default class ChatContainer extends Component {
   constructor(props) {
@@ -56,6 +57,7 @@ export default class ChatContainer extends Component {
 	*/
   resetChat = chat => {
     return this.addChat(chat, true);
+    this.addChatToMongo(chat);
   };
 
   /*
@@ -73,16 +75,35 @@ export default class ChatContainer extends Component {
   addChat = (chat, reset = false) => {
     const { socket } = this.props;
     const { chats } = this.state;
+    const { id } = this.props.user;
 
     console.log(socket);
 
     const newChats = reset ? [chat] : [...chats, chat];
     console.log(newChats, chat);
+    console.log(newChats[0].chatIdObj);
 
     this.setState({
       chats: newChats,
       activeChat: reset ? chat : this.state.activeChat
     });
+
+    axios
+      .post("/api/user/chat", {
+        id,
+        chatIdObj: newChats[0].chatIdObj,
+        messages: newChats[0].messages,
+        // messageId: newChats.messages.item.messageId,
+        // message: newChats.messages.message,
+        // sender: newChats.messages.sender,
+        // time: newChats.messages.time,
+        name: newChats[0].name,
+        typingUsers: newChats[0].typingUsers,
+        users: newChats[0].users
+      })
+      .then(response => {
+        console.log(response);
+      });
 
     const messageEvent = `${MESSAGE_RECIEVED}-${chat.chatIdObj}`;
     const typingEvent = `${TYPING}-${chat.chatIdObj}`;
@@ -90,6 +111,20 @@ export default class ChatContainer extends Component {
     socket.on(typingEvent, this.updateTypingInChat(chat.chatIdObj));
     socket.on(messageEvent, this.addMessageToChat(chat.chatIdObj));
   };
+
+  // adding a chat to the database
+
+  // addChatToMongo = chat => {
+  //   const { socket } = this.props;
+  //   const { chats } = this.state;
+
+  //   const newChats = [...chats, chat];
+  //   console.log(newChats);
+
+  //   axios.post("/api/user/chat", newChats).then(response => {
+  //     console.log(response);
+  //   });
+  // };
 
   /*
 	* 	Returns a function that will 
