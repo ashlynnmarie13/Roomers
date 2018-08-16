@@ -140,13 +140,11 @@ class SignUpForm extends Component {
 
   onUpload = s3 => {
     this.setState({
-      image: process.env.REACT_APP_AWS_URL + s3.filename
+      profilePic: process.env.REACT_APP_AWS_URL + s3.filename
     });
   };
 
   render() {
-    console.log(this.state.phone);
-
     return (
       <div className="sign-up">
         <div className="picture" />
