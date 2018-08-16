@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ListingCard from "../ListingCard/ListingCard";
 import { Card, Image } from "semantic-ui-react";
 import RoomCard from "../RoomCard/RoomCard";
+import stateModel from "../Models/stateModel";
 import axios from "axios";
 import styled from "styled-components";
 import "./Location.css";
@@ -22,6 +23,17 @@ export default class Location extends Component {
 
   componentDidMount() {
     const { state } = this.props.match.params;
+    console.log(stateModel.states);
+    let cities = [];
+
+    stateModel.states.forEach(val => {
+      if (val.value === state) {
+        cities = val.cities;
+      }
+    });
+
+    console.log(cities);
+
     axios.get(`/api/listing/${state}`).then(response =>
       this.setState({
         cities: [

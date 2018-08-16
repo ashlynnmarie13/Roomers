@@ -145,8 +145,6 @@ class SignUpForm extends Component {
   };
 
   render() {
-    console.log(this.state.phone);
-
     return (
       <div className="sign-up">
         <div className="picture" />

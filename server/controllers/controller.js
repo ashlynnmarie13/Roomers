@@ -65,8 +65,6 @@ module.exports = {
       image
     } = req.body;
 
-    console.log(req.body);
-
     const newProfile = new Profile({
       _id: userID,
       name,
@@ -318,7 +316,8 @@ module.exports = {
       selectedState,
       rentLength,
       male,
-      female
+      female,
+      monthlyCost
     } = req.query;
 
     let smokeBool = smoke === "true";
@@ -338,6 +337,10 @@ module.exports = {
     let privateBathroomBool = privateBathroom === "true";
     let outdoorSpaceBool = outdoorSpace === "true";
     let hasPetBool = hasPet === "true";
+    let maleBool = male === "true";
+    let femaleBool = female === "true";
+
+    console.log(Number(monthlyCost));
 
     Listing.find({
       "prefs.smoke": smokeBool,
@@ -356,11 +359,12 @@ module.exports = {
       "amenities.tv": tvBool,
       "amenities.privateBathroom": privateBathroomBool,
       "amenities.outdoorSpace": outdoorSpaceBool,
-      "amenities.hasPet": hasPetBool
-      // "address.state": selectedState
-      // "rent.rentLength": rentLength
-      // "human.gender.male": male,
-      // "human.gender.female": female
+      "amenities.hasPet": hasPetBool,
+      "human.gender.male": maleBool,
+      "human.gender.female": femaleBool,
+      "address.state": { $regex: selectedState, $options: "i" },
+      "rent.rentLength": { $gt: rentLength },
+      "rent.monthlyCost": { $lt: Number(monthlyCost) }
     }).then(rooms => res.status(200).send(rooms));
   },
   getListingById: (req, res) => {

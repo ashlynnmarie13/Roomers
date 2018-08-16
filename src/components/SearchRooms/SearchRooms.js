@@ -27,8 +27,11 @@ class SearchRooms extends Component {
     privateBathroom: false,
     outdoorSpace: false,
     hasPet: false,
+    male: true,
+    female: false,
     selectedState: "",
-    rentLength: ""
+    rentLength: "",
+    monthlyCost: 999
   };
 
   componentDidMount() {
@@ -56,15 +59,20 @@ class SearchRooms extends Component {
       hasPet,
       selectedState,
       rentLength,
+      monthlyCost,
       male,
       female
     } = this.state;
 
     axios
       .get(
-        `/api/rooms/?smoke=${smoke}&clean=${clean}&guests=${guests}&pets=${pets}&washer=${washer}&wifi=${wifi}&utilities=${utilities}&furnished=${furnished}&elevator=${elevator}&doorman=${doorman}&airConditioning=${airConditioning}&heating=${heating}&gym=${gym}&tv=${tv}&privateBathroom=${privateBathroom}&outdoorSpace=${outdoorSpace}&hasPet=${hasPet}&selectedState=${selectedState}&rentLength=${rentLength}`
+        `/api/rooms/?smoke=${smoke}&clean=${clean}&guests=${guests}&pets=${pets}&washer=${washer}&wifi=${wifi}&utilities=${utilities}&furnished=${furnished}&elevator=${elevator}&doorman=${doorman}&airConditioning=${airConditioning}&heating=${heating}&gym=${gym}&tv=${tv}&privateBathroom=${privateBathroom}&outdoorSpace=${outdoorSpace}&hasPet=${hasPet}&selectedState=${selectedState}&rentLength=${rentLength}&male=${male}&female=${female}&monthlyCost=${monthlyCost}`
       )
       .then(rooms => this.setState({ rooms: rooms.data }));
+  };
+
+  inputHandler = e => {
+    this.setState({ monthlyCost: e.target.value }, () => this.searchRooms());
   };
 
   checkboxHandler = (e, data) => {
@@ -77,7 +85,16 @@ class SearchRooms extends Component {
     this.setState({ [name]: value }, () => this.searchRooms());
   };
 
-  genderHandler = (e, data) => {};
+  genderHandler = (e, data) => {
+    const { name, value } = data;
+    if (value === "male") {
+      this.setState({ male: true, female: false }, () => this.searchRooms());
+    } else if (value === "female") {
+      this.setState({ male: false, female: true }, () => this.searchRooms());
+    } else {
+      this.setState({ male: true, female: true }, () => this.searchRooms());
+    }
+  };
 
   render() {
     const roomList = this.state.rooms.map(val => {
@@ -91,7 +108,6 @@ class SearchRooms extends Component {
         _id,
         images
       } = val;
-      console.log(val);
 
       return (
         <RoomCard
@@ -125,10 +141,11 @@ class SearchRooms extends Component {
           <div className="search-section">
             <p className="search-section-title">Rent</p>
             <Input
+              onChange={event => this.inputHandler(event)}
               style={{ marginTop: 0 }}
               labelPosition="right"
-              type="text"
-              placeholder="Amount"
+              type="number"
+              placeholder="Max Amount"
             >
               <Label basic>$</Label>
               <input />
@@ -149,7 +166,7 @@ class SearchRooms extends Component {
           <div className="search-section">
             <p className="search-section-title">Gender</p>
             <Dropdown
-              onChange={(e, data) => this.dropdownHandler(e, data)}
+              onChange={(e, data) => this.genderHandler(e, data)}
               style={{ width: "20px" }}
               placeholder="Gender"
               name="gender"
@@ -157,7 +174,8 @@ class SearchRooms extends Component {
               selection
               options={[
                 { text: "Male", value: "male" },
-                { text: "Female", value: "female" }
+                { text: "Female", value: "female" },
+                { text: "Both", value: "both" }
               ]}
             />
           </div>
