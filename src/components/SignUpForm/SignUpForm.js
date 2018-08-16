@@ -155,10 +155,13 @@ class SignUpForm extends Component {
         >
           <div className="section section-basic">
             <div className="first-section">
-              <h1 className="section-title">Basic Info</h1>
-              <div className="input">
-                <p className="section-item">Name:</p>
+              <h1 className="section-title">
+                <i class="fas fa-smile" /> Basic Info
+              </h1>
+              <div className="input-item">
+                <p className="section-item">Name</p>
                 <Input
+                  placeholder="Name"
                   onChange={event => this.inputHandler(event)}
                   placeholder="Name"
                   name="name"
@@ -166,11 +169,11 @@ class SignUpForm extends Component {
                   required
                 />
               </div>
-              <div className="input">
-                <p className="section-item">Gender:</p>
+              <div className="input-item">
+                <p className="section-item">Gender</p>
                 <Dropdown
                   onChange={(e, data) => this.dropdownHandler(e, data)}
-                  style={{ margin: "20px 0" }}
+                  style={{ height: "60%" }}
                   placeholder="Gender"
                   name="gender"
                   search
@@ -182,26 +185,27 @@ class SignUpForm extends Component {
                   required
                 />
               </div>
-              <div className="input">
-                <p className="section-item">Email:</p>
+              <div className="input-item">
+                <p className="section-item">Email</p>
                 <Input required iconPosition="left" placeholder="Email">
                   <Icon name="at" />
                   <input />
                 </Input>
               </div>
-              <div className="input">
-                <p className="section-item">Phone:</p>
+              <div className="input-item">
+                <p className="section-item">Phone</p>
                 {/* <br /> */}
-                <div style={{ marginTop: 20 }}>
+                <div>
                   <PhoneInput
+                    style={{ marginBottom: "3%" }}
                     placeholder="Enter phone number"
                     country="US"
                     value={this.state.phone}
                     onChange={phone => this.setState({ phone })}
                   />
                 </div>
-                <div className="input">
-                  <p className="section-item">Date of Birth:</p>
+                <div className="input-item">
+                  <p className="section-item">Date of Birth</p>
 
                   {!this.state.year ? (
                     <Dropdown
@@ -227,10 +231,11 @@ class SignUpForm extends Component {
               </div>
             </div>
             <div className="second-section">
-              <div className="input">
-                <p className="section-item">A little about you:</p>
+              <div className="input-item-about">
+                <p className="section-item-about">About you</p>
                 <TextArea
-                  style={{ width: "100%", height: "130px", margin: "20px 0" }}
+                  placeholder="Interests, hobbies, habits..."
+                  style={{ width: "100%", height: "500px" }}
                   onChange={event => this.inputHandler(event)}
                   name="about"
                   type="text"
@@ -239,7 +244,7 @@ class SignUpForm extends Component {
               </div>
               <div className="address">
                 <div className="input">
-                  <p className="section-item-address">Address:</p>
+                  <p className="section-item-address">Address</p>
                   <PlacesAutocomplete
                     value={this.state.address}
                     onChange={this.handleChange}
@@ -293,8 +298,8 @@ class SignUpForm extends Component {
                   </PlacesAutocomplete>
                 </div>
               </div>
-              <div className="input">
-                <p className="section-item">Upload a photo:</p>
+              <div className="input-photo">
+                <p className="section-item-photo">Upload a photo:</p>
                 {this.state.image ? (
                   <img
                     onClick={() => this.setState({ image: "" })}
@@ -324,9 +329,11 @@ class SignUpForm extends Component {
             </div>
           </div>
 
-          <div className="section section-traits">
-            <h1 className="section-title">Traits:</h1>
-            <div />
+          <div className="section-traits">
+            <h1 className="section-title">
+              <i class="fas fa-laugh" /> Traits
+            </h1>
+
             <div className="traits-one">
               <label htmlFor="clean">Organized</label>
               <Checkbox
@@ -335,9 +342,8 @@ class SignUpForm extends Component {
                 name="organized"
                 id="organized"
                 type="checkbox"
-                label="Healthy"
               />
-
+              <label htmlFor="clean">Healthy</label>
               <Checkbox
                 toggle
                 onChange={(event, data) => this.checkboxHandler(event, data)}
@@ -438,32 +444,39 @@ class SignUpForm extends Component {
               />
             </div>
           </div>
+
           <div className="third-section">
-            <div className="section">
-              <h1 className="section-title">Description:</h1>
-              <p className="section-item">What are you looking for?</p>
+            <div className="section-description">
+              <h1 className="section-title">
+                <i class="fas fa-pencil-alt" /> Description
+              </h1>
+
               <TextArea
-                style={{ width: "500px", height: "200px", margin: "20px 0" }}
+                placeholder="What are you looking for?"
+                style={{ width: "500px", height: "180px" }}
                 onChange={event => this.inputHandler(event)}
                 name="description"
                 type="text"
                 required
               />
             </div>
-
-            <div className="section-five">
-              <div className="section">
-                <h1 className="section-title">Career:</h1>
-                <p className="section-item">Job Title:</p>
+            <div className="section-career">
+              <h1 className="section-title">
+                <i class="fas fa-briefcase" /> Career
+              </h1>
+              <div className="job-inputs">
+                <p className="section-item">Job Title</p>
                 <Input
+                  style={{ height: "50px" }}
                   onChange={event => this.inputHandler(event)}
                   name="title"
                   type="text"
                   placeholder="CEO"
                   required
                 />
-                <p className="section-item">Company Name:</p>
+                <p className="section-item">Company Name</p>
                 <Input
+                  style={{ height: "50px" }}
                   onChange={event => this.inputHandler(event)}
                   name="companyName"
                   type="text"
@@ -471,9 +484,13 @@ class SignUpForm extends Component {
                   required
                 />
               </div>
+            </div>
 
-              <div className="section">
-                <h1 className="section-title">Preferences:</h1>
+            <div className="section-prefs">
+              <h1 className="section-title">
+                <i class="fas fa-thumbs-up" /> Preferences
+              </h1>
+              <div className="job-inputs">
                 <div className="pref-item">
                   <Checkbox
                     onChange={(event, data) =>
@@ -484,6 +501,7 @@ class SignUpForm extends Component {
                     type="checkbox"
                   />
                   <label htmlFor="smoke">
+                    {"  "}
                     Smoker <i className="fas fa-smoking" />
                   </label>
                 </div>
@@ -497,6 +515,7 @@ class SignUpForm extends Component {
                     type="checkbox"
                   />
                   <label htmlFor="guests">
+                    {"  "}
                     Guests <i className="fas fa-users" />
                   </label>
                 </div>
@@ -510,6 +529,7 @@ class SignUpForm extends Component {
                     type="checkbox"
                   />
                   <label className="" htmlFor="pets">
+                    {"  "}
                     Pets <i className="fas fa-paw" />
                   </label>
                 </div>
@@ -523,14 +543,25 @@ class SignUpForm extends Component {
                     type="checkbox"
                   />
                   <label className="" htmlFor="clean">
+                    {"  "}
                     Clean <i class="fas fa-shower" />
                   </label>
                 </div>
               </div>
             </div>
           </div>
-          <div type="submit" className="button">
-            <Button type="submit" style={{ margin: "0 auto" }} animated>
+          <div>
+            <Button
+              style={{
+                backgroundColor: "#031424",
+                color: "white",
+                height: "75px",
+                width: "175px",
+                fontSize: "20px"
+              }}
+              type="submit"
+              animated
+            >
               <Button.Content visible>Submit</Button.Content>
               <Button.Content hidden>
                 <Icon name="arrow right" />

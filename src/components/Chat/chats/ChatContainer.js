@@ -11,6 +11,7 @@ import ChatHeading from "./ChatHeading";
 import Messages from "../messages/Messages";
 import MessageInput from "../messages/MessageInput";
 import "../Chat.css";
+import axios from "axios";
 
 export default class ChatContainer extends Component {
   constructor(props) {
@@ -38,7 +39,7 @@ export default class ChatContainer extends Component {
     socket.on(PRIVATE_MESSAGE, this.addChat);
     //this is going to reset the entire chat if someone disconnects
     socket.on("connect", () => {
-      socket.emit(COMMUNITY_CHAT, this.resetCHat);
+      socket.emit(COMMUNITY_CHAT, this.resetChat);
     });
     //sender is us, reciever is rando
     socket.emit(PRIVATE_MESSAGE, { reciever: "mike", sender: user.name });
@@ -56,6 +57,7 @@ export default class ChatContainer extends Component {
 	*/
   resetChat = chat => {
     return this.addChat(chat, true);
+    this.addChatToMongo(chat);
   };
 
   /*
@@ -68,34 +70,75 @@ export default class ChatContainer extends Component {
 	*	@param reset {boolean} if true will set the chat as the only chat.
     */
   //if we just passed in a chat, then the reset value will be equal to false
+
+  //ADD NEW CHAT TO THE DATABASE
   addChat = (chat, reset = false) => {
     const { socket } = this.props;
     const { chats } = this.state;
+    const { id } = this.props.user;
+
+    console.log(socket);
 
     const newChats = reset ? [chat] : [...chats, chat];
+    console.log(newChats, chat);
+    console.log(newChats[0].chatIdObj);
+
     this.setState({
       chats: newChats,
       activeChat: reset ? chat : this.state.activeChat
     });
 
-    const messageEvent = `${MESSAGE_RECIEVED}-${chat.id}`;
-    const typingEvent = `${TYPING}-${chat.id}`;
+    axios
+      .post("/api/user/chat", {
+        id,
+        chatIdObj: newChats[0].chatIdObj,
+        messages: newChats[0].messages,
+        // messageId: newChats.messages.item.messageId,
+        // message: newChats.messages.message,
+        // sender: newChats.messages.sender,
+        // time: newChats.messages.time,
+        name: newChats[0].name,
+        typingUsers: newChats[0].typingUsers,
+        users: newChats[0].users
+      })
+      .then(response => {
+        console.log(response);
+      });
 
-    socket.on(typingEvent, this.updateTypingInChat(chat.id));
-    socket.on(messageEvent, this.addMessageToChat(chat.id));
+    const messageEvent = `${MESSAGE_RECIEVED}-${chat.chatIdObj}`;
+    const typingEvent = `${TYPING}-${chat.chatIdObj}`;
+
+    socket.on(typingEvent, this.updateTypingInChat(chat.chatIdObj));
+    socket.on(messageEvent, this.addMessageToChat(chat.chatIdObj));
   };
+
+  // adding a chat to the database
+
+  // addChatToMongo = chat => {
+  //   const { socket } = this.props;
+  //   const { chats } = this.state;
+
+  //   const newChats = [...chats, chat];
+  //   console.log(newChats);
+
+  //   axios.post("/api/user/chat", newChats).then(response => {
+  //     console.log(response);
+  //   });
+  // };
 
   /*
 	* 	Returns a function that will 
 	*	adds message to chat with the chatId passed in. 
 	*
 	* 	@param chatId {number}
-	*/
+  */
+
+  //ADD NEW MESSAGE TO EXISTING CHAT IN THE DATABASE
   addMessageToChat = chatId => {
     return message => {
       const { chats } = this.state;
       let newChats = chats.map(chat => {
-        if (chat.id === chatId) chat.messages.push(message);
+        if (chat.chatIdObj === chatId) chat.messages.push(message);
         return chat;
       });
 
@@ -114,7 +157,7 @@ export default class ChatContainer extends Component {
         const { chats } = this.state;
 
         let newChats = chats.map(chat => {
-          if (chat.id === chatId) {
+          if (chat.chatIdObj === chatId) {
             if (isTyping && !chat.typingUsers.includes(user)) {
               chat.typingUsers.push(user);
             } else if (!isTyping && chat.typingUsers.includes(user)) {
@@ -147,16 +190,22 @@ export default class ChatContainer extends Component {
   sendTyping = (chatId, isTyping) => {
     const { socket } = this.props;
     socket.emit(TYPING, { chatId, isTyping });
+    console.log(chatId, isTyping);
   };
   //sets the chat thats passed in into activechat in state
+
+  //SET ACTIVE CHAT TO WHAT YOU CLICK ON OR THE CHAT NAME FROM THE USER THAT WE CLICKED ON
   setActiveChat = activeChat => {
     this.setState({ activeChat });
+    console.log(activeChat);
   };
 
   render() {
     //pulling in user and logout functions from Chat.js... that's what we're sending back
     const { user, logout } = this.props;
     const { chats, activeChat } = this.state;
+
+    console.log(activeChat, user, chats);
     return (
       <div className="container">
         <SideBar
@@ -180,10 +229,10 @@ export default class ChatContainer extends Component {
               />
               <MessageInput
                 sendMessage={message => {
-                  this.sendMessage(activeChat.id, message);
+                  this.sendMessage(activeChat.chatIdObj, message);
                 }}
                 sendTyping={isTyping => {
-                  this.sendTyping(activeChat.id, isTyping);
+                  this.sendTyping(activeChat.chatIdObj, isTyping);
                 }}
               />
             </div>

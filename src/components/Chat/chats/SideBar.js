@@ -65,11 +65,13 @@ export default class SideBar extends Component {
                   return name !== user.name;
                 }) || "Community";
               const classNames =
-                activeChat && activeChat.id === chat.id ? "active" : "";
+                activeChat && activeChat.chatIdObj === chat.chatIdObj
+                  ? "active"
+                  : "";
 
               return (
                 <div
-                  key={chat.id}
+                  key={chat.chatIdObj}
                   className={`user ${classNames}`}
                   onClick={() => {
                     setActiveChat(chat);
@@ -93,7 +95,7 @@ export default class SideBar extends Component {
           })}
         </div>
         <div className="current-user">
-          z
+          {user.name}
           <div
             onClick={() => {
               logout();
