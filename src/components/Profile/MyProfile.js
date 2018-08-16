@@ -191,7 +191,7 @@ class MyProfile extends Component {
                   {" "}
                   {userInfo.interestsDescription}
                 </div>
-                <div className="description pref-column middle-header">
+                <div className="description pref-column">
                   <div className="middle-header"> Preferences</div>
                   <div className="my-preferences">{preferences}</div>
                 </div>
