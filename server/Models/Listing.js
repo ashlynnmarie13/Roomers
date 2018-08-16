@@ -25,7 +25,9 @@ const ListingSchema = new Schema({
     city: String,
     state: String,
     zip: String,
-    fullAddress: String
+    fullAddress: String,
+    lat: Number,
+    lng: Number
   },
 
   rent: {
@@ -66,8 +68,9 @@ const ListingSchema = new Schema({
     privateBathroom: Boolean,
     outdoorSpace: Boolean,
     hasPet: Boolean
-  }
-
+  },
+  description: String,
+  images: Array
 });
 
 module.exports = Listing = mongoose.model("listing", ListingSchema);

@@ -80,9 +80,18 @@ class SearchRooms extends Component {
   genderHandler = (e, data) => {};
 
   render() {
-    console.log(this.state.selectedState);
     const roomList = this.state.rooms.map(val => {
-      const { address, amenities, human, prefs, rent, userID, _id } = val;
+      const {
+        address,
+        amenities,
+        human,
+        prefs,
+        rent,
+        userID,
+        _id,
+        images
+      } = val;
+      console.log(val);
 
       return (
         <RoomCard
@@ -93,6 +102,7 @@ class SearchRooms extends Component {
           rent={rent}
           userID={userID}
           id={_id}
+          images={images}
         />
       );
     });

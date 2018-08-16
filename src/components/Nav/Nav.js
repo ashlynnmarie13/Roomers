@@ -6,6 +6,7 @@ import { NavLink, Link } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 import { getUserById } from "../../redux/ducks/userReducer";
 import axios from "axios";
+import Logout from "../Login/Logout";
 import { connect } from "react-redux";
 class Nav extends Component {
   state = {
@@ -26,7 +27,7 @@ class Nav extends Component {
     return (
       <div className="Nav">
         <div className="box1">
-          <NavLink to="/myprofile/:id" className="nav-pic">
+          <NavLink to="/myprofile" className="nav-pic">
             <img src={profilePic} alt="pic" className="profile-pic-nav" />
           </NavLink>
           <Button
@@ -47,6 +48,24 @@ class Nav extends Component {
               Messages
             </Link>
           </Button>
+          <Logout>
+            <Button>
+              style=
+              {{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-around",
+                alignItems: "center",
+                backgroundColor: "white",
+                border: "solid #031424 2px",
+                color: "#031424",
+                width: "30%",
+                height: "70%",
+                fontSize: "1.2em"
+              }}
+              Messages
+            </Button>
+          </Logout>
         </div>
 
         <Link to="/home" className="home">
