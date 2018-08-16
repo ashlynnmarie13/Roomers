@@ -57,49 +57,63 @@ class Home extends Component {
           />
         </div>
           <button>EXPLORE</button> */}
-        <div>
-          <div />
+        <div className="home-content">
           <div>
-            <div class="input-group">
-              <Select
-                className="search-state"
-                onChange={(e, data) => this.dropdownHandler(e, data)}
-                placeholder="Select State"
-                options={this.state.states}
-              />
-              <button className="button2" onClick={() => this.exploreCities()}>
-                EXPLORE
-              </button>
+            <h1 className="head1">Have you heard the roomers?</h1>
+            <h1 className="para solution">We have your housing solution!</h1>
+          </div>
+          <div className="looking-renting">
+            <div className="explore-content">
+              <h1 className="para">Looking for a room?</h1>
+              <div class="input-group">
+                <Select
+                  className="search-state"
+                  onChange={(e, data) => this.dropdownHandler(e, data)}
+                  placeholder="Select State"
+                  options={this.state.states}
+                />
+                <Button
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                    backgroundColor: "#cf6766",
+                    border: "solid #cf6766 2px",
+                    color: "white",
+                    width: "8]15%",
+                    height: "70%",
+                    fontSize: "1.2em",
+                    marginLeft: "2%"
+                  }}
+                  onClick={() => this.exploreCities()}
+                >
+                  EXPLORE
+                </Button>
+              </div>
+            </div>
+
+            <div className="renting-content">
+              <h1 className="para">Want to rent out a room?</h1>
+
+              <Button
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                  backgroundColor: "#cf6766",
+                  border: "solid #cf6766 2px",
+                  color: "white",
+                  width: "80%",
+                  height: "100%",
+                  fontSize: "1.2em"
+                }}
+              >
+                LIST YOUR PLACE
+              </Button>
             </div>
           </div>
-        </div>
-        <div class="post" />
-
-        <div className="HeaD">
-          <h1 className="head1">Post Your Listing in Less Than 3 Minutes</h1>
-          <h1 className="para">
-            You decide on house rules and move-in dates. We'll get your listing
-            in front of thousands of <br />
-            verified roommates.
-          </h1>
-
-          <Button
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-around",
-              alignItems: "center",
-              backgroundColor: "#cf6766",
-              border: "solid #cf6766 2px",
-              color: "white",
-              width: "20%",
-              height: "100%",
-              fontSize: "1.2em",
-              marginLeft: "40%"
-            }}
-          >
-            LIST YOUR PLACE FOR FREE
-          </Button>
         </div>
         {/* <div className="button">LIST YOUR PLACE FOR FREE</div> */}
         <div class="container">

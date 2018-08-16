@@ -87,13 +87,13 @@ module.exports = function(socket) {
     // callback(communityChat);
   });
 
-  // socket.on(MESSAGE_SENT, ({ chatId, message }) => {
-  //   sendMessageToChatFromUser(chatId, message);
-  // });
+  socket.on(MESSAGE_SENT, ({ chatId, message }) => {
+    sendMessageToChatFromUser(chatId, message);
+  });
 
-  // socket.on(TYPING, ({ chatId, isTyping }) => {
-  //   sendTypingFromUser(chatId, isTyping);
-  // });
+  socket.on(TYPING, ({ chatId, isTyping }) => {
+    sendTypingFromUser(chatId, isTyping);
+  });
 
   //Private message event
   //so we know who is sending and recieving the message
