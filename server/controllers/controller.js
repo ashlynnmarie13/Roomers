@@ -1,5 +1,6 @@
 const Profile = require("../Models/Profile");
 const Listing = require("../Models/Listing");
+const Chat = require("../Models/Chat");
 const AWS = require("aws-sdk");
 const s3 = new AWS.S3();
 const myBucket = "barc-housing";
@@ -381,5 +382,45 @@ module.exports = {
     const { id } = req.params;
 
     Listing.find({ userID: id }).then(listing => res.status(200).send(listing));
+  },
+
+  // SOCKET.IO
+
+  addChat: (req, res) => {
+    console.log(req, res);
+    const {
+      id,
+      chatIdObj,
+      messages,
+      messageId,
+      message,
+      sender,
+      time,
+      name,
+      typingUsers,
+      users
+    } = req.body;
+
+    const newChat = new Chat({
+      _id: id,
+      chats: {
+        chatIdObj,
+        messages: {
+          messageId,
+          message,
+          sender,
+          time
+        },
+        name,
+        typingUsers,
+        users
+      }
+    });
+    newChat
+      .save()
+      .then(response => {
+        res.status(200).send(newChat);
+      })
+      .catch(err => console.log("Can't add chat " + err));
   }
 };

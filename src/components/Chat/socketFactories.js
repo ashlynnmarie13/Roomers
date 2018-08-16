@@ -27,7 +27,7 @@ const createUser = ({ name = "", socketId = null } = {}) => ({
 *		sender {string}
 */
 const createMessage = ({ message = "", sender = "" } = {}) => ({
-  id: uuidv4(),
+  messageId: uuidv4(),
   time: getTime(new Date(Date.now())),
   message,
   sender
@@ -51,7 +51,7 @@ const createChat = ({
   name = "Community",
   users = []
 } = {}) => ({
-  id: uuidv4(),
+  chatIdObj: uuidv4(),
   name,
   messages,
   users,
