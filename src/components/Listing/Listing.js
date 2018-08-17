@@ -226,13 +226,13 @@ class Listing extends Component {
         {this.props.user.authID === _id && (
           <div className="listing-buttons">
             <Button
-              onClick={() => editListing()}
+              onClick={() => this.editListing()}
               color="blue"
               style={{ marginRight: "10px" }}
             >
               Edit
             </Button>
-            <Button onClick={() => deleteListing()} color="red">
+            <Button onClick={() => this.deleteListing()} color="red">
               Delete
             </Button>
           </div>
