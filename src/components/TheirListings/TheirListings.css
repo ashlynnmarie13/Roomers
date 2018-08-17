@@ -1,0 +1,7 @@
+.profile-listings {
+  width: 90%;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  margin: 30px;
+  grid-gap: 10px;
+}
