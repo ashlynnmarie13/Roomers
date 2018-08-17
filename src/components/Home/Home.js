@@ -5,6 +5,7 @@ import stateModel from "../Models/stateModel";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Select, Checkbox, Loader, Segment, Input } from "semantic-ui-react";
+
 class Home extends Component {
   state = {
     selectedState: "",

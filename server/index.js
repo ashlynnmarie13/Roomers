@@ -124,6 +124,9 @@ passport.deserializeUser((user, done) => done(null, user));
 
 // getting user with "getUser" from authCtrl
 app.get("/me", getUser);
+app.get("/logout", logout);
+
+// src/routes.js
 
 //redirects user to the home page after logging in
 app.get(
@@ -135,7 +138,18 @@ app.get(
     failureRedirect: "/login"
   })
 );
-
+{
+  /* <Route
+  path="/login"
+  render={props =>
+    !auth.isAuthenticated() ? (
+      <Redirect to="/home" />
+    ) : (
+      <Ping auth={auth} {...props} />
+    )
+  }
+/>; */
+}
 // adds user info
 app.post("/api/user/info", ctrl.addUserInfo);
 
@@ -157,6 +171,7 @@ app.get("/api/listing/id/:id", ctrl.getListingById);
 
 //add chat for user
 app.post("/api/user/chat", ctrl.addChat);
+app.post("/api/user/chat/update", ctrl.addMessageToChat);
 
 server.listen(port, () => {
   console.log(`app is running in server port ${port}`);

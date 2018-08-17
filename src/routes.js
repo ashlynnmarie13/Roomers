@@ -11,6 +11,7 @@ import Home from "./components/Home/Home";
 import Chat from "./components/Chat/Chat";
 import SearchPeople from "./components/SearchPeople/SearchPeople";
 import Listing from "./components/Listing/Listing";
+import Search from "./components/Search/Search";
 
 import MyProfile from "./components/Profile/MyProfile";
 
@@ -20,11 +21,13 @@ export default (
   <Switch>
     <Route exact path="/" component={Landing} />
     <Route path="/listing/:id" component={Listing} />
+
     <Route path="/location/:state" component={Location} />
     <Route path="/signup" component={SignUpForm} />
     <Route path="/profile/:id" component={Profile} />
     <Route path="/wishlist" component={Wishlist} />
     <Route path="/addlisting" component={AddListing} />
+    <Route path="/search" component={Search} />
     <Route path="/searchrooms" component={SearchRooms} />
     <Route path="/searchpeople" component={SearchPeople} />
     <Route path="/mylistings" component={MyListings} />

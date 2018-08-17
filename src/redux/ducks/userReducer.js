@@ -3,6 +3,7 @@ import axios from "axios";
 const GET_USER = "GET_USER";
 const ADD_USER_INFO = "ADD_USER_INFO";
 const GET_STATE = "GET_STATE";
+const LOG_OUT = "LOG_OUT";
 
 export function getUser() {
   return {
@@ -10,6 +11,13 @@ export function getUser() {
     payload: axios.get("/me")
   };
 }
+export function logout() {
+  return {
+    type: LOG_OUT,
+    payload: axios.get("/logout")
+  };
+}
+
 const getState = {
   cities: {},
   pictures: []
@@ -42,6 +50,13 @@ export default function itemsReducer(state = initialState, action) {
       return {
         ...state,
         [action.newVal.key]: action.newVal.value
+      };
+
+    case `${LOG_OUT}_FULFILLED`:
+      return {
+        ...state,
+        user: action.payload.data,
+        isAuthed: true
       };
     default:
       return state;

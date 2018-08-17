@@ -7,15 +7,28 @@ import { getProfiles } from "../../redux/ducks/profileReducer";
 import axios from "axios";
 import "./SearchPeople.css";
 
-class Profiles extends Component {
+class SearchPeople extends Component {
   state = {
     profiles: [],
     isLoading: true,
     search: "",
-    smoker: true,
-    clean: true,
-    guests: true,
-    pets: true,
+    smoker: false,
+    clean: false,
+    guests: false,
+    pets: false,
+    organized: false,
+    healthy: false,
+    professional: false,
+    student: false,
+    earlyBird: false,
+    nightOwl: false,
+    fitnessEnthusiast: false,
+    creative: false,
+    bookworm: false,
+    foodie: false,
+    partyAnimal: false,
+    vegan: false,
+    introverted: false,
     selectedState: "",
     states: stateModel.states
   };
@@ -29,7 +42,7 @@ class Profiles extends Component {
 
     axios
       .get(
-        `/api/users/info/?smoke=${smoker}&guests=${guests}&pets=${pets}&state=${selectedState}&clean=${clean}`
+        `/api/users/info/?smoke=${smoker}&guests=${guests}&pets=${pets}&state=${selectedState}&clean=${clean}&clean=${clean}&clean=${clean}&clean=${clean}&clean=${clean}&clean=${clean}&clean=${clean}&clean=${clean}&clean=${clean}&clean=${clean}&clean=${clean}&clean=${clean}`
       )
       .then(response =>
         this.setState({ profiles: response.data, isLoading: false }, () =>
@@ -102,39 +115,114 @@ class Profiles extends Component {
               />
             </div>
             <div className="search-people-section">
+              <p className="search-section-title">Prefernces</p>
+              <div className="search-preferences">
+                <Checkbox
+                  name="smoker"
+                  onChange={(event, data) => this.checkboxHandler(event, data)}
+                  className="search-people-item"
+                  slider
+                  label="Smoker"
+                />
+                <Checkbox
+                  name="clean"
+                  onChange={(event, data) => this.checkboxHandler(event, data)}
+                  className="search-people-item"
+                  slider
+                  label="Clean"
+                />
+                <Checkbox
+                  name="guests"
+                  onChange={(event, data) => this.checkboxHandler(event, data)}
+                  className="search-people-item"
+                  slider
+                  label="Guests"
+                />
+                <Checkbox
+                  name="pets"
+                  onChange={(event, data) => this.checkboxHandler(event, data)}
+                  className="search-people-item"
+                  slider
+                  label="Pets"
+                />
+              </div>
+            </div>
+            <div className="search-people-section">
               <p className="search-section-title">Traits</p>
-              <Checkbox
-                defaultChecked
-                name="smoker"
-                onChange={(event, data) => this.checkboxHandler(event, data)}
-                className="search-people-item"
-                slider
-                label="Smoker"
-              />
-              <Checkbox
-                defaultChecked
-                name="clean"
-                onChange={(event, data) => this.checkboxHandler(event, data)}
-                className="search-people-item"
-                slider
-                label="Clean"
-              />
-              <Checkbox
-                defaultChecked
-                name="guests"
-                onChange={(event, data) => this.checkboxHandler(event, data)}
-                className="search-people-item"
-                slider
-                label="Guests"
-              />
-              <Checkbox
-                defaultChecked
-                name="pets"
-                onChange={(event, data) => this.checkboxHandler(event, data)}
-                className="search-people-item"
-                slider
-                label="Pets"
-              />
+              <div className="search-traits">
+                <Checkbox
+                  name="organized"
+                  onChange={(event, data) => this.checkboxHandler(event, data)}
+                  className="search-people-item"
+                  label="Organized"
+                />
+                <Checkbox
+                  name="healthy"
+                  onChange={(event, data) => this.checkboxHandler(event, data)}
+                  className="search-people-item"
+                  label="Healthy"
+                />
+                <Checkbox
+                  name="professional"
+                  onChange={(event, data) => this.checkboxHandler(event, data)}
+                  className="search-people-item"
+                  label="Professional"
+                />
+                <Checkbox
+                  name="student"
+                  onChange={(event, data) => this.checkboxHandler(event, data)}
+                  className="search-people-item"
+                  label="Student"
+                />
+                <Checkbox
+                  name="earlyBird"
+                  onChange={(event, data) => this.checkboxHandler(event, data)}
+                  className="search-people-item"
+                  label="Early Bird"
+                />
+                <Checkbox
+                  name="nightOwl"
+                  onChange={(event, data) => this.checkboxHandler(event, data)}
+                  className="search-people-item"
+                  label="Night Owl"
+                />
+                <Checkbox
+                  name="fitnessEnthusiast"
+                  onChange={(event, data) => this.checkboxHandler(event, data)}
+                  className="search-people-item"
+                  label="Fitness Enthusiast"
+                />
+                <Checkbox
+                  name="creative"
+                  onChange={(event, data) => this.checkboxHandler(event, data)}
+                  className="search-people-item"
+                  label="Creative"
+                />
+                <Checkbox
+                  name="bookworm"
+                  onChange={(event, data) => this.checkboxHandler(event, data)}
+                  className="search-people-item"
+                  label="Bookworm"
+                />
+                <Checkbox
+                  name="nightOwl"
+                  onChange={(event, data) => this.checkboxHandler(event, data)}
+                  className="search-people-item"
+                  label="Night Owl"
+                />
+                <Checkbox
+                  name="fitnessEnthusiast"
+                  onChange={(event, data) => this.checkboxHandler(event, data)}
+                  className="search-people-item"
+                  label="Fitness Enthusiast"
+                />
+                <Checkbox
+                  name="creative"
+                  onChange={(event, data) => this.checkboxHandler(event, data)}
+                  className="search-people-item"
+                  label="Creative"
+                />
+              </div>
             </div>
           </div>
           {this.state.isLoading ? (
@@ -155,4 +243,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getProfiles }
-)(Profiles);
+)(SearchPeople);
