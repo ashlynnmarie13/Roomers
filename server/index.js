@@ -158,6 +158,8 @@ app.get("/api/users/info", ctrl.getAllProfiles);
 // get profile by id
 app.get("/api/user/info/:id", ctrl.getProfileById);
 app.get("/api/user/info/:id", ctrl.getProfileByAuthId);
+// get profiles by name
+app.get("/api/users", ctrl.getProfilesByName);
 
 // adds listing
 app.post("/api/listing/add", ctrl.addListing);

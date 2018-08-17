@@ -38,21 +38,54 @@ class SearchPeople extends Component {
   }
 
   searchPeople = () => {
-    const { smoker, clean, guests, pets, selectedState } = this.state;
+    const {
+      smoker,
+      guests,
+      pets,
+      clean,
+      selectedState,
+      organized,
+      healthy,
+      professional,
+      student,
+      earlyBird,
+      nightOwl,
+      fitnessEnthusiast,
+      creative,
+      bookworm,
+      foodie,
+      partyAnimal,
+      vegan,
+      introverted,
+      search
+    } = this.state;
 
     axios
       .get(
-        `/api/users/info/?smoke=${smoker}&guests=${guests}&pets=${pets}&state=${selectedState}&clean=${clean}&clean=${clean}&clean=${clean}&clean=${clean}&clean=${clean}&clean=${clean}&clean=${clean}&clean=${clean}&clean=${clean}&clean=${clean}&clean=${clean}&clean=${clean}`
+        `/api/users/info/?smoke=${smoker}&clean=${clean}&guests=${guests}&pets=${pets}&selectedState=${selectedState}&organized=${organized}&healthy=${healthy}&professional=${professional}&student=${student}&earlyBird=${earlyBird}&nightOwl=${nightOwl}&fitnessEnthusiast=${fitnessEnthusiast}&creative=${creative}&bookworm=${bookworm}&foodie=${foodie}&partyAnimal=${partyAnimal}&vegan=${vegan}&introverted=${introverted}&search=${search}`
       )
       .then(response =>
-        this.setState({ profiles: response.data, isLoading: false }, () =>
-          console.log(response.data)
-        )
+        this.setState({ profiles: response.data, isLoading: false })
+      );
+  };
+
+  searchPeopleByName = () => {
+    const { search } = this.state;
+    axios
+      .get(`/api/users/?search=${search}`)
+      .then(response =>
+        this.setState({ profiles: response.data, isLoading: false })
       );
   };
 
   inputHandler = e => {
-    this.setState({ search: e.target.value }, () => this.searchPeople());
+    this.setState({ search: e.target.value }, () => {
+      if (this.state.search.length !== 0) {
+        this.searchPeopleByName();
+      } else {
+        this.searchPeople();
+      }
+    });
   };
 
   checkboxHandler = (e, data) => {
@@ -66,7 +99,6 @@ class SearchPeople extends Component {
   };
 
   render() {
-    console.log(this.state.states);
     const profiles = this.state.profiles.map((profile, i) => {
       const { profilePic, birthday, aboutMe, name, title, _id } = profile;
 
@@ -98,6 +130,7 @@ class SearchPeople extends Component {
               <p className="search-section-title">Search</p>
               <Input
                 onChange={e => this.inputHandler(e)}
+                onChange={e => this.inputHandler(e)}
                 style={{ width: "100%", margin: 0 }}
                 icon="users"
                 iconPosition="right"
@@ -115,7 +148,7 @@ class SearchPeople extends Component {
               />
             </div>
             <div className="search-people-section">
-              <p className="search-section-title">Prefernces</p>
+              <p className="search-section-title">Preferences</p>
               <div className="search-preferences">
                 <Checkbox
                   name="smoker"
@@ -187,10 +220,22 @@ class SearchPeople extends Component {
                   label="Night Owl"
                 />
                 <Checkbox
-                  name="fitnessEnthusiast"
+                  name="creative"
                   onChange={(event, data) => this.checkboxHandler(event, data)}
                   className="search-people-item"
-                  label="Fitness Enthusiast"
+                  label="Creative"
+                />
+                <Checkbox
+                  name="bookworm"
+                  onChange={(event, data) => this.checkboxHandler(event, data)}
+                  className="search-people-item"
+                  label="Bookworm"
+                />
+                <Checkbox
+                  name="introverted"
+                  onChange={(event, data) => this.checkboxHandler(event, data)}
+                  className="search-people-item"
+                  label="Introverted"
                 />
                 <Checkbox
                   name="creative"
@@ -205,22 +250,28 @@ class SearchPeople extends Component {
                   label="Bookworm"
                 />
                 <Checkbox
-                  name="nightOwl"
+                  name="foodie"
                   onChange={(event, data) => this.checkboxHandler(event, data)}
                   className="search-people-item"
-                  label="Night Owl"
+                  label="Foodie"
+                />
+                <Checkbox
+                  name="partyAnimal"
+                  onChange={(event, data) => this.checkboxHandler(event, data)}
+                  className="search-people-item"
+                  label="Party Animal"
+                />
+                <Checkbox
+                  name="vegan"
+                  onChange={(event, data) => this.checkboxHandler(event, data)}
+                  className="search-people-item"
+                  label="Vegan"
                 />
                 <Checkbox
                   name="fitnessEnthusiast"
                   onChange={(event, data) => this.checkboxHandler(event, data)}
                   className="search-people-item"
                   label="Fitness Enthusiast"
-                />
-                <Checkbox
-                  name="creative"
-                  onChange={(event, data) => this.checkboxHandler(event, data)}
-                  className="search-people-item"
-                  label="Creative"
                 />
               </div>
             </div>

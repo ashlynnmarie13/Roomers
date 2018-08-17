@@ -10,24 +10,19 @@ import {
   TextArea,
   Button,
   Icon,
-  Card,
   Dropdown
 } from "semantic-ui-react";
 import "react-dates/initialize";
-import {
-  DateRangePicker,
-  SingleDatePicker,
-  DayPickerRangeController,
-  DayPicker
-} from "react-dates";
+import DatePicker from "react-datepicker";
 import moment from "moment";
 import "react-dates/lib/css/_datepicker.css";
 import { addUserInfo } from "../../redux/ducks/userReducer";
 import { connect } from "react-redux";
 import "./SignUpForm.css";
-import axios from "axios";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
+import "react-datepicker/dist/react-datepicker.css";
+import yearModel from "../Models/yearModel";
 
 class SignUpForm extends Component {
   state = {
@@ -35,8 +30,6 @@ class SignUpForm extends Component {
     name: "",
     male: true,
     female: false,
-    year: "",
-    date: "",
     email: "",
     phone: "",
     dob: "",
@@ -73,11 +66,6 @@ class SignUpForm extends Component {
     focused: true
   };
 
-  addDashes = f => {
-    let f_val = f.replace(/\D[^\.]/g, "");
-    return f_val.slice(0, 3) + "-" + f_val.slice(3, 6) + "-" + f_val.slice(6);
-  };
-
   inputHandler = e => {
     if (e.target.name === "phone") {
       let phone = this.addDashes(e.target.value);
@@ -85,6 +73,10 @@ class SignUpForm extends Component {
     } else {
       this.setState({ [e.target.name]: e.target.value });
     }
+  };
+
+  calendarHandler = date => {
+    this.setState({ dob: date._d });
   };
 
   checkboxHandler = (e, data) => {
@@ -161,7 +153,7 @@ class SignUpForm extends Component {
               <div className="input-item">
                 <p className="section-item">Name</p>
                 <Input
-                  style={{ height: "60px" }}
+                  style={{ height: "60px", margin: "20px 0" }}
                   placeholder="Name"
                   onChange={event => this.inputHandler(event)}
                   name="name"
@@ -172,7 +164,7 @@ class SignUpForm extends Component {
               <div className="input-item">
                 <p className="section-item">Gender</p>
                 <Dropdown
-                  style={{ height: "60px" }}
+                  style={{ height: "60px", margin: "20px 0" }}
                   onChange={(e, data) => this.dropdownHandler(e, data)}
                   placeholder="Gender"
                   name="gender"
@@ -188,7 +180,9 @@ class SignUpForm extends Component {
               <div className="input-item">
                 <p className="section-item">Email</p>
                 <Input
-                  style={{ height: "60px" }}
+                  style={{ height: "60px", margin: "20px 0" }}
+                  onChange={event => this.inputHandler(event)}
+                  name="email"
                   required
                   iconPosition="left"
                   placeholder="Email"
@@ -212,25 +206,29 @@ class SignUpForm extends Component {
                 <div className="input-item">
                   <p className="section-item">Date of Birth</p>
 
-                  {!this.state.year ? (
+                  {!this.state.dob ? (
                     <Dropdown
                       onChange={(e, data) => this.dropdownHandler(e, data)}
-                      name="year"
+                      search
+                      selection
+                      name="dob"
                       placeholder="Year"
-                      options={[
-                        { text: "2010", value: "2010" },
-                        { text: "2018", value: "2018" }
-                      ]}
+                      options={yearModel.years}
                     />
                   ) : (
-                    <DayPicker
-                      date={moment(`01/01/${this.state.year}`)} // momentPropTypes.momentObj or null
-                      onDateChange={date => this.setState({ date })} // PropTypes.func.isRequired
-                      focused={this.state.focused} // PropTypes.bool
-                      onFocusChange={({ focused }) =>
-                        this.setState({ focused })
-                      }
-                    />
+                    <div className="calendar">
+                      <DatePicker
+                        selected={moment(this.state.dob)}
+                        onChange={this.calendarHandler}
+                      />
+                      <Button
+                        style={{ marginLeft: "10px" }}
+                        size="mini"
+                        onClick={() => this.setState({ dob: "" })}
+                      >
+                        Select Year
+                      </Button>
+                    </div>
                   )}
                 </div>
               </div>
@@ -240,7 +238,7 @@ class SignUpForm extends Component {
                 <p className="section-item-about">About you</p>
                 <TextArea
                   placeholder="Interests, hobbies, habits..."
-                  style={{ width: "100%", height: "500px" }}
+                  style={{ width: "100%", height: "500px", margin: "20px 0" }}
                   onChange={event => this.inputHandler(event)}
                   name="about"
                   type="text"
@@ -264,7 +262,7 @@ class SignUpForm extends Component {
                     }) => (
                       <div>
                         <Input
-                          style={{ height: "60px" }}
+                          style={{ height: "60px", margin: "20px 0" }}
                           required
                           {...getInputProps({
                             placeholder: "Search Places ...",
@@ -549,7 +547,7 @@ class SignUpForm extends Component {
               </div>
             </div>
           </div>
-          <div className="section-traits">
+          <div className="section-image">
             <div className="input-photo">
               <p className="section-item-photo">Upload a photo:</p>
 
@@ -587,7 +585,8 @@ class SignUpForm extends Component {
                 color: "white",
                 height: "75px",
                 width: "175px",
-                fontSize: "20px"
+                fontSize: "20px",
+                marginBottom: "60px"
               }}
               type="submit"
               animated

@@ -8,6 +8,7 @@ import { getUserById, getUser } from "../../redux/ducks/userReducer";
 import axios from "axios";
 import Logout from "../Login/Logout";
 import { connect } from "react-redux";
+
 class Nav extends Component {
   state = {
     userInfo: {}

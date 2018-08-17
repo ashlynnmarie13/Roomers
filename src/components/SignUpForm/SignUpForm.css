@@ -56,12 +56,26 @@
   background-color: white;
 }
 
+.section-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(142, 174, 189, 0.4);
+  padding: 30px;
+  margin: 60px;
+
+  width: 90%;
+  
+  background-color: white;
+}
+
 .section-title {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 30px;
-  margin-bottom: 25px;
-  color: #031424;
+  margin-bottom: 60px;
+  color: #031424
   
 }
 
@@ -254,4 +268,10 @@
 .job-inputs {
   height: 50%;
   justify-self: center;
+}
+
+.calendar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
