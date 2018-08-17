@@ -58,7 +58,10 @@ class AddListing extends Component {
       tv: false,
       privateBathroom: false,
       outdoorSpace: false,
-      hasPet: false,
+      pets: false,
+      clean: false,
+      smoke: false,
+      guests: false,
       lat: 0,
       lng: 0,
       images: [],
@@ -483,17 +486,54 @@ class AddListing extends Component {
                     label="Outdoor Space"
                   />
                 </div>
+              </div>
+            </div>
+            <div />
+          </div>
+
+          <div ref="amenities" className="listing-section">
+            <div>
+              <p className="details-header">Prefernces</p>
+            </div>
+            <div className="section-details">
+              <div className="amend-selection">
                 <div className="amend-item">
                   <Checkbox
+                    slider
                     onChange={(e, data) => this.checkboxHandler(e, data)}
-                    id="hasPet"
-                    label="Has Pet"
+                    id="smoke"
+                    label="Smoker"
+                  />
+                </div>
+                <div className="amend-item">
+                  <Checkbox
+                    slider
+                    onChange={(e, data) => this.checkboxHandler(e, data)}
+                    id="clean"
+                    label="Clean/Organized"
+                  />
+                </div>
+                <div className="amend-item">
+                  <Checkbox
+                    slider
+                    onChange={(e, data) => this.checkboxHandler(e, data)}
+                    id="guests"
+                    label="Frequent Guests"
+                  />
+                </div>
+                <div className="amend-item">
+                  <Checkbox
+                    slider
+                    onChange={(e, data) => this.checkboxHandler(e, data)}
+                    id="pets"
+                    label="Pet Owner"
                   />
                 </div>
               </div>
             </div>
             <div />
           </div>
+
           <div ref="description" className="listing-section">
             <div>
               <p className="details-header">Description</p>

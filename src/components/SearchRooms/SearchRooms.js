@@ -56,7 +56,6 @@ class SearchRooms extends Component {
       tv,
       privateBathroom,
       outdoorSpace,
-      hasPet,
       selectedState,
       rentLength,
       monthlyCost,
@@ -66,7 +65,7 @@ class SearchRooms extends Component {
 
     axios
       .get(
-        `/api/rooms/?smoke=${smoke}&clean=${clean}&guests=${guests}&pets=${pets}&washer=${washer}&wifi=${wifi}&utilities=${utilities}&furnished=${furnished}&elevator=${elevator}&doorman=${doorman}&airConditioning=${airConditioning}&heating=${heating}&gym=${gym}&tv=${tv}&privateBathroom=${privateBathroom}&outdoorSpace=${outdoorSpace}&hasPet=${hasPet}&selectedState=${selectedState}&rentLength=${rentLength}&male=${male}&female=${female}&monthlyCost=${monthlyCost}`
+        `/api/rooms/?smoke=${smoke}&clean=${clean}&guests=${guests}&pets=${pets}&washer=${washer}&wifi=${wifi}&utilities=${utilities}&furnished=${furnished}&elevator=${elevator}&doorman=${doorman}&airConditioning=${airConditioning}&heating=${heating}&gym=${gym}&tv=${tv}&privateBathroom=${privateBathroom}&outdoorSpace=${outdoorSpace}&selectedState=${selectedState}&rentLength=${rentLength}&male=${male}&female=${female}&monthlyCost=${monthlyCost}`
       )
       .then(rooms => this.setState({ rooms: rooms.data }));
   };
@@ -81,16 +80,19 @@ class SearchRooms extends Component {
 
   checkboxHandler = (e, data) => {
     const { name, checked } = data;
+
     this.setState({ [name]: checked }, () => this.searchRooms());
   };
 
   dropdownHandler = (e, data) => {
     const { name, value } = data;
+
     this.setState({ [name]: value }, () => this.searchRooms());
   };
 
   genderHandler = (e, data) => {
     const { name, value } = data;
+
     if (value === "male") {
       this.setState({ male: true, female: false }, () => this.searchRooms());
     } else if (value === "female") {
@@ -146,7 +148,7 @@ class SearchRooms extends Component {
             <p className="search-section-title">Rent</p>
             <Input
               onChange={event => this.inputHandler(event)}
-              style={{ marginTop: 0 }}
+              style={{ marginTop: 0, width: "40%" }}
               labelPosition="right"
               type="number"
               placeholder="Max Amount"
@@ -297,12 +299,6 @@ class SearchRooms extends Component {
                 name="outdoorSpace"
                 style={{ margin: "10px 0" }}
                 label="Outdoor Space"
-              />
-              <Checkbox
-                onChange={(event, data) => this.checkboxHandler(event, data)}
-                name="hasPet"
-                style={{ margin: "10px 0" }}
-                label="Has Pet"
               />
             </div>
           </div>
