@@ -13,7 +13,7 @@ class MyProfile extends Component {
   };
 
   componentDidMount() {
-    const authID = "google-oauth2|114206976559611966047";
+    const { authID } = this.props.user;
     console.log(authID);
     axios
       .get(`/api/user/info/${authID}`)
@@ -119,7 +119,7 @@ class MyProfile extends Component {
     return (
       <div className="profile">
         <div className="person">
-          <Card style={{ width: "90%", height: "50%" }}>
+          <Card style={{ width: "90%", height: "50%", marginTop: "-20%" }}>
             <Image
               style={{ objectFit: "cover" }}
               src={userInfo.profilePic}

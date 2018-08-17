@@ -9,8 +9,6 @@ import "./Location.css";
 import { Link } from "react-router-dom";
 import image from "../Location/skyline.jpg";
 
-import stateModel from "../Models/stateModel";
-
 import { Select, Checkbox, Loader, Segment, Input } from "semantic-ui-react";
 const Wrapper = styled.section`
 position: absolute;
@@ -37,8 +35,6 @@ export default class Location extends Component {
       if (val.value === state) {
         cities = val.cities;
       }
-
-    
     });
 
     axios.get(`/api/listing/${state}`).then(response =>
