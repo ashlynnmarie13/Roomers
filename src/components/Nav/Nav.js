@@ -26,7 +26,7 @@ class Nav extends Component {
   render() {
     const { profilePic } = this.state.userInfo;
     return (
-      <div className="Nav">
+      <div className="Nav bottom">
         <div className="box1">
           <NavLink to="/myprofile" className="nav-pic">
             <img src={profilePic} alt="pic" className="profile-pic-nav" />

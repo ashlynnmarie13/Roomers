@@ -13,16 +13,16 @@ const Logout = props => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-around",
-            alignItems: "right",
-            backgroundColor: "white",
+            alignItems: "center",
+            backgroundColor: "#031424",
             border: "solid #031424 2px",
-            color: "#031424",
+            color: "white",
             width: "100%",
-            height: "85%",
+            height: "60px",
             fontSize: "1.2em"
           }}
         >
-          Log out
+          Log Out
         </Button>
       </a>
     </div>
