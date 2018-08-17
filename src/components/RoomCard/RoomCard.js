@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 
 export default props => {
-  const { address, amenities, human, prefs, rent, userID, id, images } = props;
+  const { address, amenities, human, prefs, rent, userID, id, loggedInUser, images } = props;
+  console.log(loggedInUser)
 
   return (
     <Card style={{ height: "400px", marginTop: 0 }}>
@@ -31,7 +32,24 @@ export default props => {
         <Card.Description />
       </Card.Content>
       <Card.Content extra>
-        <a>Add to Wishlist</a>
+        <a 
+          onClick={() =>
+            props.onSubmit(
+              id,
+              userID,
+              loggedInUser,
+              rent.monthlyCost,
+              address.city,
+              address.state,
+              rent.moveInDate,
+              rent.rentLength,
+              images[0]
+            )
+          }
+        >
+          {" "}
+          {props.text}{" "}
+        </a>
       </Card.Content>
     </Card>
   );
