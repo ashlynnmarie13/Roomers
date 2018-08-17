@@ -121,6 +121,7 @@ const ProfileSchema = new Schema({
       default: false
     }
   },
+  wishList: Array,
   date: {
     type: Date,
     default: Date.now
