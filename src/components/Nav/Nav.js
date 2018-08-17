@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import "./Nav.css";
 import "../../App";
-import logo from "./logo_transparent.png";
 import { NavLink, Link } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 import { getUserById, getUser } from "../../redux/ducks/userReducer";
 import axios from "axios";
 import Logout from "../Login/Logout";
 import { connect } from "react-redux";
+
 class Nav extends Component {
   state = {
     userInfo: {}
@@ -93,7 +93,7 @@ class Nav extends Component {
             }}
           >
             <NavLink
-              to="/searchrooms"
+              to="/search/rooms"
               style={{ color: "#031424" }}
               className="expand-link"
             >
