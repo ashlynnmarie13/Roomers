@@ -12,21 +12,35 @@ class TheirListings extends Component {
   };
 
   componentDidMount() {
-    const authID = "google-oauth2|109803081908967859150";
+    const id = this.props;
     console.log(this.props);
     axios
-      .get(`/api/listing/${authID}`)
+      .get(`/api/listing/${id}`)
       .then(response => this.setState({ listings: { ...response.data } }));
   }
 
   render() {
     const listings = this.state.listings;
+    const { id } = this.props.id;
+    console.log(id);
     console.log(listings);
 
     let roomsList = Object.values(listings);
     console.log(listings[0]);
     console.log(roomsList);
-    const rooms = roomsList.map(val => {
+
+    const rooms = [];
+    roomsList.forEach(function(thing) {
+      if (thing.userID === id) {
+        rooms.push(thing);
+      } else {
+        console.log("not me");
+      }
+    });
+
+    console.log(rooms);
+
+    const finalRooms = rooms.map(val => {
       const {
         address,
         amenities,
@@ -37,7 +51,6 @@ class TheirListings extends Component {
         _id,
         images
       } = val;
-      console.log(address);
 
       return (
         <RoomCard
@@ -53,7 +66,7 @@ class TheirListings extends Component {
       );
     });
 
-    return <div className="profile-listings">{rooms}</div>;
+    return <div className="profile-listings">{finalRooms}</div>;
   }
 }
 

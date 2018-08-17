@@ -12,6 +12,7 @@ class Profile extends Component {
   state = {
     userInfo: {},
     listings: [],
+    id: "",
     address: ""
   };
 
@@ -19,11 +20,14 @@ class Profile extends Component {
     const { id } = this.props.match.params;
     axios
       .get(`/api/user/info/${id}`)
-      .then(response => this.setState({ userInfo: { ...response.data, id } }));
+      .then(response =>
+        this.setState({ userInfo: { ...response.data, id }, id: id })
+      );
   }
 
   render() {
     const { userInfo } = this.state;
+    const id = this.state;
     console.log(userInfo);
 
     const birthday = userInfo.birthday;
@@ -205,7 +209,7 @@ class Profile extends Component {
               My Listings{" "}
             </div>
             <div className="my-listings">
-              <TheirListings userInfo={userInfo} />
+              <TheirListings userInfo={userInfo} id={id} />
             </div>
           </div>
         </div>

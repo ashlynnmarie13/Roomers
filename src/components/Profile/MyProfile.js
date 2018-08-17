@@ -205,6 +205,7 @@ class MyProfile extends Component {
               My Listings{" "}
             </div>
             <div className="my-listings">
+              {console.log(userInfo)}
               <MyListings userInfo={userInfo} />
             </div>
           </div>

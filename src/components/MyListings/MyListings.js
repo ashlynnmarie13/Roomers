@@ -12,8 +12,8 @@ class MyListings extends Component {
   };
 
   componentDidMount() {
-    const authID = this.props.user.authID;
-    console.log(this.props.user);
+    const { authID } = this.props.user;
+    console.log(this.props);
     axios
       .get(`/api/listing/${authID}`)
       .then(response => this.setState({ listings: { ...response.data } }));
@@ -21,12 +21,25 @@ class MyListings extends Component {
 
   render() {
     const listings = this.state.listings;
+    const { authID } = this.props.user;
     console.log(listings);
 
     let roomsList = Object.values(listings);
     console.log(listings[0]);
     console.log(roomsList);
-    const rooms = roomsList.map(val => {
+
+    const rooms = [];
+    roomsList.forEach(function(thing) {
+      if (thing.userID === authID) {
+        rooms.push(thing);
+      } else {
+        console.log("not me");
+      }
+    });
+
+    console.log(rooms);
+
+    const finalRooms = rooms.map(val => {
       const {
         address,
         amenities,
@@ -37,7 +50,6 @@ class MyListings extends Component {
         _id,
         images
       } = val;
-      console.log(address);
 
       return (
         <RoomCard
@@ -53,7 +65,7 @@ class MyListings extends Component {
       );
     });
 
-    return <div className="profile-listings">{rooms}</div>;
+    return <div className="profile-listings">{finalRooms}</div>;
   }
 }
 

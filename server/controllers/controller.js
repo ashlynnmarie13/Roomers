@@ -387,6 +387,7 @@ module.exports = {
 
   getListingByAuthId: (req, res) => {
     const { id } = req.params;
+    console.log(req.params);
 
     Listing.find({ userID: id }).then(listing => res.status(200).send(listing));
   },
