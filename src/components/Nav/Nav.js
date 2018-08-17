@@ -68,7 +68,6 @@ class Nav extends Component {
                 height: "70%",
                 fontSize: "1.2em"
               }}
-              Messages
             </Button>
           </Logout>
         </div>

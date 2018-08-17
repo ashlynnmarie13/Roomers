@@ -118,7 +118,6 @@ passport.serializeUser((user, done) => {
     })
     .catch(err => console.log(err));
 });
-
 //I'm not sure what this does
 passport.deserializeUser((user, done) => done(null, user));
 
@@ -140,14 +139,14 @@ app.get(
 );
 {
   /* <Route
-  path="/login"
-  render={props =>
-    !auth.isAuthenticated() ? (
-      <Redirect to="/home" />
-    ) : (
-      <Ping auth={auth} {...props} />
-    )
-  }
+ path="/login"
+ render={props =>
+   !auth.isAuthenticated() ? (
+     <Redirect to="/home" />
+   ) : (
+     <Ping auth={auth} {...props} />
+   )
+ }
 />; */
 }
 // adds user info
@@ -162,14 +161,17 @@ app.get("/api/user/info/:id", ctrl.getProfileByAuthId);
 // adds listing
 app.post("/api/listing/add", ctrl.addListing);
 app.get("/api/rooms", ctrl.getListings);
-
+app.get("/api/wishlist/:id", ctrl.getWishList);
+app.post("/api/addtowishlist", ctrl.addToWishList);
 //get listing by id
 app.get("/api/listing/:state", ctrl.getListingByState);
+app.get("/api/listing/:city", ctrl.getListingByCity);
 app.get("/api/listing/:id", ctrl.getListingByAuthId);
 app.get("/api/listing/id/:id", ctrl.getListingById);
 
 //add chat for user
 app.post("/api/user/chat", ctrl.addChat);
+app.post("/api/user/chat/update", ctrl.addMessageToChat);
 
 server.listen(port, () => {
   console.log(`app is running in server port ${port}`);
