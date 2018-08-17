@@ -48,6 +48,12 @@
   color: #CF6766;
 }
 
+.listing-buttons {
+  display: flex;
+  justify-content: center;
+  margin: 60px;
+}
+
 .listing-header {
   margin: 60px;
 }
