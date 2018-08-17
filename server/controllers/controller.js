@@ -392,30 +392,13 @@ module.exports = {
   // SOCKET.IO
 
   addChat: (req, res) => {
-    console.log(req, res);
-    const {
-      id,
-      chatIdObj,
-      messages,
-      messageId,
-      message,
-      sender,
-      time,
-      name,
-      typingUsers,
-      users
-    } = req.body;
+    const { id, chatIdObj, messages, name, typingUsers, users } = req.body;
 
     const newChat = new Chat({
       _id: id,
       chats: {
         chatIdObj,
-        messages: {
-          messageId,
-          message,
-          sender,
-          time
-        },
+        messages,
         name,
         typingUsers,
         users
@@ -427,5 +410,21 @@ module.exports = {
         res.status(200).send(newChat);
       })
       .catch(err => console.log("Can't add chat " + err));
+  },
+
+  addMessageToChat: (req, res) => {
+    console.log("logging the add message", req.body);
+    const { id, chatIdObj, messages, name, typingUsers, users } = req.body;
+
+    Chat.update(
+      { _id: id },
+      {
+        $push: {
+          chats: { $each: [chatIdObj, messages, name, typingUsers, users] }
+        }
+      }
+    ).then(response => {
+      console.log(response);
+    });
   }
 };
