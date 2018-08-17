@@ -1,6 +1,7 @@
 .search-rooms {
   display: flex;
   justify-content: flex-start;
+  margin: 20px;
 }
 
 .search-menu {
@@ -8,9 +9,10 @@
   display: flex;
   flex-direction: column;
   margin: 30px;
+  padding: 30px;
   position: sticky;
   top: 0;
-  border: 1px solid #000;
+  border: 1px solid rgb(219, 219, 219);
   border-radius: 5px;
 }
 
@@ -27,7 +29,7 @@
 
 .search-section-title {
   font-size: 18px;
- 
+  color: #CF6766;
 }
 
 .selection {
