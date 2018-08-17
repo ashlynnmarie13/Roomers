@@ -17,16 +17,16 @@ class SearchPeople extends Component {
     guests: false,
     pets: false,
     organized: false,
-    healthy: false,
+    healthy: true,
     professional: false,
-    student: false,
+    student: true,
     earlyBird: false,
-    nightOwl: false,
+    nightOwl: true,
     fitnessEnthusiast: false,
     creative: false,
     bookworm: false,
     foodie: false,
-    partyAnimal: false,
+    partyAnimal: true,
     vegan: false,
     introverted: false,
     selectedState: "",
@@ -190,6 +190,7 @@ class SearchPeople extends Component {
                   label="Organized"
                 />
                 <Checkbox
+                  defaultChecked
                   name="healthy"
                   onChange={(event, data) => this.checkboxHandler(event, data)}
                   className="search-people-item"
@@ -202,6 +203,7 @@ class SearchPeople extends Component {
                   label="Professional"
                 />
                 <Checkbox
+                  defaultChecked
                   name="student"
                   onChange={(event, data) => this.checkboxHandler(event, data)}
                   className="search-people-item"
@@ -214,6 +216,7 @@ class SearchPeople extends Component {
                   label="Early Bird"
                 />
                 <Checkbox
+                  defaultChecked
                   name="nightOwl"
                   onChange={(event, data) => this.checkboxHandler(event, data)}
                   className="search-people-item"
@@ -256,6 +259,7 @@ class SearchPeople extends Component {
                   label="Foodie"
                 />
                 <Checkbox
+                  defaultChecked
                   name="partyAnimal"
                   onChange={(event, data) => this.checkboxHandler(event, data)}
                   className="search-people-item"
