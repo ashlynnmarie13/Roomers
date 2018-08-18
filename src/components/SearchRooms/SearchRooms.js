@@ -24,7 +24,7 @@ class SearchRooms extends Component {
     heating: true,
     gym: false,
     tv: false,
-    privateBathroom: false,
+    privateBathroom: true,
     outdoorSpace: false,
     hasPet: false,
     male: true,
@@ -133,7 +133,6 @@ class SearchRooms extends Component {
   };
 
   render() {
-    console.log(this.state.rooms);
     console.log(this.props);
     const roomList = this.state.rooms.map((val, i) => {
       const {
@@ -325,6 +324,7 @@ class SearchRooms extends Component {
                 label="TV"
               />
               <Checkbox
+                defaultChecked
                 onChange={(event, data) => this.checkboxHandler(event, data)}
                 name="privateBathroom"
                 style={{ margin: "10px 0" }}

@@ -141,7 +141,8 @@ class Home extends Component {
                 <h2 class="cali">Florida</h2>
               </div>
             </div>
-            <div class="middle">
+
+            <div class="middle" >
               <div class="bo" onClick={() => this.selectState("Kansas")}>
                 <h2 class="cali">Kansas</h2>
               </div>
