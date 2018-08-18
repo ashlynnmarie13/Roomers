@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ListingCard from "../ListingCard/ListingCard";
 import { Card, Image } from "semantic-ui-react";
 import RoomCard from "../RoomCard/RoomCard";
-import states from "../Models/stateModel";
+import stateModel from "../Models/stateModel";
 
 import axios from "axios";
 import styled from "styled-components";
@@ -23,12 +23,25 @@ opacity: 0.8;
 export default class Location extends Component {
   state = {
     cities: [],
-    selectedCity: ""
+    selectedCity: "",
+    selectedState:""
   };
 
   componentDidMount() {
     this.searchStates(this.props.match.params.state);
+    const { state } = this.props.match.params;
+    let cities = [];
+
+    stateModel.states.forEach(val => {
+        if (val.value === state) {
+          cities = val.cities;
+        }
+        console.log(cities);
+       
+
+      });
   }
+
   searchStates = state => {
     console.log(state);
     axios
@@ -43,14 +56,20 @@ export default class Location extends Component {
       );
   };
   dropdownHandler = (e, data) => {
-    const { value } = data;
+    const { value} = data;
     this.setState({ selectedState: value }, () => this.searchStates());
   };
 
   render() {
-    console.log(this.state.drop);
-    console.log(this.props);
-    console.log(states.states);
+  
+   
+    console.log(this.state.cities[0]
+       && this.state.cities[0].address.city
+      );
+      console.log(this.state.cities
+        // && this.state.cities[0].address.city
+       );
+    // console.log(this.state.states.cities);
 
     const locationList = this.state.cities.map((val, i) => {
       const {
@@ -99,7 +118,10 @@ export default class Location extends Component {
               name="selectedCity"
               search
               selection
-              options={states.states}
+              options={this.state.cities[0]
+                && this.state.cities[0].address.city
+              }
+              
             />
           </div>
         </Wrapper>

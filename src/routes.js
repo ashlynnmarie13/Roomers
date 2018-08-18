@@ -13,6 +13,7 @@ import SearchPeople from "./components/SearchPeople/SearchPeople";
 import Listing from "./components/Listing/Listing";
 import Search from "./components/Search/Search";
 
+
 import MyProfile from "./components/Profile/MyProfile";
 
 import Location from "./components/Location/Location";
@@ -21,7 +22,7 @@ export default (
   <Switch>
     <Route exact path="/" component={Landing} />
     <Route path="/listing/:id" component={Listing} />
-
+    
     <Route path="/location/:state" component={Location} />
     <Route path="/signup" component={SignUpForm} />
     <Route path="/profile/:id" component={Profile} />
