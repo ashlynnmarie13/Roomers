@@ -4,7 +4,7 @@
 }
 
 .listing-nav {
-  width: 30%;
+  width: 40%;
   height: 250px;
   padding: 16px;
   position: sticky;
@@ -27,7 +27,7 @@
 }
 
 .listing-sections {
-  width: 70%;
+  width: 60%;
   margin: 0 40px;
 }
 
@@ -41,8 +41,13 @@
 .nav-header {
   font-weight: bold;
   font-size: 28px;
+<<<<<<< HEAD
   padding-bottom: 20px;
   color: #cf6766;
+=======
+  margin-bottom: 20px;
+  color: #CF6766;
+>>>>>>> 8855bac7830977fb3184fc655975c38d6339aa88
 }
 
 .details-header {
@@ -131,6 +136,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .months {
@@ -160,12 +166,12 @@
 }
 
 .suggestion-item {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #CF6766;
   padding: 5px;
 }
 
 .suggestion-item--active {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #CF6766;
   padding: 5px;
 }
 

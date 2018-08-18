@@ -3,6 +3,7 @@ import ListingCard from "../ListingCard/ListingCard";
 import { Card, Image } from "semantic-ui-react";
 import RoomCard from "../RoomCard/RoomCard";
 import stateModel from "../Models/stateModel";
+
 import axios from "axios";
 import styled from "styled-components";
 import "./Location.css";
@@ -15,15 +16,15 @@ position: absolute;
 top:380px;
 left:490px;
 opacity: 0.8;
-  width: 50%;
-  margin auto;
+ width: 50%;
+ margin auto;
 `;
 
 export default class Location extends Component {
   state = {
     cities: [],
     selectedCity: "",
-    selectedState:""
+    selectedState: ""
   };
 
   componentDidMount() {
@@ -32,13 +33,11 @@ export default class Location extends Component {
     let cities = [];
 
     stateModel.states.forEach(val => {
-
       if (val.value === state) {
         cities = val.cities;
       }
+      console.log(cities);
     });
-
-      });
   }
 
   searchStates = state => {
@@ -46,7 +45,7 @@ export default class Location extends Component {
     axios
       .get(
         `/api/listing/state/?selectedState=${state}
-        `
+       `
       )
       .then(response =>
         this.setState({
@@ -55,21 +54,17 @@ export default class Location extends Component {
       );
   };
   dropdownHandler = (e, data) => {
-    const { value} = data;
+    const { value } = data;
     this.setState({ selectedState: value }, () => this.searchStates());
   };
 
   render() {
-  
-   
-    console.log(this.state.cities[0]
-       && this.state.cities[0].address.city
-      );
-      console.log(this.state.cities
-        // && this.state.cities[0].address.city
-       );
+    console.log(this.state.cities[0] && this.state.cities[0].address.city);
+    console.log(
+      this.state.cities
+      // && this.state.cities[0].address.city
+    );
     // console.log(this.state.states.cities);
-
 
     const locationList = this.state.cities.map((val, i) => {
       const {
@@ -82,24 +77,6 @@ export default class Location extends Component {
         _id,
         images
       } = val;
-
-    let cities = this.state;
-    let mappableCities = [];
-    console.log(cities.cities);
-    for (const city in cities.cities[0]) {
-      mappableCities.push(cities.cities[0][city]);
-    }
-    console.log(mappableCities);
-    let cityList =
-      mappableCities &&
-      mappableCities.map((city, i) => {
-        return (
-          <div className="cards" style={{ display: "flex" }}>
-            <Card
-              style={{ height: "425px", width: "400px", marginTop: "20px" }}
-            >
-              <Image src="" />
-
 
       return (
         <RoomCard
@@ -136,10 +113,9 @@ export default class Location extends Component {
               name="selectedCity"
               search
               selection
-              options={this.state.cities[0]
-                && this.state.cities[0].address.city
+              options={
+                this.state.cities[0] && this.state.cities[0].address.city
               }
-              
             />
           </div>
         </Wrapper>
