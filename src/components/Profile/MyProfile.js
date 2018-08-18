@@ -178,7 +178,6 @@ class MyProfile extends Component {
               </div>
             </Card.Content>
           </Card>
-
           <Card
             style={{
               display: "flex",

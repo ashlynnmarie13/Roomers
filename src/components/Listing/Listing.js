@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 import { Button } from "semantic-ui-react";
+import { connect } from "react-redux";
 import "./Listing.css";
 
 class Listing extends Component {
   state = {
     listingInfo: {},
-    userInfo: {}
+    userInfo: {},
+    loggedInUser: ""
   };
 
   componentDidMount() {
@@ -22,6 +24,12 @@ class Listing extends Component {
       );
     });
   }
+
+  deleteListing = () => {
+    axios.delete("/api/listing").then(listings => this.props.history.push());
+  };
+
+  editListing = () => {};
 
   amenitiesList = amenities => {
     let list = [];
@@ -215,9 +223,23 @@ class Listing extends Component {
             }
           />
         </div>
+        {this.props.user.authID === _id && (
+          <div className="listing-buttons">
+            <Button
+              onClick={() => this.editListing()}
+              color="blue"
+              style={{ marginRight: "10px" }}
+            >
+              Edit
+            </Button>
+            <Button onClick={() => this.deleteListing()} color="red">
+              Delete
+            </Button>
+          </div>
+        )}
       </div>
     );
   }
 }
 
-export default Listing;
+export default connect(state => state)(Listing);
