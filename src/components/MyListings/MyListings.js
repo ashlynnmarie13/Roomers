@@ -29,9 +29,9 @@ class MyListings extends Component {
     console.log(roomsList);
 
     const rooms = [];
-    roomsList.forEach(function(thing) {
-      if (thing.userID === authID) {
-        rooms.push(thing);
+    roomsList.forEach(function(item) {
+      if (item.userID === authID) {
+        rooms.push(item);
       } else {
         console.log("not me");
       }

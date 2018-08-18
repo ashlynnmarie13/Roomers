@@ -456,17 +456,14 @@ module.exports = {
 
   addMessageToChat: (req, res) => {
     console.log("logging the add message", req.body);
-    const { id, chatIdObj, messages, name, typingUsers, users } = req.body;
+    const { id, newMessages } = req.body;
 
-    Chat.update(
-      { _id: id },
-      {
-        $push: {
-          chats: { $each: [chatIdObj, messages, name, typingUsers, users] }
-        }
-      }
-    ).then(response => {
-      console.log(response);
-    });
+    console.log(id);
+
+    console.log(newMessages);
+
+    Chat.update({ _id: id }, { "chats[0].meessages": newMessages }).then(
+      response => console.log("this is the response", response)
+    );
   }
 };

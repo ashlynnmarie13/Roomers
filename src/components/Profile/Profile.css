@@ -34,7 +34,7 @@
   background-color: white;
   width: 60%;
   height: 100%;
-  font-size: 1.1em;
+  font-size: 1em;
 }
 
 .aboutMe {
@@ -179,4 +179,26 @@
   display: grid;
   grid-template-columns: 50% 50%;
   color: #30415d;
+}
+
+.card-content {
+  font-size: 0.8em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  align-items: center;
+}
+
+.info-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  align-items: center;
+}
+
+.looking {
+  height: 100%;
+  margin-top: 40%;
 }

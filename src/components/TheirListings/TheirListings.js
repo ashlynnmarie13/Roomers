@@ -30,9 +30,9 @@ class TheirListings extends Component {
     console.log(roomsList);
 
     const rooms = [];
-    roomsList.forEach(function(thing) {
-      if (thing.userID === id) {
-        rooms.push(thing);
+    roomsList.forEach(function(item) {
+      if (item.userID === id) {
+        rooms.push(item);
       } else {
         console.log("not me");
       }

@@ -100,7 +100,7 @@ export default class ChatContainer extends Component {
     axios
       .post("/api/user/chat", {
         id: this.props.user.id,
-        chatArray
+        chats: chatArray
       })
       .then(response => {
         console.log(response);
@@ -116,9 +116,13 @@ export default class ChatContainer extends Component {
   //ADD NEW MESSAGE TO EXISTING CHAT IN THE DATABASE
   addMessageToChat = chatId => {
     return message => {
+      let newMessages = [];
       const { chats } = this.state;
       let newChats = chats.map(chat => {
-        if (chat.chatIdObj === chatId) chat.messages.push(message);
+        if (chat.chatIdObj === chatId) {
+          chat.messages.push(message);
+          newMessages = chat.messages;
+        }
         return chat;
       });
 
@@ -136,8 +140,8 @@ export default class ChatContainer extends Component {
 
       axios
         .post("/api/user/chat/update", {
-          id: this.props.user.id,
-          chatArray
+          id: chatId,
+          newMessages
         })
         .then(response => {
           console.log(response);
