@@ -15,7 +15,6 @@ position: absolute;
 top:380px;
 left:490px;
 opacity: 0.8;
-
   width: 50%;
   margin auto;
 `;
@@ -23,40 +22,66 @@ opacity: 0.8;
 export default class Location extends Component {
   state = {
     cities: [],
-    states: stateModel.states,
-    selectedState: ""
+    selectedCity: "",
+    selectedState:""
   };
 
   componentDidMount() {
+    this.searchStates(this.props.match.params.state);
     const { state } = this.props.match.params;
     let cities = [];
 
     stateModel.states.forEach(val => {
+
       if (val.value === state) {
         cities = val.cities;
       }
     });
 
-    axios.get(`/api/listing/${state}`).then(response =>
-      this.setState({
-        cities: [
-          {
-            ...response.data,
-            state,
-            cities
-          }
-        ]
-      })
-    );
+      });
   }
 
+  searchStates = state => {
+    console.log(state);
+    axios
+      .get(
+        `/api/listing/state/?selectedState=${state}
+        `
+      )
+      .then(response =>
+        this.setState({
+          cities: response.data
+        })
+      );
+  };
   dropdownHandler = (e, data) => {
-    const { value } = data;
-    // this.setState({ selectedState: value });
+    const { value} = data;
+    this.setState({ selectedState: value }, () => this.searchStates());
   };
 
   render() {
-    console.log(this.state.cities);
+  
+   
+    console.log(this.state.cities[0]
+       && this.state.cities[0].address.city
+      );
+      console.log(this.state.cities
+        // && this.state.cities[0].address.city
+       );
+    // console.log(this.state.states.cities);
+
+
+    const locationList = this.state.cities.map((val, i) => {
+      const {
+        address,
+        amenities,
+        human,
+        prefs,
+        rent,
+        userID,
+        _id,
+        images
+      } = val;
 
     let cities = this.state;
     let mappableCities = [];
@@ -75,25 +100,24 @@ export default class Location extends Component {
             >
               <Image src="" />
 
-              <Card.Content style={{ height: "110px" }}>
-                <Card.Header>
-                  {city.address && city.rent.moveInDate}
-                  {city.address && city.rent.rentLength} + Months
-                </Card.Header>
-                <Card.Meta>
-                  <span className="date">
-                    ${city.address && city.rent.monthlyCost}
-                    {" in "}
-                    {city.address && city.address.street}
-                  </span>
-                </Card.Meta>
-                <Card.Description />
-                <a>Add to Wishlist</a>{" "}
-              </Card.Content>
-            </Card>
-          </div>
-        );
-      });
+
+      return (
+        <RoomCard
+          address={address}
+          amenities={amenities}
+          human={human}
+          prefs={prefs}
+          rent={rent}
+          userID={userID}
+          id={_id}
+          loggedInUser={this.props.user && this.props.user.authID}
+          key={i}
+          text="Add To Favorite"
+          onSubmit={this.addToWishList}
+          images={images}
+        />
+      );
+    });
 
     return (
       <div>
@@ -107,13 +131,19 @@ export default class Location extends Component {
           <div class="input-group">
             <Select
               className="search-city"
-              onChange={(e, data) => this.dropdownHandler()}
-              placeholder="Select City"
-              options={this.state.cities[0] && this.state.cities[0].cities}
+              onChange={(e, data) => this.dropdownHandler(e, data)}
+              placeholder="Select a city"
+              name="selectedCity"
+              search
+              selection
+              options={this.state.cities[0]
+                && this.state.cities[0].address.city
+              }
+              
             />
           </div>
         </Wrapper>
-        <div class="pageBody">{cityList}</div>
+        <div class="pageBody">{locationList}</div>
       </div>
     );
   }

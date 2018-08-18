@@ -358,6 +358,28 @@ module.exports = {
       res.status(200).send(listing);
     });
   },
+  getListingByState: (req, res) => {
+    const {
+      selectedState
+      // selectedCity
+    } = req.query;
+    console.log(selectedState);
+    Listing.find({
+      "address.state": { $regex: selectedState, $options: "i" }
+      // "address.city": { $regex: selectedCity, $options: "i" }
+    }).then(listing => {
+      res.status(200).send(listing);
+    });
+  },
+  getListingByCity: (req, res) => {
+    const { selectedCity } = req.query;
+    console.log(selectedState);
+    Listing.find({
+      "address.city": { $regex: selectedCity, $options: "i" }
+    }).then(listing => {
+      res.status(200).send(listing);
+    });
+  },
   getListings: (req, res) => {
     const {
       smoke,
@@ -377,6 +399,7 @@ module.exports = {
       privateBathroom,
       outdoorSpace,
       selectedState,
+
       rentLength,
       male,
       female,
@@ -430,13 +453,6 @@ module.exports = {
   getListingById: (req, res) => {
     const { id } = req.params;
     Listing.findOne({ _id: id }).then(listing => {
-      res.status(200).send(listing);
-    });
-  },
-  getListingByState: (req, res) => {
-    const { adress } = req.params;
-
-    Listing.find({ "adress.state": adress }).then(listing => {
       res.status(200).send(listing);
     });
   },

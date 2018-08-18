@@ -170,7 +170,6 @@ class MyProfile extends Component {
               </div>
             </Card.Content>
           </Card>
-
           <Card
             style={{
               width: "90%",

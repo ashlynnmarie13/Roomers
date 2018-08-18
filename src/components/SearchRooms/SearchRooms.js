@@ -21,7 +21,7 @@ class SearchRooms extends Component {
     elevator: false,
     doorman: false,
     airConditioning: true,
-    heating: false,
+    heating: true,
     gym: false,
     tv: false,
     privateBathroom: true,
@@ -305,6 +305,7 @@ class SearchRooms extends Component {
                 label="Air Conditioning"
               />
               <Checkbox
+                defaultChecked
                 onChange={(event, data) => this.checkboxHandler(event, data)}
                 name="heating"
                 style={{ margin: "10px 0" }}
