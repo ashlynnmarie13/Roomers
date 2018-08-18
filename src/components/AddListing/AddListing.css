@@ -4,7 +4,7 @@
 }
 
 .listing-nav {
-  width: 30%;
+  width: 40%;
   height: 250px;
   padding: 16px;
   position: sticky;
@@ -27,7 +27,7 @@
 }
 
 .listing-sections {
-  width: 70%;
+  width: 60%;
   margin: 0 40px;
 }
 
@@ -41,7 +41,7 @@
 .nav-header {
   font-weight: bold;
   font-size: 28px;
-  padding-bottom: 20px;
+  margin-bottom: 20px;
   color: #CF6766;
 }
 
@@ -131,6 +131,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .months {
@@ -160,12 +161,12 @@
 }
 
 .suggestion-item {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #CF6766;
   padding: 5px;
 }
 
 .suggestion-item--active {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #CF6766;
   padding: 5px;
 }
 
