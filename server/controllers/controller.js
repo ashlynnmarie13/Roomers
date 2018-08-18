@@ -156,19 +156,75 @@ module.exports = {
   },
 
   getAllProfiles: (req, res) => {
-    const { smoke, guests, pets, clean, state } = req.query;
+    const {
+      smoke,
+      guests,
+      pets,
+      clean,
+      selectedState,
+      organized,
+      healthy,
+      professional,
+      student,
+      earlyBird,
+      nightOwl,
+      fitnessEnthusiast,
+      creative,
+      bookworm,
+      foodie,
+      partyAnimal,
+      vegan,
+      introverted
+    } = req.query;
+
+    console.log(req.query);
 
     let smokeBool = smoke === "true";
     let guestsBool = guests === "true";
     let petsBool = pets === "true";
     let cleanBool = clean === "true";
+    let organizedBool = organized === "true";
+    let healthyBool = healthy === "true";
+    let professionalBool = professional === "true";
+    let studentBool = student === "true";
+    let earlyBirdBool = earlyBird === "true";
+    let nightOwlBool = nightOwl === "true";
+    let fitnessEnthusiastBool = fitnessEnthusiast === "true";
+    let creativeBool = creative === "true";
+    let bookwormBool = bookworm === "true";
+    let foodieBool = foodie === "true";
+    let partyAnimalBool = partyAnimal === "true";
+    let veganBool = vegan === "true";
+    let introvertedBool = introverted === "true";
 
     Profile.find({
       "prefs.smoke": smokeBool,
       "prefs.guests": guestsBool,
       "prefs.pets": petsBool,
-      "prefs.clean": cleanBool
+      "prefs.clean": cleanBool,
+      "traits.organized": organizedBool,
+      "traits.healthy": healthyBool,
+      "traits.professional": professionalBool,
+      "traits.student": studentBool,
+      "traits.earlyBird": earlyBirdBool,
+      "traits.nightOwl": nightOwlBool,
+      "traits.fitnessEnthusiast": fitnessEnthusiastBool,
+      "traits.creative": creativeBool,
+      "traits.bookworm": bookwormBool,
+      "traits.foodie": foodieBool,
+      "traits.partyAnimal": partyAnimalBool,
+      "traits.vegan": veganBool,
+      "traits.introverted": introvertedBool,
+      "address.state": { $regex: selectedState, $options: "i" }
     }).then(response => res.status(200).send(response));
+  },
+
+  getProfilesByName: (req, res) => {
+    const { search } = req.query;
+
+    Profile.find({ name: { $regex: search, $options: "i" } }).then(people =>
+      res.status(200).send(people)
+    );
   },
 
   getProfileById: (req, res) => {
@@ -302,6 +358,28 @@ module.exports = {
       res.status(200).send(listing);
     });
   },
+  getListingByState: (req, res) => {
+    const {
+      selectedState
+      // selectedCity
+    } = req.query;
+    console.log(selectedState);
+    Listing.find({
+      "address.state": { $regex: selectedState, $options: "i" }
+      // "address.city": { $regex: selectedCity, $options: "i" }
+    }).then(listing => {
+      res.status(200).send(listing);
+    });
+  },
+  getListingByCity: (req, res) => {
+    const { selectedCity } = req.query;
+    console.log(selectedState);
+    Listing.find({
+      "address.city": { $regex: selectedCity, $options: "i" }
+    }).then(listing => {
+      res.status(200).send(listing);
+    });
+  },
   getListings: (req, res) => {
     const {
       smoke,
@@ -321,6 +399,7 @@ module.exports = {
       privateBathroom,
       outdoorSpace,
       selectedState,
+
       rentLength,
       male,
       female,
@@ -374,13 +453,6 @@ module.exports = {
   getListingById: (req, res) => {
     const { id } = req.params;
     Listing.findOne({ _id: id }).then(listing => {
-      res.status(200).send(listing);
-    });
-  },
-  getListingByState: (req, res) => {
-    const { adress } = req.params;
-
-    Listing.find({ "adress.state": adress }).then(listing => {
       res.status(200).send(listing);
     });
   },

@@ -118,7 +118,6 @@ passport.serializeUser((user, done) => {
     })
     .catch(err => console.log(err));
 });
-
 //I'm not sure what this does
 passport.deserializeUser((user, done) => done(null, user));
 
@@ -140,14 +139,14 @@ app.get(
 );
 {
   /* <Route
-  path="/login"
-  render={props =>
-    !auth.isAuthenticated() ? (
-      <Redirect to="/home" />
-    ) : (
-      <Ping auth={auth} {...props} />
-    )
-  }
+ path="/login"
+ render={props =>
+   !auth.isAuthenticated() ? (
+     <Redirect to="/home" />
+   ) : (
+     <Ping auth={auth} {...props} />
+   )
+ }
 />; */
 }
 // adds user info
@@ -158,6 +157,8 @@ app.get("/api/users/info", ctrl.getAllProfiles);
 // get profile by id
 app.get("/api/user/info/:id", ctrl.getProfileById);
 app.get("/api/user/info/:id", ctrl.getProfileByAuthId);
+// get profiles by name
+app.get("/api/users", ctrl.getProfilesByName);
 
 // adds listing
 app.post("/api/listing/add", ctrl.addListing);
@@ -166,6 +167,7 @@ app.get("/api/wishlist/:id", ctrl.getWishList);
 app.post("/api/addtowishlist", ctrl.addToWishList);
 //get listing by id
 app.get("/api/listing/:state", ctrl.getListingByState);
+app.get("/api/listing/:city", ctrl.getListingByCity);
 app.get("/api/listing/:id", ctrl.getListingByAuthId);
 app.get("/api/listing/id/:id", ctrl.getListingById);
 
