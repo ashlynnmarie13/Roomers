@@ -1,3 +1,16 @@
 .profile-image:hover {
   cursor: pointer;
 }
+
+.profile-card {
+  animation: fade-in .5s both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -6,8 +6,16 @@
   background-color: white;
   height: 10vh;
   color: black;
-  border-bottom: solid grey 2px;
+
+  border-bottom: solid lightgrey 2px;
+  box-shadow: inset 0px 10px 13px -6px rgba(0, 0, 0, 0.75);
 }
+
+.nav-button:hover {
+  animation: color-shift .3s both;
+
+}
+
 .listings {
   display: flex;
   flex-direction: row;
@@ -133,6 +141,7 @@
   height: 12vh;
   width: 9vw;
 }
+
 @keyframes resize {
   from {
     transform: scale(1);
@@ -142,6 +151,21 @@
   }
 }
 
+
 .bottom {
   box-shadow: 0 5px 5px -5px #333;
 }
+
+@keyframes color-shift {
+  from {
+    backgroundColor: "white";
+    border: "solid #031424 2px";
+    color: "#031424";
+  }
+  to {
+    backgroundColor: "#031424";
+    border: "solid #031424 2px";
+    color: "white";
+  }
+}
+

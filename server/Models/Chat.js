@@ -15,7 +15,10 @@ const ChatSchema = new Schema({
           messageId: String,
           message: String,
           sender: String,
-          time: String
+          time: {
+            type: Date,
+            default: Date.now
+          }
         }
       ],
       name: String,

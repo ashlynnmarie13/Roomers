@@ -5,6 +5,10 @@
   height: 100vh;
 } */
 
+.home-page {
+  animation: fade-in .3s both;
+}
+
 .home-image {
   height: 65vh;
   width: 100vw;
@@ -297,7 +301,6 @@
 .explore-content {
   display: flex;
   flex-direction: column;
-
   justify-content: space-around;
   align-items: center;
 }
@@ -320,4 +323,13 @@
 
 .solution {
   color: #30415d;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

@@ -32,6 +32,7 @@ class Nav extends Component {
             <img src={profilePic} alt="pic" className="profile-pic-nav" />
           </NavLink>
           <Button
+            className="nav-button"
             style={{
               display: "flex",
               flexDirection: "column",
@@ -55,7 +56,7 @@ class Nav extends Component {
           </Button>
           <Logout>
             <Button>
-              style=
+              className='nav-button' style=
               {{
                 display: "flex",
                 flexDirection: "column",
@@ -78,6 +79,7 @@ class Nav extends Component {
 
         <div className="listings">
           <Button
+            className="nav-button"
             style={{
               display: "flex",
               flexDirection: "column",

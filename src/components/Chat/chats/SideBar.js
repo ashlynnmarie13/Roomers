@@ -11,11 +11,12 @@ export default class SideBar extends Component {
       reciever: ""
     };
   }
+
   handleSubmit = e => {
     e.preventDefault();
     const { reciever } = this.state;
-    console.log(reciever);
     const { onSendPrivateMessage } = this.props;
+    console.log(reciever, onSendPrivateMessage);
     //sends reciever to container, then openprivatemessage, then it makes a new event and goes to socket
     //manager... sending private message to that reciever and also to the sender's container
     onSendPrivateMessage(reciever);
@@ -57,42 +58,45 @@ export default class SideBar extends Component {
     user is user that's connected to chat that is NOT you
     if we can't find a user that' not you, we're going to make it say "community chat"
     */}
-          {chats.map(chat => {
-            if (chat.name) {
-              const lastMessage = chat.messages[chat.messages.length - 1];
-              const chatSideName =
-                chat.users.find(name => {
-                  return name !== user.name;
-                }) || "Community";
-              const classNames =
-                activeChat && activeChat.chatIdObj === chat.chatIdObj
-                  ? "active"
-                  : "";
+          {chats &&
+            chats.map(chat => {
+              if (chat.name) {
+                const lastMessage = chat.messages[chat.messages.length - 1];
+                const chatSideName =
+                  chat.users.find(name => {
+                    return name !== user.name;
+                  }) || "Community";
+                const classNames =
+                  activeChat && activeChat.chatIdObj === chat.chatIdObj
+                    ? "active"
+                    : "";
 
-              return (
-                <div
-                  key={chat.chatIdObj}
-                  className={`user ${classNames}`}
-                  onClick={() => {
-                    setActiveChat(chat);
-                  }}
-                >
-                  <div className="user-photo">
-                    {chatSideName[0].toUpperCase()}
+                return (
+                  <div
+                    key={chat.chatIdObj}
+                    className={`user ${classNames}`}
+                    onClick={() => {
+                      setActiveChat(chat);
+                    }}
+                  >
+                    <div className="user-photo">
+                      {chatSideName[0].toUpperCase()}
+                    </div>
+                    <div className="user-info">
+                      <div className="name">{chatSideName}</div>
+                      {/*prints out last message in sidebar*/}
+                      {lastMessage && (
+                        <div className="last-message">
+                          {lastMessage.message}
+                        </div>
+                      )}
+                    </div>
                   </div>
-                  <div className="user-info">
-                    <div className="name">{chatSideName}</div>
-                    {/*prints out last message in sidebar*/}
-                    {lastMessage && (
-                      <div className="last-message">{lastMessage.message}</div>
-                    )}
-                  </div>
-                </div>
-              );
-            }
+                );
+              }
 
-            return null;
-          })}
+              return null;
+            })}
         </div>
         <div className="current-user">
           {user.name}
