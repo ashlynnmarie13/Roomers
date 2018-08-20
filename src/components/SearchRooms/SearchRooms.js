@@ -157,7 +157,7 @@ class SearchRooms extends Component {
           id={_id}
           loggedInUser={this.props.user && this.props.user.authID}
           key={i}
-          text="Add To Favorite"
+          text="Add To Favorites"
           onSubmit={this.addToWishList}
           images={images}
         />

@@ -169,11 +169,15 @@ app.post("/api/addtowishlist", ctrl.addToWishList);
 app.get("/api/listing/:state", ctrl.getListingByState);
 app.get("/api/listing/:city", ctrl.getListingByCity);
 app.get("/api/listing/:id", ctrl.getListingByAuthId);
+app.get("/api/listings/id/:id", ctrl.getListingsById);
 app.get("/api/listing/id/:id", ctrl.getListingById);
+app.delete("/api/listing/:id", ctrl.deleteListingById);
 
 //add chat for user
 app.post("/api/user/chat", ctrl.addChat);
 app.post("/api/user/chat/update", ctrl.addMessageToChat);
+app.get("/api/user/chat/:id", ctrl.getChats);
+app.put("/api/user/chat", ctrl.addMessage);
 
 server.listen(port, () => {
   console.log(`app is running in server port ${port}`);

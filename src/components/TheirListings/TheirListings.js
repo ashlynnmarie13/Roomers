@@ -15,7 +15,7 @@ class TheirListings extends Component {
     const authID = "google-oauth2|109803081908967859150";
     console.log(this.props);
     axios
-      .get(`/api/listing/${authID}`)
+      .get(`/api/listings/id/${authID}`)
       .then(response => this.setState({ listings: { ...response.data } }));
   }
 

@@ -7,13 +7,14 @@ import {
   TYPING,
   PRIVATE_MESSAGE
 } from "../SocketEvents";
+import { connect } from "react-redux";
 import ChatHeading from "./ChatHeading";
 import Messages from "../messages/Messages";
 import MessageInput from "../messages/MessageInput";
 import "../Chat.css";
 import axios from "axios";
 
-export default class ChatContainer extends Component {
+class ChatContainer extends Component {
   constructor(props) {
     super(props);
 
@@ -26,6 +27,11 @@ export default class ChatContainer extends Component {
   componentDidMount() {
     const { socket } = this.props;
     //initiales everything that we need for our sockets
+    if (this.props.user.name) {
+      axios
+        .get(`/api/user/chat/${this.props.user.name}`)
+        .then(chats => this.setState({ chats: chats.data.chats }));
+    }
 
     this.initSocket(socket);
   }
@@ -77,11 +83,7 @@ export default class ChatContainer extends Component {
     const { chats } = this.state;
     const { id } = this.props.user;
 
-    console.log(socket);
-
     const newChats = reset ? [chat] : [...chats, chat];
-    console.log(newChats, chat);
-    console.log(newChats[0].chatIdObj);
 
     this.setState({
       chats: newChats,
@@ -93,7 +95,6 @@ export default class ChatContainer extends Component {
     const chatList = newChats.map(val => {
       const { chatIdObj, messages, name, typingUsers, users } = val;
 
-      console.log(val);
       chatArray.push(val);
     });
 
@@ -123,14 +124,11 @@ export default class ChatContainer extends Component {
       });
 
       this.setState({ chats: newChats });
-      console.log(chats);
 
       const chatArray = [];
 
       const chatList = newChats.map(val => {
         const { chatIdObj, messages, name, typingUsers, users } = val;
-
-        console.log(val);
         chatArray.push(val);
       });
 
@@ -139,9 +137,7 @@ export default class ChatContainer extends Component {
           id: this.props.user.id,
           chatArray
         })
-        .then(response => {
-          console.log(response);
-        });
+        .then(response => {});
     };
   };
 
@@ -176,8 +172,14 @@ export default class ChatContainer extends Component {
 	*/
   sendMessage = (chatId, message) => {
     const { socket } = this.props;
+    axios
+      .put("/api/user/chat", {
+        chatId,
+        message,
+        sender: this.props.user.name
+      })
+      .then(newMessages => console.log(newMessages.data));
     socket.emit(MESSAGE_SENT, { chatId, message });
-    console.log(chatId, message);
   };
 
   /*
@@ -188,7 +190,6 @@ export default class ChatContainer extends Component {
   sendTyping = (chatId, isTyping) => {
     const { socket } = this.props;
     socket.emit(TYPING, { chatId, isTyping });
-    console.log(chatId, isTyping);
   };
   //sets the chat thats passed in into activechat in state
 
@@ -202,8 +203,8 @@ export default class ChatContainer extends Component {
     //pulling in user and logout functions from Chat.js... that's what we're sending back
     const { user, logout } = this.props;
     const { chats, activeChat } = this.state;
+    console.log(this.state.chats);
 
-    console.log(activeChat, user, chats);
     return (
       <div className="container">
         <SideBar
@@ -244,3 +245,5 @@ export default class ChatContainer extends Component {
     );
   }
 }
+
+export default connect(state => state)(ChatContainer);

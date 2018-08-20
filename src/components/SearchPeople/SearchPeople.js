@@ -4,6 +4,7 @@ import { Select, Checkbox, Loader, Segment, Input } from "semantic-ui-react";
 import { connect } from "react-redux";
 import ProfileCard from "../ProfileCard/ProfileCard";
 import { getProfiles } from "../../redux/ducks/profileReducer";
+import debounce from "lodash.debounce";
 import axios from "axios";
 import "./SearchPeople.css";
 
@@ -17,16 +18,16 @@ class SearchPeople extends Component {
     guests: false,
     pets: false,
     organized: false,
-    healthy: false,
+    healthy: true,
     professional: false,
-    student: false,
+    student: true,
     earlyBird: false,
-    nightOwl: false,
+    nightOwl: true,
     fitnessEnthusiast: false,
     creative: false,
     bookworm: false,
     foodie: false,
-    partyAnimal: false,
+    partyAnimal: true,
 
     vegan: false,
     introverted: false,
@@ -82,7 +83,7 @@ class SearchPeople extends Component {
   inputHandler = e => {
     this.setState({ search: e.target.value }, () => {
       if (this.state.search.length !== 0) {
-        this.searchPeopleByName();
+        debounce(this.searchPeopleByName, 150);
       } else {
         this.searchPeople();
       }
@@ -192,7 +193,6 @@ class SearchPeople extends Component {
                 />
                 <Checkbox
                   defaultChecked
-
                   name="healthy"
                   onChange={(event, data) => this.checkboxHandler(event, data)}
                   className="search-people-item"
@@ -225,12 +225,10 @@ class SearchPeople extends Component {
                   label="Night Owl"
                 />
                 <Checkbox
-
                   name="fitnessEnthusiast"
                   onChange={(event, data) => this.checkboxHandler(event, data)}
                   className="search-people-item"
                   label="Fitness Enthusiast"
-
                   name="creative"
                   onChange={(event, data) => this.checkboxHandler(event, data)}
                   className="search-people-item"
@@ -261,7 +259,6 @@ class SearchPeople extends Component {
                   label="Bookworm"
                 />
                 <Checkbox
-
                   name="nightOwl"
                   onChange={(event, data) => this.checkboxHandler(event, data)}
                   className="search-people-item"
@@ -278,7 +275,6 @@ class SearchPeople extends Component {
                   onChange={(event, data) => this.checkboxHandler(event, data)}
                   className="search-people-item"
                   label="Creative"
-
                   name="foodie"
                   onChange={(event, data) => this.checkboxHandler(event, data)}
                   className="search-people-item"
@@ -302,7 +298,6 @@ class SearchPeople extends Component {
                   onChange={(event, data) => this.checkboxHandler(event, data)}
                   className="search-people-item"
                   label="Fitness Enthusiast"
-
                 />
               </div>
             </div>
