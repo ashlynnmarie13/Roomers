@@ -4,7 +4,6 @@
   justify-content: space-around;
   height: 100%;
   background-color: white;
-  animation: fade-in .3s both;
 }
 
 .image {
@@ -145,7 +144,7 @@
   width: 20%;
   position: sticky;
   top: 0;
-  background: linear-gradient(
+  background-image: linear-gradient(
       to bottom,
       rgba(207, 104, 102, 0.6),
       rgba(207, 104, 102, 0.4)
@@ -154,12 +153,12 @@
   background-size: cover;
 }
 
-.picture-profile {
+.pictureprofile {
   height: 100vh;
   width: 20%;
   position: sticky;
   top: 0;
-  background: linear-gradient(
+  background-image: linear-gradient(
       to bottom,
       rgba(3, 20, 36, 0.5),
       rgba(3, 20, 36, 0.3)
@@ -182,7 +181,6 @@
   color: #30415d;
 }
 
-
 .card-content {
   font-size: 0.8em;
   display: flex;
@@ -204,13 +202,3 @@
   height: 100%;
   margin-top: 40%;
 }
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-

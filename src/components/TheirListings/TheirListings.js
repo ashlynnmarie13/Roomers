@@ -15,9 +15,7 @@ class TheirListings extends Component {
     const id = this.props;
     console.log(this.props);
     axios
-
       .get(`/api/listing/${id}`)
-
       .then(response => this.setState({ listings: { ...response.data } }));
   }
 
