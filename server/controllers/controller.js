@@ -66,8 +66,6 @@ module.exports = {
       image
     } = req.body;
 
-    // console.log(req.body);
-
     const newProfile = new Profile({
       _id: userID,
       name,
@@ -158,19 +156,73 @@ module.exports = {
   },
 
   getAllProfiles: (req, res) => {
-    const { smoke, guests, pets, clean, state } = req.query;
+    const {
+      smoke,
+      guests,
+      pets,
+      clean,
+      selectedState,
+      organized,
+      healthy,
+      professional,
+      student,
+      earlyBird,
+      nightOwl,
+      fitnessEnthusiast,
+      creative,
+      bookworm,
+      foodie,
+      partyAnimal,
+      vegan,
+      introverted
+    } = req.query;
 
     let smokeBool = smoke === "true";
     let guestsBool = guests === "true";
     let petsBool = pets === "true";
     let cleanBool = clean === "true";
+    let organizedBool = organized === "true";
+    let healthyBool = healthy === "true";
+    let professionalBool = professional === "true";
+    let studentBool = student === "true";
+    let earlyBirdBool = earlyBird === "true";
+    let nightOwlBool = nightOwl === "true";
+    let fitnessEnthusiastBool = fitnessEnthusiast === "true";
+    let creativeBool = creative === "true";
+    let bookwormBool = bookworm === "true";
+    let foodieBool = foodie === "true";
+    let partyAnimalBool = partyAnimal === "true";
+    let veganBool = vegan === "true";
+    let introvertedBool = introverted === "true";
 
     Profile.find({
       "prefs.smoke": smokeBool,
       "prefs.guests": guestsBool,
       "prefs.pets": petsBool,
-      "prefs.clean": cleanBool
+      "prefs.clean": cleanBool,
+      "traits.organized": organizedBool,
+      "traits.healthy": healthyBool,
+      "traits.professional": professionalBool,
+      "traits.student": studentBool,
+      "traits.earlyBird": earlyBirdBool,
+      "traits.nightOwl": nightOwlBool,
+      "traits.fitnessEnthusiast": fitnessEnthusiastBool,
+      "traits.creative": creativeBool,
+      "traits.bookworm": bookwormBool,
+      "traits.foodie": foodieBool,
+      "traits.partyAnimal": partyAnimalBool,
+      "traits.vegan": veganBool,
+      "traits.introverted": introvertedBool,
+      "address.state": { $regex: selectedState, $options: "i" }
     }).then(response => res.status(200).send(response));
+  },
+
+  getProfilesByName: (req, res) => {
+    const { search } = req.query;
+
+    Profile.find({ name: { $regex: search, $options: "i" } }).then(people =>
+      res.status(200).send(people)
+    );
   },
 
   getProfileById: (req, res) => {
@@ -192,13 +244,27 @@ module.exports = {
     });
   },
 
+  getListingsById: (req, res) => {
+    const { id } = req.params;
+
+    Listing.find({ userID: id }).then(listings => {
+      // console.log(listing);
+      res.status(200).send(listings);
+    });
+  },
+
   getListingById: (req, res) => {
     const { id } = req.params;
 
     Listing.findOne({ _id: id }).then(listing => {
-      // console.log(listing);
       res.status(200).send(listing);
     });
+  },
+
+  deleteListingById: (req, res) => {
+    const { id } = req.params;
+
+    Listing.deleteOne({ _id: id }).then(() => res.status(200).send());
   },
 
   addListing: (req, res) => {
@@ -232,7 +298,10 @@ module.exports = {
       tv,
       privateBathroom,
       outdoorSpace,
-      hasPet,
+      pets,
+      clean,
+      guests,
+      smoke,
       images,
       userID,
       description
@@ -256,16 +325,22 @@ module.exports = {
         street,
         city,
         state,
-        zip,
+        zip: Number(zip),
         fullAddress: address,
-        lat,
-        lng
+        lat: Number(lat),
+        lng: Number(lng)
       },
       rent: {
-        monthlyCost,
-        depositCost,
+        monthlyCost: Number(monthlyCost),
+        depositCost: Number(depositCost),
         moveInDate,
-        rentLength
+        rentLength: Number(rentLength)
+      },
+      prefs: {
+        smoke,
+        clean,
+        guests,
+        pets
       },
       amenities: {
         washer,
@@ -279,22 +354,31 @@ module.exports = {
         gym,
         tv,
         privateBathroom,
-        outdoorSpace,
-        hasPet
+        outdoorSpace
       },
       images,
       description
     });
 
-    // console.log(req.body);
-
     newListing.save().then(response => res.status(200).send(response));
   },
-
-  getListingById: (req, res) => {
-    const { id } = req.params;
-
-    Listing.findOne({ _id: id }).then(listing => {
+  getListingByState: (req, res) => {
+    const {
+      selectedState
+      // selectedCity
+    } = req.query;
+    Listing.find({
+      "address.state": { $regex: selectedState, $options: "i" }
+      // "address.city": { $regex: selectedCity, $options: "i" }
+    }).then(listing => {
+      res.status(200).send(listing);
+    });
+  },
+  getListingByCity: (req, res) => {
+    const { selectedCity } = req.query;
+    Listing.find({
+      "address.city": { $regex: selectedCity, $options: "i" }
+    }).then(listing => {
       res.status(200).send(listing);
     });
   },
@@ -316,11 +400,12 @@ module.exports = {
       tv,
       privateBathroom,
       outdoorSpace,
-      hasPet,
       selectedState,
+
       rentLength,
       male,
-      female
+      female,
+      monthlyCost
     } = req.query;
 
     let smokeBool = smoke === "true";
@@ -339,7 +424,8 @@ module.exports = {
     let tvBool = tv === "true";
     let privateBathroomBool = privateBathroom === "true";
     let outdoorSpaceBool = outdoorSpace === "true";
-    let hasPetBool = hasPet === "true";
+    let maleBool = male === "true";
+    let femaleBool = female === "true";
 
     Listing.find({
       "prefs.smoke": smokeBool,
@@ -358,26 +444,12 @@ module.exports = {
       "amenities.tv": tvBool,
       "amenities.privateBathroom": privateBathroomBool,
       "amenities.outdoorSpace": outdoorSpaceBool,
-      "amenities.hasPet": hasPetBool
-      // "address.state": selectedState
-      // "rent.rentLength": rentLength
-      // "human.gender.male": male,
-      // "human.gender.female": female
+      "human.gender.male": maleBool,
+      "human.gender.female": femaleBool,
+      "address.state": { $regex: selectedState, $options: "i" },
+      "rent.rentLength": { $gte: Number(rentLength) },
+      "rent.monthlyCost": { $lte: Number(monthlyCost) }
     }).then(rooms => res.status(200).send(rooms));
-  },
-
-  getListingById: (req, res) => {
-    const { id } = req.params;
-    Listing.findOne({ _id: id }).then(listing => {
-      res.status(200).send(listing);
-    });
-  },
-  getListingByState: (req, res) => {
-    const { adress } = req.params;
-
-    Listing.find({ "adress.state": adress }).then(listing => {
-      res.status(200).send(listing);
-    });
   },
 
   getListingByAuthId: (req, res) => {
@@ -399,20 +471,6 @@ module.exports = {
       image
     } = req.body;
 
-    console.log(
-      id,
-      userID,
-      loggedInUser,
-      monthlyCost,
-      city,
-      state,
-      moveInDate,
-      rentLength,
-      image
-    );
-
-    console.log(req.body);
-
     Profile.update(
       { _id: loggedInUser },
       { $push: { wishList: req.body } }
@@ -421,41 +479,25 @@ module.exports = {
 
   getWishList: (req, res) => {
     const { id } = req.params;
-    console.log(id);
 
     Profile.findOne({ _id: id }).then(profile => res.status(200).send(profile));
   },
   // SOCKET.IO
+  getChats: (req, res) => {
+    const { name } = req.params;
+    console.log(name);
+
+    Chat.find({ users: name }).then(chats => res.status(200).send(chats[0]));
+  },
 
   addChat: (req, res) => {
-    console.log(req, res);
-    const {
-      id,
-      chatIdObj,
-      messages,
-      messageId,
-      message,
-      sender,
-      time,
-      name,
-      typingUsers,
-      users
-    } = req.body;
-
+    const { chatIdObj, name, messages, users, typingUsers } = req.body;
     const newChat = new Chat({
-      _id: id,
-      chats: {
-        chatIdObj,
-        messages: {
-          messageId,
-          message,
-          sender,
-          time
-        },
-        name,
-        typingUsers,
-        users
-      }
+      _id: chatIdObj,
+      name,
+      messages,
+      users,
+      typingUsers
     });
     newChat
       .save()
@@ -469,6 +511,29 @@ module.exports = {
 
     Listing.findByIdAndRemove({ _id: id }).then(function(listing) {
       res.send(listing);
+    })
+  },
+
+  addMessageToChat: (req, res) => {
+    const { id } = req.body;
+    const newMessages = req.body.chatArray[0].messages;
+    console.log("messages ------ ", newMessages);
+
+    Chat.findById(id, (err, chat) => {
+      chat.set({ "chats.0.messages": newMessages });
+      chat.save((err, updatedChat) => {
+        // console.log(updatedChat);
+      });
     });
+  },
+
+  addMessage: (req, res) => {
+    const { chatId, message, sender } = req.body;
+
+    Chat.findOneAndUpdate(
+      { "chats.0.chatIdObj": chatId },
+      { $push: { "chats.0.messages": { message, sender } } },
+      { new: true }
+    ).then(newMessages => res.status(200).send(newMessages));
   }
 };

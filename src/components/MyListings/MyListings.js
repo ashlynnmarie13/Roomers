@@ -13,19 +13,15 @@ class MyListings extends Component {
 
   componentDidMount() {
     const authID = this.props.user.authID;
-    console.log(this.props.user);
     axios
-      .get(`/api/listing/${authID}`)
+      .get(`/api/listings/id/${authID}`)
       .then(response => this.setState({ listings: { ...response.data } }));
   }
 
   render() {
     const listings = this.state.listings;
-    console.log(listings);
 
     let roomsList = Object.values(listings);
-    console.log(listings[0]);
-    console.log(roomsList);
     const rooms = roomsList.map(val => {
       const {
         address,

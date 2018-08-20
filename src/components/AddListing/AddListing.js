@@ -14,6 +14,7 @@ import {
 } from "semantic-ui-react";
 import { connect } from "react-redux";
 import lengthModel from "../Models/lengthModel";
+import moment from "moment";
 import ReactS3Uploader from "react-s3-uploader";
 import "react-dates/initialize";
 import {
@@ -43,7 +44,7 @@ class AddListing extends Component {
       zip: "",
       monthlyCost: 0,
       depositCost: 0,
-      moveInDate: "",
+      moveInDate: "Date",
       rentLength: 0,
       washer: false,
       wifi: false,
@@ -57,7 +58,10 @@ class AddListing extends Component {
       tv: false,
       privateBathroom: false,
       outdoorSpace: false,
-      hasPet: false,
+      pets: false,
+      clean: false,
+      smoke: false,
+      guests: false,
       lat: 0,
       lng: 0,
       images: [],
@@ -229,21 +233,19 @@ class AddListing extends Component {
                 <div className="section-inputs">
                   <div className="age-input">
                     <Checkbox
-                      onClick={(e, data) => this.radioHandler(e, data)}
+                      onClick={(e, data) => this.checkboxHandler(e, data)}
                       style={{ fontSize: "18px", margin: "3px 0" }}
-                      radio
                       checked={this.state.male}
-                      name="male"
+                      id="male"
                       label="Male"
                     />
                   </div>
                   <div className="age-input">
                     <Checkbox
-                      onClick={(e, data) => this.radioHandler(e, data)}
+                      onClick={(e, data) => this.checkboxHandler(e, data)}
                       style={{ fontSize: "18px", margin: "3px 0" }}
-                      radio
                       checked={this.state.female}
-                      name="female"
+                      id="female"
                       label="Female"
                     />
                   </div>
@@ -359,7 +361,7 @@ class AddListing extends Component {
                     </Input>
                   </div>
                   <div className="address-input">
-                    <div className="selection-title">Length: </div>
+                    <div className="selection-title">Rent Length: </div>
                     <Dropdown
                       required
                       style={{ width: "100%", margin: "5px 10px" }}
@@ -379,6 +381,12 @@ class AddListing extends Component {
                       onFocusChange={({ focused }) =>
                         this.setState({ focused })
                       } // PropTypes.func.isRequired
+                      value={this.state.moveInDate}
+                      placeholder={
+                        this.state.moveInDate !== "Date"
+                          ? moment(this.state.moveInDate).format("MM/DD/YYYY")
+                          : this.state.moveInDate
+                      }
                       id="your_unique_id" // PropTypes.string.isRequired,
                     />
                   </div>
@@ -478,17 +486,54 @@ class AddListing extends Component {
                     label="Outdoor Space"
                   />
                 </div>
+              </div>
+            </div>
+            <div />
+          </div>
+
+          <div ref="amenities" className="listing-section">
+            <div>
+              <p className="details-header">Prefernces</p>
+            </div>
+            <div className="section-details">
+              <div className="amend-selection">
                 <div className="amend-item">
                   <Checkbox
+                    slider
                     onChange={(e, data) => this.checkboxHandler(e, data)}
-                    id="hasPet"
-                    label="Has Pet"
+                    id="smoke"
+                    label="Smoker"
+                  />
+                </div>
+                <div className="amend-item">
+                  <Checkbox
+                    slider
+                    onChange={(e, data) => this.checkboxHandler(e, data)}
+                    id="clean"
+                    label="Clean/Organized"
+                  />
+                </div>
+                <div className="amend-item">
+                  <Checkbox
+                    slider
+                    onChange={(e, data) => this.checkboxHandler(e, data)}
+                    id="guests"
+                    label="Frequent Guests"
+                  />
+                </div>
+                <div className="amend-item">
+                  <Checkbox
+                    slider
+                    onChange={(e, data) => this.checkboxHandler(e, data)}
+                    id="pets"
+                    label="Pet Owner"
                   />
                 </div>
               </div>
             </div>
             <div />
           </div>
+
           <div ref="description" className="listing-section">
             <div>
               <p className="details-header">Description</p>

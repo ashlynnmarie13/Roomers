@@ -1,6 +1,8 @@
 .search-rooms {
   display: flex;
   justify-content: flex-start;
+  margin: 20px;
+  animation: fade-in .3s both;
 }
 
 .search-menu {
@@ -8,8 +10,11 @@
   display: flex;
   flex-direction: column;
   margin: 30px;
+  padding: 40px;
   position: sticky;
   top: 0;
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 5px;
 }
 
 .search-results {
@@ -25,7 +30,7 @@
 
 .search-section-title {
   font-size: 18px;
- 
+  color: #CF6766;
 }
 
 .selection {
@@ -37,4 +42,13 @@
 .slider-selection {
   display: grid;
   grid-template-columns: 50% 50%;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

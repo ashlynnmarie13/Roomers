@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import moment from "moment";
 import "../Chat.css";
 export default class Messages extends Component {
   constructor(props) {
@@ -22,7 +23,6 @@ export default class Messages extends Component {
 
   render() {
     const { messages, user, typingUsers } = this.props;
-    console.log(this.props);
     return (
       <div ref="container" className="thread-container">
         <div className="thread">
@@ -33,7 +33,7 @@ export default class Messages extends Component {
                 className={`message-container ${mes.sender === user.name &&
                   "right"}`}
               >
-                <div className="time">{mes.time}</div>
+                <div className="time">{moment(mes.time).fromNow()}</div>
                 <div className="data">
                   <div className="message">{mes.message}</div>
                   <div className="name">{mes.sender}</div>

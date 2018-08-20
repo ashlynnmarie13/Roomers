@@ -118,12 +118,14 @@ passport.serializeUser((user, done) => {
     })
     .catch(err => console.log(err));
 });
-
 //I'm not sure what this does
 passport.deserializeUser((user, done) => done(null, user));
 
 // getting user with "getUser" from authCtrl
 app.get("/me", getUser);
+app.get("/logout", logout);
+
+// src/routes.js
 
 //redirects user to the home page after logging in
 app.get(
@@ -135,7 +137,18 @@ app.get(
     failureRedirect: "/login"
   })
 );
-
+{
+  /* <Route
+ path="/login"
+ render={props =>
+   !auth.isAuthenticated() ? (
+     <Redirect to="/home" />
+   ) : (
+     <Ping auth={auth} {...props} />
+   )
+ }
+/>; */
+}
 // adds user info
 app.post("/api/user/info", ctrl.addUserInfo);
 
@@ -144,6 +157,8 @@ app.get("/api/users/info", ctrl.getAllProfiles);
 // get profile by id
 app.get("/api/user/info/:id", ctrl.getProfileById);
 app.get("/api/user/info/:id", ctrl.getProfileByAuthId);
+// get profiles by name
+app.get("/api/users", ctrl.getProfilesByName);
 
 // adds listing
 app.post("/api/listing/add", ctrl.addListing);
@@ -152,12 +167,22 @@ app.get("/api/wishlist/:id", ctrl.getWishList);
 app.post("/api/addtowishlist", ctrl.addToWishList);
 //get listing by id
 app.get("/api/listing/:state", ctrl.getListingByState);
+app.get("/api/listing/:city", ctrl.getListingByCity);
 app.get("/api/listing/:id", ctrl.getListingByAuthId);
+app.get("/api/listings/id/:id", ctrl.getListingsById);
 app.get("/api/listing/id/:id", ctrl.getListingById);
+app.delete("/api/listing/:id", ctrl.deleteListingById);
 
 //add chat for user
 app.post("/api/user/chat", ctrl.addChat);
+<<<<<<< HEAD
 app.delete("/api/delete/:id", ctrl.deleteById)
+=======
+app.post("/api/user/chat/update", ctrl.addMessageToChat);
+app.get("/api/user/chat/:id", ctrl.getChats);
+app.put("/api/user/chat", ctrl.addMessage);
+
+>>>>>>> master
 server.listen(port, () => {
   console.log(`app is running in server port ${port}`);
 });

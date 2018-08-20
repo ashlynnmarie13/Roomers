@@ -4,6 +4,7 @@
   justify-content: center;
   color: #031424;
   background: white;
+  animation: fade-in .3s both;
 }
 
 .sign-up-form {
@@ -36,7 +37,7 @@
   align-items: center;
   border: 1px solid rgb(142, 174, 189, 0.4);
   padding: 30px;
-
+  margin-top: 60px;
   width: 90%;
   height: 40%;
   background-color: white;
@@ -49,9 +50,22 @@
   font-size: 20px;
   border: 1px solid rgb(142, 174, 189, 0.4);
   padding: 30px;
+  margin: 60px;
 
   width: 90%;
-  height: 25vh;
+  
+  background-color: white;
+}
+
+.section-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(142, 174, 189, 0.4);
+  padding: 30px;
+  margin: 60px;
+  width: 90%;
   background-color: white;
 }
 
@@ -59,8 +73,13 @@
   text-transform: uppercase;
   font-weight: bold;
   font-size: 30px;
-  margin-bottom: 3%;
-  color: #031424;
+  margin-bottom: 60px;
+  color: #031424
+  
+}
+
+.section-title > i {
+  color: #CF6766;
 }
 
 .section-item {
@@ -89,8 +108,18 @@
 .input-photo {
   width: 100%;
   height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
 
-  margin-top: 3%;
+}
+
+.input-photo > img {
+  max-height: 200px;
+  max-width: 300px;
+  object-fit: cover;
+  margin: 0 auto;
 }
 
 .dropdown {
@@ -124,6 +153,9 @@
 }
 
 .first-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   width: 45%;
   margin-top: 5%;
   margin-bottom: 5%;
@@ -134,36 +166,30 @@
 .second-section {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   width: 45%;
   height: 95%;
   font-size: 20px;
 }
+
 .third-section {
   width: 90%;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: space-between;
+
   border: 1px solid rgb(142, 174, 189, 0.4);
   padding: 30px;
 
   background-color: white;
 
-  height: 20%;
+  
   font-size: 20px;
 }
 
 .traits-one {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-
-  width: 85%;
-
-  margin-top: -6%;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
 }
 .traits-two {
   display: flex;
@@ -207,22 +233,21 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 90%;
+  height: 100%;
 }
 .section-prefs {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  height: 90%;
-  width: 25%;
+  align-items: center;
+  height: 100%;;
 }
 .section-career {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
-  height: 90%;
+  height: 100%;
   width: 25%;
 }
 
@@ -235,10 +260,10 @@
   font-weight: 500;
   font-size: 20px;
 }
+
 .profile-image {
-  width: 50%;
-  height: 50%;
-  object-fit: "cover";
+  width: 100%;
+  height: 100%;
 }
 
 .address {
@@ -250,5 +275,21 @@
 }
 
 .job-inputs {
-  margin-top: 4%;
+  height: 50%;
+  justify-self: center;
+}
+
+.calendar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

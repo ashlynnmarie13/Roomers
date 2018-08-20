@@ -7,18 +7,25 @@ const ChatSchema = new Schema({
     type: String,
     ref: "users"
   },
-  chats: {
-    chatIdObj: String,
-    messages: {
-      messageId: String,
-      message: String,
-      sender: String,
-      time: String
-    },
-    name: String,
-    typingUsers: Array,
-    users: Array
-  }
+  chats: [
+    {
+      chatIdObj: String,
+      messages: [
+        {
+          messageId: String,
+          message: String,
+          sender: String,
+          time: {
+            type: Date,
+            default: Date.now
+          }
+        }
+      ],
+      name: String,
+      typingUsers: Array,
+      users: Array
+    }
+  ]
 });
 
 module.exports = Chat = mongoose.model("chats", ChatSchema);

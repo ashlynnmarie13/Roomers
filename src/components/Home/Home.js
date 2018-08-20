@@ -5,6 +5,7 @@ import stateModel from "../Models/stateModel";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Select, Checkbox, Loader, Segment, Input } from "semantic-ui-react";
+
 class Home extends Component {
   state = {
     selectedState: "",
@@ -47,7 +48,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
+      <div className="home-page">
         <div className="home-image">
           <img
             className="background1"
@@ -147,7 +148,8 @@ class Home extends Component {
                 <h2 class="cali">Florida</h2>
               </div>
             </div>
-            <div class="middle" >
+
+            <div class="middle">
               <div class="bo" onClick={() => this.selectState("Kansas")}>
                 <h2 class="cali">Kansas</h2>
               </div>

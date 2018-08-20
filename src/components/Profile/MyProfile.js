@@ -119,7 +119,7 @@ class MyProfile extends Component {
     return (
       <div className="profile">
         <div className="person">
-          <Card style={{ width: "90%", height: "50%" }}>
+          <Card style={{ width: "90%", height: "50%", marginTop: "-20%" }}>
             <Image
               style={{ objectFit: "cover" }}
               src={userInfo.profilePic}
@@ -170,7 +170,6 @@ class MyProfile extends Component {
               </div>
             </Card.Content>
           </Card>
-
           <Card
             style={{
               width: "90%",

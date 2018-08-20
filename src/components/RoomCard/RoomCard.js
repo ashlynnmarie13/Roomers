@@ -2,13 +2,24 @@ import React from "react";
 import { Card, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import "./RoomCard.css";
 
 export default props => {
-  const { address, amenities, human, prefs, rent, userID, id, loggedInUser, images } = props;
-  console.log(loggedInUser)
+  const {
+    address,
+    amenities,
+    human,
+    prefs,
+    rent,
+    userID,
+    id,
+    loggedInUser,
+    images
+  } = props;
+  console.log(loggedInUser);
 
   return (
-    <Card style={{ height: "400px", marginTop: 0 }}>
+    <Card className="room-card" style={{ height: "400px", marginTop: 0 }}>
       <Link to={`/listing/${id}`}>
         <Image
           style={{ width: "100%", height: "200px" }}
@@ -32,7 +43,7 @@ export default props => {
         <Card.Description />
       </Card.Content>
       <Card.Content extra>
-        <a 
+        <a
           onClick={() =>
             props.onSubmit(
               id,

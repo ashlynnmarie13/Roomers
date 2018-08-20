@@ -11,7 +11,7 @@ const ProfileCard = props => {
   return (
     <div className="container-card">
       {" "}
-      <Card style={{ backgroundColor: "#fffafa" }}>
+      <Card className="profile-card" style={{ backgroundColor: "#fffafa" }}>
         <Image
           style={{ objectFit: "cover", height: "300px" }}
           className="profile-image"

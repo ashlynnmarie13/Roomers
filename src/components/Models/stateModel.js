@@ -3,245 +3,356 @@ export default {
     {
       text: "Alabama",
       value: "Alabama",
-      cities: ["Birmingham", "Hoover"]
+      cities: [
+        { text: "Birmingham", value: "Birmingham" },
+        { text: "Hoover", value: "Hoover" }
+      ]
     },
     {
       text: "Alaska",
       value: "Alaska",
-      cities: ["Anchorage"]
+      cities: [{ text: "Anchorage", value: "Anchorage" }]
     },
     {
       text: "Arizona",
       value: "Arizona",
-      cities: ["Phoenix", "Mesa", "Scottsdale"]
+      cities: [
+        { text: "Phoenix", value: "Phoenix" },
+        { text: "Mesa", value: "Mesa" },
+        { text: "Scottsdale", value: "Scottsdale" }
+      ]
     },
     {
       text: "Arkansas",
       value: "Arkansas",
-      cities: ["Little Rock", "North Little Rock", "Conway"]
+      cities: [
+        { text: "Little Rock", value: "Little Rock" },
+        { text: "North Little Rock", value: "Conway" }
+      ]
     },
     {
       text: "California",
       value: "California",
-      cities: ["Los Angeles", " Long Beach", " Anaheim"]
+      cities: [
+        { text: "Los Angeles", value: "Los Angeles" },
+        { text: " Long Beach", value: " Long Beach" },
+        { text: " Anaheim", value: " Anaheim" }
+      ]
     },
     {
       text: "Colorado",
       value: "Colorado",
-      cities: ["Denver", "Aurora", "Lakewood"]
+      cities: [
+        { text: "Denver", value: "Denver" },
+        { text: "Aurora", value: "Aurora" },
+        { text: "Lakewood", value: "Lakewood" }
+      ]
     },
     {
       text: "Connecticut",
       value: "Connecticut",
-      cities: ["Hartford", "West Hartford", "East Hartford"]
+      cities: [
+        { text: "Hartford", value: "Hartford" },
+        { text: "West Hartford", value: "East Hartford" }
+      ]
     },
     {
       text: "Delaware",
       value: "Delaware",
-      cities: ["Wilmington", "Delaware", "Camden"]
+      cities: [
+        { text: "Wilmington", value: "Wilmington" },
+        { text: "Delaware", value: "Delaware" },
+        { text: "Camden", value: "Camden" }
+      ]
     },
     {
       text: "Florida",
       value: "Florida",
-      cities: ["Miami", "Fort Lauderdale", "West Palm Beach"]
+      cities: [
+        { text: "Miami", value: "Miami" },
+        { text: "Fort Lauderdale", value: "Fort Lauderdale" },
+        { text: "West Palm Beach", value: "West Palm Beach" }
+      ]
     },
     {
       text: "Georgia",
       value: "Georgia",
-      cities: ["Atlanta", "Sandy Springs", "Roswell"]
+      cities: [
+        { text: "Atlanta", value: "Atlanta" },
+        { text: "Sandy Springs", value: "Sandy Springs" },
+        { text: "Roswell", value: "Roswell" }
+      ]
     },
 
     {
       text: "Hawaii",
       value: "Hawaii",
-      cities: ["Wailuku", "Lahaina", "Hawaii"]
+      cities: [
+        { text: "Wailuku", value: "Wailuku" },
+        { text: "Lahaina", value: "Lahaina" },
+        { text: "Hawaii", value: "Hawaii" }
+      ]
     },
     {
       text: "Idaho",
       value: "Idaho",
-      cities: ["Boise", "Idaho"]
+      cities: [
+        { text: "Boise", value: "Boise" },
+        { text: "Idaho", value: "Idaho" }
+      ]
     },
     {
       text: "Illinois",
       value: "Illinois",
-      cities: []
+      cities: [{ text: "Chicago", value: "Chicago" }]
     },
     {
       text: "Indiana",
       value: "Indiana",
-      cities: ["Chicago", " Naperville", "Elgin"]
+      cities: [
+        { text: " Naperville", value: " Naperville" },
+        { text: "Elgin", value: "Elgin" }
+      ]
     },
     {
       text: "Iowa",
       value: "Iowa",
-      cities: ["Des Moines", "West Des Moines"]
+      cities: [
+        { text: "Des Moines", value: "Des Moines" },
+        { text: "West Des Moines", value: "West Des Moines" }
+      ]
     },
     {
       text: "Kansas",
       value: "Kansas",
-      cities: ["Wichita"]
+      cities: [{ text: "Wichita", value: "Wichita" }]
     },
     {
       text: "Kentucky",
       value: "Kentucky",
-      cities: ["Louisville"]
+      cities: [{ text: "Louisville", value: "Louisville" }]
     },
     {
       text: "Louisiana",
       value: "Louisiana",
-      cities: ["New Orleans", "Metairie"]
+      cities: [
+        { text: "New Orleans", value: "New Orleans" },
+        { text: "Metairie", value: "Metairie" }
+      ]
     },
     {
       text: "Maine",
       value: "Maine",
-      cities: ["Portland", "South Portland"]
+      cities: [
+        { text: "Portland", value: "Portland" },
+        { text: "South Portland", value: "South Portland" }
+      ]
     },
     {
       text: "Maryland",
       value: "Maryland",
-      cities: ["Baltimore", "Columbia", "Towson"]
+      cities: [
+        { text: "Baltimore", value: "Baltimore" },
+        { text: "Columbia", value: "Columbia" },
+        { text: "Towson", value: "Towson" }
+      ]
     },
     {
       text: "Massachusetts",
       value: "Massachusetts",
-      cities: ["Boston", "Cambridge"]
+      cities: [
+        { text: "Boston", value: "Boston" },
+        { text: "Cambridge", value: "Cambridge" }
+      ]
     },
     {
       text: "Michigan",
       value: "Michigan",
-      cities: ["Detroit", "Warren", "Dearborn"]
+      cities: [
+        { text: "Detroit", value: "Detroit" },
+        { text: "Warren", value: "Warren" },
+        { text: "Dearborn", value: "Dearborn" }
+      ]
     },
     {
       text: "Minnesota",
       value: "Minnesota",
-      cities: ["Minneapolis", "St. Paul"]
+      cities: [
+        { text: "Minneapolis", value: "Minneapolis" },
+        { text: "St. Paul", value: "St. Paul" }
+      ]
     },
     {
       text: "Mississippi",
       value: "Mississippi",
-      cities: ["Jackson"]
+      cities: [{ text: "Jackson", value: "Jackson" }]
     },
     {
       text: "Missouri",
       value: "Missouri",
-      cities: ["St. Louis"]
+      cities: [{ text: "St. Louis", value: "St. Louis" }]
     },
     {
       text: "Montana",
       value: "Montana",
-      cities: ["Billings"]
+      cities: [{ text: "Billings", value: "Billings" }]
     },
     {
       text: "Nebraska",
       value: "Nebraska",
-      cities: ["Omaha", "Grand Island", "Lincoln"]
+      cities: [
+        { text: "Omaha", value: "Omaha" },
+        { value: "Grand Island", text: "Grand Island" },
+        { value: "Lincoln", text: "Lincoln" }
+      ]
     },
     {
       text: "Nevada",
       value: "Nevada",
-      cities: ["Las Vegas", "Henderson", "Paradise"]
+      cities: [
+        { text: "Las Vegas", value: "Las Vegas" },
+        { text: "Henderson", value: "Henderson" },
+        { text: "Paradise", value: "Paradise" }
+      ]
     },
     {
       text: "New Hampshire",
       value: "New Hampshire",
-      cities: ["Newton"]
+      cities: [{ text: "Newton", value: "Newton" }]
     },
     {
       text: "New Jersey",
       value: "New Jersey",
-      cities: ["Ocean City"]
+      cities: [{ text: "Ocean City", value: "Ocean City" }]
     },
     {
       text: "New Mexico",
       value: "New Mexico",
-      cities: ["Albuquerque"]
+      cities: [{ text: "Albuquerque", value: "Albuquerque" }]
     },
     {
       text: "New York",
       value: "New York",
-      cities: ["New York", "Elmira"]
+      cities: [
+        { text: "New York", value: "New York" },
+        { text: "Elmira", value: "Elmira" }
+      ]
     },
     {
       text: "North Carolina",
       value: "North Carolina",
-      cities: ["Charlotte", "Concord"]
+      cities: [
+        { text: "Charlotte", value: "Charlotte" },
+        { text: "Concord", value: "Concord" }
+      ]
     },
     {
       text: "North Dakota",
       value: "North Dakota",
-      cities: ["Fargo"]
+      cities: [{ text: "Fargo", value: "Fargo" }]
     },
     {
       text: "Ohio",
       value: "Ohio",
-      cities: ["Cleveland", "Elyria"]
+      cities: [
+        { text: "Cleveland", value: "Cleveland" },
+        { text: "Elyria", value: "Elyria" }
+      ]
     },
     {
       text: "Oklahoma",
       value: "Oklahoma",
-      cities: ["Oklahoma City"]
+      cities: [{ text: "Oklahoma City" }, { value: "Oklahoma City" }]
     },
     {
       text: "Oregon",
       value: "Oregon",
-      cities: ["Portland"]
+      cities: [{ text: "Portland", value: "Portland" }]
     },
     {
       text: "Pennsylvania",
       value: "Pennsylvania",
-      cities: ["Philadelphia"]
+      cities: [{ text: "Philadelphia", value: "Philadelphia" }]
     },
 
     {
       text: "South Carolina",
       value: "South Carolina",
-      cities: ["Charleston", " North Charleston"]
+      cities: [
+        { text: "Charleston", value: "Charleston" },
+        { text: " North Charleston", value: " North Charleston" }
+      ]
     },
     {
       text: "South Dakota",
       value: "South Dakota",
-      cities: ["Sioux Falls", "Rapid City"]
+      cities: [
+        { text: "Sioux Falls", value: "Sioux Falls" },
+        { text: "Rapid City", value: "Rapid City" }
+      ]
     },
     {
       text: "Tennessee",
       value: "Tennessee",
-      cities: ["Nashville", "Davidson", "Murfreesboro"]
+      cities: [
+        { text: "Nashville", value: "Nashville" },
+        { text: "Davidson", value: "Davidson" },
+        { text: "Murfreesboro", value: "Murfreesboro" }
+      ]
     },
     {
       text: "Texas",
       value: "Texas",
-      cities: ["Dallas", "Houston", "Austin"]
+      cities: [
+        { text: "Dallas", values: "Dallas" },
+        { text: "Houston", value: "Houston" },
+        { text: "Austin", value: "Austin" }
+      ]
     },
     {
       text: "Utah",
       value: "Utah",
-      cities: ["Salt Lake City", "Logan"]
+      cities: [
+        { text: "Salt Lake City", value: "Salt Lake City" },
+        { text: "Logan", value: "Logan" }
+      ]
     },
 
     {
       text: "Virginia",
       value: "Virginia",
-      cities: ["Norfolk", "Staunton"]
+      cities: [
+        { text: "Norfolk", value: "Norfolk" },
+        { text: "Staunton", value: "Staunton" }
+      ]
     },
     {
       text: "Washington",
       value: "Washington",
-      cities: ["Seattle", "Tacoma", "Bellevue"]
+      cities: [
+        { text: "Seattle", value: "Seattle" },
+        { text: "Tacoma", value: "Tacoma" },
+        { text: "Bellevue", value: "Bellevue" }
+      ]
     },
     {
       text: "West Virginia",
       value: "West Virginia",
-      cities: ["Charleston"]
+      cities: [{ text: "Charleston", value: "Charleston" }]
     },
     {
       text: "Wisconsin",
       value: "Wisconsin",
-      cities: ["Milwaukee", " Waukesha", "West Allis"]
+      cities: [
+        { text: "Milwaukee", value: "Milwaukee" },
+        { text: " Waukesha", value: " Waukesha" },
+        { text: "West Allis", value: "West Allis" }
+      ]
     },
     {
       text: "Wyoming",
       value: "Wyoming",
-      cities: ["Cheyenne"]
+      cities: [{ text: "Cheyenne", value: "Cheyenne" }]
     }
   ]
 };

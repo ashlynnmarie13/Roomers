@@ -3,13 +3,18 @@ import MyMapComponent from "../MyMapComponent/MyMapComponent";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
-import { Button } from "semantic-ui-react";
+import { Button, Header, Icon, Modal } from "semantic-ui-react";
+import { connect } from "react-redux";
 import "./Listing.css";
 
 class Listing extends Component {
   state = {
     listingInfo: {},
-    userInfo: {}
+    userInfo: {},
+    loggedInUser: "",
+    editToggle: false,
+    modalOpen: false,
+    imageNum: 0
   };
 
   componentDidMount() {
@@ -22,6 +27,22 @@ class Listing extends Component {
       );
     });
   }
+
+  deleteListing = () => {
+    const { id } = this.props.match.params;
+    axios
+      .delete(`/api/listing/${id}`)
+      .then(listings => this.props.history.push("/myprofile"));
+  };
+
+  handleOpen = () => this.setState({ modalOpen: true });
+
+  handleClose = choice => {
+    if (choice) {
+      this.deleteListing();
+    }
+    this.setState({ modalOpen: false });
+  };
 
   amenitiesList = amenities => {
     let list = [];
@@ -91,6 +112,22 @@ class Listing extends Component {
     return list;
   };
 
+  carousel = direction => {
+    if (direction === "left") {
+      if (this.state.imageNum <= 0) {
+        this.setState({ imageNum: this.state.listingInfo.images.length - 1 });
+      } else {
+        this.setState({ imageNum: this.state.imageNum - 1 });
+      }
+    } else {
+      if (this.state.imageNum >= this.state.listingInfo.images.length - 1) {
+        this.setState({ imageNum: 0 });
+      } else {
+        this.setState({ imageNum: this.state.imageNum + 1 });
+      }
+    }
+  };
+
   render() {
     const {
       aboutMe,
@@ -118,13 +155,24 @@ class Listing extends Component {
     });
 
     return (
-      <div>
-        <div
-          style={{
-            backgroundImage: `url(${this.state.listingInfo.images})`
-          }}
-          className="listing-image"
-        />
+      <div className="listing-page">
+        <div className="listing-image">
+          <img
+            src={
+              this.state.listingInfo.images &&
+              this.state.listingInfo.images[this.state.imageNum]
+            }
+            alt=""
+          />
+          <i
+            onClick={() => this.carousel("left")}
+            className="far fa-arrow-alt-circle-left"
+          />
+          <i
+            onClick={() => this.carousel("right")}
+            className="far fa-arrow-alt-circle-right"
+          />
+        </div>
         <div className="listing">
           <div className="listing-details">
             <div className="listing-header">
@@ -215,9 +263,73 @@ class Listing extends Component {
             }
           />
         </div>
+        {this.props.user.authID === _id && (
+          <div className="listing-buttons">
+            <Button
+              onClick={() =>
+                this.setState({ editToggle: !this.state.editToggle })
+              }
+              style={{
+                marginRight: "10px",
+                backgroundColor: "white",
+                border: "solid #031424 2px",
+                color: "#031424"
+              }}
+            >
+              Edit
+            </Button>
+            <Modal
+              trigger={
+                <Button
+                  style={{
+                    backgroundColor: "#031424",
+                    border: "solid #031424 2px",
+                    color: "white"
+                  }}
+                  onClick={this.handleOpen}
+                >
+                  Delete
+                </Button>
+              }
+              open={this.state.modalOpen}
+              onClose={this.handleClose}
+              basic
+              size="small"
+            >
+              <Header icon="browser" content="Delete Listing" />
+              <Modal.Content>
+                <h3>Are you sure you want to delete this listing?</h3>
+              </Modal.Content>
+              <Modal.Actions>
+                <Button
+                  style={{
+                    backgroundColor: "white",
+                    border: "solid #031424 2px",
+                    color: "#031424"
+                  }}
+                  onClick={() => this.handleClose(false)}
+                  inverted
+                >
+                  <Icon name="cancel" /> Cancel
+                </Button>
+                <Button
+                  style={{
+                    backgroundColor: "#031424",
+                    border: "solid #031424 2px",
+                    color: "white"
+                  }}
+                  onClick={() => this.handleClose(true)}
+                  inverted
+                >
+                  <Icon name="checkmark" /> Yes
+                </Button>
+              </Modal.Actions>
+            </Modal>
+          </div>
+        )}
       </div>
     );
   }
 }
 
-export default Listing;
+export default connect(state => state)(Listing);
