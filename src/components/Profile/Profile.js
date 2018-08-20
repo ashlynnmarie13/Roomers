@@ -208,7 +208,10 @@ class Profile extends Component {
               My Listings{" "}
             </div>
             <div className="my-listings">
-              <TheirListings userInfo={userInfo} id={id} />
+              <TheirListings
+                userInfo={userInfo}
+                id={this.props.match.params.id}
+              />
             </div>
           </div>
         </div>

@@ -15,7 +15,7 @@ class MyListings extends Component {
     const { authID } = this.props.user;
     console.log(this.props);
     axios
-      .get(`/api/listing/${authID}`)
+      .get(`/api/listings/${authID}`)
       .then(response => this.setState({ listings: { ...response.data } }));
   }
 

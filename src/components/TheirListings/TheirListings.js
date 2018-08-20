@@ -12,35 +12,25 @@ class TheirListings extends Component {
   };
 
   componentDidMount() {
-    const id = this.props;
+    const id = this.props.id;
     console.log(this.props);
     axios
+<<<<<<< HEAD
       .get(`/api/listing/${id}`)
       .then(response => this.setState({ listings: { ...response.data } }));
+=======
+
+      .get(`/api/listings/${id}`)
+
+      .then(response => {
+        console.log(response.data);
+        this.setState({ listings: response.data });
+      });
+>>>>>>> 0e54d259a137d69b5c1630a0afa8ebe33f83e420
   }
 
   render() {
-    const listings = this.state.listings;
-    const { id } = this.props.id;
-    console.log(id);
-    console.log(listings);
-
-    let roomsList = Object.values(listings);
-    console.log(listings[0]);
-    console.log(roomsList);
-
-    const rooms = [];
-    roomsList.forEach(function(item) {
-      if (item.userID === id) {
-        rooms.push(item);
-      } else {
-        console.log("not me");
-      }
-    });
-
-    console.log(rooms);
-
-    const finalRooms = rooms.map(val => {
+    const finalRooms = this.state.listings.map(val => {
       const {
         address,
         amenities,
