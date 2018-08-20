@@ -24,7 +24,6 @@ class Profile extends Component {
 
   render() {
     const { userInfo } = this.state;
-    console.log(userInfo);
 
     const birthday = userInfo.birthday;
     let age = moment().diff(birthday, "years");
@@ -85,14 +84,12 @@ class Profile extends Component {
     const finalPrefsFalse = falsePrefsString.split(",");
 
     const finalPrefs = finalPrefsTrue.concat(finalPrefsFalse);
-    console.log(finalPrefs);
 
     let preferences = finalPrefs.map(val => {
       return <p className="list-item">{val}</p>;
     });
 
     const traitsString = traitsArray.join();
-    console.log(traitsString);
     const newString = traitsString
       .replace(/earlyBird/gi, "Early Bird")
       .replace(/organized/gi, "Organized")
@@ -107,10 +104,8 @@ class Profile extends Component {
       .replace(/partyAnimal/gi, "Party Animal")
       .replace(/vegan/gi, "Vegan")
       .replace(/introverted/gi, "Introverted");
-    console.log(newString);
 
     const finalTraits = newString.split(",");
-    console.log(finalTraits);
 
     let myTraits = finalTraits.map(val => {
       return <p className="list-item">{val}</p>;
@@ -209,7 +204,7 @@ class Profile extends Component {
             </div>
           </div>
         </div>
-        <div className="pictureprofile" />
+        <div className="picture-profile" />
       </div>
     );
   }

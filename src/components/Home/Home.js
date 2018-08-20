@@ -48,7 +48,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
+      <div className="home-page">
         <div className="home-image">
           <img
             className="background1"
@@ -142,7 +142,7 @@ class Home extends Component {
               </div>
             </div>
 
-            <div class="middle" >
+            <div class="middle">
               <div class="bo" onClick={() => this.selectState("Kansas")}>
                 <h2 class="cali">Kansas</h2>
               </div>

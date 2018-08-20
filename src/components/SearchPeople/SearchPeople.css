@@ -4,6 +4,7 @@
   margin: 50px;
   display: sticky;
   top: 0;
+  animation: fade-in .3s both;
 }
 
 .filter-options {
@@ -35,7 +36,7 @@
 .profile-list {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
-  padding: 40px;
+  padding: 0 40px;
 }
 
 .search-people-section {
@@ -50,4 +51,13 @@
 
 .search-people-item {
   margin: 10px 0;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

@@ -29,7 +29,7 @@ export default (
     <Route path="/search" component={Search} />
     <Route path="/mylistings" component={MyListings} />
     <Route path="/home" component={Home} />
-    <Route path="/chat/:id" component={Chat} />
+    <Route path="/chat" component={Chat} />
     <Route path="/myprofile" component={MyProfile} />
   </Switch>
 );

@@ -11,11 +11,12 @@ export default class SideBar extends Component {
       reciever: ""
     };
   }
+
   handleSubmit = e => {
     e.preventDefault();
     const { reciever } = this.state;
-    console.log(reciever);
     const { onSendPrivateMessage } = this.props;
+    console.log(reciever, onSendPrivateMessage);
     //sends reciever to container, then openprivatemessage, then it makes a new event and goes to socket
     //manager... sending private message to that reciever and also to the sender's container
     onSendPrivateMessage(reciever);

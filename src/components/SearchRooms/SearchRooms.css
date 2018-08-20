@@ -2,6 +2,7 @@
   display: flex;
   justify-content: flex-start;
   margin: 20px;
+  animation: fade-in .3s both;
 }
 
 .search-menu {
@@ -41,4 +42,13 @@
 .slider-selection {
   display: grid;
   grid-template-columns: 50% 50%;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

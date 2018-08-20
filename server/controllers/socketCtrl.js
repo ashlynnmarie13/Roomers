@@ -1,4 +1,5 @@
 const io = require("../index.js").io;
+const axios = require("axios");
 
 const {
   VERIFY_USER,
@@ -98,7 +99,7 @@ module.exports = function(socket) {
   //Private message event
   //so we know who is sending and recieving the message
   socket.on(PRIVATE_MESSAGE, ({ reciever, sender }) => {
-    console.log(reciever, sender);
+    console.log(reciever, sender, connectedUsers);
     //if the reciever is in our list of users(object that they get added onto)
     if (reciever in connectedUsers) {
       //then we make a new chat, including a name for the chat and the users
@@ -107,6 +108,7 @@ module.exports = function(socket) {
         users: [reciever, sender],
         messages: [{ message: "yooooo" }, { message: "supppppp" }]
       });
+
       //sending to the current socket that the person who's requesting to make a private chat is going to get
       //off of our connected users list, we putt the socketId off of that reciever
       const recieverSocket = connectedUsers[reciever].socketId;

@@ -177,8 +177,6 @@ module.exports = {
       introverted
     } = req.query;
 
-    console.log(req.query);
-
     let smokeBool = smoke === "true";
     let guestsBool = guests === "true";
     let petsBool = pets === "true";
@@ -246,13 +244,27 @@ module.exports = {
     });
   },
 
+  getListingsById: (req, res) => {
+    const { id } = req.params;
+
+    Listing.find({ userID: id }).then(listings => {
+      // console.log(listing);
+      res.status(200).send(listings);
+    });
+  },
+
   getListingById: (req, res) => {
     const { id } = req.params;
 
     Listing.findOne({ _id: id }).then(listing => {
-      // console.log(listing);
       res.status(200).send(listing);
     });
+  },
+
+  deleteListingById: (req, res) => {
+    const { id } = req.params;
+
+    Listing.deleteOne({ _id: id }).then(() => res.status(200).send());
   },
 
   addListing: (req, res) => {
@@ -350,20 +362,11 @@ module.exports = {
 
     newListing.save().then(response => res.status(200).send(response));
   },
-
-  getListingById: (req, res) => {
-    const { id } = req.params;
-
-    Listing.findOne({ _id: id }).then(listing => {
-      res.status(200).send(listing);
-    });
-  },
   getListingByState: (req, res) => {
     const {
       selectedState
       // selectedCity
     } = req.query;
-    console.log(selectedState);
     Listing.find({
       "address.state": { $regex: selectedState, $options: "i" }
       // "address.city": { $regex: selectedCity, $options: "i" }
@@ -373,7 +376,6 @@ module.exports = {
   },
   getListingByCity: (req, res) => {
     const { selectedCity } = req.query;
-    console.log(selectedState);
     Listing.find({
       "address.city": { $regex: selectedCity, $options: "i" }
     }).then(listing => {
@@ -450,13 +452,6 @@ module.exports = {
     }).then(rooms => res.status(200).send(rooms));
   },
 
-  getListingById: (req, res) => {
-    const { id } = req.params;
-    Listing.findOne({ _id: id }).then(listing => {
-      res.status(200).send(listing);
-    });
-  },
-
   getListingByAuthId: (req, res) => {
     const { id } = req.params;
 
@@ -476,20 +471,6 @@ module.exports = {
       image
     } = req.body;
 
-    console.log(
-      id,
-      userID,
-      loggedInUser,
-      monthlyCost,
-      city,
-      state,
-      moveInDate,
-      rentLength,
-      image
-    );
-
-    console.log(req.body);
-
     Profile.update(
       { _id: loggedInUser },
       { $push: { wishList: req.body } }
@@ -498,24 +479,24 @@ module.exports = {
 
   getWishList: (req, res) => {
     const { id } = req.params;
-    console.log(id);
 
     Profile.findOne({ _id: id }).then(profile => res.status(200).send(profile));
   },
   // SOCKET.IO
+  getChats: (req, res) => {
+    const { id } = req.params;
+
+    Chat.find({ _id: id }).then(chats => res.status(200).send(chats[0]));
+  },
 
   addChat: (req, res) => {
-    const { id, chatIdObj, messages, name, typingUsers, users } = req.body;
-
+    const { chatIdObj, name, messages, users, typingUsers } = req.body;
     const newChat = new Chat({
-      _id: id,
-      chats: {
-        chatIdObj,
-        messages,
-        name,
-        typingUsers,
-        users
-      }
+      _id: chatIdObj,
+      name,
+      messages,
+      users,
+      typingUsers
     });
     newChat
       .save()
@@ -526,18 +507,15 @@ module.exports = {
   },
 
   addMessageToChat: (req, res) => {
-    console.log("logging the add message", req.body);
-    const { id, chatIdObj, messages, name, typingUsers, users } = req.body;
+    const { id } = req.body;
+    const newMessages = req.body.chatArray[0].messages;
+    console.log("messages ------ ", newMessages);
 
-    Chat.update(
-      { _id: id },
-      {
-        $push: {
-          chats: { $each: [chatIdObj, messages, name, typingUsers, users] }
-        }
-      }
-    ).then(response => {
-      console.log(response);
+    Chat.findById(id, (err, chat) => {
+      chat.set({ "chats.0.messages": newMessages });
+      chat.save((err, updatedChat) => {
+        // console.log(updatedChat);
+      });
     });
   }
 };

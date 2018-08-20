@@ -56,7 +56,6 @@ class Chat extends Component {
       id: this.props.user.authID,
       name: this.props.user.name
     };
-    console.log(user);
 
     socket.emit(USER_CONNECTED, user);
 

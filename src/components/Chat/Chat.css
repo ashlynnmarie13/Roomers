@@ -50,6 +50,7 @@ textarea {
   width: 100%;
   color: #fffafa;
   font-family: "Rubik", sans-serif;
+  animation: fade-in .3s both;
 }
 #side-bar {
   box-sizing: border-box;
@@ -420,4 +421,13 @@ textarea {
 .message-input .message-form .send:disabled {
   opacity: 0.2;
   background: #5d5d8a;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
