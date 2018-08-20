@@ -484,9 +484,10 @@ module.exports = {
   },
   // SOCKET.IO
   getChats: (req, res) => {
-    const { id } = req.params;
+    const { name } = req.params;
+    console.log(name);
 
-    Chat.find({ _id: id }).then(chats => res.status(200).send(chats[0]));
+    Chat.find({ users: name }).then(chats => res.status(200).send(chats[0]));
   },
 
   addChat: (req, res) => {
@@ -517,5 +518,15 @@ module.exports = {
         // console.log(updatedChat);
       });
     });
+  },
+
+  addMessage: (req, res) => {
+    const { chatId, message, sender } = req.body;
+
+    Chat.findOneAndUpdate(
+      { "chats.0.chatIdObj": chatId },
+      { $push: { "chats.0.messages": { message, sender } } },
+      { new: true }
+    ).then(newMessages => res.status(200).send(newMessages));
   }
 };

@@ -177,6 +177,7 @@ app.delete("/api/listing/:id", ctrl.deleteListingById);
 app.post("/api/user/chat", ctrl.addChat);
 app.post("/api/user/chat/update", ctrl.addMessageToChat);
 app.get("/api/user/chat/:id", ctrl.getChats);
+app.put("/api/user/chat", ctrl.addMessage);
 
 server.listen(port, () => {
   console.log(`app is running in server port ${port}`);

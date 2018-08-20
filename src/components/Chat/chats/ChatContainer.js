@@ -27,14 +27,11 @@ class ChatContainer extends Component {
   componentDidMount() {
     const { socket } = this.props;
     //initiales everything that we need for our sockets
-    axios
-      .get(`/api/user/chat/${this.props.user.authID}`)
-      .then(chats =>
-        this.setState(
-          { chats: chats.data.chats },
-          console.log(this.state.chats)
-        )
-      );
+    if (this.props.user.name) {
+      axios
+        .get(`/api/user/chat/${this.props.user.name}`)
+        .then(chats => this.setState({ chats: chats.data.chats }));
+    }
 
     this.initSocket(socket);
   }
@@ -175,6 +172,13 @@ class ChatContainer extends Component {
 	*/
   sendMessage = (chatId, message) => {
     const { socket } = this.props;
+    axios
+      .put("/api/user/chat", {
+        chatId,
+        message,
+        sender: this.props.user.name
+      })
+      .then(newMessages => console.log(newMessages.data));
     socket.emit(MESSAGE_SENT, { chatId, message });
   };
 

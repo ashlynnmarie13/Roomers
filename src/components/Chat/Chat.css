@@ -46,7 +46,7 @@ textarea {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  height: 100%;
+  height: 90vh;
   width: 100%;
   color: #fffafa;
   font-family: "Rubik", sans-serif;
@@ -55,7 +55,7 @@ textarea {
 #side-bar {
   box-sizing: border-box;
   width: 33.75%;
-  height: 940px;
+  height: 90vh;
   display: flex;
   justify-content: space-around;
   flex-direction: column;
