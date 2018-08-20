@@ -373,13 +373,14 @@ module.exports = {
   },
   getListingByCity: (req, res) => {
     const { selectedCity } = req.query;
-    console.log(selectedState);
+
     Listing.find({
       "address.city": { $regex: selectedCity, $options: "i" }
     }).then(listing => {
       res.status(200).send(listing);
     });
   },
+
   getListings: (req, res) => {
     const {
       smoke,

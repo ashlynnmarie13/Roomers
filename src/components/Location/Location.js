@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import ListingCard from "../ListingCard/ListingCard";
-import { Card, Image } from "semantic-ui-react";
+import { Card, Image, Dropdown, Button } from "semantic-ui-react";
 import RoomCard from "../RoomCard/RoomCard";
 import stateModel from "../Models/stateModel";
+
 import axios from "axios";
 import styled from "styled-components";
 import "./Location.css";
@@ -15,63 +16,86 @@ position: absolute;
 top:380px;
 left:490px;
 opacity: 0.8;
-  width: 50%;
-  margin auto;
+ width: 50%;
+ margin auto;
 `;
 
 export default class Location extends Component {
   state = {
     cities: [],
     selectedCity: "",
-    selectedState:""
+    selectedState: "",
+    listings: [],
+    cityImage: ""
   };
 
   componentDidMount() {
-    this.searchStates(this.props.match.params.state);
+    // this.searchStates(this.props.match.params.state);
     const { state } = this.props.match.params;
+
     let cities = [];
+    let cityImage = "";
 
     stateModel.states.forEach(val => {
-
       if (val.value === state) {
         cities = val.cities;
+        cityImage = val.image;
       }
+      this.setState({ cities, cityImage });
     });
-
-      });
   }
 
-  searchStates = state => {
-    console.log(state);
+  // searchStates = state => {
+  //   console.log(state);
+  //   axios
+  //     .get(
+  //       `/api/listing/state/?selectedState=${state}
+  //      `
+  //     )
+  //     .then(response =>
+  //       this.setState({
+  //         cities: response.data
+  //       })
+  //     );
+  // };
+
+  searchCities = selectedCity => {
+    console.log(selectedCity);
     axios
       .get(
-        `/api/listing/state/?selectedState=${state}
-        `
+        `/api/city/?selectedCity=${selectedCity}
+       `
       )
       .then(response =>
         this.setState({
-          cities: response.data
+          listings: response.data
         })
       );
   };
+
   dropdownHandler = (e, data) => {
-    const { value} = data;
-    this.setState({ selectedState: value }, () => this.searchStates());
+    const { value } = data;
+    console.log(value);
+    this.setState({ selectedCity: value }, () => this.searchCities(value));
   };
 
   render() {
-  
-   
-    console.log(this.state.cities[0]
-       && this.state.cities[0].address.city
-      );
-      console.log(this.state.cities
-        // && this.state.cities[0].address.city
-       );
+    console.log(
+      this.state.cities
+      // && this.state.cities[0].address.city
+    );
     // console.log(this.state.states.cities);
 
+    const texts = this.state.cities.map((val, i) => {
+      return val.text;
+    });
+    console.log(texts);
 
-    const locationList = this.state.cities.map((val, i) => {
+    const values = this.state.cities.map((val, i) => {
+      return val.value;
+    });
+
+    const locationList = this.state.listings.map((val, i) => {
       const {
         address,
         amenities,
@@ -82,24 +106,7 @@ export default class Location extends Component {
         _id,
         images
       } = val;
-
-    let cities = this.state;
-    let mappableCities = [];
-    console.log(cities.cities);
-    for (const city in cities.cities[0]) {
-      mappableCities.push(cities.cities[0][city]);
-    }
-    console.log(mappableCities);
-    let cityList =
-      mappableCities &&
-      mappableCities.map((city, i) => {
-        return (
-          <div className="cards" style={{ display: "flex" }}>
-            <Card
-              style={{ height: "425px", width: "400px", marginTop: "20px" }}
-            >
-              <Image src="" />
-
+      console.log(locationList);
 
       return (
         <RoomCard
@@ -120,30 +127,57 @@ export default class Location extends Component {
     });
 
     return (
-      <div>
-        <div>
-          <img
-            class="location-image"
-            src={require("../Location/skyline.jpg")}
+      <div className="height">
+        <div
+          style={{
+            background: `url(${this.state.cityImage})`,
+            width: "100%",
+            height: "600px"
+          }}
+          className="search-bar"
+        >
+          <div className="search-text"> SEARCH BY CITY</div>
+          <Dropdown
+            onChange={(e, data) => this.dropdownHandler(e, data)}
+            style={{
+              width: "50%",
+              zIndex: "100",
+              height: "10%",
+
+              fontSize: "1.3em"
+            }}
+            placeholder="Select City"
+            name="selectedCity"
+            search
+            selection
+            options={[
+              { text: texts[0], value: values[0] },
+              { text: texts[1], value: values[1] },
+              { text: texts[2], value: values[2] }
+            ]}
           />
         </div>
-        <Wrapper>
-          <div class="input-group">
-            <Select
-              className="search-city"
-              onChange={(e, data) => this.dropdownHandler(e, data)}
-              placeholder="Select a city"
-              name="selectedCity"
-              search
-              selection
-              options={this.state.cities[0]
-                && this.state.cities[0].address.city
-              }
-              
-            />
-          </div>
-        </Wrapper>
-        <div class="pageBody">{locationList}</div>
+
+        <div className="pageBody">{locationList}</div>
+        <div className="center">
+          <Button
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around",
+              alignItems: "center",
+
+              backgroundColor: "#cf6766",
+              border: "solid #cf6766 2px",
+              color: "white",
+              width: "20%",
+              height: "70%",
+              fontSize: "1.2em"
+            }}
+          >
+            Explore More
+          </Button>
+        </div>
       </div>
     );
   }
