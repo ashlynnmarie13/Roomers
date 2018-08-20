@@ -4,35 +4,25 @@ import { connect } from "react-redux";
 import "./MyListings.css";
 import RoomCard from "../RoomCard/RoomCard";
 import { WSAEINVALIDPROCTABLE } from "constants";
-
 class MyListings extends Component {
   state = {
     isLoading: false,
     listings: []
   };
-
   componentDidMount() {
-
     const { authID } = this.props.user;
     console.log(this.props);
-
-    const authID = this.props.user.authID;
-
     axios
-      .get(`/api/listings/id/${authID}`)
+      .get(`/api/listing/${authID}`)
       .then(response => this.setState({ listings: { ...response.data } }));
   }
-
   render() {
     const listings = this.state.listings;
-
     const { authID } = this.props.user;
     console.log(listings);
-
     let roomsList = Object.values(listings);
     console.log(listings[0]);
     console.log(roomsList);
-
     const rooms = [];
     roomsList.forEach(function(item) {
       if (item.userID === authID) {
@@ -41,15 +31,8 @@ class MyListings extends Component {
         console.log("not me");
       }
     });
-
     console.log(rooms);
-
     const finalRooms = rooms.map(val => {
-
-
-    let roomsList = Object.values(listings);
-    const rooms = roomsList.map(val => {
-
       const {
         address,
         amenities,
@@ -60,7 +43,6 @@ class MyListings extends Component {
         _id,
         images
       } = val;
-
       return (
         <RoomCard
           address={address}
@@ -74,9 +56,7 @@ class MyListings extends Component {
         />
       );
     });
-
     return <div className="profile-listings">{finalRooms}</div>;
   }
 }
-
 export default connect(state => state)(MyListings);
