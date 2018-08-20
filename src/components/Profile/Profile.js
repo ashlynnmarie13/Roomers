@@ -31,7 +31,6 @@ class Profile extends Component {
     const id = this.state;
     console.log(userInfo);
 
-
     const birthday = userInfo.birthday;
     let age = moment().diff(birthday, "years");
 
@@ -207,7 +206,10 @@ class Profile extends Component {
               My Listings{" "}
             </div>
             <div className="my-listings">
-              <TheirListings userInfo={userInfo} id={id} />
+              <TheirListings
+                userInfo={userInfo}
+                id={this.props.match.params.id}
+              />
             </div>
           </div>
         </div>

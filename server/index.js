@@ -168,7 +168,7 @@ app.post("/api/addtowishlist", ctrl.addToWishList);
 //get listing by id
 app.get("/api/listing/:state", ctrl.getListingByState);
 app.get("/api/city", ctrl.getListingByCity);
-app.get("/api/listing/:id", ctrl.getListingByAuthId);
+app.get("/api/listings/:id", ctrl.getListingByAuthId);
 app.get("/api/listings/id/:id", ctrl.getListingsById);
 app.get("/api/listing/id/:id", ctrl.getListingById);
 app.delete("/api/listing/:id", ctrl.deleteListingById);
