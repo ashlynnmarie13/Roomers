@@ -376,12 +376,14 @@ module.exports = {
   },
   getListingByCity: (req, res) => {
     const { selectedCity } = req.query;
+
     Listing.find({
       "address.city": { $regex: selectedCity, $options: "i" }
     }).then(listing => {
       res.status(200).send(listing);
     });
   },
+
   getListings: (req, res) => {
     const {
       smoke,
@@ -454,6 +456,7 @@ module.exports = {
 
   getListingByAuthId: (req, res) => {
     const { id } = req.params;
+    console.log(req.params);
 
     Listing.find({ userID: id }).then(listing => res.status(200).send(listing));
   },
@@ -508,6 +511,7 @@ module.exports = {
   },
 
   addMessageToChat: (req, res) => {
+
     const { id } = req.body;
     const newMessages = req.body.chatArray[0].messages;
     console.log("messages ------ ", newMessages);
@@ -528,5 +532,6 @@ module.exports = {
       { $push: { "chats.0.messages": { message, sender } } },
       { new: true }
     ).then(newMessages => res.status(200).send(newMessages));
+
   }
 };

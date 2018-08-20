@@ -42,14 +42,13 @@
   margin-bottom: 25px;
 }
 .head1 {
-  font-size: 50px;
+  font-size: 1.2em;
   text-align: center;
   font-weight: bold;
   margin-bottom: 1%;
 }
 
 .para {
-  font-size: 2em;
   text-align: center;
   margin-bottom: 5%;
 }
@@ -162,7 +161,10 @@
   width: 100%;
 }
 .ny {
-  align-items: baseline;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   background-image: url("http://www.wallpaperbetter.com/wallpaper/21/90/360/hudson-river-new-york-city-1080P-wallpaper-middle-size.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
@@ -171,7 +173,10 @@
   margin: 8px;
 }
 .au {
-  align-items: baseline;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   background-image: url("http://paperlief.com/images/dallas-texas-at-night-wallpaper-4.jpg");
   background-repeat: no-repeat;
   background-size: 150%;
@@ -180,7 +185,10 @@
   margin: 8px;
 }
 .sd {
-  align-items: baseline;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   background-image: url("http://wallscollection.net/wp-content/uploads/2017/01/Florida-Wallpapers-HD-1920x1080.jpg");
   background-repeat: no-repeat;
   background-size: 170%;
@@ -194,7 +202,10 @@
   width: 100%;
 }
 .bo {
-  align-items: baseline;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   background-image: url("https://bloggerlocal.com/wp-content/uploads/2013/08/kansas_city_skyline_2.jpg");
   background-repeat: no-repeat;
   background-size: 150%;
@@ -203,7 +214,10 @@
   margin: 8px;
 }
 .ch {
-  align-items: baseline;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   background-image: url("https://roomicities.imgix.net/Chicago.jpg");
   background-repeat: no-repeat;
   background-size: 110%;
@@ -214,7 +228,10 @@
 }
 
 .sf {
-  align-items: baseline;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   background-image: url("http://jonvilma.com/images/detroit-at-sunrise-michigan-1.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
@@ -228,7 +245,10 @@
   width: 100%;
 }
 .la {
-  align-items: baseline;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   background-image: url("http://www.wallpaperbetter.com/wallpaper/1008/644/858/paradise-pier-sunset-california-1080P-wallpaper.jpg");
   background-repeat: no-repeat;
   background-size: 105%;
@@ -237,25 +257,18 @@
   margin: 8px;
 }
 .cali {
-  font-size: 35px;
-  padding-right: 80px;
-  padding-top: 160px;
+  font-size: 3em;
+
   color: white;
+  text-align: center;
+  font-weight: bold;
 }
 
-.cali:hover {
-  background: linear-gradient(
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0.2)
-  );
-  position: relative;
-  padding-top: 80px;
-  cursor: pointer;
-  transition: 2s all;
-}
 .lo {
-  align-items: baseline;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   background-image: url("https://i.pinimg.com/originals/0b/ef/fe/0beffef7a6a531631f369a6b147c8793.jpg");
   background-repeat: no-repeat;
   background-size: 130%;
@@ -265,7 +278,10 @@
   margin-bottom: 0;
 }
 .wa {
-  align-items: baseline;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   background-image: url("https://i.pinimg.com/originals/4d/9d/d6/4d9dd63aedcf8c0064ec1e41cc4783ab.jpg");
   background-repeat: no-repeat;
   background-size: 150%;

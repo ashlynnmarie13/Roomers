@@ -184,9 +184,13 @@ class AddListing extends Component {
           <h1 className="nav-header">List Your Place</h1>
 
           <p onClick={() => this.scrollTo("roomate")}>Roomate</p>
+          <i class="fas fa-arrow-down" />
           <p onClick={() => this.scrollTo("location")}>Location</p>
+          <i class="fas fa-arrow-down" />
           <p onClick={() => this.scrollTo("cost")}>Cost</p>
+          <i class="fas fa-arrow-down" />
           <p onClick={() => this.scrollTo("amenities")}>Amenities</p>
+          <i class="fas fa-arrow-down" />
           <p onClick={() => this.scrollTo("description")}>Description</p>
         </div>
         <div className="listing-sections">
@@ -196,7 +200,7 @@ class AddListing extends Component {
             </div>
             <div className="section-details">
               <div className="selection">
-                <div className="selection-title">Age:</div>
+                <div className="selection-title">Age</div>
                 <div className="section-inputs">
                   <div className="age-input">
                     <Checkbox
@@ -328,7 +332,7 @@ class AddListing extends Component {
               <div className="address">
                 <div className="section-address-inputs">
                   <div className="address-input">
-                    <span className="selection-title">Monthly Rent:</span>
+                    <span className="selection-title">Monthly Rent</span>
                     <Input
                       required
                       name="monthlyCost"
@@ -345,7 +349,7 @@ class AddListing extends Component {
                   </div>
 
                   <div className="address-input">
-                    <span className="selection-title">Deposit Amount:</span>
+                    <span className="selection-title">Deposit Amount</span>
                     <Input
                       required
                       name="depositCost"
@@ -361,7 +365,7 @@ class AddListing extends Component {
                     </Input>
                   </div>
                   <div className="address-input">
-                    <div className="selection-title">Rent Length: </div>
+                    <div className="selection-title">Rent Length </div>
                     <Dropdown
                       required
                       style={{ width: "100%", margin: "5px 10px" }}
@@ -373,7 +377,7 @@ class AddListing extends Component {
                     />
                   </div>
                   <div className="address-input">
-                    <div className="selection-title">Move in date: </div>
+                    <div className="selection-title">Move in date </div>
                     <SingleDatePicker
                       date={this.state.date} // momentPropTypes.momentObj or null
                       onDateChange={date => this.setState({ moveInDate: date })} // PropTypes.func.isRequired
@@ -493,7 +497,7 @@ class AddListing extends Component {
 
           <div ref="amenities" className="listing-section">
             <div>
-              <p className="details-header">Prefernces</p>
+              <p className="details-header">Preferences</p>
             </div>
             <div className="section-details">
               <div className="amend-selection">
@@ -577,13 +581,26 @@ class AddListing extends Component {
           </div>
           <div className="listing-section-button">
             <div>
-              <Button onClick={() => this.submitListing()} color="blue">
+              <Button
+                onClick={() => this.submitListing()}
+                style={{
+                  backgroundColor: "#031424",
+                  textAlign: "center",
+                  color: "white",
+
+                  cursor: "pointer",
+                  textTransform: "uppercase",
+                  fontWeight: "500",
+                  fontSize: "20px"
+                }}
+              >
                 Save
               </Button>
             </div>
             <div />
           </div>
         </div>
+        <div className="listing-sidebar" />
       </div>
     );
   }

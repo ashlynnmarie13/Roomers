@@ -126,19 +126,27 @@ class MyProfile extends Component {
               alt=""
               className="image"
             />
-            <Card.Content>
-              <Card.Header>
-                <div className="header">{userInfo.name}</div>
-              </Card.Header>
-              <div className="age">{age}</div>
-              <div className="title">{userInfo.title}</div>
-            </Card.Content>
+            <div className="card-content">
+              <Card.Content>
+                <Card.Header>
+                  <div className="header-card">{userInfo.name}</div>
+                </Card.Header>
+                <div className="info-card">
+                  <div className="age">{age}</div>
+                  <div className="title">{userInfo.title}</div>
+                </div>
+              </Card.Content>
+            </div>
           </Card>
         </div>
 
         <div className="info">
           <Card
             style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around",
+              alignItems: "center",
               width: "90%",
               height: "40vh",
               padding: "3%",
@@ -172,6 +180,10 @@ class MyProfile extends Component {
           </Card>
           <Card
             style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around",
+              alignItems: "flex-start",
               width: "90%",
               height: "30vh",
               padding: "3%",
@@ -204,6 +216,7 @@ class MyProfile extends Component {
               My Listings{" "}
             </div>
             <div className="my-listings">
+              {console.log(userInfo)}
               <MyListings userInfo={userInfo} />
             </div>
           </div>
