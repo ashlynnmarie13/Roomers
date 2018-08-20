@@ -10,7 +10,8 @@ class Wishlist extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      wishList: []
+      wishList: [],
+      listings: []
     };
   }
 
@@ -23,13 +24,11 @@ class Wishlist extends Component {
   }
 
   deleteFromWishList(listing) {
-    axios.delete(`/api/listing/wishlist/${listing.id}`).then(() =>
-      axios.get("api/wishlist").then(response => {
-        this.setState({
-          listing: response.data
-        });
-      })
-    );
+    axios.delete(`/api/delete/${listing.id}`).then(listings => {
+      this.setState({
+        listings: listings.data
+      });
+    });
   }
   render() {
     const wishList = this.state.wishList.map((val, i) => {
@@ -55,6 +54,7 @@ class Wishlist extends Component {
             <Image style={{ width: "100%", height: "200px" }} src={image} />
           </Link>
           <Card.Content>
+            f
             <Card.Header>
               ${monthlyCost} in {city}, {state}
             </Card.Header>
@@ -66,7 +66,7 @@ class Wishlist extends Component {
             <Card.Description />
           </Card.Content>
           <Card.Content extra>
-           <a > Delete From Wishlist</a>
+            <a  href="#" onClick={this.deleteFromWishList}> Delete From Wishlist</a>
           </Card.Content>
         </Card>
       );

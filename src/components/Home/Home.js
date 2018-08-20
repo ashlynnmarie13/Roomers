@@ -119,7 +119,14 @@ class Home extends Component {
                   fontSize: "1.2em"
                 }}
               >
-                LIST YOUR PLACE
+               <Link
+               className="renting-content2"
+              to="/addlisting"
+           
+            >
+            LIST YOUR PLACE
+            </Link>
+                
               </Button>
             </div>
           </div>

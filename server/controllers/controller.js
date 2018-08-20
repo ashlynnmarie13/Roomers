@@ -463,5 +463,12 @@ module.exports = {
         res.status(200).send(newChat);
       })
       .catch(err => console.log("Can't add chat " + err));
+  },
+  deleteById(req, res) {
+    const {id} = req.params;
+
+    Listing.findByIdAndRemove({ _id: id }).then(function(listing) {
+      res.send(listing);
+    });
   }
 };
