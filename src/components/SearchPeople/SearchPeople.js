@@ -28,11 +28,14 @@ class SearchPeople extends Component {
     bookworm: false,
     foodie: false,
     partyAnimal: true,
-
     vegan: false,
     introverted: false,
     selectedState: "",
-    states: stateModel.states
+    states: stateModel.states,
+    male: true,
+    female: false,
+    minAge: 0,
+    maxAge: 100
   };
 
   componentDidMount() {
@@ -59,12 +62,16 @@ class SearchPeople extends Component {
       partyAnimal,
       vegan,
       introverted,
-      search
+      search,
+      male,
+      female,
+      minAge,
+      maxAge
     } = this.state;
 
     axios
       .get(
-        `/api/users/info/?smoke=${smoker}&clean=${clean}&guests=${guests}&pets=${pets}&selectedState=${selectedState}&organized=${organized}&healthy=${healthy}&professional=${professional}&student=${student}&earlyBird=${earlyBird}&nightOwl=${nightOwl}&fitnessEnthusiast=${fitnessEnthusiast}&creative=${creative}&bookworm=${bookworm}&foodie=${foodie}&partyAnimal=${partyAnimal}&vegan=${vegan}&introverted=${introverted}&search=${search}`
+        `/api/users/info/?smoke=${smoker}&clean=${clean}&guests=${guests}&pets=${pets}&selectedState=${selectedState}&organized=${organized}&healthy=${healthy}&professional=${professional}&student=${student}&earlyBird=${earlyBird}&nightOwl=${nightOwl}&fitnessEnthusiast=${fitnessEnthusiast}&creative=${creative}&bookworm=${bookworm}&foodie=${foodie}&partyAnimal=${partyAnimal}&vegan=${vegan}&introverted=${introverted}&search=${search}&male=${male}&female=${female}&minAge=${minAge}&maxAge=${maxAge}`
       )
       .then(response =>
         this.setState({ profiles: response.data, isLoading: false })
@@ -96,8 +103,26 @@ class SearchPeople extends Component {
   };
 
   dropdownHandler = (e, data) => {
-    const { value } = data;
-    this.setState({ selectedState: value }, () => this.searchPeople());
+    const { name, value } = data;
+
+    switch (name) {
+      case "state":
+        this.setState({ selectedState: value }, () => this.searchPeople());
+      case "gender":
+        if (value === "male") {
+          this.setState({ male: true, female: false }, () =>
+            this.searchPeople()
+          );
+        } else {
+          this.setState({ male: false, female: true }, () =>
+            this.searchPeople()
+          );
+        }
+      case "age":
+        this.setState({ minAge: value.min, maxAge: value.max }, () =>
+          this.searchPeople()
+        );
+    }
   };
 
   render() {
@@ -145,6 +170,7 @@ class SearchPeople extends Component {
                 onChange={(e, data) => this.dropdownHandler(e, data)}
                 className="search-people-item"
                 placeholder="Select State"
+                name="state"
                 options={this.state.states}
               />
             </div>
@@ -154,6 +180,7 @@ class SearchPeople extends Component {
                 onChange={(e, data) => this.dropdownHandler(e, data)}
                 className="search-people-item"
                 placeholder="Gender"
+                name="gender"
                 options={[
                   { text: "Male", value: "male" },
                   { text: "Female", value: "female" }
@@ -163,9 +190,12 @@ class SearchPeople extends Component {
                 onChange={(e, data) => this.dropdownHandler(e, data)}
                 className="search-people-item"
                 placeholder="Age"
+                name="age"
                 options={[
-                  { text: "Male", value: "male" },
-                  { text: "Female", value: "female" }
+                  { text: "20-29", value: { min: 20, max: 29 } },
+                  { text: "30-39", value: { min: 30, max: 39 } },
+                  { text: "40-49", value: { min: 40, max: 49 } },
+                  { text: "50+", value: { min: 50, max: 9999 } }
                 ]}
               />
             </div>
