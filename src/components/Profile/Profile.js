@@ -4,9 +4,7 @@ import { connect } from "react-redux";
 import "./Profile.css";
 import moment from "moment";
 import TheirListings from "../TheirListings/TheirListings";
-import { Button, Card, Image, Icon, Segment } from "semantic-ui-react";
-
-import ProfileCard from "../ProfileCard/ProfileCard";
+import { Card, Image } from "semantic-ui-react";
 
 class Profile extends Component {
   state = {
@@ -120,7 +118,7 @@ class Profile extends Component {
     return (
       <div className="profile">
         <div className="person">
-          <Card style={{ width: "90%", height: "50%" }}>
+          <Card style={{ width: "90%", height: "420px" }}>
             <Image
               style={{ objectFit: "cover" }}
               src={userInfo.profilePic}
@@ -140,14 +138,18 @@ class Profile extends Component {
         <div className="info">
           <Card
             style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around",
+              alignItems: "center",
               width: "90%",
-              height: "40vh",
+              height: "100%",
               padding: "3%",
-              border: "1px solid rgb(142, 174, 189, 0.4)",
-              marginTop: "3%"
+              marginTop: "40px",
+              border: "1px solid rgb(142, 174, 189, 0.4)"
             }}
           >
-            <Card.Content>
+            <Card.Content style={{ width: "100%" }}>
               <div className="aboutMe">
                 <Card.Header style={{ color: "#30415D" }}>
                   <div className="header-two">
@@ -174,13 +176,17 @@ class Profile extends Component {
 
           <Card
             style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around",
+              alignItems: "center",
               width: "90%",
-              height: "30vh",
+              height: "100%",
               padding: "3%",
               border: "1px solid rgb(142, 174, 189, 0.4)"
             }}
           >
-            <Card.Content>
+            <Card.Content style={{ width: "100%" }}>
               <div className="looking">
                 <Card.Header style={{ color: "#30415D" }}>
                   {" "}
