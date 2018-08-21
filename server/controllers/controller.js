@@ -401,7 +401,6 @@ module.exports = {
       privateBathroom,
       outdoorSpace,
       selectedState,
-
       rentLength,
       male,
       female,
@@ -427,6 +426,30 @@ module.exports = {
     let maleBool = male === "true";
     let femaleBool = female === "true";
 
+    console.log(
+      smoke,
+      clean,
+      guests,
+      pets,
+      washer,
+      wifi,
+      utilities,
+      furnished,
+      elevator,
+      doorman,
+      airConditioning,
+      heating,
+      gym,
+      tv,
+      privateBathroom,
+      outdoorSpace,
+      selectedState,
+      rentLength,
+      male,
+      female,
+      monthlyCost
+    );
+
     Listing.find({
       "prefs.smoke": smokeBool,
       "prefs.clean": cleanBool,
@@ -449,7 +472,10 @@ module.exports = {
       "address.state": { $regex: selectedState, $options: "i" },
       "rent.rentLength": { $gte: Number(rentLength) },
       "rent.monthlyCost": { $lte: Number(monthlyCost) }
-    }).then(rooms => res.status(200).send(rooms));
+    }).then(rooms => {
+      console.log(rooms);
+      res.status(200).send(rooms);
+    });
   },
 
   getListingByAuthId: (req, res) => {
