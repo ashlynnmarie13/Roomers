@@ -1,3 +1,4 @@
+const moment = require("moment");
 const Profile = require("../Models/Profile");
 const Listing = require("../Models/Listing");
 const Chat = require("../Models/Chat");
@@ -72,6 +73,7 @@ module.exports = {
       email,
       phone,
       birthday: dob,
+      age: Number(age),
       interestsDescription: description,
       aboutMe: about,
       address: {
@@ -174,9 +176,15 @@ module.exports = {
       foodie,
       partyAnimal,
       vegan,
-      introverted
+      introverted,
+      male,
+      female,
+      minAge,
+      maxAge
     } = req.query;
 
+    let maleBool = male === "true";
+    let femaleBool = female === "true";
     let smokeBool = smoke === "true";
     let guestsBool = guests === "true";
     let petsBool = pets === "true";
@@ -196,6 +204,9 @@ module.exports = {
     let introvertedBool = introverted === "true";
 
     Profile.find({
+      age: { $gte: Number(minAge), $lte: Number(maxAge) },
+      "gender.male": maleBool,
+      "gender.female": femaleBool,
       "prefs.smoke": smokeBool,
       "prefs.guests": guestsBool,
       "prefs.pets": petsBool,
@@ -401,7 +412,6 @@ module.exports = {
       privateBathroom,
       outdoorSpace,
       selectedState,
-
       rentLength,
       male,
       female,
@@ -427,6 +437,30 @@ module.exports = {
     let maleBool = male === "true";
     let femaleBool = female === "true";
 
+    console.log(
+      smoke,
+      clean,
+      guests,
+      pets,
+      washer,
+      wifi,
+      utilities,
+      furnished,
+      elevator,
+      doorman,
+      airConditioning,
+      heating,
+      gym,
+      tv,
+      privateBathroom,
+      outdoorSpace,
+      selectedState,
+      rentLength,
+      male,
+      female,
+      monthlyCost
+    );
+
     Listing.find({
       "prefs.smoke": smokeBool,
       "prefs.clean": cleanBool,
@@ -449,7 +483,10 @@ module.exports = {
       "address.state": { $regex: selectedState, $options: "i" },
       "rent.rentLength": { $gte: Number(rentLength) },
       "rent.monthlyCost": { $lte: Number(monthlyCost) }
-    }).then(rooms => res.status(200).send(rooms));
+    }).then(rooms => {
+      console.log(rooms);
+      res.status(200).send(rooms);
+    });
   },
 
   getListingByAuthId: (req, res) => {

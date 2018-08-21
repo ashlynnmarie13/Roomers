@@ -119,7 +119,7 @@ class MyProfile extends Component {
     return (
       <div className="profile">
         <div className="person">
-          <Card style={{ width: "90%", height: "50%", marginTop: "-20%" }}>
+          <Card style={{ width: "90%", height: "420px" }}>
             <Image
               style={{ objectFit: "cover" }}
               src={userInfo.profilePic}
@@ -148,13 +148,13 @@ class MyProfile extends Component {
               justifyContent: "space-around",
               alignItems: "center",
               width: "90%",
-              height: "40vh",
+              height: "100%",
               padding: "3%",
-              border: "1px solid rgb(142, 174, 189, 0.4)",
-              marginTop: "3%"
+              marginTop: "40px",
+              border: "1px solid rgb(142, 174, 189, 0.4)"
             }}
           >
-            <Card.Content>
+            <Card.Content style={{ width: "100%" }}>
               <div className="aboutMe">
                 <Card.Header style={{ color: "#30415D" }}>
                   <div className="header">
@@ -183,14 +183,14 @@ class MyProfile extends Component {
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-around",
-              alignItems: "flex-start",
+              alignItems: "center",
               width: "90%",
-              height: "30vh",
+              height: "100%",
               padding: "3%",
               border: "1px solid rgb(142, 174, 189, 0.4)"
             }}
           >
-            <Card.Content>
+            <Card.Content style={{ width: "100%" }}>
               <div className="looking">
                 <Card.Header style={{ color: "#30415D" }}>
                   {" "}
