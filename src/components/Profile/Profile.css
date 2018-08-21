@@ -13,7 +13,7 @@
   height: 80%;
 }
 .person {
-  height: 100vh;
+  height: 700px;
   width: 20%;
   position: sticky;
   top: 0;
@@ -35,15 +35,7 @@
   background-color: white;
   width: 60%;
   height: 100%;
-  font-size: 1.1em;
-}
-
-.aboutMe {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-
-  height: 100%;
+  font-size: 1em;
 }
 
 .header {
@@ -67,10 +59,6 @@
   margin-bottom: 3%;
 }
 
-.about-content {
-  margin-top: -5%;
-}
-
 .middle-header {
   margin-bottom: 2%;
   font-size: 1.3em;
@@ -91,7 +79,6 @@
 
   align-items: flex-start;
   flex-wrap: wrap;
-  height: 30vh;
 }
 
 .preferences {
@@ -182,6 +169,24 @@
   color: #30415d;
 }
 
+
+.card-content {
+  font-size: 0.8em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  align-items: center;
+}
+
+.info-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  align-items: center;
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -190,3 +195,4 @@
     opacity: 1;
   }
 }
+

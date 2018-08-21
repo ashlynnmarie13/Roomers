@@ -133,42 +133,50 @@ class Home extends Component {
           </div>
         </div>
         {/* <div className="button">LIST YOUR PLACE FOR FREE</div> */}
-        <div class="container">
+        <div className="container">
           <br />
           {/* <h1>Search Rooms and Roommates In These Cities...</h1>s */}
-          <div class="innerC">
-            <div class="top">
-              <div class="ny" onClick={() => this.selectState("New York")}>
-                <h2 class="cali">New York</h2>
+          <div className="innerC">
+            <div className="top">
+              <div className="ny" onClick={() => this.selectState("New York")}>
+                <h2 className="cali">NEW YORK</h2>
               </div>
-              <div class="au" onClick={() => this.selectState("Texas")}>
-                <h2 class="cali">Texas</h2>
+              <div className="au" onClick={() => this.selectState("Texas")}>
+                <h2 className="cali">TEXAS</h2>
               </div>
-              <div class="sd" onClick={() => this.selectState("Florida")}>
-                <h2 class="cali">Florida</h2>
+              <div className="sd" onClick={() => this.selectState("Florida")}>
+                <h2 className="cali">FLORIDA</h2>
               </div>
             </div>
 
-            <div class="middle">
-              <div class="bo" onClick={() => this.selectState("Kansas")}>
-                <h2 class="cali">Kansas</h2>
+
+            <div className="middle">
+              <div className="bo" onClick={() => this.selectState("Kansas")}>
+                <h2 className="cali">KANSAS</h2>
+
               </div>
-              <div class="ch" onClick={() => this.selectState("Nevada")}>
-                <h2 class="cali">Nevada</h2>
+              <div className="ch" onClick={() => this.selectState("Nevada")}>
+                <h2 className="cali">NEVADA</h2>
               </div>
-              <div class="sf" onClick={() => this.selectState("Michigan")}>
-                <h2 class="cali">Michigan</h2>
+              <div className="sf" onClick={() => this.selectState("Michigan")}>
+                <h2 className="cali">MICHIGAN</h2>
               </div>
             </div>
-            <div class="bottom">
-              <div class="la" onClick={() => this.selectState("California")}>
-                <h2 class="cali">California</h2>
+            <div className="bottom">
+              <div
+                className="la"
+                onClick={() => this.selectState("California")}
+              >
+                <h2 className="cali">CALIFORNIA</h2>
               </div>
-              <div class="lo" onClick={() => this.selectState("New Jersey")}>
-                <h2 class="cali">New Jersey</h2>
+              <div
+                className="lo"
+                onClick={() => this.selectState("New Jersey")}
+              >
+                <h2 className="cali">NEW JERSEY</h2>
               </div>
-              <div class="wa" onClick={() => this.selectState("Nebraska")}>
-                <h2 class="cali">Nebraska</h2>
+              <div className="wa" onClick={() => this.selectState("Nebraska")}>
+                <h2 className="cali">NEBRASKA</h2>
               </div>
             </div>
           </div>

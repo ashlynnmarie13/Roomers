@@ -204,7 +204,9 @@ export default {
         { text: "Omaha", value: "Omaha" },
         { value: "Grand Island", text: "Grand Island" },
         { value: "Lincoln", text: "Lincoln" }
-      ]
+      ],
+      image:
+        "https://images.unsplash.com/photo-1504916490405-6a71ff3679d8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b0a8be8e35a2f1ff391b12c942acdd82&auto=format&fit=crop&w=1652&q=80"
     },
     {
       text: "Nevada",
@@ -235,8 +237,11 @@ export default {
       value: "New York",
       cities: [
         { text: "New York", value: "New York" },
-        { text: "Elmira", value: "Elmira" }
-      ]
+        { text: "Buffalo", value: "Buffalo" },
+        { text: "Rochester", value: "Rochester" }
+      ],
+      image:
+        "https://images.unsplash.com/photo-1531228040767-7a99c3ff4489?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=136f18f5c843c1f8a1e60eaeac6cffb5&auto=format&fit=crop&w=1650&q=80"
     },
     {
       text: "North Carolina",
@@ -307,7 +312,9 @@ export default {
         { text: "Dallas", values: "Dallas" },
         { text: "Houston", value: "Houston" },
         { text: "Austin", value: "Austin" }
-      ]
+      ],
+      image:
+        "https://images.unsplash.com/photo-1531218150217-54595bc2b934?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=7cf9e788a332a736734044e1ed74a283&auto=format&fit=crop&w=1700&q=80"
     },
     {
       text: "Utah",
