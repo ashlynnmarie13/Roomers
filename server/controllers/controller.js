@@ -507,10 +507,17 @@ module.exports = {
       .catch(err => console.log("Can't add chat " + err));
   },
   deleteById(req, res) {
-    const {id} = req.params;
+    const { id } = req.params;
+    const { wishListID } = req.body;
+    console.log(id, wishListID);
 
-    Listing.findByIdAndRemove({ _id: id }).then(function(listing) {
-      res.send(listing);
+    Profile.update({ _id: id }, { $pull: { wishList: { id: wishListID } } }).then(
+      function() {
+        return Profile.findOne({ _id: id })
+      }
+    )
+    .then((profile) => {
+      res.status(200).send(profile);
     })
   },
 

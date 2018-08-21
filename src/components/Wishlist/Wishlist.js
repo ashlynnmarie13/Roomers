@@ -23,12 +23,17 @@ class Wishlist extends Component {
     });
   }
 
-  deleteFromWishList(listing) {
-    axios.delete(`/api/delete/${listing.id}`).then(listings => {
-      this.setState({
-        listings: listings.data
+  deleteFromWishList(id) {
+    axios
+      .delete(`/api/delete/${this.props.user.authID}`, {
+        data: { wishListID: id }
+      })
+      .then(response => {
+        console.log(response)
+        this.setState({
+          wishList: response.data.wishList
+        });
       });
-    });
   }
   render() {
     const wishList = this.state.wishList.map((val, i) => {
@@ -45,8 +50,6 @@ class Wishlist extends Component {
         address,
         rent
       } = val;
-
-      console.log(val);
 
       return (
         <Card style={{ height: "400px", marginTop: 0 }}>
@@ -66,7 +69,10 @@ class Wishlist extends Component {
             <Card.Description />
           </Card.Content>
           <Card.Content extra>
-            <a  href="#" onClick={this.deleteFromWishList}> Delete From Wishlist</a>
+            <p onClick={() => this.deleteFromWishList(id)}>
+              {" "}
+              Delete From Wishlist
+            </p>
           </Card.Content>
         </Card>
       );

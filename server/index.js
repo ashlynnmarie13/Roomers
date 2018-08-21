@@ -158,6 +158,7 @@ app.get("/api/users/info", ctrl.getAllProfiles);
 app.get("/api/user/info/:id", ctrl.getProfileById);
 app.get("/api/user/info/:id", ctrl.getProfileByAuthId);
 // get profiles by name
+
 app.get("/api/users", ctrl.getProfilesByName);
 
 // adds listing
@@ -175,14 +176,11 @@ app.delete("/api/listing/:id", ctrl.deleteListingById);
 
 //add chat for user
 app.post("/api/user/chat", ctrl.addChat);
-<<<<<<< HEAD
 app.delete("/api/delete/:id", ctrl.deleteById)
-=======
 app.post("/api/user/chat/update", ctrl.addMessageToChat);
 app.get("/api/user/chat/:id", ctrl.getChats);
 app.put("/api/user/chat", ctrl.addMessage);
 
->>>>>>> master
 server.listen(port, () => {
   console.log(`app is running in server port ${port}`);
 });
