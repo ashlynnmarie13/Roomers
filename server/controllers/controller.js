@@ -543,6 +543,20 @@ module.exports = {
       })
       .catch(err => console.log("Can't add chat " + err));
   },
+  deleteById(req, res) {
+    const { id } = req.params;
+    const { wishListID } = req.body;
+    console.log(id, wishListID);
+
+    Profile.update({ _id: id }, { $pull: { wishList: { id: wishListID } } }).then(
+      function() {
+        return Profile.findOne({ _id: id })
+      }
+    )
+    .then((profile) => {
+      res.status(200).send(profile);
+    })
+  },
 
   addMessageToChat: (req, res) => {
     const { id } = req.body;

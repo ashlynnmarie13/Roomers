@@ -10,7 +10,8 @@ class Wishlist extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      wishList: []
+      wishList: [],
+      listings: []
     };
   }
 
@@ -22,14 +23,17 @@ class Wishlist extends Component {
     });
   }
 
-  deleteFromWishList(listing) {
-    axios.delete(`/api/listing/wishlist/${listing.id}`).then(() =>
-      axios.get("api/wishlist").then(response => {
-        this.setState({
-          listing: response.data
-        });
+  deleteFromWishList(id) {
+    axios
+      .delete(`/api/delete/${this.props.user.authID}`, {
+        data: { wishListID: id }
       })
-    );
+      .then(response => {
+        console.log(response)
+        this.setState({
+          wishList: response.data.wishList
+        });
+      });
   }
   render() {
     const wishList = this.state.wishList.map((val, i) => {
@@ -47,14 +51,13 @@ class Wishlist extends Component {
         rent
       } = val;
 
-      console.log(val);
-
       return (
         <Card style={{ height: "400px", marginTop: 0 }}>
           <Link to={`/listing/${id}`}>
             <Image style={{ width: "100%", height: "200px" }} src={image} />
           </Link>
           <Card.Content>
+            f
             <Card.Header>
               ${monthlyCost} in {city}, {state}
             </Card.Header>
@@ -66,7 +69,10 @@ class Wishlist extends Component {
             <Card.Description />
           </Card.Content>
           <Card.Content extra>
-           <a > Delete From Wishlist</a>
+            <p onClick={() => this.deleteFromWishList(id)}>
+              {" "}
+              Delete From Wishlist
+            </p>
           </Card.Content>
         </Card>
       );
