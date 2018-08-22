@@ -14,12 +14,12 @@ const Logout = props => {
             flexDirection: "column",
             justifyContent: "space-around",
             alignItems: "center",
-            backgroundColor: "#031424",
+            backgroundColor: "white",
             border: "solid #031424 2px",
-            color: "white",
-            width: "100%",
-            height: "60px",
-            fontSize: "1.2em"
+            color: "#031424",
+            width: "90%",
+            height: "30%",
+            fontSize: "1em"
           }}
         >
           Log Out

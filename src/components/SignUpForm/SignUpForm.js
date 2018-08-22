@@ -238,7 +238,7 @@ class SignUpForm extends Component {
                 <p className="section-item-about">About you</p>
                 <TextArea
                   placeholder="Interests, hobbies, habits..."
-                  style={{ width: "100%", height: "500px", margin: "20px 0" }}
+                  style={{ width: "100%", height: "500px", margin: "10px 0" }}
                   onChange={event => this.inputHandler(event)}
                   name="about"
                   type="text"

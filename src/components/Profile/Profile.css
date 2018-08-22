@@ -202,3 +202,7 @@
   height: 100%;
   margin-top: 40%;
 }
+
+.about-content {
+  border: solid transparent 5px;
+}

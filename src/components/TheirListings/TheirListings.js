@@ -15,10 +15,6 @@ class TheirListings extends Component {
     const id = this.props.id;
     console.log(this.props);
     axios
-<<<<<<< HEAD
-      .get(`/api/listing/${id}`)
-      .then(response => this.setState({ listings: { ...response.data } }));
-=======
 
       .get(`/api/listings/${id}`)
 
@@ -26,7 +22,6 @@ class TheirListings extends Component {
         console.log(response.data);
         this.setState({ listings: response.data });
       });
->>>>>>> 0e54d259a137d69b5c1630a0afa8ebe33f83e420
   }
 
   render() {
