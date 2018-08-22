@@ -74,6 +74,22 @@ passport.use(
     }
   )
 );
+
+// passport.use(
+//   new Auth0Strategy(
+//     {
+//       clientID: CLIENT_ID,
+//       clientSecret: CLIENT_SECRET,
+//       domain: DOMAIN,
+//       callbackURL: "/login-existing",
+//       scope: "openid profile"
+//     },
+//     (accessToken, refreshToken, extraParams, profile, done) => {
+//       done(null, profile);
+//     }
+//   )
+// );
+
 app.use(
   "/s3",
   require("react-s3-uploader/s3router")({
@@ -137,6 +153,16 @@ app.get(
     failureRedirect: "/login"
   })
 );
+
+// app.get(
+//   "/login-existing",
+//   passport.authenticate("auth0", {
+//     // successRedirect: "/",
+//     successRedirect: `http://localhost:3000/#/home`,
+//     // successRedirect: "/#/",
+//     failureRedirect: "/login"
+//   })
+// );
 {
   /* <Route
  path="/login"
@@ -176,7 +202,7 @@ app.delete("/api/listing/:id", ctrl.deleteListingById);
 
 //add chat for user
 app.post("/api/user/chat", ctrl.addChat);
-app.delete("/api/delete/:id", ctrl.deleteById)
+app.delete("/api/delete/:id", ctrl.deleteById);
 app.post("/api/user/chat/update", ctrl.addMessageToChat);
 app.get("/api/user/chat/:id", ctrl.getChats);
 app.put("/api/user/chat", ctrl.addMessage);

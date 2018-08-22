@@ -130,7 +130,9 @@ export default class Location extends Component {
       <div className="height">
         <div
           style={{
-            background: `url(${this.state.cityImage})`,
+            background: `url(${
+              this.state.cityImage
+            }) no-repeat center center / cover`,
             width: "100%",
             height: "600px"
           }}
@@ -160,23 +162,25 @@ export default class Location extends Component {
 
         <div className="pageBody">{locationList}</div>
         <div className="center">
-          <Button
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-around",
-              alignItems: "center",
+          <Link to="/search/rooms">
+            <Button
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-around",
+                alignItems: "center",
 
-              backgroundColor: "#cf6766",
-              border: "solid #cf6766 2px",
-              color: "white",
-              width: "20%",
-              height: "70%",
-              fontSize: "1.2em"
-            }}
-          >
-            Explore More
-          </Button>
+                backgroundColor: "#cf6766",
+                border: "solid #cf6766 2px",
+                color: "white",
+                width: "100%",
+                height: "70%",
+                fontSize: "1.2em"
+              }}
+            >
+              Explore More
+            </Button>
+          </Link>
         </div>
       </div>
     );

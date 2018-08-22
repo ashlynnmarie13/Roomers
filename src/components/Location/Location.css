@@ -30,9 +30,6 @@
   flex-wrap: wrap;
   align-self: center;
   align-items: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center bottom;
 }
 
 .height {

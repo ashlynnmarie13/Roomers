@@ -31,33 +31,15 @@ class Nav extends Component {
           <NavLink to="/myprofile" className="nav-pic">
             <img src={profilePic} alt="pic" className="profile-pic-nav" />
           </NavLink>
-          <Button
-            className="nav-button"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-around",
-              alignItems: "center",
-              backgroundColor: "white",
-              border: "solid #031424 2px",
-              color: "#031424",
-              width: "35%",
-              height: "70%",
-              fontSize: "1.2em"
-            }}
+
+          <NavLink
+            to="/chat"
+            style={{ color: "#031424" }}
+            className="expand-link"
           >
-            <Link
-              to="/chat"
-              style={{ color: "#031424" }}
-              className="expand-link"
-            >
-              Messages
-            </Link>
-          </Button>
-          <Logout>
-            <Button>
-              className='nav-button' style=
-              {{
+            <Button
+              className="nav-button"
+              style={{
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-around",
@@ -65,12 +47,36 @@ class Nav extends Component {
                 backgroundColor: "white",
                 border: "solid #031424 2px",
                 color: "#031424",
-                width: "30%",
-                height: "70%",
-                fontSize: "1.2em"
+                width: "70%",
+                height: "38%",
+                fontSize: "1em",
+                marginRight: "25%"
               }}
+            >
+              {" "}
+              Messages
             </Button>
-          </Logout>
+          </NavLink>
+          <div style={{ marginRight: "20%", height: "50%" }}>
+            <a href={process.env.REACT_APP_LOGOUT}>
+              <Button
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                  backgroundColor: "#031424",
+                  border: "solid #031424 2px",
+                  color: "white",
+                  width: "100%",
+                  height: "100%",
+                  fontSize: "1em"
+                }}
+              >
+                Logout
+              </Button>
+            </a>
+          </div>
         </div>
 
         <Link to="/home" className="home">
@@ -88,9 +94,10 @@ class Nav extends Component {
               backgroundColor: "white",
               border: "solid #031424 2px",
               color: "#031424",
-              width: "35%",
-              height: "100%",
-              fontSize: "1.2em"
+              width: "25%",
+              height: "85%",
+              fontSize: "1em",
+              marginLeft: "25%"
             }}
           >
             <NavLink
@@ -111,9 +118,10 @@ class Nav extends Component {
               backgroundColor: "#031424",
               border: "solid #031424 2px",
               color: "white",
-              width: "35%",
-              height: "100%",
-              fontSize: "1.2em"
+              width: "25%",
+              height: "85%",
+              fontSize: "1em",
+              paddingRight: "5%"
             }}
           >
             <Link
