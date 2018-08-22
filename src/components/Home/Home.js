@@ -91,9 +91,9 @@ class Home extends Component {
                     backgroundColor: "#cf6766",
                     border: "solid #cf6766 2px",
                     color: "white",
-                    width: "8]15%",
-                    height: "70%",
-                    fontSize: "1.2em",
+                    width: "30%",
+                    height: "50%",
+
                     marginLeft: "2%"
                   }}
                   onClick={() => this.exploreCities()}
@@ -116,18 +116,12 @@ class Home extends Component {
                   border: "solid #cf6766 2px",
                   color: "white",
                   width: "80%",
-                  height: "100%",
-                  fontSize: "1.2em"
+                  height: "100%"
                 }}
               >
-               <Link
-               className="renting-content2"
-              to="/addlisting"
-           
-            >
-            LIST YOUR PLACE
-            </Link>
-                
+                <Link className="renting-content2" to="/addlisting">
+                  LIST YOUR PLACE
+                </Link>
               </Button>
             </div>
           </div>
@@ -149,11 +143,9 @@ class Home extends Component {
               </div>
             </div>
 
-
             <div className="middle">
               <div className="bo" onClick={() => this.selectState("Kansas")}>
                 <h2 className="cali">KANSAS</h2>
-
               </div>
               <div className="ch" onClick={() => this.selectState("Nevada")}>
                 <h2 className="cali">NEVADA</h2>

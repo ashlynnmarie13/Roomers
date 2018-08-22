@@ -6,7 +6,7 @@
 } */
 
 .home-page {
-  animation: fade-in .3s both;
+  animation: fade-in 0.3s both;
 }
 
 .home-image {
@@ -42,7 +42,7 @@
   margin-bottom: 25px;
 }
 .head1 {
-  font-size: 1.2em;
+  font-size: 1.6em;
   text-align: center;
   font-weight: bold;
   margin-bottom: 1%;
@@ -97,12 +97,11 @@
 
   /* margin-right: 30% */
 }
-.renting-content2{
+.renting-content2 {
   color: white;
   cursor: pointer;
-
 }
-.renting-content2:hover{
+.renting-content2:hover {
   color: white;
 }
 @keyframes resize {
@@ -205,11 +204,12 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-image: url("http://wallscollection.net/wp-content/uploads/2017/01/Florida-Wallpapers-HD-1920x1080.jpg");
+  background-image: url(http://wallscollection.net/wp-content/uploads/2017/01/Florida-Wallpapers-HD-1920x1080.jpg);
   background-repeat: no-repeat;
-  background-size: 170%;
+  background-size: cover;
+
   height: 99%;
-  width: 27%;
+  width: 35%;
   margin: 10px;
 }
 .middle {
@@ -248,9 +248,10 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-image: url("http://jonvilma.com/images/detroit-at-sunrise-michigan-1.jpg");
+  background-image: url(http://jonvilma.com/images/detroit-at-sunrise-michigan-1.jpg);
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
+  background-position: 50% 40%;
   height: 100%;
   width: 50%;
   margin: 8px;
@@ -313,7 +314,9 @@
   justify-content: space-around;
   align-items: center;
   margin-top: 1%;
+  font-size: 1.5em;
 }
+
 .explore-content {
   display: flex;
   flex-direction: column;
@@ -332,7 +335,7 @@
   display: flex;
   flex-direction: row;
   height: 70%;
-  width: 50%;
+  width: 60%;
   justify-content: space-around;
   align-items: center;
 }
@@ -348,4 +351,33 @@
   to {
     opacity: 1;
   }
+}
+
+.ny:hover {
+  cursor: pointer;
+}
+
+.au:hover {
+  cursor: pointer;
+}
+.sd:hover {
+  cursor: pointer;
+}
+.bo:hover {
+  cursor: pointer;
+}
+.ch:hover {
+  cursor: pointer;
+}
+.sf:hover {
+  cursor: pointer;
+}
+.la:hover {
+  cursor: pointer;
+}
+.lo:hover {
+  cursor: pointer;
+}
+.wa:hover {
+  cursor: pointer;
 }
