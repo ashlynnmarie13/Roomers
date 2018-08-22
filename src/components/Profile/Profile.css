@@ -198,7 +198,11 @@
   align-items: center;
 }
 
-.looking {
-  height: 100%;
-  margin-top: 40%;
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
