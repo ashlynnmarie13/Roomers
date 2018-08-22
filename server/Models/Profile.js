@@ -28,6 +28,7 @@ const ProfileSchema = new Schema({
     type: String
     // required: true
   },
+  age: Number,
   interestsDescription: String,
   profilePic: String,
   aboutMe: String,
