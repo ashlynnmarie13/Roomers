@@ -97,6 +97,22 @@
 
   /* margin-right: 30% */
 }
+.renting-content2{
+  color: white;
+  cursor: pointer;
+
+}
+.renting-content2:hover{
+  color: white;
+}
+@keyframes resize {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05) perspective(5px);
+  }
+}
 .button2 {
   background-color: #cf6766;
   border: none;
