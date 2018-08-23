@@ -45,6 +45,14 @@
   color: #cf6766;
 }
 
+.header1 {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 30px;
+  margin-bottom: -3%;
+  color: #cf6766;
+}
+
 .header-two {
   text-transform: uppercase;
   font-weight: bold;
@@ -195,5 +203,7 @@
 }
 
 .about-content {
-  border: solid transparent 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

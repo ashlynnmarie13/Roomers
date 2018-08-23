@@ -29,7 +29,7 @@ class Wishlist extends Component {
         data: { wishListID: id }
       })
       .then(response => {
-        console.log(response)
+        console.log(response);
         this.setState({
           wishList: response.data.wishList
         });
@@ -52,12 +52,11 @@ class Wishlist extends Component {
       } = val;
 
       return (
-        <Card style={{ height: "400px", marginTop: 0 }}>
+        <Card className="room-card" style={{ height: "400px", marginTop: 0 }}>
           <Link to={`/listing/${id}`}>
             <Image style={{ width: "100%", height: "200px" }} src={image} />
           </Link>
           <Card.Content>
-            f
             <Card.Header>
               ${monthlyCost} in {city}, {state}
             </Card.Header>
@@ -71,13 +70,13 @@ class Wishlist extends Component {
           <Card.Content extra>
             <p onClick={() => this.deleteFromWishList(id)}>
               {" "}
-              Delete From Wishlist
+              <i class="fas fa-times" /> Delete From Wishlist
             </p>
           </Card.Content>
         </Card>
       );
     });
-    return <div className="search-results">{wishList}</div>;
+    return <div style={{ width: "90%" }}>{wishList}</div>;
   }
 }
 export default connect(state => state)(Wishlist);

@@ -16,13 +16,14 @@ import "react-dates/initialize";
 import DatePicker from "react-datepicker";
 import moment from "moment";
 import "react-dates/lib/css/_datepicker.css";
-import { addUserInfo } from "../../redux/ducks/userReducer";
+import { addUserInfo, getUser } from "../../redux/ducks/userReducer";
 import { connect } from "react-redux";
 import "./SignUpForm.css";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import "react-datepicker/dist/react-datepicker.css";
 import yearModel from "../Models/yearModel";
+import isEmpty from "lodash/isEmpty";
 import axios from "axios";
 
 class SignUpForm extends Component {
@@ -66,24 +67,28 @@ class SignUpForm extends Component {
     pets: false,
     image: "",
     focused: true,
-    existingProfiles: []
+    userInfo: {}
   };
 
-  componentDidMount() {
+  async componentDidMount() {
+    await this.props.getUser();
+    console.log(this.props);
     const { authID } = this.props.user;
-    // console.log(authID);
-
     axios
-      .get("/api/profiles/all")
-      .then(response =>
-        this.setState({ existingProfiles: { ...response.data } })
-      );
+      .get(`/api/user/info/${authID}`)
+      .then(response => this.setState({ userInfo: { ...response.data } }));
   }
 
   redirectHandler = data => {
-    const userID = this.state.userID;
-    const existingProfiles = this.state.existingProfiles;
-    console.log(existingProfiles);
+    const { userInfo } = this.state;
+    // const existingProfiles = this.state.existingProfiles;
+    console.log(userInfo);
+
+    if (isEmpty(userInfo)) {
+      console.log("Yay we're gonna stay and make a profile");
+    } else {
+      this.props.history.push("/home");
+    }
   };
 
   inputHandler = e => {
@@ -626,5 +631,5 @@ class SignUpForm extends Component {
 
 export default connect(
   state => state,
-  { addUserInfo }
+  { addUserInfo, getUser }
 )(SignUpForm);

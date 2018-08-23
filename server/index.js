@@ -181,7 +181,7 @@ app.post("/api/user/info", ctrl.addUserInfo);
 // retrieves user/profile info for all profiles
 app.get("/api/users/info", ctrl.getAllProfiles);
 
-app.get("/api/profiles/all", ctrl.getAllProfilesById);
+// app.get("/api/profiles/all", ctrl.getAllProfilesById);
 // get profile by id
 app.get("/api/user/info/:id", ctrl.getProfileById);
 app.get("/api/user/info/:id", ctrl.getProfileByAuthId);
