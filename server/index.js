@@ -199,6 +199,7 @@ app.get("/api/listings/:id", ctrl.getListingByAuthId);
 app.get("/api/listings/id/:id", ctrl.getListingsById);
 app.get("/api/listing/id/:id", ctrl.getListingById);
 app.delete("/api/listing/:id", ctrl.deleteListingById);
+app.put("/api/listing/:id", ctrl.updateListing);
 
 //add chat for user
 app.post("/api/user/chat", ctrl.addChat);

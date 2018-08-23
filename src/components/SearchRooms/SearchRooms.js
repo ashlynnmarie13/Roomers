@@ -133,7 +133,6 @@ class SearchRooms extends Component {
   };
 
   render() {
-    console.log(this.props);
     const roomList = this.state.rooms.map((val, i) => {
       const {
         address,
