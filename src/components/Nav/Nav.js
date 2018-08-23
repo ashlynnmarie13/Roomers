@@ -33,7 +33,7 @@ class Nav extends Component {
           </NavLink>
 
           <NavLink
-            to="/chat"
+            to="/chat/ "
             style={{ color: "#031424" }}
             className="expand-link"
           >
@@ -101,7 +101,7 @@ class Nav extends Component {
             }}
           >
             <NavLink
-              to="/search/rooms"
+              to="/search/rooms/ "
               style={{ color: "#031424" }}
               className="expand-link"
             >

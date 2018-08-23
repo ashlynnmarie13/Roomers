@@ -16,7 +16,7 @@ class Search extends Component {
               People
             </Menu.Item>
           </NavLink>
-          <NavLink to="/search/rooms">
+          <NavLink to="/search/rooms/ ">
             <Menu.Item>
               <Icon name="home" />
               Rooms
@@ -26,7 +26,7 @@ class Search extends Component {
         <div>
           <Switch>
             <Route exact path="/search/people" component={SearchPeople} />
-            <Route exact path="/search/rooms" component={SearchRooms} />
+            <Route exact path="/search/rooms/:state" component={SearchRooms} />
           </Switch>
         </div>
       </div>
