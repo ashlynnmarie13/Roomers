@@ -29,7 +29,7 @@ const ProfileCard = props => {
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
-          <Link to="/chat">
+          <Link to={`/chat/${name}`}>
             <Button
               style={{
                 backgroundColor: "#8eaebd",

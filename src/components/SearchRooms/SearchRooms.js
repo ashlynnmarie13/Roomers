@@ -35,8 +35,23 @@ class SearchRooms extends Component {
   };
 
   componentDidMount() {
-    this.searchRooms();
+    let state = this.props.match.params.state;
+
+    if (state.length !== 1) {
+      this.setState({ selectedState: state });
+      this.searchRoomsByState();
+    } else {
+      this.searchRooms();
+    }
   }
+
+  searchRoomsByState = () => {
+    let state = this.props.match.params.state;
+
+    axios
+      .get(`/api/listings/state/${state}`)
+      .then(rooms => this.setState({ rooms: rooms.data }));
+  };
 
   searchRooms = () => {
     const {
@@ -174,6 +189,7 @@ class SearchRooms extends Component {
               name="selectedState"
               search
               selection
+              value={this.state.selectedState}
               options={states.states}
             />
           </div>

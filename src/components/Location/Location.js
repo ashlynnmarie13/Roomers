@@ -41,8 +41,17 @@ export default class Location extends Component {
         cities = val.cities;
         cityImage = val.image;
       }
-      this.setState({ cities, cityImage });
     });
+
+    this.setState(
+      {
+        selectedState: state,
+        selectedCity: cities[0].value,
+        cities,
+        cityImage
+      },
+      () => this.searchCities(this.state.selectedCity)
+    );
   }
 
   // searchStates = state => {
@@ -153,6 +162,7 @@ export default class Location extends Component {
             name="selectedCity"
             search
             selection
+            value={this.state.selectedCity}
             options={[
               { text: texts[0], value: values[0] },
               { text: texts[1], value: values[1] },
@@ -163,7 +173,7 @@ export default class Location extends Component {
 
         <div className="pageBody">{locationList}</div>
         <div className="center">
-          <Link to="/search/rooms">
+          <Link to={`/search/rooms/${this.state.selectedState}`}>
             <Button
               style={{
                 display: "flex",
@@ -176,7 +186,8 @@ export default class Location extends Component {
                 color: "white",
                 width: "100%",
                 height: "70%",
-                fontSize: "1.2em"
+                fontSize: "1.2em",
+                marginBottom: "100px"
               }}
             >
               Explore More
