@@ -17,8 +17,8 @@ const ProfileSchema = new Schema({
     // required: true
   },
   email: {
-    type: String
-    // required: true
+    type: String,
+    required: true
   },
   phone: {
     type: String

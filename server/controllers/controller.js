@@ -237,6 +237,18 @@ module.exports = {
     );
   },
 
+  getAllProfilesById: (req, res) => {
+    Profile.find()
+      .populate("name")
+      .then(
+        profiles => {
+          res.status(200).send(profiles);
+        }
+
+        // res.status(200).send(people)
+      );
+  },
+
   getProfileById: (req, res) => {
     const { id } = req.params;
 

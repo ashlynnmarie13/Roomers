@@ -81,7 +81,7 @@ passport.use(
 //       clientID: CLIENT_ID,
 //       clientSecret: CLIENT_SECRET,
 //       domain: DOMAIN,
-//       callbackURL: "/login-existing",
+//       callbackURL: "/existing",
 //       scope: "openid profile"
 //     },
 //     (accessToken, refreshToken, extraParams, profile, done) => {
@@ -155,7 +155,7 @@ app.get(
 );
 
 // app.get(
-//   "/login-existing",
+//   "/existing",
 //   passport.authenticate("auth0", {
 //     // successRedirect: "/",
 //     successRedirect: `http://localhost:3000/#/home`,
@@ -180,6 +180,8 @@ app.post("/api/user/info", ctrl.addUserInfo);
 
 // retrieves user/profile info for all profiles
 app.get("/api/users/info", ctrl.getAllProfiles);
+
+app.get("/api/profiles/all", ctrl.getAllProfilesById);
 // get profile by id
 app.get("/api/user/info/:id", ctrl.getProfileById);
 app.get("/api/user/info/:id", ctrl.getProfileByAuthId);

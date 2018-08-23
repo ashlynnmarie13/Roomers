@@ -23,6 +23,7 @@ import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import "react-datepicker/dist/react-datepicker.css";
 import yearModel from "../Models/yearModel";
+import axios from "axios";
 
 class SignUpForm extends Component {
   state = {
@@ -33,6 +34,7 @@ class SignUpForm extends Component {
     email: "",
     phone: "",
     dob: "",
+    age: 0,
     about: "",
     street: "",
     city: "",
@@ -63,7 +65,25 @@ class SignUpForm extends Component {
     guests: false,
     pets: false,
     image: "",
-    focused: true
+    focused: true,
+    existingProfiles: []
+  };
+
+  componentDidMount() {
+    const { authID } = this.props.user;
+    // console.log(authID);
+
+    axios
+      .get("/api/profiles/all")
+      .then(response =>
+        this.setState({ existingProfiles: { ...response.data } })
+      );
+  }
+
+  redirectHandler = data => {
+    const userID = this.state.userID;
+    const existingProfiles = this.state.existingProfiles;
+    console.log(existingProfiles);
   };
 
   inputHandler = e => {
@@ -137,6 +157,7 @@ class SignUpForm extends Component {
   };
 
   render() {
+    this.redirectHandler();
     return (
       <div className="sign-up">
         <div className="picture" />
@@ -148,7 +169,7 @@ class SignUpForm extends Component {
           <div className="section section-basic">
             <div className="first-section">
               <h1 className="section-title">
-                <i class="fas fa-smile" /> Basic Info
+                <i className="fas fa-smile" /> Basic Info
               </h1>
               <div className="input-item">
                 <p className="section-item">Name</p>
@@ -307,7 +328,7 @@ class SignUpForm extends Component {
 
           <div className="section-traits">
             <h1 className="section-title">
-              <i class="fas fa-laugh" /> Traits
+              <i className="fas fa-laugh" /> Traits
             </h1>
 
             <div className="traits-one">
@@ -445,7 +466,7 @@ class SignUpForm extends Component {
           <div className="third-section">
             <div className="section-description">
               <h1 className="section-title">
-                <i class="fas fa-pencil-alt" /> Description
+                <i className="fas fa-pencil-alt" /> Description
               </h1>
 
               <TextArea
@@ -459,7 +480,7 @@ class SignUpForm extends Component {
             </div>
             <div className="section-career">
               <h1 className="section-title">
-                <i class="fas fa-briefcase" /> Career
+                <i className="fas fa-briefcase" /> Career
               </h1>
               <div className="job-inputs">
                 <p className="section-item">Job Title</p>
@@ -485,7 +506,7 @@ class SignUpForm extends Component {
 
             <div className="section-prefs">
               <h1 className="section-title">
-                <i class="fas fa-thumbs-up" /> Preferences
+                <i className="fas fa-thumbs-up" /> Preferences
               </h1>
               <div className="job-inputs">
                 <div className="pref-item">
