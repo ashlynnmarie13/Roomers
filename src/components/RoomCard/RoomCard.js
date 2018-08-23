@@ -19,7 +19,10 @@ export default props => {
   console.log(loggedInUser);
 
   return (
-    <Card className="room-card" style={{ height: "400px", marginTop: 0 }}>
+    <Card
+      className="room-card"
+      style={{ height: "400px", marginTop: 0, width: "100%" }}
+    >
       <Link to={`/listing/${id}`}>
         <Image
           style={{ width: "100%", height: "200px" }}
@@ -59,7 +62,7 @@ export default props => {
           }
         >
           {" "}
-          {props.text}{" "}
+          <i class="fas fa-heart" /> {props.text}{" "}
         </a>
       </Card.Content>
     </Card>

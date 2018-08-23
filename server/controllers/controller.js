@@ -37,6 +37,7 @@ module.exports = {
       email,
       phone,
       dob,
+      age,
       about,
       street,
       city,
@@ -237,17 +238,17 @@ module.exports = {
     );
   },
 
-  getAllProfilesById: (req, res) => {
-    Profile.find()
-      .populate("name")
-      .then(
-        profiles => {
-          res.status(200).send(profiles);
-        }
+  // getAllProfilesById: (req, res) => {
+  //   Profile.find()
+  //     .populate("name")
+  //     .then(
+  //       profiles => {
+  //         res.status(200).send(profiles);
+  //       }
 
-        // res.status(200).send(people)
-      );
-  },
+  //       // res.status(200).send(people)
+  //     );
+  // },
 
   getProfileById: (req, res) => {
     const { id } = req.params;

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import "./Profile.css";
 import moment from "moment";
 import MyListings from "../MyListings/MyListings";
+import Wishlist from "../Wishlist/Wishlist";
 import { Button, Card, Image, Icon, Segment, Step } from "semantic-ui-react";
 
 class MyProfile extends Component {
@@ -157,7 +158,7 @@ class MyProfile extends Component {
             <Card.Content style={{ width: "100%" }}>
               <div className="aboutMe">
                 <Card.Header style={{ color: "#30415D" }}>
-                  <div className="header">
+                  <div className="header1">
                     {" "}
                     <i class="fas fa-user-circle" /> {"  "}
                     About {userInfo.name}
@@ -218,6 +219,18 @@ class MyProfile extends Component {
             <div className="my-listings">
               {console.log(userInfo)}
               <MyListings userInfo={userInfo} />
+            </div>
+          </div>
+
+          <div className="listing-box">
+            <div className="header" style={{ marginTop: "2%" }}>
+              <i class="fas fa-home" /> {"  "}
+              My Wishlist{" "}
+            </div>
+            <div className="my-listings">
+              {console.log(userInfo)}
+
+              <Wishlist userInfo={userInfo} />
             </div>
           </div>
         </div>
