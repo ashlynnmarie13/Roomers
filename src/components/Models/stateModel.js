@@ -309,7 +309,7 @@ export default {
       text: "Texas",
       value: "Texas",
       cities: [
-        { text: "Dallas", values: "Dallas" },
+        { text: "Dallas", value: "Dallas" },
         { text: "Houston", value: "Houston" },
         { text: "Austin", value: "Austin" }
       ],

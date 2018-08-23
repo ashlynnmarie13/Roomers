@@ -94,6 +94,7 @@ export default class Location extends Component {
     const values = this.state.cities.map((val, i) => {
       return val.value;
     });
+    console.log(values);
 
     const locationList = this.state.listings.map((val, i) => {
       const {

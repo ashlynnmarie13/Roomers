@@ -236,6 +236,18 @@ module.exports = {
     );
   },
 
+  getAllProfilesById: (req, res) => {
+    Profile.find()
+      .populate("name")
+      .then(
+        profiles => {
+          res.status(200).send(profiles);
+        }
+
+        // res.status(200).send(people)
+      );
+  },
+
   getProfileById: (req, res) => {
     const { id } = req.params;
 
@@ -548,14 +560,13 @@ module.exports = {
     const { wishListID } = req.body;
     console.log(id, wishListID);
 
-    Profile.update({ _id: id }, { $pull: { wishList: { id: wishListID } } }).then(
-      function() {
-        return Profile.findOne({ _id: id })
-      }
-    )
-    .then((profile) => {
-      res.status(200).send(profile);
-    })
+    Profile.update({ _id: id }, { $pull: { wishList: { id: wishListID } } })
+      .then(function() {
+        return Profile.findOne({ _id: id });
+      })
+      .then(profile => {
+        res.status(200).send(profile);
+      });
   },
 
   addMessageToChat: (req, res) => {

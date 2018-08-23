@@ -47,7 +47,7 @@ export default class Landing extends Component {
               <h1 className="header-text">Find a Room</h1>
 
               <div>
-                <a href={process.env.REACT_APP_LOGIN_EXISTING}>
+                <a href={process.env.REACT_APP_LOGIN}>
                   <Button
                     style={{
                       display: "flex",
@@ -80,7 +80,7 @@ export default class Landing extends Component {
               <h1 className="header-text">Rent a Room</h1>
 
               <div>
-                <a href={process.env.REACT_APP_LOGIN_EXISTING}>
+                <a href={process.env.REACT_APP_LOGIN}>
                   <Button
                     style={{
                       display: "flex",
