@@ -230,6 +230,7 @@ module.exports = {
 
   getProfilesByName: (req, res) => {
     const { search } = req.query;
+    console.log(search);
 
     Profile.find({ name: { $regex: search, $options: "i" } }).then(people =>
       res.status(200).send(people)
@@ -276,6 +277,56 @@ module.exports = {
     const { id } = req.params;
 
     Listing.deleteOne({ _id: id }).then(() => res.status(200).send());
+  },
+
+  updateListing: (req, res) => {
+    const { id } = req.params;
+    const {
+      smoke,
+      clean,
+      guests,
+      pets,
+      washer,
+      wifi,
+      utilities,
+      furnished,
+      elevator,
+      doorman,
+      airConditioning,
+      heating,
+      gym,
+      tv,
+      privateBathroom,
+      outdoorSpace
+    } = req.body;
+
+    Listing.findByIdAndUpdate(
+      id,
+      {
+        $set: {
+          "prefs.smoke": smoke,
+          "prefs.clean": clean,
+          "prefs.guests": guests,
+          "prefs.pets": pets,
+          "amenities.washer": washer,
+          "amenities.wifi": wifi,
+          "amenities.utilities": utilities,
+          "amenities.furnished": furnished,
+          "amenities.elevator": elevator,
+          "amenities.doorman": doorman,
+          "amenities.airConditioning": airConditioning,
+          "amenities.heating": heating,
+          "amenities.gym": gym,
+          "amenities.tv": tv,
+          "amenities.privateBathroom": privateBathroom,
+          "amenities.outdoorSpace": outdoorSpace
+        }
+      },
+      { new: true }
+    ).then(response => {
+      console.log(response);
+      res.status(200).send(response);
+    });
   },
 
   addListing: (req, res) => {
@@ -548,14 +599,13 @@ module.exports = {
     const { wishListID } = req.body;
     console.log(id, wishListID);
 
-    Profile.update({ _id: id }, { $pull: { wishList: { id: wishListID } } }).then(
-      function() {
-        return Profile.findOne({ _id: id })
-      }
-    )
-    .then((profile) => {
-      res.status(200).send(profile);
-    })
+    Profile.update({ _id: id }, { $pull: { wishList: { id: wishListID } } })
+      .then(function() {
+        return Profile.findOne({ _id: id });
+      })
+      .then(profile => {
+        res.status(200).send(profile);
+      });
   },
 
   addMessageToChat: (req, res) => {
