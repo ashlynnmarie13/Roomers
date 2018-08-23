@@ -285,6 +285,19 @@ module.exports = {
     });
   },
 
+  getListingsByState: (req, res) => {
+    const { state } = req.params;
+    console.log("state - ", state);
+
+    Listing.find({
+      "address.state": { $regex: state, $options: "i" }
+    }).then(listings => res.status(200).send(listings));
+  },
+
+  getAllListings: (req, res) => {
+    Listing.find({}).then(listings => console.log(listings));
+  },
+
   deleteListingById: (req, res) => {
     const { id } = req.params;
 
@@ -519,7 +532,7 @@ module.exports = {
       outdoorSpace,
       selectedState,
       rentLength,
-      male,
+      "male" + male,
       female,
       monthlyCost
     );
