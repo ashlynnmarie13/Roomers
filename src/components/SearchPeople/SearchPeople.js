@@ -80,6 +80,7 @@ class SearchPeople extends Component {
 
   searchPeopleByName = () => {
     const { search } = this.state;
+    console.log(search);
     axios
       .get(`/api/users/?search=${search}`)
       .then(response =>
@@ -90,7 +91,8 @@ class SearchPeople extends Component {
   inputHandler = e => {
     this.setState({ search: e.target.value }, () => {
       if (this.state.search.length !== 0) {
-        debounce(this.searchPeopleByName, 150);
+        this.searchPeopleByName();
+        // debounce(this.searchPeopleByName, 300);
       } else {
         this.searchPeople();
       }
@@ -156,7 +158,6 @@ class SearchPeople extends Component {
             <div className="search-people-section">
               <p className="search-section-title">Search</p>
               <Input
-                onChange={e => this.inputHandler(e)}
                 onChange={e => this.inputHandler(e)}
                 style={{ width: "100%", margin: 0 }}
                 icon="users"
@@ -279,10 +280,6 @@ class SearchPeople extends Component {
                   onChange={(event, data) => this.checkboxHandler(event, data)}
                   className="search-people-item"
                   label="Fitness Enthusiast"
-                  name="creative"
-                  onChange={(event, data) => this.checkboxHandler(event, data)}
-                  className="search-people-item"
-                  label="Creative"
                 />
                 <Checkbox
                   name="bookworm"
@@ -303,12 +300,6 @@ class SearchPeople extends Component {
                   label="Creative"
                 />
                 <Checkbox
-                  name="bookworm"
-                  onChange={(event, data) => this.checkboxHandler(event, data)}
-                  className="search-people-item"
-                  label="Bookworm"
-                />
-                <Checkbox
                   name="nightOwl"
                   onChange={(event, data) => this.checkboxHandler(event, data)}
                   className="search-people-item"
@@ -319,16 +310,6 @@ class SearchPeople extends Component {
                   onChange={(event, data) => this.checkboxHandler(event, data)}
                   className="search-people-item"
                   label="Fitness Enthusiast"
-                />
-                <Checkbox
-                  name="creative"
-                  onChange={(event, data) => this.checkboxHandler(event, data)}
-                  className="search-people-item"
-                  label="Creative"
-                  name="foodie"
-                  onChange={(event, data) => this.checkboxHandler(event, data)}
-                  className="search-people-item"
-                  label="Foodie"
                 />
                 <Checkbox
                   defaultChecked
@@ -342,12 +323,6 @@ class SearchPeople extends Component {
                   onChange={(event, data) => this.checkboxHandler(event, data)}
                   className="search-people-item"
                   label="Vegan"
-                />
-                <Checkbox
-                  name="fitnessEnthusiast"
-                  onChange={(event, data) => this.checkboxHandler(event, data)}
-                  className="search-people-item"
-                  label="Fitness Enthusiast"
                 />
               </div>
             </div>

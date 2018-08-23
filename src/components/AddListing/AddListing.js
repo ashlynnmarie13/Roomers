@@ -506,7 +506,7 @@ class AddListing extends Component {
                     slider
                     onChange={(e, data) => this.checkboxHandler(e, data)}
                     id="smoke"
-                    label="Smoker"
+                    label="Smoking"
                   />
                 </div>
                 <div className="amend-item">

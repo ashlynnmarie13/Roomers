@@ -3,7 +3,7 @@ import MyMapComponent from "../MyMapComponent/MyMapComponent";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
-import { Button, Header, Icon, Modal } from "semantic-ui-react";
+import { Button, Header, Icon, Modal, Checkbox } from "semantic-ui-react";
 import { connect } from "react-redux";
 import "./Listing.css";
 
@@ -14,17 +14,114 @@ class Listing extends Component {
     loggedInUser: "",
     editToggle: false,
     modalOpen: false,
-    imageNum: 0
+    imageNum: 0,
+    smoke: false,
+    clean: false,
+    guests: false,
+    pets: false,
+    washer: false,
+    wifi: false,
+    utilities: false,
+    furnished: false,
+    elevator: false,
+    doorman: false,
+    airConditioning: false,
+    heating: false,
+    gym: false,
+    tv: false,
+    privateBathroom: false,
+    outdoorSpace: false
   };
 
   componentDidMount() {
     const { id } = this.props.match.params;
+
     axios.get(`/api/listing/id/${id}`).then(listing => {
-      this.setState({ listingInfo: listing.data }, () =>
+      this.setState({ listingInfo: listing.data }, () => {
+        let amenArr = [];
+        let prefsArr = [];
+
+        for (let i in this.state.listingInfo.amenities) {
+          if (this.state.listingInfo.amenities[i] === true) {
+            amenArr.push(i);
+          }
+        }
+
+        for (let i in this.state.listingInfo.prefs) {
+          if (this.state.listingInfo.prefs[i] === true) {
+            prefsArr.push(i);
+          }
+        }
+
+        amenArr.forEach(val => {
+          switch (val) {
+            case "washer":
+              this.setState({ washer: true });
+              break;
+            case "wifi":
+              this.setState({ wifi: true });
+              break;
+            case "utilities":
+              this.setState({ utilities: true });
+              break;
+            case "furnished":
+              this.setState({ furnished: true });
+              break;
+            case "elevator":
+              this.setState({ elevator: true });
+              break;
+            case "doorman":
+              this.setState({ doorman: true });
+              break;
+            case "airConditioning":
+              this.setState({ airConditioning: true });
+              break;
+            case "heating":
+              this.setState({ heating: true });
+              break;
+            case "gym":
+              this.setState({ gym: true });
+              break;
+            case "tv":
+              this.setState({ tv: true });
+              break;
+            case "privateBathroom":
+              this.setState({ privateBathroom: true });
+              break;
+            case "outdoorSpace":
+              this.setState({ outdoorSpace: true });
+              break;
+            case "hasPet":
+              this.setState({ hasPet: true });
+              break;
+            default:
+              break;
+          }
+        });
+
+        prefsArr.forEach(val => {
+          switch (val) {
+            case "smoke":
+              this.setState({ smoke: true });
+              break;
+            case "clean":
+              this.setState({ clean: true });
+              break;
+            case "guests":
+              this.setState({ guests: true });
+              break;
+            case "pets":
+              this.setState({ pets: true });
+              break;
+            default:
+              break;
+          }
+        });
+
         axios
           .get(`/api/user/info/${this.state.listingInfo.userID}`)
-          .then(user => this.setState({ userInfo: user.data }))
-      );
+          .then(user => this.setState({ userInfo: user.data }));
+      });
     });
   }
 
@@ -33,6 +130,92 @@ class Listing extends Component {
     axios
       .delete(`/api/listing/${id}`)
       .then(listings => this.props.history.push("/myprofile"));
+  };
+
+  confirmChanges = () => {
+    const {
+      smoke,
+      clean,
+      guests,
+      pets,
+      washer,
+      wifi,
+      utilities,
+      furnished,
+      elevator,
+      doorman,
+      airConditioning,
+      heating,
+      gym,
+      tv,
+      privateBathroom,
+      outdoorSpace,
+      hasPet
+    } = this.state;
+    const { id } = this.props.match.params;
+
+    axios
+      .put(`/api/listing/${id}`, {
+        smoke,
+        clean,
+        guests,
+        pets,
+        washer,
+        wifi,
+        utilities,
+        furnished,
+        elevator,
+        doorman,
+        airConditioning,
+        heating,
+        gym,
+        tv,
+        privateBathroom,
+        outdoorSpace,
+        hasPet
+      })
+      .then(response => {
+        const { smoke, clean, guests, pets } = response.data.prefs;
+        const {
+          airConditioning,
+          doorman,
+          elevator,
+          furnished,
+          gym,
+          heating,
+          outdoorSpace,
+          privateBathroom,
+          tv,
+          utilities,
+          washer,
+          wifi
+        } = response.data.amenities;
+
+        console.log(response.data.amenities, response.data.prefs);
+
+        this.setState({
+          listingInfo: {
+            ...this.state.listingInfo,
+            amenities: response.data.amenities,
+            prefs: response.data.prefs
+          },
+
+          // ["listingInfo.prefs"]: {
+          //   smoke,
+          //   clean,
+          //   guests,
+          //   pets
+          // },
+
+          editToggle: false
+        });
+      });
+  };
+
+  checkboxHandler = (e, data) => {
+    const { id, checked } = data;
+
+    this.setState({ [id]: checked });
   };
 
   handleOpen = () => this.setState({ modalOpen: true });
@@ -104,6 +287,21 @@ class Listing extends Component {
             break;
           case "clean":
             list.push("No Messes");
+            break;
+        }
+      } else {
+        switch (i) {
+          case "smoke":
+            list.push("Smoking is okay");
+            break;
+          case "guests":
+            list.push("Guests are welcome");
+            break;
+          case "pets":
+            list.push("Pets can stay");
+            break;
+          case "clean":
+            list.push("Don't need to be a clean freak");
             break;
         }
       }
@@ -215,7 +413,111 @@ class Listing extends Component {
                   {this.state.listingInfo.description}
                 </p>
                 <h2>Amenities</h2>
-                <div className="amenities-list">{amenities}</div>
+                <div className="amenities-list">
+                  {this.state.editToggle ? (
+                    <React.Fragment>
+                      {" "}
+                      <Checkbox
+                        className="list-item"
+                        toggle
+                        onChange={(e, data) => this.checkboxHandler(e, data)}
+                        id="washer"
+                        label="Washer Included"
+                        checked={this.state.washer}
+                      />{" "}
+                      <Checkbox
+                        className="list-item"
+                        toggle
+                        onChange={(e, data) => this.checkboxHandler(e, data)}
+                        id="wifi"
+                        label="Wifi Included"
+                        checked={this.state.wifi}
+                      />{" "}
+                      <Checkbox
+                        className="list-item"
+                        toggle
+                        onChange={(e, data) => this.checkboxHandler(e, data)}
+                        id="utilities"
+                        label="Utilities Included"
+                        checked={this.state.utilities}
+                      />{" "}
+                      <Checkbox
+                        className="list-item"
+                        toggle
+                        onChange={(e, data) => this.checkboxHandler(e, data)}
+                        id="furnished"
+                        label="Furnished"
+                        checked={this.state.furnished}
+                      />
+                      <Checkbox
+                        className="list-item"
+                        toggle
+                        onChange={(e, data) => this.checkboxHandler(e, data)}
+                        id="elevator"
+                        label="Elevator"
+                        checked={this.state.elevator}
+                      />
+                      <Checkbox
+                        className="list-item"
+                        toggle
+                        onChange={(e, data) => this.checkboxHandler(e, data)}
+                        id="doorman"
+                        label="Doorman"
+                        checked={this.state.doorman}
+                      />
+                      <Checkbox
+                        className="list-item"
+                        toggle
+                        onChange={(e, data) => this.checkboxHandler(e, data)}
+                        id="airConditioning"
+                        label="Air Conditioning"
+                        checked={this.state.airConditioning}
+                      />
+                      <Checkbox
+                        className="list-item"
+                        toggle
+                        onChange={(e, data) => this.checkboxHandler(e, data)}
+                        id="heating"
+                        label="Heating"
+                        checked={this.state.heating}
+                      />
+                      <Checkbox
+                        className="list-item"
+                        toggle
+                        onChange={(e, data) => this.checkboxHandler(e, data)}
+                        id="gym"
+                        label="Gym"
+                        checked={this.state.gym}
+                      />
+                      <Checkbox
+                        className="list-item"
+                        toggle
+                        onChange={(e, data) => this.checkboxHandler(e, data)}
+                        id="tv"
+                        label="TV"
+                        checked={this.state.tv}
+                      />
+                      <Checkbox
+                        className="list-item"
+                        toggle
+                        onChange={(e, data) => this.checkboxHandler(e, data)}
+                        id="privateBathroom"
+                        label="Private Bathroom"
+                        checked={this.state.privateBathroom}
+                      />
+                      <Checkbox
+                        className="list-item"
+                        toggle
+                        onChange={(e, data) => this.checkboxHandler(e, data)}
+                        id="outdoorSpace"
+                        label="Outdoor Space"
+                        checked={this.state.outdoorSpace}
+                      />
+                    </React.Fragment>
+                  ) : (
+                    amenities
+                  )}
+                </div>
               </div>
               <div className="listing-section">
                 <h1>
@@ -223,7 +525,47 @@ class Listing extends Component {
                   's Ideal Roomate{" "}
                 </h1>
                 <h2>Roomate Rules</h2>
-                <div className="amenities-list">{preferences}</div>
+                <div className="amenities-list">
+                  {this.state.editToggle ? (
+                    <React.Fragment>
+                      {" "}
+                      <Checkbox
+                        className="list-item"
+                        slider
+                        onChange={(e, data) => this.checkboxHandler(e, data)}
+                        id="smoke"
+                        label="Smoking"
+                        checked={this.state.smoke}
+                      />{" "}
+                      <Checkbox
+                        className="list-item"
+                        slider
+                        onChange={(e, data) => this.checkboxHandler(e, data)}
+                        id="clean"
+                        label="Clean/Organized"
+                        checked={this.state.clean}
+                      />{" "}
+                      <Checkbox
+                        className="list-item"
+                        slider
+                        onChange={(e, data) => this.checkboxHandler(e, data)}
+                        id="guests"
+                        label="Frequent Guests"
+                        checked={this.state.guests}
+                      />{" "}
+                      <Checkbox
+                        className="list-item"
+                        slider
+                        onChange={(e, data) => this.checkboxHandler(e, data)}
+                        id="pets"
+                        label="Pet Owner"
+                        checked={this.state.pets}
+                      />
+                    </React.Fragment>
+                  ) : (
+                    preferences
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -276,55 +618,68 @@ class Listing extends Component {
                 color: "#031424"
               }}
             >
-              Edit
+              {this.state.editToggle ? <p>Cancel</p> : <p>Edit</p>}
             </Button>
-            <Modal
-              trigger={
-                <Button
-                  style={{
-                    backgroundColor: "#031424",
-                    border: "solid #031424 2px",
-                    color: "white"
-                  }}
-                  onClick={this.handleOpen}
-                >
-                  Delete
-                </Button>
-              }
-              open={this.state.modalOpen}
-              onClose={this.handleClose}
-              basic
-              size="small"
-            >
-              <Header icon="browser" content="Delete Listing" />
-              <Modal.Content>
-                <h3>Are you sure you want to delete this listing?</h3>
-              </Modal.Content>
-              <Modal.Actions>
-                <Button
-                  style={{
-                    backgroundColor: "white",
-                    border: "solid #031424 2px",
-                    color: "#031424"
-                  }}
-                  onClick={() => this.handleClose(false)}
-                  inverted
-                >
-                  <Icon name="cancel" /> Cancel
-                </Button>
-                <Button
-                  style={{
-                    backgroundColor: "#031424",
-                    border: "solid #031424 2px",
-                    color: "white"
-                  }}
-                  onClick={() => this.handleClose(true)}
-                  inverted
-                >
-                  <Icon name="checkmark" /> Yes
-                </Button>
-              </Modal.Actions>
-            </Modal>
+            {this.state.editToggle ? (
+              <Button
+                style={{
+                  backgroundColor: "#031424",
+                  border: "solid #031424 2px",
+                  color: "white"
+                }}
+                onClick={() => this.confirmChanges()}
+              >
+                Confirm
+              </Button>
+            ) : (
+              <Modal
+                trigger={
+                  <Button
+                    style={{
+                      backgroundColor: "#031424",
+                      border: "solid #031424 2px",
+                      color: "white"
+                    }}
+                    onClick={this.handleOpen}
+                  >
+                    Delete
+                  </Button>
+                }
+                open={this.state.modalOpen}
+                onClose={this.handleClose}
+                basic
+                size="small"
+              >
+                <Header icon="browser" content="Delete Listing" />
+                <Modal.Content>
+                  <h3>Are you sure you want to delete this listing?</h3>
+                </Modal.Content>
+                <Modal.Actions>
+                  <Button
+                    style={{
+                      backgroundColor: "white",
+                      border: "solid #031424 2px",
+                      color: "#031424"
+                    }}
+                    onClick={() => this.handleClose(false)}
+                    inverted
+                  >
+                    <Icon name="cancel" /> Cancel
+                  </Button>
+                  <Button
+                    style={{
+                      backgroundColor: "#031424",
+                      border: "solid #031424 2px",
+                      color: "white"
+                    }}
+                    onClick={() => this.handleClose(true)}
+                    inverted
+                  >
+                    <Icon name="checkmark" /> Yes
+                  </Button>
+                </Modal.Actions>
+              </Modal>
+            )}
           </div>
         )}
       </div>
