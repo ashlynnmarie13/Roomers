@@ -7,20 +7,28 @@ import "../Chat.css";
 export default class SideBar extends Component {
   constructor(props) {
     super(props);
+    const { userName } = props;
+    console.log(userName);
+
     this.state = {
+      userName,
       reciever: ""
     };
   }
 
-  handleSubmit = e => {
-    e.preventDefault();
-    const { reciever } = this.state;
+  componentDidMount() {
+    this.handleSubmit();
+  }
+
+  handleSubmit = () => {
+    const { userName } = this.state;
     const { onSendPrivateMessage } = this.props;
-    console.log(reciever, onSendPrivateMessage);
+    console.log(userName, onSendPrivateMessage);
     //sends reciever to container, then openprivatemessage, then it makes a new event and goes to socket
     //manager... sending private message to that reciever and also to the sender's container
-    onSendPrivateMessage(reciever);
+    onSendPrivateMessage(userName);
   };
+
   render() {
     const { chats, activeChat, user, setActiveChat, logout } = this.props;
     const { reciever } = this.state;
