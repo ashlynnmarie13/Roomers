@@ -14,7 +14,8 @@ class Chat extends Component {
     //initial state of socket and user is null
     this.state = {
       socket: null,
-      user: null
+      user: null,
+      userName: ""
     };
   }
 
@@ -28,6 +29,8 @@ class Chat extends Component {
   //get current profile here????
   componentDidMount() {
     this.initSocket();
+    console.log(this.props.match.params);
+    this.setState({ userName: this.props.match.params.name });
   }
 
   /*
@@ -82,7 +85,12 @@ class Chat extends Component {
         ) : (
           //if there is a user, then we're going to put a chat container on the dom
           //it gets a socket, a user, and a logout function
-          <ChatContainer socket={socket} user={user} logout={this.logout} />
+          <ChatContainer
+            userName={this.state.userName}
+            socket={socket}
+            user={user}
+            logout={this.logout}
+          />
         )}
       </div>
     );
