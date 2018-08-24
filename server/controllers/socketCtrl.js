@@ -106,7 +106,7 @@ module.exports = function(socket) {
       const newChat = createChat({
         name: `${reciever}&${sender}`,
         users: [reciever, sender],
-        messages: [{ message: "yooooo" }, { message: "supppppp" }]
+        messages: []
       });
 
       //sending to the current socket that the person who's requesting to make a private chat is going to get

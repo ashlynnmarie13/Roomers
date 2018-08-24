@@ -32,11 +32,6 @@ class ChatContainer extends Component {
     console.log(this.props);
     // const { name } = this.props.match.params;
     //initiales everything that we need for our sockets
-    if (this.props.user.name) {
-      axios
-        .get(`/api/user/chat/${this.props.user.name}`)
-        .then(chats => this.setState({ chats: chats.data.chats }));
-    }
 
     this.initSocket(socket);
   }
@@ -230,7 +225,7 @@ class ChatContainer extends Component {
     and the input to send a new message*/}
           {activeChat !== null ? (
             <div className="chat-room">
-              <ChatHeading name={activeChat.name} />
+              <ChatHeading name="Blake Engquist & Samson" />
               <Messages
                 messages={activeChat.messages}
                 user={user}

@@ -102,7 +102,9 @@ class Home extends Component {
                 </Button>
               </div>
             </div>
-
+            <div className="home-icon">
+              <i class="fas fa-home" />
+            </div>
             <div className="renting-content">
               <h1 className="para">Want to rent out a room?</h1>
 
@@ -115,7 +117,7 @@ class Home extends Component {
                   backgroundColor: "#cf6766",
                   border: "solid #cf6766 2px",
                   color: "white",
-                  width: "80%",
+                  width: "45%",
                   height: "100%"
                 }}
               >

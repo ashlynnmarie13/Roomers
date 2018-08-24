@@ -12,21 +12,26 @@ export default class SideBar extends Component {
 
     this.state = {
       userName,
-      reciever: ""
+      reciever: "Blake Engquist"
     };
   }
 
   componentDidMount() {
-    this.handleSubmit();
+    setTimeout(
+      function() {
+        this.handleSubmit();
+      }.bind(this),
+      1000
+    );
   }
 
   handleSubmit = () => {
-    const { userName } = this.state;
+    const { reciever } = this.state;
     const { onSendPrivateMessage } = this.props;
-    console.log(userName, onSendPrivateMessage);
+    console.log(reciever, onSendPrivateMessage);
     //sends reciever to container, then openprivatemessage, then it makes a new event and goes to socket
     //manager... sending private message to that reciever and also to the sender's container
-    onSendPrivateMessage(userName);
+    onSendPrivateMessage(reciever);
   };
 
   render() {
@@ -38,7 +43,7 @@ export default class SideBar extends Component {
           <div className="app-name">Messages {/*<FAChevronDown */}</div>
           {/* <div className="menu">Menu{/*<FAChevronDown }</div> */}
         </div>
-        <form onSubmit={this.handleSubmit} className="search">
+        <form onSubmit={() => this.handleSubmit()} className="search">
           <i className="search-icon">
             Search
             {/*<FAChevronDown */}
@@ -73,7 +78,7 @@ export default class SideBar extends Component {
                 const chatSideName =
                   chat.users.find(name => {
                     return name !== user.name;
-                  }) || "Community";
+                  }) || "Cristian";
                 const classNames =
                   activeChat && activeChat.chatIdObj === chat.chatIdObj
                     ? "active"

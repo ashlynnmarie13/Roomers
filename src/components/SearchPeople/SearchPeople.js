@@ -165,7 +165,7 @@ class SearchPeople extends Component {
                 placeholder="Search people..."
               />
             </div>
-            <div className="search-people-section">
+            {/* <div className="search-people-section">
               <p className="search-section-title">Location</p>
               <Select
                 onChange={(e, data) => this.dropdownHandler(e, data)}
@@ -174,9 +174,9 @@ class SearchPeople extends Component {
                 name="state"
                 options={this.state.states}
               />
-            </div>
+            </div> */}
             <div className="search-people-section">
-              <p className="search-section-title">Gender & Age</p>
+              <p className="search-section-title">Gender</p>
               <Select
                 onChange={(e, data) => this.dropdownHandler(e, data)}
                 className="search-people-item"
@@ -187,7 +187,7 @@ class SearchPeople extends Component {
                   { text: "Female", value: "female" }
                 ]}
               />
-              <Select
+              {/* <Select
                 onChange={(e, data) => this.dropdownHandler(e, data)}
                 className="search-people-item"
                 placeholder="Age"
@@ -198,7 +198,7 @@ class SearchPeople extends Component {
                   { text: "40-49", value: { min: 40, max: 49 } },
                   { text: "50+", value: { min: 50, max: 9999 } }
                 ]}
-              />
+              /> */}
             </div>
             <div className="search-people-section">
               <p className="search-section-title">Prefernces</p>
