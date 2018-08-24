@@ -158,7 +158,7 @@
       rgba(3, 20, 36, 0.5),
       rgba(3, 20, 36, 0.3)
     ),
-    url(https://cdn.pixabay.com/photo/2015/03/26/10/04/flowers-690858_960_720.jpg);
+    url(flower.jpg);
   background-size: cover;
 }
 
