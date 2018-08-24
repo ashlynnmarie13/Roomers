@@ -17,9 +17,11 @@ import axios from "axios";
 class ChatContainer extends Component {
   constructor(props) {
     super(props);
+    const { userName } = props;
 
     this.state = {
       chats: [],
+      userName,
       activeChat: null
     };
   }
@@ -212,6 +214,7 @@ class ChatContainer extends Component {
     return (
       <div className="container">
         <SideBar
+          userName={this.state.userName}
           logout={logout}
           chats={chats}
           user={user}
