@@ -24,6 +24,7 @@ class Nav extends Component {
   }
 
   render() {
+    console.log(this.state);
     const { profilePic } = this.state.userInfo;
     return (
       <div className="Nav">

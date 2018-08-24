@@ -276,12 +276,6 @@ class SearchPeople extends Component {
                   label="Night Owl"
                 />
                 <Checkbox
-                  name="fitnessEnthusiast"
-                  onChange={(event, data) => this.checkboxHandler(event, data)}
-                  className="search-people-item"
-                  label="Fitness Enthusiast"
-                />
-                <Checkbox
                   name="bookworm"
                   onChange={(event, data) => this.checkboxHandler(event, data)}
                   className="search-people-item"
@@ -298,12 +292,6 @@ class SearchPeople extends Component {
                   onChange={(event, data) => this.checkboxHandler(event, data)}
                   className="search-people-item"
                   label="Creative"
-                />
-                <Checkbox
-                  name="nightOwl"
-                  onChange={(event, data) => this.checkboxHandler(event, data)}
-                  className="search-people-item"
-                  label="Night Owl"
                 />
                 <Checkbox
                   name="fitnessEnthusiast"

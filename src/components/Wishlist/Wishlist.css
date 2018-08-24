@@ -1,0 +1,9 @@
+.wishlist-listings {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 33.3% 33.3% 33.3%;
+}
+
+.wishlist-action:hover {
+  cursor: pointer;
+}

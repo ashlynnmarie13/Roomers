@@ -533,7 +533,7 @@ module.exports = {
       outdoorSpace,
       selectedState,
       rentLength,
-      "male" + male,
+      male,
       female,
       monthlyCost
     );

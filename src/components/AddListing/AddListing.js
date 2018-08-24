@@ -103,6 +103,44 @@ class AddListing extends Component {
     axios
       .post("/api/listing/add", { ...this.state, userID: authID })
       .then(response => {
+        this.setState({
+          earlyTwenties: false,
+          lateTwenties: false,
+          thirties: false,
+          fortiesAndOlder: false,
+          male: true,
+          female: false,
+          street: "",
+          address: "",
+          city: "",
+          state: "",
+          zip: "",
+          monthlyCost: 0,
+          depositCost: 0,
+          moveInDate: "Date",
+          rentLength: 0,
+          washer: false,
+          wifi: false,
+          utilities: false,
+          furnished: false,
+          elevator: false,
+          doorman: false,
+          airConditioning: false,
+          heating: false,
+          gym: false,
+          tv: false,
+          privateBathroom: false,
+          outdoorSpace: false,
+          pets: false,
+          clean: false,
+          smoke: false,
+          guests: false,
+          lat: 0,
+          lng: 0,
+          images: [],
+          description: ""
+        });
+
         this.props.history.push("/myprofile");
       });
   };

@@ -26,6 +26,9 @@ class ChatContainer extends Component {
 
   componentDidMount() {
     const { socket } = this.props;
+
+    console.log(this.props);
+    // const { name } = this.props.match.params;
     //initiales everything that we need for our sockets
     if (this.props.user.name) {
       axios

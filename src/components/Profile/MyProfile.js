@@ -217,7 +217,6 @@ class MyProfile extends Component {
               My Listings{" "}
             </div>
             <div className="my-listings">
-              {console.log(userInfo)}
               <MyListings userInfo={userInfo} />
             </div>
           </div>
@@ -228,8 +227,6 @@ class MyProfile extends Component {
               My Wishlist{" "}
             </div>
             <div className="my-listings">
-              {console.log(userInfo)}
-
               <Wishlist userInfo={userInfo} />
             </div>
           </div>

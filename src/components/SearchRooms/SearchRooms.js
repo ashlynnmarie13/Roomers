@@ -31,7 +31,7 @@ class SearchRooms extends Component {
     female: false,
     selectedState: "",
     rentLength: 0,
-    monthlyCost: 999
+    monthlyCost: 9999
   };
 
   componentDidMount() {

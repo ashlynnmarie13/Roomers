@@ -52,7 +52,10 @@ class Wishlist extends Component {
       } = val;
 
       return (
-        <Card className="room-card" style={{ height: "400px", marginTop: 0 }}>
+        <Card
+          className="room-card"
+          style={{ height: "400px", margin: "0 5px" }}
+        >
           <Link to={`/listing/${id}`}>
             <Image style={{ width: "100%", height: "200px" }} src={image} />
           </Link>
@@ -68,7 +71,10 @@ class Wishlist extends Component {
             <Card.Description />
           </Card.Content>
           <Card.Content extra>
-            <p onClick={() => this.deleteFromWishList(id)}>
+            <p
+              class="wishlist-action"
+              onClick={() => this.deleteFromWishList(id)}
+            >
               {" "}
               <i class="fas fa-times" /> Delete From Wishlist
             </p>
@@ -76,7 +82,11 @@ class Wishlist extends Component {
         </Card>
       );
     });
-    return <div style={{ width: "90%" }}>{wishList}</div>;
+    return (
+      <div className="wishlist-listings" style={{ width: "90%" }}>
+        {wishList}
+      </div>
+    );
   }
 }
 export default connect(state => state)(Wishlist);
