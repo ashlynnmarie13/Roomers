@@ -24,6 +24,7 @@ class Nav extends Component {
   }
 
   render() {
+    console.log(this.state);
     const { profilePic } = this.state.userInfo;
     return (
       <div className="Nav">
@@ -49,15 +50,14 @@ class Nav extends Component {
                 color: "#031424",
                 width: "70%",
                 height: "38%",
-                fontSize: "1em",
-                marginRight: "25%"
+                fontSize: "1em"
               }}
             >
               {" "}
               Messages
             </Button>
           </NavLink>
-          <div style={{ marginRight: "20%", height: "50%" }}>
+          <div style={{ marginRight: "20%", height: "52%" }}>
             <a href={process.env.REACT_APP_LOGOUT}>
               <Button
                 style={{
@@ -66,14 +66,14 @@ class Nav extends Component {
                   justifyContent: "space-around",
                   alignItems: "center",
                   backgroundColor: "#031424",
-                  border: "solid #031424 2px",
+                  border: "solid #031424 4px",
                   color: "white",
                   width: "100%",
                   height: "100%",
                   fontSize: "1em"
                 }}
               >
-                Logout
+                Log Out
               </Button>
             </a>
           </div>
@@ -97,7 +97,7 @@ class Nav extends Component {
               width: "25%",
               height: "85%",
               fontSize: "1em",
-              marginLeft: "25%"
+              marginLeft: "35%"
             }}
           >
             <NavLink
@@ -116,7 +116,7 @@ class Nav extends Component {
               justifyContent: "space-around",
               alignItems: "center",
               backgroundColor: "#031424",
-              border: "solid #031424 2px",
+
               color: "white",
               width: "25%",
               height: "85%",

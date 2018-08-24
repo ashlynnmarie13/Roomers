@@ -1,11 +1,36 @@
 .pageBody {
   display: flex;
-  margin: auto;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
+  margin-top: 2%;
+  width: 70%;
+  display: grid;
+  grid-template-columns: 25% 25% 25%;
+
+  grid-gap: 10%;
+  align-items: center;
   margin-bottom: 10px;
-  margin-right: 15px;
+ margin: 0 auto;
   margin-top: 5%;
+  width: 70%;
+
+    
+
+}
+
+.cool-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  -webkit-box-shadow: 0px 0px 100px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 100px 1px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 100px 1px rgba(0,0,0,0.75);
+border-radius: 5px;
+  padding: 80px;
+  
 }
 
 .center {
@@ -15,6 +40,7 @@
   align-items: center;
   flex-wrap: wrap;
   margin-top: 2%;
+
 }
 .location-image {
   height: 70vh;
@@ -24,6 +50,17 @@
   height: 70px;
 }
 .search-bar {
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-self: center;
+  align-items: center;
+}
+
+.location-listings {
+  border: solid green 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,9 +74,11 @@
 }
 
 .search-text {
-  font-size: 3em;
+
+
+  font-size: 5em;
   margin-bottom: 3%;
   color: white;
   font-weight: bold;
-  text-shadow: 1px 0px 2px rgba(3, 20, 36, 0.8);
+  text-shadow: 3px 0px 3px rgba(3, 20, 36, 0.8);
 }

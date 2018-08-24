@@ -1,6 +1,11 @@
 export default {
   states: [
     {
+      text: "",
+      value: "",
+      cities: []
+    },
+    {
       text: "Alabama",
       value: "Alabama",
       cities: [

@@ -211,7 +211,8 @@ class Profile extends Component {
           <div className="listing-box">
             <div className="header-two" style={{ marginTop: "2%" }}>
               <i class="fas fa-home" /> {"  "}
-              My Listings{" "}
+              {userInfo.name}
+              's Listings{" "}
             </div>
             <div className="my-listings">
               <TheirListings

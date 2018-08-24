@@ -33,7 +33,7 @@ export default class Messages extends Component {
                 className={`message-container ${mes.sender === user.name &&
                   "right"}`}
               >
-                <div className="time">{moment(mes.time).fromNow()}</div>
+                <div className="time">{mes.time}</div>
                 <div className="data">
                   <div className="message">{mes.message}</div>
                   <div className="name">{mes.sender}</div>

@@ -204,8 +204,33 @@ module.exports = {
     let veganBool = vegan === "true";
     let introvertedBool = introverted === "true";
 
+    console.log(
+      smoke,
+      guests,
+      pets,
+      clean,
+      selectedState,
+      organized,
+      healthy,
+      professional,
+      student,
+      earlyBird,
+      nightOwl,
+      fitnessEnthusiast,
+      creative,
+      bookworm,
+      foodie,
+      partyAnimal,
+      vegan,
+      introverted,
+      male,
+      female,
+      minAge,
+      maxAge
+    );
+
     Profile.find({
-      age: { $gte: Number(minAge), $lte: Number(maxAge) },
+      // age: { $gte: Number(minAge), $lte: Number(maxAge) },
       "gender.male": maleBool,
       "gender.female": femaleBool,
       "prefs.smoke": smokeBool,
@@ -213,19 +238,19 @@ module.exports = {
       "prefs.pets": petsBool,
       "prefs.clean": cleanBool,
       "traits.organized": organizedBool,
-      "traits.healthy": healthyBool,
-      "traits.professional": professionalBool,
-      "traits.student": studentBool,
-      "traits.earlyBird": earlyBirdBool,
-      "traits.nightOwl": nightOwlBool,
-      "traits.fitnessEnthusiast": fitnessEnthusiastBool,
-      "traits.creative": creativeBool,
-      "traits.bookworm": bookwormBool,
-      "traits.foodie": foodieBool,
+      // "traits.healthy": healthyBool
+      // "traits.professional": professionalBool,
+      // "traits.student": studentBool,
+      // "traits.earlyBird": earlyBirdBool,
+      // "traits.nightOwl": nightOwlBool,
+      // "traits.fitnessEnthusiast": fitnessEnthusiastBool,
+      // "traits.creative": creativeBool,
+      // "traits.bookworm": bookwormBool,
+      // "traits.foodie": foodieBool,
       "traits.partyAnimal": partyAnimalBool,
       "traits.vegan": veganBool,
-      "traits.introverted": introvertedBool,
-      "address.state": { $regex: selectedState, $options: "i" }
+      "traits.introverted": introvertedBool
+      // "address.state": { $regex: selectedState, $options: "i" }
     }).then(response => res.status(200).send(response));
   },
 
@@ -533,7 +558,7 @@ module.exports = {
       outdoorSpace,
       selectedState,
       rentLength,
-      "male" + male,
+      male,
       female,
       monthlyCost
     );

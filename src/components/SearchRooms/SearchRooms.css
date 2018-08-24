@@ -7,12 +7,13 @@
 
 .search-menu {
   width: 30%;
+  height: 97vh;
   display: flex;
   flex-direction: column;
   margin: 30px;
   padding: 40px;
   position: sticky;
-  top: 0;
+  top: 5px;
   border: 1px solid rgb(219, 219, 219);
   border-radius: 5px;
 }
@@ -21,6 +22,7 @@
   width: 70%;
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
+  grid-gap: 1%;
   margin: 30px;
 }
 

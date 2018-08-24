@@ -148,29 +148,30 @@ export default class Location extends Component {
           }}
           className="search-bar"
         >
-          <div className="search-text"> SEARCH BY CITY</div>
-          <Dropdown
-            onChange={(e, data) => this.dropdownHandler(e, data)}
-            style={{
-              width: "50%",
-              zIndex: "100",
-              height: "10%",
+          <div className="cool-box">
+            <div className="search-text"> SEARCH BY CITY</div>
+            <Dropdown
+              onChange={(e, data) => this.dropdownHandler(e, data)}
+              style={{
+                width: "50%",
+                zIndex: "100",
+                height: "10%",
 
-              fontSize: "1.3em"
-            }}
-            placeholder="Select City"
-            name="selectedCity"
-            search
-            selection
-            value={this.state.selectedCity}
-            options={[
-              { text: texts[0], value: values[0] },
-              { text: texts[1], value: values[1] },
-              { text: texts[2], value: values[2] }
-            ]}
-          />
+                fontSize: "1.3em"
+              }}
+              placeholder="Select City"
+              name="selectedCity"
+              search
+              selection
+              value={this.state.selectedCity}
+              options={[
+                { text: texts[0], value: values[0] },
+                { text: texts[1], value: values[1] },
+                { text: texts[2], value: values[2] }
+              ]}
+            />
+          </div>
         </div>
-
         <div className="pageBody">{locationList}</div>
         <div className="center">
           <Link to={`/search/rooms/${this.state.selectedState}`}>

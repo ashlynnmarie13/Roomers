@@ -23,13 +23,15 @@ const ProfileCard = props => {
 
           <Card.Meta style={{ color: "#8eaebd" }}>{title}</Card.Meta>
 
-          <Card.Description>{aboutMe}</Card.Description>
+          <Card.Description style={{ height: "80px" }}>
+            {aboutMe}
+          </Card.Description>
           <Card.Description style={{ marginTop: "10px" }}>
             Age: {age}
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
-          <Link to={`/chat/${name}`}>
+          <Link to={`/chat/Blake Engquist`}>
             <Button
               style={{
                 backgroundColor: "#8eaebd",
