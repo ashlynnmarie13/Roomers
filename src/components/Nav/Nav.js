@@ -3,9 +3,8 @@ import "./Nav.css";
 import "../../App";
 import { NavLink, Link } from "react-router-dom";
 import { Button } from "semantic-ui-react";
-import { getUserById, getUser } from "../../redux/ducks/userReducer";
+import { getUser } from "../../redux/ducks/userReducer";
 import axios from "axios";
-import Logout from "../Login/Logout";
 import { connect } from "react-redux";
 
 class Nav extends Component {
@@ -24,7 +23,6 @@ class Nav extends Component {
   }
 
   render() {
-    console.log(this.state);
     const { profilePic } = this.state.userInfo;
     return (
       <div className="Nav">
