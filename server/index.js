@@ -23,7 +23,7 @@ app.use(json());
 
 const server = http.createServer(app);
 const io = (module.exports.io = socket(server));
-// app.use(express.static(path.join(__dirname, "../build")));
+app.use(express.static(path.join(__dirname, "../build")));
 app.use(express.static(`${__dirname}/../build`));
 //socket.io related
 
