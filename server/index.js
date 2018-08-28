@@ -23,7 +23,8 @@ app.use(json());
 
 const server = http.createServer(app);
 const io = (module.exports.io = socket(server));
-app.use(express.static(path.join(__dirname, "../build")));
+// app.use(express.static(path.join(__dirname, "../build")));
+app.use(express.static(`${__dirname}/../build`));
 //socket.io related
 
 //WE HAVE TO PUT THIS HERE FOR SOCKET.IO TO WORK
@@ -148,7 +149,7 @@ app.get(
   "/login",
   passport.authenticate("auth0", {
     // successRedirect: "/",
-    successRedirect: `http://localhost:3000/#/signup`,
+    successRedirect: process.env.LOGIN_REDIRECT,
     // successRedirect: "/#/",
     failureRedirect: "/login"
   })
@@ -210,6 +211,10 @@ app.delete("/api/delete/:id", ctrl.deleteById);
 app.post("/api/user/chat/update", ctrl.addMessageToChat);
 app.get("/api/user/chat/:id", ctrl.getChats);
 app.put("/api/user/chat", ctrl.addMessage);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../build/index.html"));
+});
 
 server.listen(port, () => {
   console.log(`app is running in server port ${port}`);
