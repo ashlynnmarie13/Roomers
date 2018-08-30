@@ -112,14 +112,13 @@
 .fixed-corner {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: start;
   align-items: center;
-  position: absolute;
+  margin-left: 60px;
 
   z-index: 10;
-  width: 20%;
-  margin-left: -45%;
-  margin-top: 2%;
+  width: 100%;
+  height: 15%;
 }
 
 .header-text {
@@ -142,4 +141,14 @@
   font-family: "Fredoka One";
   font-size: 5vh;
   opacity: none;
+}
+
+@media (max-width: 600px) {
+  .header-text {
+    font-size: 30px;
+  }
+  .fixed-corner {
+    margin-left: 30px;
+  }
+
 }

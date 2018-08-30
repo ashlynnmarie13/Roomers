@@ -291,3 +291,9 @@
     opacity: 1;
   }
 }
+
+@media (max-width: 600px) {
+  .picture {
+    display: none;
+  }
+}
