@@ -85,13 +85,6 @@
 }
 
 .logo {
-  color: #031424;
-  text-align: center;
-
-  cursor: pointer;
-}
-
-.home {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -105,9 +98,10 @@
   opacity: none;
 
   text-shadow: 2px 2px 1px #031424;
+  animation: minimize .3s both ease-out;
 }
 
-.home:hover {
+.logo:hover {
   animation: resize 0.5s both;
   color: #cf6766;
   text-shadow: 2px 2px 1px #031424;
@@ -147,7 +141,7 @@
     transform: scale(1);
   }
   to {
-    transform: scale(1.05) perspective(5px);
+    transform: scale(1.1) perspective(5px);
   }
 }
 

@@ -77,7 +77,7 @@ class Nav extends Component {
           </div>
         </div>
 
-        <Link to="/home" className="home">
+        <Link to="/home" className="logo">
           ROOMERS
         </Link>
 

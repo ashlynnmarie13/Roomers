@@ -210,6 +210,7 @@
   font-weight: bold;
   text-transform: uppercase;
   animation: fade-in .8s both;
+  text-shadow: 2px 2px 5px black;
 }
 
 .home-content {
@@ -281,7 +282,7 @@
     transform: scale(1)
   }
   to {
-    transform: scale(1.1)
+    transform: scale(1.1) perspective(5px);
   }
 }
 
