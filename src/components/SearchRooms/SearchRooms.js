@@ -31,7 +31,7 @@ class SearchRooms extends Component {
     female: false,
     selectedState: "",
     rentLength: 0,
-    monthlyCost: 9999
+    monthlyCost: 999999
   };
 
   componentDidMount() {
@@ -87,7 +87,7 @@ class SearchRooms extends Component {
 
   inputHandler = e => {
     if (e.target.value.length === 0) {
-      this.setState({ monthlyCost: 999 }, () => this.searchRooms());
+      this.setState({ monthlyCost: 999999 }, () => this.searchRooms());
     } else {
       this.setState({ monthlyCost: e.target.value }, () => this.searchRooms());
     }
