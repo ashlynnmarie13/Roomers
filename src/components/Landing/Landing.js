@@ -34,7 +34,24 @@ export default class Landing extends Component {
     return (
       <div className="Landing">
         <div className="fixed-corner">
-          <Login />
+          <a href={process.env.REACT_APP_LOGIN}>
+            <Button
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-around",
+                alignItems: "center",
+                backgroundColor: "white",
+                border: "solid #031424 2px",
+                color: "#031424",
+                width: "150px",
+                height: "85%",
+                fontSize: "1.2em"
+              }}
+            >
+              Log in
+            </Button>
+          </a>
         </div>
         <div
           style={this.expand("bottom", "top")}

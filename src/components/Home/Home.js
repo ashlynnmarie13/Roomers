@@ -68,7 +68,7 @@ class Home extends Component {
         </div>
           <button>EXPLORE</button> */}
         <div className="home-content">
-          <div>
+          <div className="head-content">
             <h1 className="head1">Have you heard the roomers?</h1>
             <h1 className="para solution">We have your housing solution!</h1>
           </div>
@@ -107,71 +107,112 @@ class Home extends Component {
             </div>
             <div className="renting-content">
               <h1 className="para">Want to rent out a room?</h1>
-
-              <Button
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-around",
-                  alignItems: "center",
-                  backgroundColor: "#cf6766",
-                  border: "solid #cf6766 2px",
-                  color: "white",
-                  width: "45%",
-                  height: "100%"
-                }}
-              >
-                <Link className="renting-content2" to="/addlisting">
+              <Link className="renting-content2" to="/addlisting">
+                <Button
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                    backgroundColor: "#cf6766",
+                    border: "solid #cf6766 2px",
+                    color: "white",
+                    width: "100%",
+                    height: "100%"
+                  }}
+                >
                   LIST YOUR PLACE
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
         {/* <div className="button">LIST YOUR PLACE FOR FREE</div> */}
-        <div className="container">
+        <div className="state-container">
           <br />
           {/* <h1>Search Rooms and Roommates In These Cities...</h1>s */}
           <div className="innerC">
-            <div className="top">
-              <div className="ny" onClick={() => this.selectState("New York")}>
-                <h2 className="cali">NEW YORK</h2>
-              </div>
-              <div className="au" onClick={() => this.selectState("Texas")}>
-                <h2 className="cali">TEXAS</h2>
-              </div>
-              <div className="sd" onClick={() => this.selectState("Florida")}>
-                <h2 className="cali">FLORIDA</h2>
-              </div>
+            <div
+              className="state-img state-img-1"
+              style={{
+                backgroundImage:
+                  "url('http://www.wallpaperbetter.com/wallpaper/21/90/360/hudson-river-new-york-city-1080P-wallpaper-middle-size.jpg')"
+              }}
+              onClick={() => this.selectState("New York")}
+            >
+              <h2 className="state-name">NEW YORK</h2>
+            </div>
+            <div
+              className="state-img state-img-2"
+              style={{
+                backgroundImage:
+                  "url('http://paperlief.com/images/dallas-texas-at-night-wallpaper-4.jpg')"
+              }}
+              onClick={() => this.selectState("Texas")}
+            >
+              <h2 className="state-name">TEXAS</h2>
+            </div>
+            <div
+              className="state-img state-img-3"
+              style={{
+                backgroundImage:
+                  "url('http://wallscollection.net/wp-content/uploads/2017/01/Florida-Wallpapers-HD-1920x1080.jpg')"
+              }}
+              onClick={() => this.selectState("Florida")}
+            >
+              <h2 className="state-name">FLORIDA</h2>
             </div>
 
-            <div className="middle">
-              <div className="bo" onClick={() => this.selectState("Kansas")}>
-                <h2 className="cali">KANSAS</h2>
-              </div>
-              <div className="ch" onClick={() => this.selectState("Nevada")}>
-                <h2 className="cali">NEVADA</h2>
-              </div>
-              <div className="sf" onClick={() => this.selectState("Michigan")}>
-                <h2 className="cali">MICHIGAN</h2>
-              </div>
+            <div
+              className="state-img state-img-4"
+              style={{
+                backgroundImage:
+                  "url('https://bloggerlocal.com/wp-content/uploads/2013/08/kansas_city_skyline_2.jpg')"
+              }}
+              onClick={() => this.selectState("Kansas")}
+            >
+              <h2 className="state-name">KANSAS</h2>
             </div>
-            <div className="bottom">
-              <div
-                className="la"
-                onClick={() => this.selectState("California")}
-              >
-                <h2 className="cali">CALIFORNIA</h2>
-              </div>
-              <div
-                className="lo"
-                onClick={() => this.selectState("New Jersey")}
-              >
-                <h2 className="cali">NEW JERSEY</h2>
-              </div>
-              <div className="wa" onClick={() => this.selectState("Nebraska")}>
-                <h2 className="cali">NEBRASKA</h2>
-              </div>
+            <div
+              className="state-img state-img-5"
+              style={{
+                backgroundImage:
+                  "url('https://roomicities.imgix.net/Chicago.jpg')"
+              }}
+              onClick={() => this.selectState("Nevada")}
+            >
+              <h2 className="state-name">NEVADA</h2>
+            </div>
+            <div
+              className="state-img state-img-6"
+              style={{
+                backgroundImage:
+                  "url('http://jonvilma.com/images/detroit-at-sunrise-michigan-1.jpg')"
+              }}
+              onClick={() => this.selectState("Michigan")}
+            >
+              <h2 className="state-name">MICHIGAN</h2>
+            </div>
+
+            <div
+              className="state-img state-img-7"
+              style={{
+                backgroundImage:
+                  "url('http://www.wallpaperbetter.com/wallpaper/1008/644/858/paradise-pier-sunset-california-1080P-wallpaper.jpg')"
+              }}
+              onClick={() => this.selectState("California")}
+            >
+              <h2 className="state-name">CALIFORNIA</h2>
+            </div>
+            <div
+              className="state-img state-img-8"
+              style={{
+                backgroundImage:
+                  "url('https://i.pinimg.com/originals/4d/9d/d6/4d9dd63aedcf8c0064ec1e41cc4783ab.jpg')"
+              }}
+              onClick={() => this.selectState("Nebraska")}
+            >
+              <h2 className="state-name">NEBRASKA</h2>
             </div>
           </div>
           {/* <h3>Other States:</h3> */}
