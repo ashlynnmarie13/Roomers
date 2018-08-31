@@ -282,15 +282,15 @@
     transform: scale(1)
   }
   to {
-    transform: scale(1.1) perspective(5px);
+    transform: scale(1.025) perspective(5px);
   }
 }
 
 @keyframes minimize {
   from {
-    transform: scale(1.1)
+    transform: scale(1.025);
   }
   to {
-    transform: scale(1)
+    transform: scale(1);
   }
 }
