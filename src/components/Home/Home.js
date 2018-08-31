@@ -91,7 +91,7 @@ class Home extends Component {
                     backgroundColor: "#cf6766",
                     border: "solid #cf6766 2px",
                     color: "white",
-                    width: "30%",
+                    width: "100px",
                     height: "50%",
 
                     marginLeft: "2%"
@@ -117,7 +117,7 @@ class Home extends Component {
                     backgroundColor: "#cf6766",
                     border: "solid #cf6766 2px",
                     color: "white",
-                    width: "100%",
+                    width: "187px",
                     height: "100%"
                   }}
                 >

@@ -26,6 +26,10 @@ class Nav extends Component {
     const { profilePic } = this.state.userInfo;
     return (
       <div className="Nav">
+        <div className="menu-btn-container">
+          <i class="menu-btn fas fa-bars" />
+        </div>
+
         <div className="box1">
           <NavLink to="/myprofile" className="nav-pic">
             <img src={profilePic} alt="pic" className="profile-pic-nav" />
@@ -46,8 +50,8 @@ class Nav extends Component {
                 backgroundColor: "white",
                 border: "solid #031424 2px",
                 color: "#031424",
-                width: "70%",
-                height: "38%",
+                width: "120px",
+                height: "40px",
                 fontSize: "1em"
               }}
             >
@@ -55,26 +59,25 @@ class Nav extends Component {
               Messages
             </Button>
           </NavLink>
-          <div style={{ marginRight: "20%", height: "52%" }}>
-            <a href={process.env.REACT_APP_LOGOUT}>
-              <Button
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-around",
-                  alignItems: "center",
-                  backgroundColor: "#031424",
-                  border: "solid #031424 4px",
-                  color: "white",
-                  width: "100%",
-                  height: "100%",
-                  fontSize: "1em"
-                }}
-              >
-                Log Out
-              </Button>
-            </a>
-          </div>
+
+          <NavLink to={process.env.REACT_APP_LOGOUT}>
+            <Button
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-around",
+                alignItems: "center",
+                backgroundColor: "#031424",
+                border: "solid #031424 4px",
+                color: "white",
+                width: "120px",
+                height: "40px",
+                fontSize: "1em"
+              }}
+            >
+              Log Out
+            </Button>
+          </NavLink>
         </div>
 
         <Link to="/home" className="logo">
@@ -82,31 +85,30 @@ class Nav extends Component {
         </Link>
 
         <div className="listings">
-          <Button
-            className="nav-button"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-around",
-              alignItems: "center",
-              backgroundColor: "white",
-              border: "solid #031424 2px",
-              color: "#031424",
-              width: "25%",
-              height: "85%",
-              fontSize: "1em",
-              marginLeft: "35%"
-            }}
+          <NavLink
+            to="/search/rooms/ "
+            style={{ color: "#031424" }}
+            className="expand-link"
           >
-            <NavLink
-              to="/search/rooms/ "
-              style={{ color: "#031424" }}
-              className="expand-link"
+            <Button
+              className="nav-button"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-around",
+                alignItems: "center",
+                backgroundColor: "white",
+                border: "solid #031424 2px",
+                color: "#031424",
+                width: "120px",
+                height: "40px",
+                fontSize: "1em",
+                marginLeft: "35%"
+              }}
             >
-              {" "}
               Search
-            </NavLink>
-          </Button>
+            </Button>
+          </NavLink>
           <Button
             style={{
               display: "flex",
@@ -116,10 +118,8 @@ class Nav extends Component {
               backgroundColor: "#031424",
 
               color: "white",
-              width: "25%",
-              height: "85%",
-              fontSize: "1em",
-              paddingRight: "5%"
+              width: "120px",
+              height: "40px"
             }}
           >
             <Link
