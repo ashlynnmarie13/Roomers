@@ -10,7 +10,7 @@
 }
 
 .home-image {
-  height: 65vh;
+  height: 55vh;
   width: 100vw;
 }
 .background1 {
@@ -41,6 +41,8 @@
 }
 
 .para {
+  width: 300px;
+  text-align: center;
   text-align: center;
   margin-bottom: 5%;
 }
@@ -244,16 +246,16 @@
 
 .looking-renting {
   display: flex;
-  flex-direction: row;
   height: 70%;
   width: 70%;
   justify-content: space-around;
   align-items: center;
-
+  margin-bottom: 40px;
 }
 
 .solution {
   color: #30415d;
+  margin: 0 auto;
 }
 
 .state-img:hover {
@@ -292,5 +294,31 @@
   }
   to {
     transform: scale(1);
+  }
+}
+
+@media (max-width: 1100px) {
+  .looking-renting {
+    flex-direction: column;
+  }
+
+  .innerC {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .state-img {
+    height: 300px;
+    width: 100%;
+  }
+
+  .input-group {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 1600px) {
+  .home-icon {
+    display: none;
   }
 }

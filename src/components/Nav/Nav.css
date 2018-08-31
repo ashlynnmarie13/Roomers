@@ -21,9 +21,10 @@
   flex-direction: row;
   justify-content: space-around;
   align-self: center;
+  align-items: center;
 
-  width: 25%;
-  height: 60%;
+  width: 400px;
+  height: 90%;
 }
 
 .box1 {
@@ -33,7 +34,7 @@
   align-self: center;
   align-items: center;
 
-  width: 25%;
+  width: 400px;
   height: 90%;
 }
 .box2 {
@@ -136,6 +137,19 @@
   width: 9vw;
 }
 
+.menu-btn {
+  font-size: 40px;
+  color: #031424;
+}
+
+.menu-btn:hover {
+  cursor: pointer;
+}
+
+.menu-btn-container {
+  display: none;
+}
+
 @keyframes resize {
   from {
     transform: scale(1);
@@ -163,6 +177,23 @@
   }
 }
 
-@media (max-width: 600px) {
-  
+@media (max-width: 1300px) {
+  .menu-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 45px;
+  }
+
+  .box1 {
+    display: none;
+  }
+
+  .listings {
+    display: none;
+  }
+
+  .logo {
+    margin: 0 auto;
+  }
 }
